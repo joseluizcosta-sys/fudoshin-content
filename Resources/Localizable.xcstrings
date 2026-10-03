@@ -1,13 +1,138 @@
 {
-  "sourceLanguage" : "pt-BR",
-  "strings" : {
-    "app.name" : {
-      "localizations" : {
-        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Ultra Mind" } },
-        "en" : { "stringUnit" : { "state" : "translated", "value" : "Ultra Mind" } },
-        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ultra Mind" } }
+  "sourceLanguage": "pt-BR",
+  "strings": {
+    "app.name": {
+      "localizations": {
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultra Mind"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultra Mind"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultra Mind"
+          }
+        }
+      }
+    },
+    "root.title": {
+      "localizations": {
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AtletaEstoico"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AtletaEstoico"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AtletaEstoico"
+          }
+        }
+      }
+    },
+    "root.subtitle": {
+      "localizations": {
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A frase estoica certa no momento certo do seu treino."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The right Stoic words at the right moment of your training."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La frase estoica justa en el momento justo de tu entrenamiento."
+          }
+        }
+      }
+    },
+    "widget.name": {
+      "localizations": {
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AtletaEstoico"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AtletaEstoico"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AtletaEstoico"
+          }
+        }
+      }
+    },
+    "widget.description": {
+      "localizations": {
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua frase do dia."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your phrase of the day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu frase del día."
+          }
+        }
+      }
+    },
+    "widget.hello": {
+      "localizations": {
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olá"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hello"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hola"
+          }
+        }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

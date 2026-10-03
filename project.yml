@@ -17,7 +17,9 @@ targets:
     type: application
     platform: iOS
     sources:
-      - Sources
+      - path: Sources
+        excludes:
+          - "Widget/**"       # o widget tem @main próprio; não pode compilar dentro do app
       - Resources/Localizable.xcstrings
       - path: Content
         type: folder
@@ -25,6 +27,8 @@ targets:
       path: Resources/Info.plist       # o XcodeGen regenera este arquivo; mantenha as chaves aqui
       properties:
         CFBundleDisplayName: AtletaEstoico
+        CFBundleDevelopmentRegion: pt-BR
+        CFBundleLocalizations: [pt-BR, en, es]
         NSHealthShareUsageDescription: Lemos seus treinos e seu sono do app Saúde para escolher a mensagem certa para o seu momento. Os dados ficam só no seu iPhone.
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
@@ -61,6 +65,8 @@ targets:
       path: Resources/Widget-Info.plist
       properties:
         CFBundleDisplayName: AtletaEstoico
+        CFBundleDevelopmentRegion: pt-BR
+        CFBundleLocalizations: [pt-BR, en, es]
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -82,3 +88,15 @@ targets:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.atletaestoico.tests
         GENERATE_INFOPLIST_FILE: YES
+schemes:
+  AtletaEstoico:
+    build:
+      targets:
+        AtletaEstoico: all
+        AtletaEstoicoTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - AtletaEstoicoTests
