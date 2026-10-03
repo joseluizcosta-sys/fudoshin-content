@@ -5,7 +5,7 @@ Mensagens estoicas e de livros para atletas, no momento certo do treino. 100% on
 ## Status
 Estrutura criada em 28/09/2026. Código Swift ainda não iniciado (vem após o gate de validação, ver `docs/Plano_Fase1.md`).
 
-## Como abrir (quando houver código)
+## Como abrir
 ```bash
 brew install xcodegen
 cd AtletaEstoico

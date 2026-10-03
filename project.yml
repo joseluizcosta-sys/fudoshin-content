@@ -10,7 +10,7 @@ settings:
     MARKETING_VERSION: "0.1"
     CURRENT_PROJECT_VERSION: "1"
     SWIFT_VERSION: "5.0"
-    DEVELOPMENT_TEAM: ""   # preencha com seu Team ID
+    DEVELOPMENT_TEAM: "8C5SCXTJYP"
     GENERATE_INFOPLIST_FILE: NO
 targets:
   AtletaEstoico:
@@ -41,7 +41,6 @@ targets:
       path: Resources/AtletaEstoico.entitlements
       properties:
         com.apple.developer.healthkit: true
-        com.apple.developer.healthkit.access: []
         com.apple.developer.healthkit.background-delivery: true
         com.apple.security.application-groups: [group.com.atletaestoico]
     dependencies:
