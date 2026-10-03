@@ -310,6 +310,7 @@ Cada tarefa: **Objetivo · Arquivos · Passos · Aceite**. 🔍 = revisão com O
 ### T08 — DailyPlanner 🔍
 - **Arquivos:** `DailyPlanner.swift`, `DailyPlannerTests.swift`.
 - **Fluxo `refresh(now:)`:** montar contexto → gerar entradas de hoje + 6 dias (planejáveis) → aplicar gatilho de evento em hoje → gravar `DailyPlan` no `SharedStore` → gravar `DeliveryLog` de hoje → pré-gerar papel de parede de hoje (T12; por ora protocolo vazio) → `reloadAllTimelines` → reagendar notificações (T09; por ora protocolo).
+- **Atenção (revisão T05):** o `HKObserverQuery` hoje chama `completionHandler()` antes do trabalho terminar. No DailyPlanner, chamar o completion só depois do `refresh` concluir (senão o iOS pode suspender o app no meio). Garantir que `startObserving` seja chamado uma única vez.
 - **Chamado em:** abertura do app (`scenePhase == .active`), observer do HealthKit, mudança de preferências, e `BGAppRefreshTask` diária (registrar identificador `com.atletaestoico.refresh`).
 - **Aceite (testes com mocks):** plano tem 7 entradas com dias consecutivos; amanhã longo → hoje é `vespera_chave`; treino recém-detectado substitui hoje por `pos_treino` sem mexer nos outros dias.
 - **🔍 Revisão Opus:** consistência app/widget/notificação e casos de app fechado por dias.
