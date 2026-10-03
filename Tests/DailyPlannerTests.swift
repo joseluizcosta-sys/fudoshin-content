@@ -272,6 +272,132 @@ final class DailyPlannerTests: XCTestCase {
         XCTAssertEqual(todayLogs.count, 1, "Deve haver exatamente um DeliveryLog para hoje")
     }
 
+    // MARK: - Novos testes (revisão T08)
+
+    func testWeekPlanChangeMidDay() async throws {
+        // Primeiro refresh sem semana configurada → hoje = .geral
+        await planner.refresh(now: now, calendar: spCal)
+        let plan1 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan1.entries[0].trigger, .geral)
+
+        // Configura amanhã como longo
+        let tomorrow = spCal.date(byAdding: .day, value: 1, to: now)!
+        context.insert(WeekPlan(sessions: [weekIndex(of: tomorrow): .longo]))
+        try context.save()
+
+        // Segundo refresh → gatilho planejável recalculado → vespera_chave
+        await planner.refresh(now: now, calendar: spCal)
+        let plan2 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan2.entries[0].trigger, .vesperaChave,
+                       "Gatilho planejável deve refletir mudança de WeekPlan no mesmo dia")
+    }
+
+    func testPremiumMidDay() async throws {
+        // Configura amanhã como longo para que hoje seja vesperaChave
+        let tomorrow = spCal.date(byAdding: .day, value: 1, to: now)!
+        context.insert(WeekPlan(sessions: [weekIndex(of: tomorrow): .longo]))
+        try context.save()
+
+        // Primeiro refresh: não-premium → effective trigger = geral → DailyPicker geral
+        await planner.refresh(now: now, calendar: spCal)
+        let plan1 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan1.entries[0].trigger, .vesperaChave)
+
+        // Ativa premium
+        var prefs = SharedStore.loadPreferences()
+        prefs.isPremium = true
+        try SharedStore.save(prefs)
+
+        // Segundo refresh → recalcula (planejável) → premium + vesperaChave → pool [msg6]
+        await planner.refresh(now: now, calendar: spCal)
+        let plan2 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan2.entries[0].trigger, .vesperaChave, "Trigger preservado")
+        // Com premium, effective = vesperaChave → pool = apenas msg6 (único no fake data)
+        XCTAssertEqual(plan2.entries[0].messageID, "msg6",
+                       "Premium deve usar pool específico de vespera_chave")
+    }
+
+    func testEventEntryLanguageReload() async throws {
+        // Simula treino recente → pos_treino
+        let workoutEnd = now.addingTimeInterval(-3600)
+        health.workoutsToReturn = [
+            WorkoutSummary(
+                start: workoutEnd.addingTimeInterval(-3600),
+                end: workoutEnd, distanceKm: 10, activityType: .running
+            )
+        ]
+
+        await planner.refresh(now: now, calendar: spCal)
+        let plan1 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan1.entries[0].trigger, .posTreino)
+        let stickyMessageID = plan1.entries[0].messageID
+
+        // Segundo planner simula biblioteca em outro idioma (mesmos IDs, textos diferentes)
+        let altMessages = fakeMessagesAlt()
+        health.workoutsToReturn = []   // treino fora da janela de 3h
+        let planner2 = DailyPlanner(
+            contextBuilder: ContextBuilder(healthProvider: health),
+            messages: altMessages,
+            images: fakeImages(),
+            contextTexts: fakeContextTexts(),
+            personalizer: TemplatePersonalizer(),
+            notifications: notifications,
+            wallpaper: wallpaper,
+            widgetReloader: widgetReloader,
+            modelContext: context
+        )
+
+        await planner2.refresh(now: now, calendar: spCal)
+        let plan2 = try XCTUnwrap(SharedStore.loadPlan())
+
+        // messageID mantido (stickiness)
+        XCTAssertEqual(plan2.entries[0].messageID, stickyMessageID,
+                       "Evento sticky: messageID preservado")
+        // Texto recarregado do novo idioma
+        let altMsg = altMessages.first { $0.id == stickyMessageID }
+        XCTAssertEqual(plan2.entries[0].shortText, altMsg?.shortText,
+                       "Evento sticky: shortText no novo idioma")
+    }
+
+    func testConcurrentRefreshes() async throws {
+        // Dois refreshes simultâneos — reentrância deve garantir um único DeliveryLog
+        async let r1: Void = planner.refresh(now: now, calendar: spCal)
+        async let r2: Void = planner.refresh(now: now, calendar: spCal)
+        _ = await (r1, r2)
+
+        let allLogs = (try? context.fetch(FetchDescriptor<DeliveryLog>())) ?? []
+        let todayLogs = allLogs.filter { $0.dayValue == DayKey(now, calendar: spCal).value }
+        XCTAssertEqual(todayLogs.count, 1,
+                       "Dois refreshes concorrentes → exatamente um DeliveryLog")
+
+        let plan = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan.entries.count, 7)
+        let uniqueDays = Set(plan.entries.map { $0.day.value })
+        XCTAssertEqual(uniqueDays.count, 7, "Plano deve ter 7 dias únicos")
+    }
+
+    // MARK: - Content alternativo (simula outro idioma)
+
+    private func fakeMessagesAlt() -> [Message] {
+        let pairs: [(String, Trigger)] = [
+            ("msg1", .geral), ("msg2", .geral), ("msg3", .geral),
+            ("msg4", .posTreino), ("msg5", .sonoRuim),
+            ("msg6", .vesperaChave), ("msg7", .descanso),
+            ("msg8", .retorno), ("msg9", .marcoProva),
+            ("msg10", .geral)
+        ]
+        return pairs.map { id, trigger in
+            Message(
+                id: id, authorKey: "seneca", workKey: "cartas",
+                author: "Seneca (EN)", work: "Letters",
+                reference: "1", publicDomainSource: "PG",
+                kind: "citacao", triggers: [trigger],
+                text: "Text \(id)", shortText: "Short \(id)",
+                inlineText: "Inline \(id)", reflection: "Reflection \(id)"
+            )
+        }
+    }
+
     func testStalePlanReplacedWhenAppWasClosed3Days() async throws {
         // Plano de 3 dias atrás
         let threeDaysAgo = spCal.date(byAdding: .day, value: -3, to: now)!

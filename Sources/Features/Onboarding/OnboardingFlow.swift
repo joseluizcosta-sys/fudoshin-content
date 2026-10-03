@@ -57,6 +57,7 @@ struct OnboardingFlow: View {
     }
 
     private func finish() {
-        try? state.commit(into: ctx)
+        guard (try? state.commit(into: ctx)) != nil else { return }
+        Task { await AppEnvironment.shared?.onOnboardingCompleted() }
     }
 }

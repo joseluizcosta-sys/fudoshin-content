@@ -18,8 +18,13 @@ final class DailyPlanner {
 
     private var isObserving = false
 
-    /// Gatilhos de evento: uma vez gravados no plano/DeliveryLog de hoje, não são rebaixados.
-    private static let eventTriggers: Set<Trigger> = [.posTreino, .sonoRuim, .retorno]
+    // Trava de reentrada: se refresh() for chamado enquanto outro roda,
+    // marca pendente e roda mais uma vez ao terminar.
+    private var isRefreshing = false
+    private var pendingRefresh = false
+
+    /// Gatilhos de evento: uma vez gravados no DeliveryLog de hoje, não são rebaixados.
+    static let eventTriggers: Set<Trigger> = [.posTreino, .sonoRuim, .retorno]
     /// Gatilhos permitidos em dias futuros (planejáveis sem dados de evento).
     private static let plannableTriggers: Set<Trigger> = [.marcoProva, .vesperaChave, .descanso, .geral]
 
@@ -58,15 +63,28 @@ final class DailyPlanner {
 
     // MARK: - Refresh
 
-    /// Gera ou atualiza o plano de 7 dias.
-    /// - Hoje: gatilho completo (evento + planejável) com stickiness.
-    /// - Dias futuros: apenas gatilhos planejáveis (sem dados de sono/treino).
+    /// Gera ou atualiza o plano de 7 dias. Reentrada segura: chamadas simultâneas
+    /// não duplicam trabalho — a segunda marca pendente e roda uma única vez ao terminar.
     func refresh(now: Date = Date(), calendar: Calendar = .current) async {
+        if isRefreshing {
+            pendingRefresh = true
+            return
+        }
+        isRefreshing = true
+        await _doRefresh(now: now, calendar: calendar)
+        isRefreshing = false
+        if pendingRefresh {
+            pendingRefresh = false
+            // Usa Date() fresco; `now` do chamador anterior está desatualizado.
+            Task { await self.refresh() }
+        }
+    }
+
+    private func _doRefresh(now: Date, calendar: Calendar) async {
         let cal = calendar
         let prefs = SharedStore.loadPreferences()
         let todayKey = DayKey(now, calendar: cal)
 
-        // Modelos SwiftData
         let race    = (try? modelContext.fetch(FetchDescriptor<Race>()))?.first
         let week    = (try? modelContext.fetch(FetchDescriptor<WeekPlan>()))?.first
         let profile = (try? modelContext.fetch(FetchDescriptor<AthleteProfile>()))?.first
@@ -74,25 +92,21 @@ final class DailyPlanner {
             FetchDescriptor<DeliveryLog>(sortBy: [SortDescriptor(\.dayValue)])
         )) ?? []
 
-        // Plano salvo + DeliveryLog de hoje — juntos definem stickiness
         let existingPlan = SharedStore.loadPlan()
         let existingToday = existingPlan?.entries.first { $0.day == todayKey }
         let todayLog = logs.first { $0.dayValue == todayKey.value }
 
-        // Contexto de hoje (com dados reais de sono e treino)
         let todayCtx = await contextBuilder.build(
             race: race, weekPlan: week, profile: profile,
             deliveryLogs: logs, now: now, calendar: cal
         )
 
-        // --- Entrada de hoje com stickiness ---
         let todayEntry = await resolveToday(
             key: todayKey, existing: existingToday, todayLog: todayLog,
             context: todayCtx, logs: logs, prefs: prefs,
             why: profile?.why ?? "", now: now, calendar: cal
         )
 
-        // --- Entradas dos próximos 6 dias (apenas planejáveis) ---
         var entries: [DailyEntry] = [todayEntry]
         let todayStart = cal.startOfDay(for: now)
 
@@ -128,12 +142,10 @@ final class DailyPlanner {
             entries.append(entry)
         }
 
-        // --- Persistência ---
         let plan = DailyPlan(generatedAt: now, entries: entries)
         try? SharedStore.save(plan)
         upsertDeliveryLog(entry: todayEntry, logs: logs)
 
-        // --- Efeitos colaterais ---
         await wallpaper.prepareWallpaper(for: todayEntry)
         widgetReloader.reloadAllTimelines()
         await notifications.schedule(plan: plan, notificationHour: prefs.notificationHour)
@@ -152,28 +164,58 @@ final class DailyPlanner {
         now: Date,
         calendar: Calendar
     ) async -> DailyEntry {
-        // Stickiness exige DeliveryLog de hoje + entrada no plano; sem ambos → computar sempre do zero.
+        // Sem log ou sem entrada → computar do zero.
         guard let log = todayLog, let existingEntry = existing else {
             let trigger = TriggerEngine.trigger(for: context, now: now, calendar: calendar)
             return await makeEntry(day: key, trigger: trigger, context: context,
                                    logs: logs, prefs: prefs, why: why, calendar: calendar)
         }
 
-        // Gatilho de evento já registrado → nunca rebaixar
+        // Gatilho de evento registrado → manter IDs, recarregar textos do idioma atual.
         if Self.eventTriggers.contains(log.trigger) {
-            return existingEntry
+            return await rehydrateEntry(existing: existingEntry, context: context,
+                                        why: why, calendar: calendar)
         }
 
+        // Gatilhos planejáveis: sempre recalcular (sorteio determinístico → idempotente,
+        // mas reflete mudanças de WeekPlan, isPremium, etc. no mesmo dia).
         let newTrigger = TriggerEngine.trigger(for: context, now: now, calendar: calendar)
+        return await makeEntry(day: key, trigger: newTrigger, context: context,
+                               logs: logs, prefs: prefs, why: why, calendar: calendar)
+    }
 
-        // Upgrading de planejável para evento → recalcular com o novo gatilho
-        if Self.eventTriggers.contains(newTrigger) {
-            return await makeEntry(day: key, trigger: newTrigger, context: context,
-                                   logs: logs, prefs: prefs, why: why, calendar: calendar)
+    // MARK: - Rehydration (evento sticky)
+
+    /// Mantém messageID, imageID e trigger; recarrega shortText, author, inlineText,
+    /// reflection e daysToRace da biblioteca no idioma atual (self.messages).
+    private func rehydrateEntry(
+        existing: DailyEntry,
+        context: TrainingContext,
+        why: String,
+        calendar: Calendar
+    ) async -> DailyEntry {
+        let msg = messages.first { $0.id == existing.messageID }
+        let daysToRace: Int? = context.raceDate.flatMap { raceDate in
+            let raceStart = calendar.startOfDay(for: raceDate)
+            let d = calendar.dateComponents([.day], from: context.today, to: raceStart).day ?? -1
+            return d >= 0 ? d : nil
         }
-
-        // Planejável → planejável com DeliveryLog já existente → reutilizar (idempotência)
-        return existingEntry
+        let reflection = await personalizer.personalize(
+            reflection: msg?.reflection ?? existing.reflection,
+            why: why,
+            trigger: existing.trigger
+        )
+        return DailyEntry(
+            day: existing.day,
+            messageID: existing.messageID,
+            imageID: existing.imageID,
+            trigger: existing.trigger,
+            shortText: msg?.shortText ?? existing.shortText,
+            inlineText: msg?.inlineText ?? existing.inlineText,
+            author: msg?.author ?? existing.author,
+            reflection: reflection,
+            daysToRace: daysToRace
+        )
     }
 
     // MARK: - Entry builder
@@ -195,7 +237,6 @@ final class DailyPlanner {
             return d >= 0 ? d : nil
         }
 
-        // Excluir o próprio dia do conjunto "entregues recentemente" para garantir idempotência
         let thirtyAgo = cal.date(byAdding: .day, value: -30, to: context.today) ?? context.today
         let thirtyKey = DayKey(thirtyAgo, calendar: cal)
         let recentIDs = Set(
