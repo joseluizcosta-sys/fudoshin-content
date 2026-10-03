@@ -9,7 +9,8 @@
 | Tarefa | Situação |
 |---|---|
 | T00–T02 | ✅ Concluídas (03/10/2026) — 40/40 testes passando no simulador |
-| T03 | ⏭️ Próxima |
+| T03 | ✅ Concluída (03/10/2026) — 48/48 testes passando no simulador |
+| T04 | ⏭️ Próxima |
 
 Atualize esta tabela ao final de cada tarefa.
 
