@@ -72,6 +72,7 @@ struct WhyStep: View {
     }
 
     private func suggestion(for why: String) -> String {
-        why.isEmpty ? "" : String(format: String(localized: "onboarding.mantra.suggestion.format"), why)
+        let normalized = state.normalizeWhy(why)
+        return normalized.isEmpty ? "" : String(format: String(localized: "onboarding.mantra.suggestion.format"), normalized)
     }
 }

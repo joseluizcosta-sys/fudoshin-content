@@ -30,6 +30,13 @@
         "pt-BR": { "stringUnit": { "state": "translated", "value": "Trilha" } }
       }
     },
+    "onboarding.button.back": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "Back" } },
+        "es": { "stringUnit": { "state": "translated", "value": "Atrás" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "Voltar" } }
+      }
+    },
     "onboarding.button.next": {
       "localizations": {
         "en": { "stringUnit": { "state": "translated", "value": "Next" } },
@@ -175,6 +182,20 @@
         "en": { "stringUnit": { "state": "translated", "value": "Your race" } },
         "es": { "stringUnit": { "state": "translated", "value": "Tu carrera" } },
         "pt-BR": { "stringUnit": { "state": "translated", "value": "Sua prova" } }
+      }
+    },
+    "onboarding.week.a11y.day_no_session": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "%@, no training" } },
+        "es": { "stringUnit": { "state": "translated", "value": "%@, sin entrenamiento" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "%@, sem treino" } }
+      }
+    },
+    "onboarding.week.a11y.day_session": {
+      "localizations": {
+        "en": { "stringUnit": { "state": "translated", "value": "%@, %@" } },
+        "es": { "stringUnit": { "state": "translated", "value": "%@, %@" } },
+        "pt-BR": { "stringUnit": { "state": "translated", "value": "%@, %@" } }
       }
     },
     "onboarding.week.subtitle": {

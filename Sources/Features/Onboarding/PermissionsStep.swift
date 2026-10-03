@@ -3,6 +3,7 @@ import HealthKit
 import UserNotifications
 
 struct PermissionsStep: View {
+    let committed: Bool
     let onComplete: () -> Void
 
     @State private var healthHandled = false
@@ -51,6 +52,7 @@ struct PermissionsStep: View {
             }
             .buttonStyle(.borderedProminent)
             .tint(Theme.accent)
+            .disabled(committed)
             .padding(Theme.Spacing.large)
         }
     }

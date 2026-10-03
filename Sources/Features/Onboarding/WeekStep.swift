@@ -10,6 +10,12 @@ struct WeekStep: View {
         ("weekday.short.sun", 6),
     ]
 
+    // 7 colunas flexíveis: cabe no iPhone SE (375 pt) sem rolagem
+    private let columns = Array(
+        repeating: GridItem(.flexible(), spacing: 6),
+        count: 7
+    )
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading, spacing: 6) {
@@ -23,19 +29,18 @@ struct WeekStep: View {
             .padding(.horizontal, Theme.Spacing.large)
             .padding(.vertical, Theme.Spacing.medium)
 
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 10) {
-                    ForEach(days, id: \.index) { day in
-                        DayChip(
-                            dayKey: day.key,
-                            session: state.weekSessions[day.index]
-                        ) {
-                            state.weekSessions[day.index] = nextSession(state.weekSessions[day.index])
-                        }
+            LazyVGrid(columns: columns, spacing: 0) {
+                ForEach(days, id: \.index) { day in
+                    DayChip(
+                        dayKey: day.key,
+                        dayIndex: day.index,
+                        session: state.weekSessions[day.index]
+                    ) {
+                        state.weekSessions[day.index] = nextSession(state.weekSessions[day.index])
                     }
                 }
-                .padding(.horizontal, Theme.Spacing.large)
             }
+            .padding(.horizontal, Theme.Spacing.medium)
             .padding(.vertical, Theme.Spacing.medium)
 
             Spacer()
@@ -66,24 +71,29 @@ struct WeekStep: View {
 
 private struct DayChip: View {
     let dayKey: String
+    let dayIndex: Int      // 0=seg … 6=dom
     let session: SessionType?
     let onTap: () -> Void
 
     var body: some View {
         Button(action: onTap) {
-            VStack(spacing: 4) {
+            VStack(spacing: 3) {
                 Text(LocalizedStringKey(dayKey))
-                    .font(.caption2.weight(.medium))
+                    .font(.system(size: 11, weight: .medium))
                     .foregroundStyle(Theme.secondaryText)
                 Text(sessionLabel)
-                    .font(.caption.weight(.semibold))
+                    .font(.system(size: 10, weight: .semibold))
                     .foregroundStyle(labelColor)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.8)
             }
-            .frame(width: 52, height: 60)
+            .frame(maxWidth: .infinity)
+            .frame(height: 52)
             .background(chipBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .buttonStyle(.plain)
+        .accessibilityLabel(accessibilityLabel)
     }
 
     private var sessionLabel: String {
@@ -104,5 +114,25 @@ private struct DayChip: View {
         session == nil
             ? Theme.secondaryText.opacity(0.08)
             : Theme.accent.opacity(0.12)
+    }
+
+    // Calendar.weekdaySymbols: [dom, seg, ter, qua, qui, sex, sáb] (índices 0-6)
+    // Nosso índice: seg=0 … dom=6 → Calendar índice = (dayIndex + 1) % 7
+    private var calendarDayName: String {
+        Calendar.current.weekdaySymbols[(dayIndex + 1) % 7]
+    }
+
+    private var accessibilityLabel: String {
+        if let s = session {
+            return String(
+                format: String(localized: "onboarding.week.a11y.day_session"),
+                calendarDayName, sessionLabel
+            )
+        } else {
+            return String(
+                format: String(localized: "onboarding.week.a11y.day_no_session"),
+                calendarDayName
+            )
+        }
     }
 }
