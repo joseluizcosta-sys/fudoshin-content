@@ -61,17 +61,25 @@ enum MessageEngine {
 
         // Pool para o gatilho específico, ordenado por id.
         var pool = sorted.filter { $0.triggers.contains(effective) }
-        if pool.isEmpty { return sorted[0] }   // sem mensagens para este gatilho: fallback
 
-        // Excluir entregues nos últimos 30 dias; se pool esvaziar, ignorar exclusão (ajuste 4).
+        // Gatilho sem mensagens: cair no DailyPicker geral (ajuste 2).
+        if pool.isEmpty {
+            let idx = DailyPicker.index(
+                count: sorted.count, installID: input.installID, salt: "msg", day: input.day
+            )
+            return sorted[idx]
+        }
+
+        // Excluir entregues nos últimos 30 dias; se pool esvaziar, ignorar exclusão.
         let after = pool.filter { !input.recentlyDeliveredMessageIDs.contains($0.id) }
         if !after.isEmpty { pool = after }
 
-        // SeededGenerator: seed estável por installID + dia + gatilho.
+        // SeededGenerator com separadores para evitar colisões de semente (ajuste 1).
         var rng = SeededGenerator(
-            seed: StableHash.fnv1a64(input.installID + input.day.value + effective.rawValue)
+            seed: StableHash.fnv1a64("\(input.installID)|\(input.day.value)|\(effective.rawValue)")
         )
-        let idx = Int.random(in: 0..<pool.count, using: &rng)
+        // Int(rng.next() % count) — mesmo algoritmo do DailyPicker, estável entre versões Swift.
+        let idx = Int(rng.next() % UInt64(pool.count))
         return pool[idx]
     }
 

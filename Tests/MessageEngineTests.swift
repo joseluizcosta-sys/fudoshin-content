@@ -223,4 +223,80 @@ final class MessageEngineTests: XCTestCase {
             }
         }
     }
+
+    // MARK: - 11. Gatilho sem mensagens no pool → DailyPicker geral (item 2)
+
+    func testEmptyTriggerPoolFallsBackToGeral() {
+        // Nenhuma mensagem tem trigger .sonoRuim → deve sortear de todas (geral)
+        let allMsgs = [msg("a-1", triggers: [.geral]), msg("b-2", triggers: [.descanso]), msg("c-3", triggers: [.marcoProva])]
+        let i = makeInput(trigger: .sonoRuim, isPremium: true)
+        let r = MessageEngine.pick(input: i, messages: allMsgs, images: [], contextTexts: [:])
+        XCTAssertTrue(["a-1", "b-2", "c-3"].contains(r.messageID),
+                      "Pool vazio para gatilho deve usar DailyPicker geral sobre todas as mensagens")
+    }
+
+    func testEmptyTriggerPoolIsDeterministic() {
+        // O fallback para geral deve ser determinístico (mesma entrada → mesmo ID)
+        let allMsgs = [msg("a-1"), msg("b-2"), msg("c-3")]
+        let i = makeInput(trigger: .sonoRuim, day: DayKey(value: "2026-10-05"), installID: "det-id", isPremium: true)
+        let r1 = MessageEngine.pick(input: i, messages: allMsgs, images: [], contextTexts: [:])
+        let r2 = MessageEngine.pick(input: i, messages: allMsgs, images: [], contextTexts: [:])
+        XCTAssertEqual(r1.messageID, r2.messageID)
+    }
+
+    // MARK: - 12. ReflectionPersonalizer async (item 3)
+
+    func testTemplatePerssonalizerReturnsReflectionUnchanged() async {
+        let p = TemplatePersonalizer()
+        let result = await p.personalize(reflection: "Stay the course.", why: "freedom", trigger: .geral)
+        XCTAssertEqual(result, "Stay the course.")
+    }
+
+    func testTemplatePersonalizer_DoesNotUseWhy() async {
+        let p = TemplatePersonalizer()
+        let r1 = await p.personalize(reflection: "Be strong.", why: "to run free", trigger: .posTreino)
+        let r2 = await p.personalize(reflection: "Be strong.", why: "different why", trigger: .posTreino)
+        XCTAssertEqual(r1, r2, "TemplatePersonalizer não usa o 'why'")
+    }
+
+    // MARK: - 13. Semana da prova (≤ 7 dias) → imagem sempre da categoria da prova (item 4)
+
+    func testRaceWeek_AlwaysPicksRaceCategory() {
+        // daysToRace = 5 (≤ 7), raceCategory = .rua, preferredCategories = [.trail, .trilha]
+        // → pool restrito a .rua, portanto imageID deve vir de uma imagem .rua
+        let msgs = [msg("any")]
+        let imgs = [
+            img("rua-1",    category: .rua),
+            img("rua-2",    category: .rua),
+            img("trail-1",  category: .trail),
+            img("trilha-1", category: .trilha),
+        ]
+
+        // Testar 7 dias consecutivos para confirmar que nunca sai de .rua
+        for dayOffset in 0..<7 {
+            let day = DayKey(value: "2026-10-0\(5 + dayOffset)")
+            let i = makeInput(
+                day: day, installID: "race-week",
+                raceCategory: .rua,
+                preferredCategories: [.trail, .trilha],
+                daysToRace: 5
+            )
+            let r = MessageEngine.pick(input: i, messages: msgs, images: imgs, contextTexts: [:])
+            XCTAssertTrue(r.imageID == "rua-1" || r.imageID == "rua-2",
+                          "Day \(day.value): esperado imagem .rua, obteve '\(r.imageID)'")
+        }
+    }
+
+    func testRaceWeek_NotAppliedWhenDaysGreaterThan7() {
+        // daysToRace = 8 → usa preferredCategories normalmente
+        let msgs = [msg("any")]
+        let imgs = [img("trail-1", category: .trail), img("rua-1", category: .rua)]
+        let i = makeInput(
+            raceCategory: .rua,
+            preferredCategories: [.trail],
+            daysToRace: 8
+        )
+        let r = MessageEngine.pick(input: i, messages: msgs, images: imgs, contextTexts: [:])
+        XCTAssertEqual(r.imageID, "trail-1", "Com 8+ dias, deve usar preferências (trail)")
+    }
 }
