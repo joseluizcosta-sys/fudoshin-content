@@ -142,13 +142,27 @@ final class DailyPlanner {
             entries.append(entry)
         }
 
+        // Lógica de notificação de evento:
+        // gatilho de evento + ainda não notificado hoje → notificar agora.
+        let isEvent = Self.eventTriggers.contains(todayEntry.trigger)
+        let alreadyNotified = todayLog?.notified == true
+        let shouldNotifyNow = isEvent && !alreadyNotified
+
         let plan = DailyPlan(generatedAt: now, entries: entries)
         try? SharedStore.save(plan)
-        upsertDeliveryLog(entry: todayEntry, logs: logs)
+        upsertDeliveryLog(entry: todayEntry, logs: logs, markNotified: shouldNotifyNow)
 
         await wallpaper.prepareWallpaper(for: todayEntry)
         widgetReloader.reloadAllTimelines()
-        await notifications.schedule(plan: plan, notificationHour: prefs.notificationHour)
+
+        if shouldNotifyNow {
+            await notifications.scheduleImmediate(entry: todayEntry)
+        }
+        await notifications.schedule(
+            plan: plan,
+            notificationHour: prefs.notificationHour,
+            alreadyNotifiedToday: shouldNotifyNow || alreadyNotified
+        )
     }
 
     // MARK: - Stickiness
@@ -283,17 +297,19 @@ final class DailyPlanner {
 
     // MARK: - DeliveryLog upsert
 
-    private func upsertDeliveryLog(entry: DailyEntry, logs: [DeliveryLog]) {
+    private func upsertDeliveryLog(entry: DailyEntry, logs: [DeliveryLog], markNotified: Bool = false) {
         if let log = logs.first(where: { $0.dayValue == entry.day.value }) {
-            log.messageID  = entry.messageID
-            log.imageID    = entry.imageID
-            log.trigger    = entry.trigger
+            log.messageID = entry.messageID
+            log.imageID   = entry.imageID
+            log.trigger   = entry.trigger
+            if markNotified { log.notified = true }  // nunca resetar para false
         } else {
             modelContext.insert(DeliveryLog(
                 day: entry.day,
                 messageID: entry.messageID,
                 imageID: entry.imageID,
-                trigger: entry.trigger
+                trigger: entry.trigger,
+                notified: markNotified
             ))
         }
         try? modelContext.save()

@@ -1,1141 +1,1339 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "app.name" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+  "sourceLanguage": "en",
+  "strings": {
+    "app.name": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
-          }
-        }
-      }
-    },
-    "category.rua" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Road"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carretera"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rua"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
           }
         }
       }
     },
-    "category.trail" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mountain"
+    "category.rua": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Road"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montaña"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carretera"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Montanha"
-          }
-        }
-      }
-    },
-    "category.trilha" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trail"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sendero"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Trilha"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rua"
           }
         }
       }
     },
-    "onboarding.button.back" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Back"
+    "category.trail": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mountain"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atrás"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montaña"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Voltar"
-          }
-        }
-      }
-    },
-    "onboarding.button.next" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Next"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Siguiente"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próximo"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Montanha"
           }
         }
       }
     },
-    "onboarding.button.start" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Start"
+    "category.trilha": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trail"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comenzar"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sendero"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Começar"
-          }
-        }
-      }
-    },
-    "onboarding.health.allow" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Allow Health"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Permitir Salud"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Permitir Saúde"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trilha"
           }
         }
       }
     },
-    "onboarding.health.desc" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We read workouts and sleep to pick the right message."
+    "notification.title.descanso": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest day"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leemos entrenamientos y sueño para elegir el mensaje adecuado."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día de descanso"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lemos treinos e sono para escolher a mensagem certa."
-          }
-        }
-      }
-    },
-    "onboarding.health.title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Health"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Salud"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Saúde"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia de descanso"
           }
         }
       }
     },
-    "onboarding.mantra.label" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your mantra"
+    "notification.title.geral": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu mantra"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seu mantra"
-          }
-        }
-      }
-    },
-    "onboarding.mantra.suggestion.format" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@. One step at a time."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@. Un paso a la vez."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@. Um passo de cada vez."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
           }
         }
       }
     },
-    "onboarding.notifications.allow" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Allow Notifications"
+    "notification.title.marco_prova": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Race milestone"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Permitir notificaciones"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hito de carrera"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Permitir notificações"
-          }
-        }
-      }
-    },
-    "onboarding.notifications.desc" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "One message per day, at the best time for you."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un mensaje al día, a la mejor hora para ti."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma mensagem por dia, na hora certa para você."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marco da prova"
           }
         }
       }
     },
-    "onboarding.notifications.title" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notifications"
+    "notification.title.marco_prova.d0": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Race day"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notificaciones"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día de carrera"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Notificações"
-          }
-        }
-      }
-    },
-    "onboarding.permissions.skip" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Not now"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ahora no"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agora não"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dia de prova"
           }
         }
       }
     },
-    "onboarding.permissions.subtitle" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can change this later in Settings."
+    "notification.title.marco_prova.format": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d days to race"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puedes cambiarlo después en Configuración."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltan %d días"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Você pode alterar isso depois nas Configurações."
-          }
-        }
-      }
-    },
-    "onboarding.permissions.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Connect your training"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conecta tu entrenamiento"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conecte seu treino"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Faltam %d dias"
           }
         }
       }
     },
-    "onboarding.race.category.label" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terrain"
+    "notification.title.pos_treino": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After your workout"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terreno"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tras el entrenamiento"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terreno"
-          }
-        }
-      }
-    },
-    "onboarding.race.date.label" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Date"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fecha"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Data"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depois do treino"
           }
         }
       }
     },
-    "onboarding.race.distance.label" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Distance (km)"
+    "notification.title.retorno": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Getting back"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Distancia (km)"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regreso"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Distância (km)"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recomeço"
           }
         }
       }
     },
-    "onboarding.race.name.label" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Race name"
+    "notification.title.sono_ruim": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Short night"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nombre de la carrera"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noche corta"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nome da prova"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Noite curta"
           }
         }
       }
     },
-    "onboarding.race.name.placeholder" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "e.g. UTMB"
+    "notification.title.vespera_chave": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key workout tomorrow"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "p. ej. UTMB"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión clave mañana"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ex.: UTMB"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Véspera de treino chave"
           }
         }
       }
     },
-    "onboarding.race.no_race" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "I don't have a race yet"
+    "onboarding.button.back": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no tengo carrera"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atrás"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ainda não tenho prova"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voltar"
           }
         }
       }
     },
-    "onboarding.race.subtitle" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tell us about your next race."
+    "onboarding.button.next": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cuéntanos sobre tu próxima carrera."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siguiente"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conte sobre sua próxima prova."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo"
           }
         }
       }
     },
-    "onboarding.race.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your race"
+    "onboarding.button.start": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu carrera"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comenzar"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sua prova"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Começar"
           }
         }
       }
     },
-    "onboarding.week.a11y.day_no_session" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@, no training"
+    "onboarding.health.allow": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Health"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@, sin entrenamiento"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir Salud"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@, sem treino"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir Saúde"
           }
         }
       }
     },
-    "onboarding.week.a11y.day_session" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@, %@"
+    "onboarding.health.desc": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "We read workouts and sleep to pick the right message."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@, %@"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leemos entrenamientos y sueño para elegir el mensaje adecuado."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@, %@"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lemos treinos e sono para escolher a mensagem certa."
           }
         }
       }
     },
-    "onboarding.week.subtitle" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "What does a typical training week look like?"
+    "onboarding.health.title": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Health"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Cómo es tu semana de entrenamiento?"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Salud"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Como é a sua semana de treino?"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Saúde"
           }
         }
       }
     },
-    "onboarding.week.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Training week"
+    "onboarding.mantra.label": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your mantra"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Semana de entrenamiento"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu mantra"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Semana de treino"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu mantra"
           }
         }
       }
     },
-    "onboarding.why.chars_left" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d / 140"
+    "onboarding.mantra.suggestion.format": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. One step at a time."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d / 140"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Un paso a la vez."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%d / 140"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@. Um passo de cada vez."
           }
         }
       }
     },
-    "onboarding.why.placeholder" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Running makes me feel..."
+    "onboarding.notifications.allow": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Notifications"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correr me hace sentir..."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir notificaciones"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Correr me faz sentir..."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Permitir notificações"
           }
         }
       }
     },
-    "onboarding.why.subtitle" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "This shapes your daily message."
+    "onboarding.notifications.desc": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One message per day, at the best time for you."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Esto da forma a tu mensaje diario."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un mensaje al día, a la mejor hora para ti."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Isso molda sua mensagem diária."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uma mensagem por dia, na hora certa para você."
           }
         }
       }
     },
-    "onboarding.why.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your why"
+    "onboarding.notifications.title": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu por qué"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificaciones"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seu porquê"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notificações"
           }
         }
       }
     },
-    "root.subtitle" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The motivation you need, right when you need it."
+    "onboarding.permissions.skip": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not now"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La motivación que necesitas, en el momento justo."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora no"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A motivação que você precisa, no momento certo."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agora não"
           }
         }
       }
     },
-    "root.title" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+    "onboarding.permissions.subtitle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You can change this later in Settings."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puedes cambiarlo después en Configuración."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Você pode alterar isso depois nas Configurações."
           }
         }
       }
     },
-    "session.descanso" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rest"
+    "onboarding.permissions.title": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect your training"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descanso"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecta tu entrenamiento"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descanso"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecte seu treino"
           }
         }
       }
     },
-    "session.forte" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hard"
+    "onboarding.race.category.label": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terrain"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fuerte"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terreno"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Forte"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terreno"
           }
         }
       }
     },
-    "session.leve" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Easy"
+    "onboarding.race.date.label": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Suave"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fecha"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Leve"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
           }
         }
       }
     },
-    "session.longo" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Long"
+    "onboarding.race.distance.label": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distance (km)"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Largo"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distancia (km)"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Longo"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Distância (km)"
           }
         }
       }
     },
-    "weekday.short.fri" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fri"
+    "onboarding.race.name.label": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Race name"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vie"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nombre de la carrera"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sex"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nome da prova"
           }
         }
       }
     },
-    "weekday.short.mon" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mon"
+    "onboarding.race.name.placeholder": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e.g. UTMB"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lun"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "p. ej. UTMB"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seg"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ex.: UTMB"
           }
         }
       }
     },
-    "weekday.short.sat" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sat"
+    "onboarding.race.no_race": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I don't have a race yet"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sáb"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no tengo carrera"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sáb"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ainda não tenho prova"
           }
         }
       }
     },
-    "weekday.short.sun" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sun"
+    "onboarding.race.subtitle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tell us about your next race."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dom"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuéntanos sobre tu próxima carrera."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dom"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conte sobre sua próxima prova."
           }
         }
       }
     },
-    "weekday.short.thu" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Thu"
+    "onboarding.race.title": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your race"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jue"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu carrera"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Qui"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua prova"
           }
         }
       }
     },
-    "weekday.short.tue" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tue"
+    "onboarding.week.a11y.day_no_session": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, no training"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mar"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, sin entrenamiento"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ter"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, sem treino"
           }
         }
       }
     },
-    "weekday.short.wed" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wed"
+    "onboarding.week.a11y.day_session": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, %@"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mié"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, %@"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Qua"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@, %@"
           }
         }
       }
     },
-    "widget.description" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your phrase of the day."
+    "onboarding.week.subtitle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What does a typical training week look like?"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu frase del día."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Cómo es tu semana de entrenamiento?"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sua frase do dia."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Como é a sua semana de treino?"
           }
         }
       }
     },
-    "widget.hello" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hello"
+    "onboarding.week.title": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Training week"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hola"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana de entrenamiento"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Olá"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Semana de treino"
           }
         }
       }
     },
-    "widget.name" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+    "onboarding.why.chars_left": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d / 140"
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d / 140"
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin"
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%d / 140"
+          }
+        }
+      }
+    },
+    "onboarding.why.placeholder": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Running makes me feel..."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr me hace sentir..."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correr me faz sentir..."
+          }
+        }
+      }
+    },
+    "onboarding.why.subtitle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This shapes your daily message."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esto da forma a tu mensaje diario."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Isso molda sua mensagem diária."
+          }
+        }
+      }
+    },
+    "onboarding.why.title": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your why"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu por qué"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seu porquê"
+          }
+        }
+      }
+    },
+    "root.subtitle": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The motivation you need, right when you need it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La motivación que necesitas, en el momento justo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A motivação que você precisa, no momento certo."
+          }
+        }
+      }
+    },
+    "root.title": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
+          }
+        }
+      }
+    },
+    "session.descanso": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso"
+          }
+        }
+      }
+    },
+    "session.forte": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hard"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuerte"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Forte"
+          }
+        }
+      }
+    },
+    "session.leve": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Easy"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Suave"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leve"
+          }
+        }
+      }
+    },
+    "session.longo": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Long"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Largo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longo"
+          }
+        }
+      }
+    },
+    "weekday.short.fri": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fri"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vie"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sex"
+          }
+        }
+      }
+    },
+    "weekday.short.mon": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mon"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lun"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seg"
+          }
+        }
+      }
+    },
+    "weekday.short.sat": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sat"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sáb"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sáb"
+          }
+        }
+      }
+    },
+    "weekday.short.sun": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sun"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dom"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dom"
+          }
+        }
+      }
+    },
+    "weekday.short.thu": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Thu"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jue"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qui"
+          }
+        }
+      }
+    },
+    "weekday.short.tue": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tue"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mar"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ter"
+          }
+        }
+      }
+    },
+    "weekday.short.wed": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mié"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Qua"
+          }
+        }
+      }
+    },
+    "widget.description": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your phrase of the day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu frase del día."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua frase do dia."
+          }
+        }
+      }
+    },
+    "widget.hello": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hello"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hola"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Olá"
+          }
+        }
+      }
+    },
+    "widget.name": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin"
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

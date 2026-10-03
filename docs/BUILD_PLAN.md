@@ -15,6 +15,7 @@
 | T06 | ✅ Concluída (03/10/2026) — 110/110 testes passando no simulador (revisão incluída) |
 | T07 | ✅ Concluída (03/10/2026) — 132/132 testes passando no simulador (revisão incluída) |
 | T08 | ✅ Concluída (03/10/2026) — 143/143 testes passando no simulador (revisão incluída) |
+| T09 | ✅ Concluída (03/10/2026) — 152/152 testes passando no simulador |
 
 Atualize esta tabela ao final de cada tarefa.
 

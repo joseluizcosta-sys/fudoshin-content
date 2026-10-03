@@ -34,6 +34,7 @@ final class AppEnvironment {
             images: lib.images,
             contextTexts: lib.contextTexts,
             personalizer: personalizer,
+            notifications: LiveNotificationScheduler(),
             modelContext: modelContext
         )
 

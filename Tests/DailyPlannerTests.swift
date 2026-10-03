@@ -5,8 +5,15 @@ import SwiftData
 // MARK: - Mocks locais
 
 final class MockNotificationScheduler: NotificationScheduling {
-    private(set) var callCount = 0
-    func schedule(plan: DailyPlan, notificationHour: Int) async { callCount += 1 }
+    private(set) var scheduleAlreadyNotified: [Bool] = []
+    private(set) var immediateCalls: [DailyEntry] = []
+
+    func schedule(plan: DailyPlan, notificationHour: Int, alreadyNotifiedToday: Bool) async {
+        scheduleAlreadyNotified.append(alreadyNotifiedToday)
+    }
+    func scheduleImmediate(entry: DailyEntry) async {
+        immediateCalls.append(entry)
+    }
 }
 
 final class MockWallpaperComposer: WallpaperComposing {
@@ -270,6 +277,39 @@ final class DailyPlannerTests: XCTestCase {
         let todayKey = DayKey(now, calendar: spCal).value
         let todayLogs = allLogs.filter { $0.dayValue == todayKey }
         XCTAssertEqual(todayLogs.count, 1, "Deve haver exatamente um DeliveryLog para hoje")
+    }
+
+    // MARK: - Testes de notificação (T09)
+
+    func testEventTriggerSchedulesImmediate() async throws {
+        // Treino recente → pos_treino → scheduleImmediate deve ser chamado
+        let workoutEnd = now.addingTimeInterval(-3600)
+        health.workoutsToReturn = [
+            WorkoutSummary(start: workoutEnd.addingTimeInterval(-3600),
+                           end: workoutEnd, distanceKm: 10, activityType: .running)
+        ]
+        await planner.refresh(now: now, calendar: spCal)
+
+        XCTAssertEqual(notifications.immediateCalls.count, 1,
+                       "Evento pos_treino deve disparar scheduleImmediate")
+        XCTAssertTrue(notifications.scheduleAlreadyNotified.last == true,
+                      "schedule deve receber alreadyNotifiedToday = true após evento")
+    }
+
+    func testEventAlreadyNotifiedDoesNotRepeat() async throws {
+        // Primeiro refresh: treino → notifica
+        let workoutEnd = now.addingTimeInterval(-3600)
+        health.workoutsToReturn = [
+            WorkoutSummary(start: workoutEnd.addingTimeInterval(-3600),
+                           end: workoutEnd, distanceKm: 10, activityType: .running)
+        ]
+        await planner.refresh(now: now, calendar: spCal)
+        XCTAssertEqual(notifications.immediateCalls.count, 1)
+
+        // Segundo refresh: treino ainda está lá, mas notified == true → não notifica de novo
+        await planner.refresh(now: now, calendar: spCal)
+        XCTAssertEqual(notifications.immediateCalls.count, 1,
+                       "Segunda chamada com notified=true não deve repetir scheduleImmediate")
     }
 
     // MARK: - Novos testes (revisão T08)
