@@ -28,6 +28,16 @@
       "pt-BR": "Sêneca",
       "en": "Seneca",
       "es": "Séneca"
+    },
+    "miyamoto_musashi": {
+      "pt-BR": "Miyamoto Musashi",
+      "en": "Miyamoto Musashi",
+      "es": "Miyamoto Musashi"
+    },
+    "takuan_soho": {
+      "pt-BR": "Takuan Sōhō",
+      "en": "Takuan Sōhō",
+      "es": "Takuan Sōhō"
     }
   },
   "obras": {
@@ -45,6 +55,21 @@
       "pt-BR": "Cartas a Lucílio",
       "en": "Letters to Lucilius",
       "es": "Cartas a Lucilio"
+    },
+    "gorin_no_sho": {
+      "pt-BR": "O Livro dos Cinco Anéis",
+      "en": "The Book of Five Rings",
+      "es": "El libro de los cinco anillos"
+    },
+    "dokkodo": {
+      "pt-BR": "Dokkōdō",
+      "en": "Dokkōdō",
+      "es": "Dokkōdō"
+    },
+    "fudochi_shinmyoroku": {
+      "pt-BR": "Fudōchi Shinmyōroku",
+      "en": "Fudōchi Shinmyōroku",
+      "es": "Fudōchi Shinmyōroku"
     }
   },
   "gatilhos": [
@@ -128,6 +153,146 @@
         "pos_treino",
         "retorno"
       ]
+    },
+    {
+      "id": "mm-gorin-agua-mente",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Mizu no maki",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "texto_original": "兵法の道において、心の持ちやうは、常の心に替る事なかれ",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "mm-gorin-agua-olhar",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Mizu no maki",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "geral"
+      ],
+      "texto_original": "観の目つよく、見の目よはく、遠き所を近く見、ちかき所を遠く見る事",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "mm-gorin-agua-postura",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Mizu no maki",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "descanso",
+        "geral"
+      ],
+      "texto_original": "常の身を兵法の身とし、兵法の身をつねの身とする事肝要也",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "mm-gorin-agua-mil-dias",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Mizu no maki",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "retorno"
+      ],
+      "texto_original": "千日の稽古を鍛とし、万日の稽古を錬とす",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "mm-gorin-chi-inutil",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Chi no maki",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "descanso"
+      ],
+      "texto_original": "第九に、役にたたぬ事をせざる事",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "mm-dokkodo-arrependimento",
+      "autor": "miyamoto_musashi",
+      "obra": "dokkodo",
+      "ref": "1645",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "retorno"
+      ],
+      "texto_original": "我事において後悔をせず",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "mm-dokkodo-leveza",
+      "autor": "miyamoto_musashi",
+      "obra": "dokkodo",
+      "ref": "1645",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "marco_prova"
+      ],
+      "texto_original": "身を浅く思、世を深く思ふ",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "ts-fudochi-definicao",
+      "autor": "takuan_soho",
+      "obra": "fudochi_shinmyoroku",
+      "ref": "不動智",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "geral"
+      ],
+      "texto_original": "不動とは、石か木かのやうに、無性なる義理にてはなし。向ふへも、左へも、右へも、十方八方へ、心は動き度きやうに動きながら、卒度も止らぬ心を、不動智と申し候",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "ts-okidokoro-corpo",
+      "autor": "takuan_soho",
+      "obra": "fudochi_shinmyoroku",
+      "ref": "心の置所",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "texto_original": "何処にも置かねば、我身にいっぱいに行きわたりて、全体に延びひろごりてある",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "ts-okidokoro-parcial",
+      "autor": "takuan_soho",
+      "obra": "fudochi_shinmyoroku",
+      "ref": "心の置所",
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "tipo": "citacao",
+      "gatilhos": [
+        "sono_ruim",
+        "pos_treino"
+      ],
+      "texto_original": "心を一所に置けば、偏に落ると云也",
+      "verificacao": "pendente — conferir tradução contra o original japonês"
     }
   ],
   "limites_widget": {

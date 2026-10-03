@@ -31,5 +31,9 @@
 - [ ] **Ideogramas:** revisão por falante nativo de japonês (e de chinês quando o idioma entrar).
 - [ ] **Domínio:** verificar fudoshin.app / fudoshinrun.com / fudoshin.com.br.
 
-## Conteúdo (fase 2, opcional)
+## Conteúdo japonês
+**Adicionado em 03/10/2026:** 10 trechos — 5 de *O Livro dos Cinco Anéis* e 2 do *Dokkōdō* (Musashi), 3 do *Fudōchi Shinmyōroku* (Takuan Sōhō, a obra de onde vem o conceito de fudōshin). Status: rascunho, aguardando revisão de quem lê japonês clássico.
+
+Nota histórica: Takuan escreveu o *Fudōchi Shinmyōroku* para o espadachim Yagyū Munenori. A relação de mestre e discípulo entre Takuan e Musashi vem do romance *Musashi*, de Eiji Yoshikawa, e não é comprovada historicamente. No app, não apresentar Takuan como "mestre de Musashi".
+
 O posicionamento "mente inabalável" permite somar fontes japonesas em domínio público: Miyamoto Musashi (*Livro dos Cinco Anéis*) e Takuan Sōhō (origem do conceito de fudōshin). Mesmas regras de `Content/DIREITOS.md`: só traduções verificadas e em domínio público.

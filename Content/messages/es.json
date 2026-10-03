@@ -41,6 +41,66 @@
       "texto_curto": "No te perturba la cosa, sino tu juicio sobre ella.",
       "texto_inline": "Borra el juicio",
       "reflexao": "¿Perdiste la semana? Borra el juicio, no el plan."
+    },
+    "mm-gorin-agua-mente": {
+      "texto": "En el camino de la estrategia, no dejes que tu mente cambie: que sea la de todos los días, amplia y recta, sin tensión ni flojedad.",
+      "texto_curto": "En la lucha la mente no cambia: amplia, recta, sin tensión.",
+      "texto_inline": "Mente de todos los días",
+      "reflexao": "No guardes una versión especial de ti para la carrera. La calma de hoy es la calma de la salida."
+    },
+    "mm-gorin-agua-olhar": {
+      "texto": "Que la mirada amplia sea fuerte y la mirada estrecha, débil: ver cerca lo lejano y lejos lo cercano.",
+      "texto_curto": "Mira cerca lo lejano y lejos lo cercano.",
+      "texto_inline": "Mirada amplia",
+      "reflexao": "En la tirada larga, mira la carrera entera sin aferrarte al próximo kilómetro. En el tramo duro, haz lo contrario."
+    },
+    "mm-gorin-agua-postura": {
+      "texto": "Haz de la postura de cada día la postura del combate, y de la del combate la de cada día.",
+      "texto_curto": "Haz de tu día a día el entrenamiento, y del entrenamiento tu día.",
+      "texto_inline": "Entrenar es rutina",
+      "reflexao": "Postura, respiración, paciencia en la fila: todo es entrenamiento para el km 30."
+    },
+    "mm-gorin-agua-mil-dias": {
+      "texto": "Mil días de práctica para forjar, diez mil días para pulir.",
+      "texto_curto": "Mil días de práctica para forjar, diez mil para pulir.",
+      "texto_inline": "Mil días para forjar",
+      "reflexao": "Una mala semana no deshace mil días. Una buena tampoco los reemplaza."
+    },
+    "mm-gorin-chi-inutil": {
+      "texto": "No hagas nada que sea inútil.",
+      "texto_curto": "No hagas nada que sea inútil.",
+      "texto_inline": "Nada inútil",
+      "reflexao": "Cada entrenamiento tiene un porqué. Si no lo tiene, quizá hoy toca descansar."
+    },
+    "mm-dokkodo-arrependimento": {
+      "texto": "No me arrepiento de lo que hice.",
+      "texto_curto": "No me arrepiento de lo que hice.",
+      "texto_inline": "Sin arrepentimiento",
+      "reflexao": "El entrenamiento de ayer ya pasó. Quédate con la lección, suelta la culpa."
+    },
+    "mm-dokkodo-leveza": {
+      "texto": "Piensa en ti con ligereza y en el mundo con profundidad.",
+      "texto_curto": "Piensa en ti con ligereza y en el mundo con profundidad.",
+      "texto_inline": "Ligero contigo",
+      "reflexao": "El tiempo del reloj importa menos de lo que crees. El camino, el cielo, la gente: mira hacia afuera."
+    },
+    "ts-fudochi-definicao": {
+      "texto": "Inmóvil no significa ser como piedra o madera. La mente se mueve hacia adelante, a los lados, en todas direcciones, sin detenerse en nada: eso es la sabiduría inmóvil.",
+      "texto_curto": "Inmóvil no es ser piedra: es una mente que se mueve sin atascarse.",
+      "texto_inline": "Moverse sin aferrarse",
+      "reflexao": "Fudōshin no es ser rígido. Es seguir adelante sin aferrarse al dolor, al reloj ni al miedo."
+    },
+    "ts-okidokoro-corpo": {
+      "texto": "Si no pones la mente en ningún lugar, se extiende y llena todo el cuerpo.",
+      "texto_curto": "Mente en ningún lugar llena todo el cuerpo.",
+      "texto_inline": "Mente en todo el cuerpo",
+      "reflexao": "No fijes la atención solo en el dolor de la pantorrilla. Respira y siente todo el cuerpo trabajando."
+    },
+    "ts-okidokoro-parcial": {
+      "texto": "Si pones la mente en un solo lugar, caes en la parcialidad.",
+      "texto_curto": "Mente fija en un solo lugar cae en la parcialidad.",
+      "texto_inline": "No fijes la mente",
+      "reflexao": "Darle vueltas a un mal parcial te hace perder el resto de la carrera."
     }
   },
   "perguntas_diario": [

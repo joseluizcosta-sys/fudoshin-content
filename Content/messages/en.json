@@ -41,6 +41,66 @@
       "texto_curto": "It's not the thing that troubles you, but your judgment of it.",
       "texto_inline": "Erase the judgment",
       "reflexao": "Lost the week? Erase the judgment, not the plan."
+    },
+    "mm-gorin-agua-mente": {
+      "texto": "In the way of strategy, do not let your mind change from its everyday state: keep it broad and straight, neither tense nor slack.",
+      "texto_curto": "In battle the mind doesn't change: broad, straight, not tense.",
+      "texto_inline": "Everyday mind",
+      "reflexao": "Don't save a special version of yourself for race day. Today's calm is the calm at the start line."
+    },
+    "mm-gorin-agua-olhar": {
+      "texto": "Make the perceiving eye strong and the seeing eye weak: see distant things as close and close things as distant.",
+      "texto_curto": "See the far as near and the near as far.",
+      "texto_inline": "Wide gaze",
+      "reflexao": "On a long run, see the whole race without clinging to the next stretch. In the hardest part, do the opposite."
+    },
+    "mm-gorin-agua-postura": {
+      "texto": "Make your everyday stance your combat stance, and your combat stance your everyday stance.",
+      "texto_curto": "Make daily life your training, and training your daily life.",
+      "texto_inline": "Training is daily life",
+      "reflexao": "Posture, breathing, patience in a slow line: it's all training for the final miles."
+    },
+    "mm-gorin-agua-mil-dias": {
+      "texto": "A thousand days of practice to forge, ten thousand days to polish.",
+      "texto_curto": "A thousand days of practice to forge, ten thousand to polish.",
+      "texto_inline": "1,000 days to forge",
+      "reflexao": "One bad week doesn't undo a thousand days. One good week doesn't replace them either."
+    },
+    "mm-gorin-chi-inutil": {
+      "texto": "Do nothing that is of no use.",
+      "texto_curto": "Do nothing that is of no use.",
+      "texto_inline": "Nothing useless",
+      "reflexao": "Every session has a purpose. If it doesn't, maybe today is a rest day."
+    },
+    "mm-dokkodo-arrependimento": {
+      "texto": "I do not regret what I have done.",
+      "texto_curto": "I do not regret what I have done.",
+      "texto_inline": "No regrets",
+      "reflexao": "Yesterday's run already happened. Keep the lesson, drop the guilt."
+    },
+    "mm-dokkodo-leveza": {
+      "texto": "Think lightly of yourself and deeply of the world.",
+      "texto_curto": "Think lightly of yourself and deeply of the world.",
+      "texto_inline": "Lightly of yourself",
+      "reflexao": "Your finish time matters less than you think. The road, the sky, the people: look outward."
+    },
+    "ts-fudochi-definicao": {
+      "texto": "Immovable does not mean being like stone or wood. The mind moves forward, to the sides, in every direction, never stopping anywhere: that is immovable wisdom.",
+      "texto_curto": "Immovable isn't stone: it's a mind that moves and never gets stuck.",
+      "texto_inline": "Move, don't cling",
+      "reflexao": "Fudōshin isn't being rigid. It's moving on without clinging to pain, the watch or fear."
+    },
+    "ts-okidokoro-corpo": {
+      "texto": "If you place the mind nowhere, it spreads out and fills the whole body.",
+      "texto_curto": "Place the mind nowhere, and it fills the whole body.",
+      "texto_inline": "Mind in the whole body",
+      "reflexao": "Don't fix your attention on the ache in your calf. Breathe and feel the whole body working."
+    },
+    "ts-okidokoro-parcial": {
+      "texto": "Place the mind in one spot and you fall into one-sidedness.",
+      "texto_curto": "Place the mind in one spot and you fall into one-sidedness.",
+      "texto_inline": "Don't fix the mind",
+      "reflexao": "Dwelling on one bad split makes you miss the rest of the race."
     }
   },
   "perguntas_diario": [
