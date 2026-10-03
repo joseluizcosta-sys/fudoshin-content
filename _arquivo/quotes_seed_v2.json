@@ -1,0 +1,121 @@
+{
+  "versao": 2,
+  "observacao": "Semente para validar o formato. Traduções próprias a partir das versões em domínio público citadas. Revisar a redação final antes de publicar.",
+  "gatilhos": [
+    "vespera_chave",
+    "pos_treino",
+    "sono_ruim",
+    "descanso",
+    "marco_prova",
+    "retorno",
+    "geral"
+  ],
+  "mensagens": [
+    {
+      "id": "ma-5-1",
+      "autor": "Marco Aurélio",
+      "fonte": "Meditações 5.1",
+      "base_dominio_publico": "George Long, 1862",
+      "tipo": "citacao",
+      "traducao": "própria",
+      "texto": "De manhã, quando custar a levantar, lembre-se: estou me levantando para fazer o trabalho de um ser humano.",
+      "gatilhos": [
+        "vespera_chave",
+        "sono_ruim"
+      ],
+      "reflexao": "O treino de hoje é trabalho, não humor. Faça o que é seu.",
+      "texto_curto": "Levanto para fazer o trabalho de um ser humano.",
+      "texto_inline": "Levante. Há trabalho."
+    },
+    {
+      "id": "ep-ench-1",
+      "autor": "Epicteto",
+      "fonte": "Enchirídion 1",
+      "base_dominio_publico": "George Long, 1877",
+      "tipo": "citacao",
+      "traducao": "própria",
+      "texto": "Algumas coisas dependem de nós; outras, não.",
+      "gatilhos": [
+        "marco_prova",
+        "geral"
+      ],
+      "reflexao": "Clima, altimetria e adversários não dependem de você. Ritmo, hidratação e atitude dependem.",
+      "texto_curto": "Algumas coisas dependem de nós; outras, não.",
+      "texto_inline": "Controle o controlável"
+    },
+    {
+      "id": "ep-ench-5",
+      "autor": "Epicteto",
+      "fonte": "Enchirídion 5",
+      "base_dominio_publico": "George Long, 1877",
+      "tipo": "citacao",
+      "traducao": "própria",
+      "texto": "Não são as coisas que perturbam as pessoas, mas as opiniões que elas têm sobre as coisas.",
+      "gatilhos": [
+        "pos_treino",
+        "sono_ruim"
+      ],
+      "reflexao": "O treino ruim foi um dado. A história que você conta sobre ele é escolha.",
+      "texto_curto": "Não são as coisas que perturbam, mas a opinião sobre elas.",
+      "texto_inline": "O fato não é a história"
+    },
+    {
+      "id": "ma-4-49",
+      "autor": "Marco Aurélio",
+      "fonte": "Meditações 4.49",
+      "base_dominio_publico": "George Long, 1862",
+      "tipo": "citacao",
+      "traducao": "própria",
+      "texto": "Seja como o promontório, contra o qual as ondas quebram sem parar; ele permanece firme, e a água se acalma ao seu redor.",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "reflexao": "No km difícil, você não precisa vencer a onda. Só precisa ficar de pé.",
+      "texto_curto": "Seja o promontório: as ondas quebram, ele fica.",
+      "texto_inline": "Seja o promontório"
+    },
+    {
+      "id": "sen-ep13-4",
+      "autor": "Sêneca",
+      "fonte": "Cartas a Lucílio 13.4",
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "tipo": "citacao",
+      "traducao": "própria",
+      "texto": "Sofremos mais na imaginação do que na realidade.",
+      "gatilhos": [
+        "marco_prova",
+        "sono_ruim"
+      ],
+      "reflexao": "A prova que você imagina às 3h da manhã é sempre mais dura que a real.",
+      "texto_curto": "Sofremos mais na imaginação do que na realidade.",
+      "texto_inline": "O medo imagina demais"
+    },
+    {
+      "id": "ma-8-47",
+      "autor": "Marco Aurélio",
+      "fonte": "Meditações 8.47",
+      "base_dominio_publico": "George Long, 1862",
+      "tipo": "citacao",
+      "traducao": "própria",
+      "texto": "Se algo externo te incomoda, não é a coisa em si que te perturba, mas o seu julgamento sobre ela. E está em seu poder apagar esse julgamento agora.",
+      "gatilhos": [
+        "pos_treino",
+        "retorno"
+      ],
+      "reflexao": "Perdeu a semana? Apague o julgamento, não o plano.",
+      "texto_curto": "Não é a coisa que te perturba, é o seu julgamento sobre ela.",
+      "texto_inline": "Apague o julgamento"
+    }
+  ],
+  "perguntas_diario": [
+    "O que dependia de você no treino de hoje, e você fez?",
+    "O que não dependia de você e você deixou ir?",
+    "Qual pensamento atrapalhou? Qual ajudou?"
+  ],
+  "limites_widget": {
+    "texto_curto_max": 70,
+    "texto_inline_max": 25,
+    "uso": "texto_curto = widget retangular da tela de bloqueio; texto_inline = linha acima do relógio"
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "idioma": "pt-BR",
+  "revisao": {
+    "status": "rascunho",
+    "revisor_nativo": null,
+    "data": null
+  },
+  "mensagens": {
+    "ma-5-1": {
+      "texto": "De manhã, quando custar a levantar, lembre-se: estou me levantando para fazer o trabalho de um ser humano.",
+      "texto_curto": "Levanto para fazer o trabalho de um ser humano.",
+      "texto_inline": "Levante. Há trabalho.",
+      "reflexao": "O treino de hoje é trabalho, não humor. Faça o que é seu."
+    },
+    "ep-ench-1": {
+      "texto": "Algumas coisas dependem de nós; outras, não.",
+      "texto_curto": "Algumas coisas dependem de nós; outras, não.",
+      "texto_inline": "Controle o controlável",
+      "reflexao": "Clima, altimetria e adversários não dependem de você. Ritmo, hidratação e atitude dependem."
+    },
+    "ep-ench-5": {
+      "texto": "Não são as coisas que perturbam as pessoas, mas as opiniões que elas têm sobre as coisas.",
+      "texto_curto": "Não são as coisas que perturbam, mas a opinião sobre elas.",
+      "texto_inline": "O fato não é a história",
+      "reflexao": "O treino ruim foi um dado. A história que você conta sobre ele é escolha."
+    },
+    "ma-4-49": {
+      "texto": "Seja como o promontório, contra o qual as ondas quebram sem parar; ele permanece firme, e a água se acalma ao seu redor.",
+      "texto_curto": "Seja o promontório: as ondas quebram, ele fica.",
+      "texto_inline": "Seja o promontório",
+      "reflexao": "No km difícil, você não precisa vencer a onda. Só precisa ficar de pé."
+    },
+    "sen-ep13-4": {
+      "texto": "Sofremos mais na imaginação do que na realidade.",
+      "texto_curto": "Sofremos mais na imaginação do que na realidade.",
+      "texto_inline": "O medo imagina demais",
+      "reflexao": "A prova que você imagina às 3h da manhã é sempre mais dura que a real."
+    },
+    "ma-8-47": {
+      "texto": "Se algo externo te incomoda, não é a coisa em si que te perturba, mas o seu julgamento sobre ela. E está em seu poder apagar esse julgamento agora.",
+      "texto_curto": "Não é a coisa que te perturba, é o seu julgamento sobre ela.",
+      "texto_inline": "Apague o julgamento",
+      "reflexao": "Perdeu a semana? Apague o julgamento, não o plano."
+    }
+  },
+  "perguntas_diario": [
+    "O que dependia de você no treino de hoje, e você fez?",
+    "O que não dependia de você e você deixou ir?",
+    "Qual pensamento atrapalhou? Qual ajudou?"
+  ],
+  "inline_contexto": {
+    "vespera_longo": "Longão amanhã",
+    "vespera_forte": "Treino forte amanhã",
+    "descanso": "Dia de descanso",
+    "t30": "Faltam 30 dias",
+    "t7": "Faltam 7 dias",
+    "t1": "Prova amanhã",
+    "d0": "Dia de prova"
+  }
+}

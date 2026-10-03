@@ -1,0 +1,143 @@
+{
+  "versao": 3,
+  "observacao": "Metadados independentes de idioma. Os textos ficam em messages/<idioma>.json com os mesmos IDs.",
+  "idiomas_lancamento": [
+    "pt-BR",
+    "en",
+    "es"
+  ],
+  "idiomas_futuros": [
+    "de",
+    "fr",
+    "it",
+    "zh-Hans"
+  ],
+  "idioma_fallback": "en",
+  "autores": {
+    "marco_aurelio": {
+      "pt-BR": "Marco Aurélio",
+      "en": "Marcus Aurelius",
+      "es": "Marco Aurelio"
+    },
+    "epicteto": {
+      "pt-BR": "Epicteto",
+      "en": "Epictetus",
+      "es": "Epicteto"
+    },
+    "seneca": {
+      "pt-BR": "Sêneca",
+      "en": "Seneca",
+      "es": "Séneca"
+    }
+  },
+  "obras": {
+    "meditacoes": {
+      "pt-BR": "Meditações",
+      "en": "Meditations",
+      "es": "Meditaciones"
+    },
+    "enchiridion": {
+      "pt-BR": "Enchirídion",
+      "en": "Enchiridion",
+      "es": "Enquiridión"
+    },
+    "cartas_lucilio": {
+      "pt-BR": "Cartas a Lucílio",
+      "en": "Letters to Lucilius",
+      "es": "Cartas a Lucilio"
+    }
+  },
+  "gatilhos": [
+    "vespera_chave",
+    "pos_treino",
+    "sono_ruim",
+    "descanso",
+    "marco_prova",
+    "retorno",
+    "geral"
+  ],
+  "mensagens": [
+    {
+      "id": "ma-5-1",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "5.1",
+      "base_dominio_publico": "George Long, 1862",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "sono_ruim"
+      ]
+    },
+    {
+      "id": "ep-ench-1",
+      "autor": "epicteto",
+      "obra": "enchiridion",
+      "ref": "1",
+      "base_dominio_publico": "George Long, 1877",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "geral"
+      ]
+    },
+    {
+      "id": "ep-ench-5",
+      "autor": "epicteto",
+      "obra": "enchiridion",
+      "ref": "5",
+      "base_dominio_publico": "George Long, 1877",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "sono_ruim"
+      ]
+    },
+    {
+      "id": "ma-4-49",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "4.49",
+      "base_dominio_publico": "George Long, 1862",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ]
+    },
+    {
+      "id": "sen-ep13-4",
+      "autor": "seneca",
+      "obra": "cartas_lucilio",
+      "ref": "13.4",
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "sono_ruim"
+      ]
+    },
+    {
+      "id": "ma-8-47",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "8.47",
+      "base_dominio_publico": "George Long, 1862",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "retorno"
+      ]
+    }
+  ],
+  "limites_widget": {
+    "padrao": {
+      "texto_curto_max": 70,
+      "texto_inline_max": 25
+    },
+    "zh-Hans": {
+      "texto_curto_max": 32,
+      "texto_inline_max": 12
+    }
+  }
+}

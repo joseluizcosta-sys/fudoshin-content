@@ -1,0 +1,60 @@
+{
+  "idioma": "es",
+  "revisao": {
+    "status": "rascunho",
+    "revisor_nativo": null,
+    "data": null
+  },
+  "mensagens": {
+    "ma-5-1": {
+      "texto": "Al amanecer, cuando te cueste levantarte, recuerda: me levanto para hacer el trabajo de un ser humano.",
+      "texto_curto": "Me levanto para hacer el trabajo de un ser humano.",
+      "texto_inline": "Levántate. Hay trabajo.",
+      "reflexao": "El entrenamiento de hoy es trabajo, no estado de ánimo. Haz lo tuyo."
+    },
+    "ep-ench-1": {
+      "texto": "Algunas cosas dependen de nosotros; otras, no.",
+      "texto_curto": "Algunas cosas dependen de nosotros; otras, no.",
+      "texto_inline": "Controla lo controlable",
+      "reflexao": "El clima, el desnivel y los rivales no dependen de ti. El ritmo, la hidratación y la actitud, sí."
+    },
+    "ep-ench-5": {
+      "texto": "No son las cosas las que perturban a las personas, sino las opiniones que tienen sobre ellas.",
+      "texto_curto": "No nos perturban las cosas, sino lo que opinamos de ellas.",
+      "texto_inline": "El dato no es la historia",
+      "reflexao": "El mal entrenamiento fue un dato. La historia que cuentas sobre él es una elección."
+    },
+    "ma-4-49": {
+      "texto": "Sé como el promontorio contra el que rompen las olas sin cesar; permanece firme y el agua se calma a su alrededor.",
+      "texto_curto": "Sé el promontorio: las olas rompen, él permanece.",
+      "texto_inline": "Sé el promontorio",
+      "reflexao": "En el tramo más duro no tienes que vencer la ola. Solo seguir en pie."
+    },
+    "sen-ep13-4": {
+      "texto": "Sufrimos más a menudo en la imaginación que en la realidad.",
+      "texto_curto": "Sufrimos más a menudo en la imaginación que en la realidad.",
+      "texto_inline": "El miedo imagina de más",
+      "reflexao": "La carrera que imaginas a las 3 de la mañana siempre es más dura que la real."
+    },
+    "ma-8-47": {
+      "texto": "Si algo externo te aflige, no es la cosa en sí lo que te perturba, sino tu juicio sobre ella. Y está en tu poder borrar ese juicio ahora.",
+      "texto_curto": "No te perturba la cosa, sino tu juicio sobre ella.",
+      "texto_inline": "Borra el juicio",
+      "reflexao": "¿Perdiste la semana? Borra el juicio, no el plan."
+    }
+  },
+  "perguntas_diario": [
+    "¿Qué dependía de ti en el entrenamiento de hoy, y lo hiciste?",
+    "¿Qué no dependía de ti, y lo dejaste ir?",
+    "¿Qué pensamiento estorbó? ¿Cuál ayudó?"
+  ],
+  "inline_contexto": {
+    "vespera_longo": "Tirada larga mañana",
+    "vespera_forte": "Sesión dura mañana",
+    "descanso": "Día de descanso",
+    "t30": "Faltan 30 días",
+    "t7": "Faltan 7 días",
+    "t1": "Carrera mañana",
+    "d0": "Día de carrera"
+  }
+}

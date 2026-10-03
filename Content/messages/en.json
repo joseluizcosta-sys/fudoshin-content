@@ -1,0 +1,60 @@
+{
+  "idioma": "en",
+  "revisao": {
+    "status": "rascunho",
+    "revisor_nativo": null,
+    "data": null
+  },
+  "mensagens": {
+    "ma-5-1": {
+      "texto": "In the morning, when you struggle to get up, remember: I am rising to do the work of a human being.",
+      "texto_curto": "I rise to do the work of a human being.",
+      "texto_inline": "Rise. There's work.",
+      "reflexao": "Today's run is work, not mood. Do your part."
+    },
+    "ep-ench-1": {
+      "texto": "Some things are up to us, and some are not.",
+      "texto_curto": "Some things are up to us; others are not.",
+      "texto_inline": "Control the controllable",
+      "reflexao": "Weather, elevation and rivals aren't up to you. Pace, fueling and attitude are."
+    },
+    "ep-ench-5": {
+      "texto": "People are disturbed not by things, but by the opinions they hold about things.",
+      "texto_curto": "It's not things that disturb us, but our opinions of them.",
+      "texto_inline": "The fact isn't the story",
+      "reflexao": "The bad run was data. The story you tell about it is a choice."
+    },
+    "ma-4-49": {
+      "texto": "Be like the headland against which the waves keep breaking; it stands firm, and the water calms around it.",
+      "texto_curto": "Be the headland: waves break, it stands.",
+      "texto_inline": "Be the headland",
+      "reflexao": "In the hardest stretch you don't have to beat the wave. Just stay standing."
+    },
+    "sen-ep13-4": {
+      "texto": "We suffer more often in imagination than in reality.",
+      "texto_curto": "We suffer more often in imagination than in reality.",
+      "texto_inline": "Fear imagines too much",
+      "reflexao": "The race you picture at 3 a.m. is always harder than the real one."
+    },
+    "ma-8-47": {
+      "texto": "If anything external troubles you, it is not the thing itself but your judgment about it. And it is in your power to wipe out that judgment now.",
+      "texto_curto": "It's not the thing that troubles you, but your judgment of it.",
+      "texto_inline": "Erase the judgment",
+      "reflexao": "Lost the week? Erase the judgment, not the plan."
+    }
+  },
+  "perguntas_diario": [
+    "What was up to you in today's run, and did you do it?",
+    "What wasn't up to you, and did you let it go?",
+    "Which thought got in the way? Which one helped?"
+  ],
+  "inline_contexto": {
+    "vespera_longo": "Long run tomorrow",
+    "vespera_forte": "Hard session tomorrow",
+    "descanso": "Rest day",
+    "t30": "30 days to go",
+    "t7": "7 days to go",
+    "t1": "Race tomorrow",
+    "d0": "Race day"
+  }
+}

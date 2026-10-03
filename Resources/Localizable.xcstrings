@@ -1,0 +1,13 @@
+{
+  "sourceLanguage" : "pt-BR",
+  "strings" : {
+    "app.name" : {
+      "localizations" : {
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Ultra Mind" } },
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Ultra Mind" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Ultra Mind" } }
+      }
+    }
+  },
+  "version" : "1.0"
+}

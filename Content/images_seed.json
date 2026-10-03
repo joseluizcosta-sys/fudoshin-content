@@ -1,0 +1,75 @@
+{
+  "versao": 1,
+  "observacao": "Formato do catálogo. As entradas abaixo são exemplos de estrutura, sem arquivo real ainda.",
+  "categorias": {
+    "trail": "Montanha, single track, altitude, terreno técnico",
+    "rua": "Corrida urbana: avenidas, orlas, pontes, parques urbanos",
+    "trilha": "Mata, bosque, estrada de terra, cachoeiras, campos"
+  },
+  "humores": ["calma", "epico", "foco", "recomeco"],
+  "imagens": [
+    {
+      "id": "trail-exemplo-001",
+      "arquivo": "trail/trail-exemplo-001.heic",
+      "categoria": "trail",
+      "local": "A definir",
+      "horario": "amanhecer",
+      "estacao": "inverno",
+      "humores": ["epico", "foco"],
+      "tom": "escuro",
+      "area_frase": "centro-inferior",
+      "embarcada": true,
+      "pacote": null,
+      "autor": "A definir",
+      "licenca": "propria",
+      "contrato": null,
+      "credito_visivel": "Foto: A definir"
+    },
+    {
+      "id": "rua-exemplo-001",
+      "arquivo": "rua/rua-exemplo-001.heic",
+      "categoria": "rua",
+      "local": "A definir",
+      "horario": "amanhecer",
+      "estacao": "verao",
+      "humores": ["foco", "recomeco"],
+      "tom": "claro",
+      "area_frase": "centro-inferior",
+      "embarcada": true,
+      "pacote": null,
+      "autor": "A definir",
+      "licenca": "licenciada",
+      "contrato": "contratos/fotografo-x-2026.pdf",
+      "credito_visivel": "Foto: A definir"
+    },
+    {
+      "id": "trilha-exemplo-001",
+      "arquivo": "trilha/trilha-exemplo-001.heic",
+      "categoria": "trilha",
+      "local": "A definir",
+      "horario": "dia",
+      "estacao": "primavera",
+      "humores": ["calma"],
+      "tom": "escuro",
+      "area_frase": "centro",
+      "embarcada": false,
+      "pacote": "paisagens-trilha-1",
+      "autor": "A definir",
+      "licenca": "propria",
+      "contrato": null,
+      "credito_visivel": "Foto: A definir"
+    }
+  ],
+  "regras_sorteio": {
+    "frequencia": "1 vez por dia",
+    "semente": "data (yyyy-MM-dd) + ID da instalação",
+    "sem_repetir_dias": 60,
+    "peso_padrao": {"categoria_da_prova": 0.6, "demais": 0.4},
+    "contexto": {
+      "semana_da_prova": "categoria da prova-alvo",
+      "descanso": "humor calma",
+      "vespera_longao": "humor epico",
+      "retorno_apos_pausa": "humor recomeco"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+name: AtletaEstoico
+options:
+  bundleIdPrefix: com.atletaestoico
+  developmentLanguage: pt-BR
+  deploymentTarget:
+    iOS: "17.0"            # IA on-device (Foundation Models) só em iOS 26+ com #available; abaixo disso, biblioteca curada
+  createIntermediateGroups: true
+settings:
+  base:
+    MARKETING_VERSION: "0.1"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: ""   # preencha com seu Team ID
+    GENERATE_INFOPLIST_FILE: NO
+targets:
+  AtletaEstoico:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+      - Resources/Localizable.xcstrings
+      - path: Content
+        type: folder
+    info:
+      path: Resources/Info.plist       # o XcodeGen regenera este arquivo; mantenha as chaves aqui
+      properties:
+        CFBundleDisplayName: AtletaEstoico
+        NSHealthShareUsageDescription: Lemos seus treinos e seu sono do app Saúde para escolher a mensagem certa para o seu momento. Os dados ficam só no seu iPhone.
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UIBackgroundModes: [fetch]
+        NSPhotoLibraryAddUsageDescription: Para salvar o papel de parede do dia na sua galeria.
+        BGTaskSchedulerPermittedIdentifiers: [com.atletaestoico.refresh]
+        CFBundleURLTypes:
+          - CFBundleURLSchemes: [atletaestoico]
+    entitlements:
+      path: Resources/AtletaEstoico.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+        com.apple.developer.healthkit.background-delivery: true
+        com.apple.security.application-groups: [group.com.atletaestoico]
+    dependencies:
+      - target: AtletaEstoicoWidget
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.atletaestoico.app
+        INFOPLIST_FILE: Resources/Info.plist
+        TARGETED_DEVICE_FAMILY: "1"
+  AtletaEstoicoWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - Sources/Widget
+      - Sources/Core/Daily
+      - Sources/Core/Messages
+      - Resources/Localizable.xcstrings
+      - path: Content
+        type: folder
+    info:
+      path: Resources/Widget-Info.plist
+      properties:
+        CFBundleDisplayName: AtletaEstoico
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: Resources/AtletaEstoicoWidget.entitlements
+      properties:
+        com.apple.security.application-groups: [group.com.atletaestoico]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.atletaestoico.app.widget
+        INFOPLIST_FILE: Resources/Widget-Info.plist
+  AtletaEstoicoTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - Tests
+    dependencies:
+      - target: AtletaEstoico
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.atletaestoico.tests
+        GENERATE_INFOPLIST_FILE: YES
