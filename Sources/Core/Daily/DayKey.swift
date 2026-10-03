@@ -25,6 +25,14 @@ struct DayKey: Hashable, Codable, Comparable {
             - Self.daysFromCivil(year: 2026, month: 1, day: 1)
     }
 
+    /// Retorna o início do dia representado por esta chave no calendário informado.
+    /// Retorna nil se a string estiver malformada.
+    func startOfDay(calendar: Calendar = .current) -> Date? {
+        let parts = value.split(separator: "-").compactMap { Int($0) }
+        guard parts.count == 3 else { return nil }
+        return calendar.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2]))
+    }
+
     static func < (lhs: DayKey, rhs: DayKey) -> Bool {
         lhs.value < rhs.value
     }

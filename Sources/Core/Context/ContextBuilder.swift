@@ -2,7 +2,7 @@ import Foundation
 import SwiftData
 
 /// Monta um TrainingContext a partir dos modelos SwiftData e de um HealthDataProviding.
-/// Injetar um MockHealthProvider nos testes.
+/// Erros do HealthDataProviding são tratados como "sem dados"; nunca derrubam o build.
 final class ContextBuilder {
     let healthProvider: HealthDataProviding
 
@@ -15,16 +15,18 @@ final class ContextBuilder {
         weekPlan: WeekPlan?,
         profile: AthleteProfile?,
         deliveryLogs: [DeliveryLog],
-        now: Date = Date()
-    ) async throws -> TrainingContext {
-        let cal = Calendar.current
+        now: Date = Date(),
+        calendar: Calendar = .current
+    ) async -> TrainingContext {
+        let cal = calendar
 
-        // Treinos recentes (já ordenados por endDate desc no HealthKitService)
-        let workouts = try await healthProvider.recentWorkouts(days: 14)
+        // Treinos dos últimos 30 dias para cobrir retorno de até 5 semanas.
+        // Erros do provedor = sem dados (nil), nunca propagados.
+        let workouts = (try? await healthProvider.recentWorkouts(days: 30)) ?? []
         let lastWorkout = workouts.first
 
-        // Sono
-        let sleepHours = try await healthProvider.lastNightSleepHours(reference: now)
+        // Sono — erro = nil (sem dados)
+        let sleepHours = try? await healthProvider.lastNightSleepHours(reference: now)
 
         // Dias desde o último treino (dias de calendário entre o fim do último treino e hoje)
         let daysSince: Int? = lastWorkout.map { w in
@@ -39,11 +41,7 @@ final class ContextBuilder {
                 .filter { $0.trigger == .posTreino }
                 .max(by: { $0.dayValue < $1.dayValue })
             guard let log = lastLog,
-                  let dayStart = cal.date(from: DateComponents(
-                      year: Int(log.dayValue.prefix(4)),
-                      month: Int(log.dayValue.dropFirst(5).prefix(2)),
-                      day:   Int(log.dayValue.suffix(2))
-                  )) else { return nil }
+                  let dayStart = DayKey(value: log.dayValue).startOfDay(calendar: cal) else { return nil }
             return cal.date(byAdding: .day, value: 1, to: dayStart)
         }()
 

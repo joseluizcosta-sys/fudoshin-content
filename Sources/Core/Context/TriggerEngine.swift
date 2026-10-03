@@ -3,8 +3,12 @@ import Foundation
 /// Função pura: recebe TrainingContext e o instante atual, nunca chama Date() internamente.
 enum TriggerEngine {
 
-    static func trigger(for c: TrainingContext, now: Date) -> Trigger {
-        let cal = Calendar.current
+    static func trigger(
+        for c: TrainingContext,
+        now: Date,
+        calendar: Calendar = .current
+    ) -> Trigger {
+        let cal = calendar
 
         // 1. marco_prova — faltam exatamente 30, 7, 1 ou 0 dias de calendário
         if let raceDate = c.raceDate {
@@ -21,7 +25,7 @@ enum TriggerEngine {
             if withinWindow && notDelivered { return .posTreino }
         }
 
-        // 3. sono_ruim — sono < (meta - 1h) e agora é antes das 12h
+        // 3. sono_ruim — sono < (meta - 1h) e agora é antes das 12h (no fuso do calendário)
         if let sleep = c.lastNightSleepHours {
             let isBad     = sleep < c.sleepGoalHours - 1
             let isMorning = cal.component(.hour, from: now) < 12

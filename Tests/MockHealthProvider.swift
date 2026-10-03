@@ -6,6 +6,8 @@ final class MockHealthProvider: HealthDataProviding {
     var workoutsToReturn: [WorkoutSummary] = []
     var sleepHoursToReturn: Double? = nil
     var authorizationError: Error? = nil
+    var workoutsError: Error? = nil
+    var sleepError: Error? = nil
     private(set) var onChangeCallback: (() -> Void)?
     private(set) var authCallCount = 0
     private(set) var workoutCallCount = 0
@@ -18,11 +20,13 @@ final class MockHealthProvider: HealthDataProviding {
 
     func recentWorkouts(days: Int) async throws -> [WorkoutSummary] {
         workoutCallCount += 1
+        if let error = workoutsError { throw error }
         return workoutsToReturn
     }
 
     func lastNightSleepHours(reference: Date) async throws -> Double? {
         sleepCallCount += 1
+        if let error = sleepError { throw error }
         return sleepHoursToReturn
     }
 
@@ -35,3 +39,5 @@ final class MockHealthProvider: HealthDataProviding {
         onChangeCallback?()
     }
 }
+
+struct MockError: Error {}
