@@ -48,6 +48,7 @@ final class AppEnvironment {
     /// Chamado ao concluir o onboarding.
     func onOnboardingCompleted() async {
         planner.startObserving()
+        scheduleBackgroundRefresh()
         await planner.refresh()
     }
 
