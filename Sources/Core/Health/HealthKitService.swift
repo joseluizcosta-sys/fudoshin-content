@@ -37,14 +37,20 @@ final class HealthKitService: HealthDataProviding {
         switch workout.workoutActivityType {
         case .running: type = .running
         case .hiking:  type = .hiking
-        case .walking: type = .walking
         default:       return nil
         }
 
         let distType = HKQuantityType(.distanceWalkingRunning)
-        let km = workout.statistics(for: distType)?
+        // Preferência: statistics(for:) — API moderna. Garmin pode gravar apenas totalDistance.
+        let km: Double
+        if let statKm = workout.statistics(for: distType)?
             .sumQuantity()?
-            .doubleValue(for: .meterUnit(with: .kilo)) ?? 0
+            .doubleValue(for: .meterUnit(with: .kilo)), statKm > 0 {
+            km = statKm
+        } else {
+            km = workout.totalDistance?   // fallback para dados legados/Garmin
+                .doubleValue(for: .meterUnit(with: .kilo)) ?? 0
+        }
         guard km > 3 else { return nil }
 
         return WorkoutSummary(start: workout.startDate, end: workout.endDate,

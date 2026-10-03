@@ -89,7 +89,6 @@ private extension WorkoutActivityType {
         switch self {
         case .running: "🏃 Run"
         case .hiking:  "🥾 Hike"
-        case .walking: "🚶 Walk"
         }
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 enum WorkoutActivityType: String, Codable, CaseIterable {
-    case running, hiking, walking
+    case running, hiking
 }
 
 struct WorkoutSummary {
