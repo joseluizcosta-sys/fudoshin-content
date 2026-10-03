@@ -8,7 +8,7 @@ final class MockHealthProvider: HealthDataProviding {
     var authorizationError: Error? = nil
     var workoutsError: Error? = nil
     var sleepError: Error? = nil
-    private(set) var onChangeCallback: (() -> Void)?
+    private(set) var onChangeCallback: (() async -> Void)?
     private(set) var authCallCount = 0
     private(set) var workoutCallCount = 0
     private(set) var sleepCallCount = 0
@@ -30,13 +30,13 @@ final class MockHealthProvider: HealthDataProviding {
         return sleepHoursToReturn
     }
 
-    func startObserving(onChange: @escaping () -> Void) {
+    func startObserving(onChange: @escaping () async -> Void) {
         onChangeCallback = onChange
     }
 
     /// Simula chegada de novos dados (para testar o observer).
-    func simulateNewData() {
-        onChangeCallback?()
+    func simulateNewData() async {
+        await onChangeCallback?()
     }
 }
 

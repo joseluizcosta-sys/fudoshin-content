@@ -18,6 +18,8 @@ protocol HealthDataProviding {
     func recentWorkouts(days: Int) async throws -> [WorkoutSummary]
     /// Horas de sono entre 18h de ontem e 12h de hoje relativas a `reference`. Nil se sem dados.
     func lastNightSleepHours(reference: Date) async throws -> Double?
-    /// Registra observador de novos treinos; `onChange` é chamado na main thread.
-    func startObserving(onChange: @escaping () -> Void)
+    /// Registra observador de novos treinos.
+    /// `onChange` é awaited antes de chamar o completionHandler do HKObserverQuery,
+    /// garantindo que o iOS não suspenda o app antes do refresh concluir.
+    func startObserving(onChange: @escaping () async -> Void)
 }

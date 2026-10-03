@@ -99,13 +99,16 @@ final class HealthKitService: HealthDataProviding {
 
     // MARK: - Observer
 
-    func startObserving(onChange: @escaping () -> Void) {
+    func startObserving(onChange: @escaping () async -> Void) {
         let workoutType = HKObjectType.workoutType()
         let query = HKObserverQuery(sampleType: workoutType, predicate: nil) {
             _, completionHandler, error in
-            defer { completionHandler() }
-            guard error == nil else { return }
-            DispatchQueue.main.async { onChange() }
+            guard error == nil else { completionHandler(); return }
+            // Await onChange antes de chamar completionHandler — evita suspensão prematura pelo iOS.
+            Task {
+                await onChange()
+                completionHandler()
+            }
         }
         store.execute(query)
         observerQuery = query
