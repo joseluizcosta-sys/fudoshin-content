@@ -29,4 +29,4 @@ xcodebuild -scheme AtletaEstoico -destination 'platform=iOS Simulator,name=iPhon
 - Datas: sempre `Calendar.current` com o fuso do aparelho; "dia" = `startOfDay`.
 - Identificador de dia: `DayKey` (string `yyyy-MM-dd`).
 - UI: `Text("chave")`/`String(localized:)` com String Catalog (app e widget). Datas e distâncias com formatadores do sistema (`Date.FormatStyle`, `Measurement`).
-- Idioma do conteúdo: `Bundle.main.preferredLocalizations.first`, com fallback `en` → `pt-BR`.
+- Idioma do conteúdo: `Bundle.main.preferredLocalizations.first`, com fallback `en` → `pt-BR`. Idioma de desenvolvimento = `en`: aparelho em idioma não suportado (ex.: alemão) recebe interface e conteúdo em inglês.

@@ -1,7 +1,7 @@
 name: AtletaEstoico
 options:
   bundleIdPrefix: com.atletaestoico
-  developmentLanguage: pt-BR
+  developmentLanguage: en
   deploymentTarget:
     iOS: "17.0"            # IA on-device (Foundation Models) só em iOS 26+ com #available; abaixo disso, biblioteca curada
   createIntermediateGroups: true
@@ -27,7 +27,7 @@ targets:
       path: Resources/Info.plist       # o XcodeGen regenera este arquivo; mantenha as chaves aqui
       properties:
         CFBundleDisplayName: AtletaEstoico
-        CFBundleDevelopmentRegion: pt-BR
+        CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [pt-BR, en, es]
         NSHealthShareUsageDescription: Lemos seus treinos e seu sono do app Saúde para escolher a mensagem certa para o seu momento. Os dados ficam só no seu iPhone.
         UILaunchScreen: {}
@@ -65,7 +65,7 @@ targets:
       path: Resources/Widget-Info.plist
       properties:
         CFBundleDisplayName: AtletaEstoico
-        CFBundleDevelopmentRegion: pt-BR
+        CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [pt-BR, en, es]
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
