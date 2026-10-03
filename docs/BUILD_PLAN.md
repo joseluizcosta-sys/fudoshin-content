@@ -5,6 +5,16 @@
 
 ---
 
+## Status
+| Tarefa | Situação |
+|---|---|
+| T00–T02 | ✅ Concluídas (03/10/2026) — 40/40 testes passando no simulador |
+| T03 | ⏭️ Próxima |
+
+Atualize esta tabela ao final de cada tarefa.
+
+---
+
 ## 0. Como usar este plano
 
 **Fluxo por tarefa:**
