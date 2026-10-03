@@ -173,7 +173,7 @@ Content/                 # messages/ (base + 1 arquivo por idioma), catálogo de
 
 ## 6. Modelo de receita (hipótese a validar)
 
-Grátis: mensagem do dia + contagem regressiva. Pago: gatilhos por contexto, mantra, diário, trilhas de prova. Faixa de teste: anual baixo (~US$ 14,99–19,99/ano) ou compra única. Sem assinatura semanal.
+**Condição de fundador (lista de espera): 50% no 1º ano do plano anual.** Grátis: mensagem do dia + contagem regressiva. Pago: gatilhos por contexto, mantra, diário, trilhas de prova. Faixa de teste: anual baixo (~US$ 14,99–19,99/ano) ou compra única. Sem assinatura semanal.
 
 ---
 

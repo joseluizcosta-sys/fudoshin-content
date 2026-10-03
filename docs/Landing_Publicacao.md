@@ -34,4 +34,4 @@ Use um `utm_source` diferente para cada grupo. O formulário grava isso no campo
 - [ ] Teste do som com 10 corredores brasileiros e checagem de marca (ver `docs/Marca_Fudoshin.md`).
 - [ ] Ideogramas da página conferidos por um falante de japonês.
 - [ ] Revisar a frase do rodapé ("Feito por um corredor de trail...") com a sua história real.
-- [ ] Decidir o que significa "condição especial de fundador" (ex.: 50% no 1º ano) para não prometer no escuro.
+- [x] Condição de fundador: **50% no 1º ano do plano anual** (decidido em 03/10/2026). Configurar como oferta introdutória no StoreKit (T14) e enviar código/link aos inscritos no lançamento.
