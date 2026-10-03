@@ -98,12 +98,12 @@ final class OnboardingTests: XCTestCase {
 
     // MARK: - normalizeWhy
 
-    func testNormalizeWhyRemovesTrailingPunctuationAndLowercasesFirst() {
+    func testNormalizeWhyRemovesTrailingPunctuationAndCapitalizesFirst() {
         let s = OnboardingState()
-        XCTAssertEqual(s.normalizeWhy("I love running!"), "i love running")
-        XCTAssertEqual(s.normalizeWhy("Running."), "running")
-        XCTAssertEqual(s.normalizeWhy("correr me faz bem"), "correr me faz bem")
-        XCTAssertEqual(s.normalizeWhy("  Hello…  "), "hello")
+        XCTAssertEqual(s.normalizeWhy("I love running!"), "I love running")
+        XCTAssertEqual(s.normalizeWhy("running."), "Running")
+        XCTAssertEqual(s.normalizeWhy("para me sentir vivo"), "Para me sentir vivo")
+        XCTAssertEqual(s.normalizeWhy("  hello…  "), "Hello")
         XCTAssertEqual(s.normalizeWhy(""), "")
     }
 

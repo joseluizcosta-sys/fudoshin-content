@@ -28,14 +28,15 @@ final class OnboardingState {
         !why.trimmingCharacters(in: .whitespaces).isEmpty
     }
 
-    /// Primeira letra em minúscula, sem pontuação final — para usar no template do mantra.
+    /// Primeira letra em maiúscula, sem pontuação final. O mantra sugerido é "<porquê>. Um passo de cada vez.",
+    /// sem prefixo fixo, para não gerar erro de concordância ("Eu corro por para me sentir vivo").
     func normalizeWhy(_ s: String) -> String {
         var result = s.trimmingCharacters(in: .whitespaces)
         while let last = result.last, ".!?…,;:".contains(last) {
             result.removeLast()
         }
         guard let first = result.first else { return result }
-        return first.lowercased() + result.dropFirst()
+        return first.uppercased() + result.dropFirst()
     }
 
     /// Grava Race, WeekPlan e AthleteProfile no contexto. Idempotente: se já existir

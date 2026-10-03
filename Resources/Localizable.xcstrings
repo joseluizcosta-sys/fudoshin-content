@@ -257,19 +257,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I run for %@. One step at a time."
+            "value" : "%@. One step at a time."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Corro por %@. Un paso a la vez."
+            "value" : "%@. Un paso a la vez."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Eu corro por %@. Um passo de cada vez."
+            "value" : "%@. Um passo de cada vez."
           }
         }
       }

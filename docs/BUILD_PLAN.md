@@ -288,7 +288,7 @@ Cada tarefa: **Objetivo · Arquivos · Passos · Aceite**. 🔍 = revisão com O
 ### T04 — Onboarding
 - **Arquivos:** `Features/Onboarding/*`.
 - **Atenção (revisão T03):** `SharedStore.loadPreferences()` (cria installID) só no app; o widget usa `loadPreferencesIfExists()`. `JournalEntry` e `DeliveryLog` são únicos por dia: atualizar, não inserir de novo.
-- **Telas:** (1) prova-alvo: nome, data, distância, categoria (trail/rua/trilha) — com opção "ainda não tenho prova"; (2) semana: 7 chips seg–dom, cada um alterna leve/forte/longo/descanso; (3) "por que você corre?" (texto livre, 140 caracteres) + mantra sugerido editável (no MVP: template "Eu corro por <porquê>. Um passo de cada vez."); (4) permissões: app Saúde e notificações, cada uma com explicação de 1 linha e botão "agora não".
+- **Telas:** (1) prova-alvo: nome, data, distância, categoria (trail/rua/trilha) — com opção "ainda não tenho prova"; (2) semana: 7 chips seg–dom, cada um alterna leve/forte/longo/descanso; (3) "por que você corre?" (texto livre, 140 caracteres) + mantra sugerido editável (no MVP: template "<Porquê>. Um passo de cada vez." — sem prefixo fixo, para evitar erro de concordância); (4) permissões: app Saúde e notificações, cada uma com explicação de 1 linha e botão "agora não".
 - **Aceite:** fluxo completo grava os modelos; reabrir o app pula o onboarding; funciona negando todas as permissões.
 
 ### T05 — HealthKit
