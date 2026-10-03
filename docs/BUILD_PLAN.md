@@ -285,6 +285,7 @@ Cada tarefa: **Objetivo · Arquivos · Passos · Aceite**. 🔍 = revisão com O
 
 ### T04 — Onboarding
 - **Arquivos:** `Features/Onboarding/*`.
+- **Atenção (revisão T03):** `SharedStore.loadPreferences()` (cria installID) só no app; o widget usa `loadPreferencesIfExists()`. `JournalEntry` e `DeliveryLog` são únicos por dia: atualizar, não inserir de novo.
 - **Telas:** (1) prova-alvo: nome, data, distância, categoria (trail/rua/trilha) — com opção "ainda não tenho prova"; (2) semana: 7 chips seg–dom, cada um alterna leve/forte/longo/descanso; (3) "por que você corre?" (texto livre, 140 caracteres) + mantra sugerido editável (no MVP: template "Eu corro por <porquê>. Um passo de cada vez."); (4) permissões: app Saúde e notificações, cada uma com explicação de 1 linha e botão "agora não".
 - **Aceite:** fluxo completo grava os modelos; reabrir o app pula o onboarding; funciona negando todas as permissões.
 
@@ -333,7 +334,7 @@ Cada tarefa: **Objetivo · Arquivos · Passos · Aceite**. 🔍 = revisão com O
 
 ### T12 — Papel de parede + Atalhos
 - **Arquivos:** `WallpaperComposer.swift`, `DailyWallpaperIntent.swift`, `Settings/WallpaperSetupGuide.swift`.
-- **Passos:** compor com `ImageRenderer` (SwiftUI) na escala da tela; salvar PNG em `SharedStore.wallpaperURL(for:)`; botão "Salvar na galeria" (`PHPhotoLibrary` só escrita); `AppIntent` "Papel de parede do dia" retornando `IntentFile` (PNG) com `openAppWhenRun = false`; `AppShortcutsProvider` com frase "Papel de parede do Ultra Mind".
+- **Passos:** compor com `ImageRenderer` (SwiftUI) na escala da tela; salvar PNG em `SharedStore.wallpaperURL(for:)` e apagar os PNGs com mais de 7 dias (senão acumulam no App Group); botão "Salvar na galeria" (`PHPhotoLibrary` só escrita); `AppIntent` "Papel de parede do dia" retornando `IntentFile` (PNG) com `openAppWhenRun = false`; `AppShortcutsProvider` com frase "Papel de parede do Ultra Mind".
 - **Guia (5 passos com imagens/texto):** Atalhos → Automação → Horário do dia → ação "Papel de parede do dia" → "Definir papel de parede" → desativar "Perguntar antes de executar".
 - **Aceite:** no iPhone físico, uma automação criada manualmente troca o papel de parede sem abrir o app; arquivo do dia já existe antes do intent rodar; se não existir, o intent gera na hora.
 
