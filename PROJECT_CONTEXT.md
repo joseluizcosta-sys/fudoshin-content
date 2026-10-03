@@ -1,6 +1,8 @@
-# AtletaEstoico — Contexto do Projeto
+# Fudōshin — Contexto do Projeto
 
-> Documento mestre. Codinome provisório (o nome final sai do teste de landing page). **Não usar "Daily Stoic"**, que é marca do Ryan Holiday.
+> 不動心 · **O corpo se move. A mente, não.**
+
+> Documento mestre. Nome do produto: **Fudōshin** (decidido em 03/10/2026). Codinome técnico: AtletaEstoico (pastas, bundle IDs, App Group). **Não usar "Daily Stoic"**, que é marca do Ryan Holiday.
 > Criado em 28/09/2026 · Atualizado em 03/10/2026 (papel de parede diário, widget da tela de bloqueio e idiomas).
 
 ---
@@ -13,7 +15,7 @@
 
 ## 1. Tese
 
-**Promessa:** *"A frase certa no momento certo do treino."*
+**Slogan:** *"O corpo se move. A mente, não."* · **Promessa:** *"A frase certa no momento certo do treino."*
 
 O mercado de frases motivacionais está saturado e o conteúdo é commodity (Motivation – Daily quotes, vários apps "Daily Stoic"). Ninguém usa o **contexto do atleta** (treino feito, sono, proximidade da prova, lesão). Esse é o diferencial. Preço baixo sozinho não é um fosso.
 
@@ -37,6 +39,7 @@ O mercado de frases motivacionais está saturado e o conteúdo é commodity (Mot
 | D8 | A troca automática do papel de parede é feita por **automação do app Atalhos**, não pelo app | O iOS não tem API pública para um app trocar o papel de parede. O app gera a imagem do dia e oferece uma ação de Atalhos |
 | D9 | Imagens **próprias ou licenciadas por escrito**, sem pessoas identificáveis | Unsplash/Pexels são zona cinzenta para app que distribui fotos como produto. Ver `Content/IMAGENS.md` |
 | D11 | **Widget da tela de bloqueio** com a mensagem do dia, trocando diariamente (03/10/2026) | Canal nativo, sem configuração de Atalhos, visto dezenas de vezes por dia. Vira o canal principal da mensagem; o papel de parede passa a ser complemento |
+| D13 | **Nome: Fudōshin (不動心), slogan "O corpo se move. A mente, não."** (03/10/2026) | Distinto na categoria, com história e ícone simples (ideograma). Posicionamento "mente inabalável" une estoicos e samurais. Pendências: teste do som em PT-BR, marca nas classes 9/41, revisão nativa dos ideogramas. Ver `docs/Marca_Fudoshin.md` |
 | D12 | **3 idiomas no lançamento (pt-BR, en, es)**, estrutura pronta para de, fr, it, zh-Hans (03/10/2026) | Frases **armazenadas por idioma**, traduzidas na produção do conteúdo (IA + revisão nativa). Tradução em tempo real não roda no widget, não respeita limites de texto e pode distorcer a citação. Ver `Content/IDIOMAS.md` |
 | D10 | **iOS 17 mínimo no MVP** (03/10/2026). 30 imagens embarcadas; Foundation Models só em iOS 26+ via `#available`; Background Assets depois do beta | Tira a decisão do caminho crítico e não perde usuários. Reversível |
 

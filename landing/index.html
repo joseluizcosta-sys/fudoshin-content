@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ultra Mind — mentalidade estoica para corredores</title>
+<title>Fudōshin — o corpo se move, a mente não</title>
 <meta name="description" content="A frase certa no momento certo do treino. Mentalidade estoica para corredores, baseada nos seus treinos e no seu sono. Compatível com Garmin e Apple Watch.">
-<meta property="og:title" content="Ultra Mind — a frase certa no momento certo do treino">
+<meta property="og:title" content="Fudōshin — o corpo se move. A mente, não.">
 <meta property="og:description" content="Mentalidade estoica para corredores. Entre na lista de espera do beta.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@600;900&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0f0e0c; --bg2:#181613; --card:#1f1c18; --line:#2e2a24;
@@ -28,8 +28,16 @@ h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:700;line-height:1.12;let
 /* nav */
 nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0}
 .logo{font-family:Fraunces,serif;font-weight:700;font-size:21px;display:flex;align-items:center;gap:10px}
-.logo i{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-block;position:relative}
-.logo i:after{content:"";position:absolute;inset:7px 6px;border-top:2.5px solid #1a120b;border-radius:50% 50% 0 0}
+.logo i{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-grid;place-items:center;font-style:normal;font-family:"Noto Serif JP",serif;font-weight:900;font-size:18px;color:#1a120b}
+.kanji{font-family:"Noto Serif JP",serif;font-weight:900}
+.kanji-hero{font-size:clamp(46px,7vw,76px);letter-spacing:.08em;line-height:1;color:var(--accent2);opacity:.95;margin-bottom:6px}
+.kanji-hero span.neg{color:var(--muted)}
+.glyphs{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.glyph{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:28px 24px;text-align:center}
+.glyph .k{font-family:"Noto Serif JP",serif;font-weight:900;font-size:72px;line-height:1;color:var(--txt)}
+.glyph .r{color:var(--accent2);font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:14px 0 6px;font-weight:600}
+.glyph p{color:var(--muted);font-size:15px}
+.glyph.move .k{color:var(--accent)}
 .btn{display:inline-block;background:var(--accent);color:#1a120b;font-weight:600;border:0;border-radius:999px;padding:13px 22px;font-size:15px;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
 .btn:hover{background:var(--accent2);transform:translateY(-1px)}
 .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
@@ -100,6 +108,7 @@ details p{color:var(--muted);margin-top:10px;max-width:720px}
 footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 
 @media (max-width:900px){
+  .glyphs{grid-template-columns:1fr}
   .hero{grid-template-columns:1fr;padding-top:10px}
   .phone{margin-top:10px}
   .grid4{grid-template-columns:1fr 1fr}
@@ -118,15 +127,16 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px soli
 <body>
 <div class="wrap">
   <nav>
-    <div class="logo"><i></i>Ultra Mind</div>
+    <div class="logo"><i>心</i>Fudōshin</div>
     <a class="btn ghost" href="#lista">Lista de espera</a>
   </nav>
 
   <header class="hero">
     <div>
-      <div class="eyebrow">Mentalidade estoica para corredores</div>
-      <h1>A frase certa no <em>momento certo</em> do treino.</h1>
-      <p class="lead">O Ultra Mind lê seus treinos e seu sono no app Saúde e entrega a mensagem que você precisa: na véspera do longão, depois do tiro, na noite mal dormida, na semana da prova.</p>
+      <div class="kanji-hero kanji" lang="ja" aria-label="Fudōshin, mente inabalável">不動心</div>
+      <div class="eyebrow">Fudōshin · mente inabalável</div>
+      <h1>O corpo se move. <em>A mente, não.</em></h1>
+      <p class="lead">A frase certa no momento certo do treino. O Fudōshin lê seus treinos e seu sono no app Saúde e entrega a mensagem que você precisa: na véspera do longão, depois do tiro, na noite mal dormida, na semana da prova.</p>
       <div class="ctas">
         <a class="btn" href="#lista">Quero testar o beta</a>
         <a class="btn ghost" href="#como">Como funciona</a>
@@ -138,12 +148,12 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px soli
       <div class="clock">5:42</div>
       <div class="date">domingo, 18 de outubro</div>
       <div class="notif">
-        <div class="h"><span>Ultra Mind</span><span>agora</span></div>
+        <div class="h"><span>Fudōshin</span><span>agora</span></div>
         <b>Longão de 32 km hoje</b>
         "Estou me levantando para fazer o trabalho de um ser humano." — Marco Aurélio. O treino de hoje é trabalho, não humor.
       </div>
       <div class="notif dim">
-        <div class="h"><span>Ultra Mind</span><span>ontem</span></div>
+        <div class="h"><span>Fudōshin</span><span>ontem</span></div>
         <b>Noite curta (5h40)</b>
         Hoje o plano é ajustar, não provar nada. Isso também é treino.
       </div>
@@ -155,11 +165,24 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px soli
   </header>
 </div>
 
+<section id="nome">
+  <div class="wrap">
+    <div class="eyebrow">O nome</div>
+    <h2>不動心: três ideogramas, uma ideia.</h2>
+    <p class="sub">Na tradição dos samurais, fudōshin é a mente que permanece firme diante do medo, da dor e do cansaço. Para quem corre, o desafio é o mesmo: manter a cabeça no lugar enquanto o corpo trabalha.</p>
+    <div class="glyphs">
+      <div class="glyph"><div class="k" lang="ja">不</div><div class="r">fu · não</div><p>A negação. O que você escolhe não deixar acontecer.</p></div>
+      <div class="glyph move"><div class="k" lang="ja">動</div><div class="r">dō · mover</div><p>O movimento. O seu corpo, a cada passada.</p></div>
+      <div class="glyph"><div class="k" lang="ja">心</div><div class="r">shin · mente</div><p>A mente e o coração. O que fica firme no km difícil.</p></div>
+    </div>
+  </div>
+</section>
+
 <section id="momentos">
   <div class="wrap">
     <div class="eyebrow">Os momentos que importam</div>
     <h2>Não é uma frase aleatória por dia.</h2>
-    <p class="sub">Os apps de frases mandam a mesma coisa para todo mundo, no mesmo horário. O Ultra Mind sabe em que ponto do ciclo você está.</p>
+    <p class="sub">Os apps de frases mandam a mesma coisa para todo mundo, no mesmo horário. O Fudōshin sabe em que ponto do ciclo você está.</p>
     <div class="grid4">
       <div class="card"><div class="when">Véspera do treino-chave</div><h3>Cabeça no processo</h3><p>Preparação mental na noite antes do longão ou do intervalado.</p><blockquote>"Algumas coisas dependem de nós; outras, não." — Epicteto</blockquote></div>
       <div class="card"><div class="when">Depois do treino</div><h3>Reflexão de 60s</h3><p>Detecta o treino salvo pelo seu relógio e faz uma pergunta curta.</p><blockquote>"O treino ruim foi um dado. A história que você conta sobre ele é escolha."</blockquote></div>
@@ -192,7 +215,7 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px soli
       <div class="lock">🔒</div>
       <div>
         <h2 style="font-size:28px;margin:0 0 8px">Seus dados de treino não saem do seu iPhone.</h2>
-        <p class="muted">O Ultra Mind lê o app Saúde, onde Garmin e Apple Watch já salvam seus treinos, e processa tudo no próprio aparelho, inclusive a IA. Sem servidor, sem venda de dados, sem anúncios.</p>
+        <p class="muted">O Fudōshin lê o app Saúde, onde Garmin e Apple Watch já salvam seus treinos, e processa tudo no próprio aparelho, inclusive a IA. Sem servidor, sem venda de dados, sem anúncios.</p>
       </div>
     </div>
   </div>
@@ -266,13 +289,14 @@ footer{padding:40px 0 60px;color:var(--muted);font-size:13px;border-top:1px soli
     <details><summary>Preciso ter Garmin?</summary><p>Não. Funciona com qualquer relógio que salve treinos no app Saúde do iPhone (Garmin, Apple Watch, Coros, Polar e outros). Sem relógio, você usa só a agenda e a prova-alvo.</p></details>
     <details><summary>Tem para Android?</summary><p>Ainda não. O beta começa no iPhone. Se você usa Android, deixe seu e-mail mesmo assim: isso ajuda a decidir a próxima versão.</p></details>
     <details><summary>Quanto vai custar?</summary><p>Vai ter uma versão grátis e um plano anual com preço justo. Sem assinatura semanal e sem cobrança surpresa. Quem entra na lista agora tem condição de fundador.</p></details>
-    <details><summary>As frases são de onde?</summary><p>De Marco Aurélio, Sêneca e Epicteto, com tradução própria, e de ideias de livros sobre mentalidade e esporte, sempre com crédito ao autor.</p></details>
+    <details><summary>As frases são de onde?</summary><p>De Marco Aurélio, Sêneca e Epicteto, com tradução própria, e de ideias de livros sobre mentalidade e esporte, sempre com crédito ao autor. Estoicos e samurais chegaram à mesma conclusão por caminhos diferentes: controle o que depende de você.</p></details>
+    <details><summary>O que quer dizer Fudōshin?</summary><p>不動心 é um conceito japonês das artes marciais: a mente que não se abala. Lê-se "fu-dô-shin".</p></details>
     <details><summary>Serve para quem não é ultramaratonista?</summary><p>Sim. Serve para qualquer pessoa que treina para uma prova, do primeiro 10 km à primeira ultra.</p></details>
   </div>
 </section>
 
 <div class="wrap">
-  <footer><span>© 2026 Ultra Mind</span><span>Feito por um corredor de trail, para quem treina de verdade.</span></footer>
+  <footer><span>© 2026 Fudōshin</span><span>Feito por um corredor de trail, para quem treina de verdade.</span></footer>
 </div>
 
 <script>

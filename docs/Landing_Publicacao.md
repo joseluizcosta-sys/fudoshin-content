@@ -1,6 +1,6 @@
 # Landing page — como publicar e medir
 
-Arquivo: `landing/index.html` (nome provisório **Ultra Mind**; para trocar, substitua "Ultra Mind" no arquivo).
+Arquivo: `landing/index.html` — marca **Fudōshin** (不動心), slogan "O corpo se move. A mente, não." Ver `docs/Marca_Fudoshin.md`.
 
 ## Publicar (15 minutos, grátis)
 1. Crie conta em **netlify.com** e abra **app.netlify.com/drop**.
@@ -31,6 +31,7 @@ Use um `utm_source` diferente para cada grupo. O formulário grava isso no campo
 - Não bateu: trocar a promessa do título uma vez e rodar mais 7 dias. Falhou de novo: arquivar.
 
 ## Antes de publicar
-- [ ] Confirmar o nome (checar App Store, INPI e USPTO para "Ultra Mind").
+- [ ] Teste do som com 10 corredores brasileiros e checagem de marca (ver `docs/Marca_Fudoshin.md`).
+- [ ] Ideogramas da página conferidos por um falante de japonês.
 - [ ] Revisar a frase do rodapé ("Feito por um corredor de trail...") com a sua história real.
 - [ ] Decidir o que significa "condição especial de fundador" (ex.: 50% no 1º ano) para não prometer no escuro.

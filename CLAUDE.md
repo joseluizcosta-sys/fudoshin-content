@@ -1,6 +1,6 @@
 # CLAUDE.md — regras para quem for escrever o código
 
-Você está construindo o **AtletaEstoico** (nome provisório "Ultra Mind"), app iOS nativo em Swift/SwiftUI.
+Você está construindo o **Fudōshin** (codinome do projeto: AtletaEstoico; bundle IDs e App Group continuam `com.atletaestoico`), app iOS nativo em Swift/SwiftUI. Nome visível ao usuário: "Fudōshin". Slogan: "O corpo se move. A mente, não."
 Leia nesta ordem antes de qualquer tarefa: este arquivo → `docs/BUILD_PLAN.md` (a tarefa pedida) → `PROJECT_CONTEXT.md` (só se precisar de contexto de produto).
 
 ## Regras inegociáveis

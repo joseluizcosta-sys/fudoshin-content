@@ -1,4 +1,6 @@
-# AtletaEstoico — App iOS nativo
+# Fudōshin (codinome AtletaEstoico) — App iOS nativo
+
+> O corpo se move. A mente, não.
 
 Mensagens estoicas e de livros para atletas, no momento certo do treino. 100% on-device.
 

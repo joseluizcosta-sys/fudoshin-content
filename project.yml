@@ -26,7 +26,7 @@ targets:
     info:
       path: Resources/Info.plist       # o XcodeGen regenera este arquivo; mantenha as chaves aqui
       properties:
-        CFBundleDisplayName: AtletaEstoico
+        CFBundleDisplayName: Fudōshin
         CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [pt-BR, en, es]
         NSHealthShareUsageDescription: Lemos seus treinos e seu sono do app Saúde para escolher a mensagem certa para o seu momento. Os dados ficam só no seu iPhone.
@@ -63,7 +63,7 @@ targets:
     info:
       path: Resources/Widget-Info.plist
       properties:
-        CFBundleDisplayName: AtletaEstoico
+        CFBundleDisplayName: Fudōshin
         CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [pt-BR, en, es]
         NSExtension:

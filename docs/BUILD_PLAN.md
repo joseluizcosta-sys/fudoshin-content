@@ -1,4 +1,4 @@
-# BUILD PLAN — AtletaEstoico (MVP Fase 1)
+# BUILD PLAN — Fudōshin (codinome AtletaEstoico) · MVP Fase 1
 
 > Plano de construção para ser executado tarefa por tarefa por um modelo de código (recomendado: **Claude Sonnet** no Claude Code, rodando no Mac).
 > Escrito em 03/10/2026 (inclui idiomas pt-BR, en, es). Fonte de verdade do produto: `PROJECT_CONTEXT.md`. Regras de código: `CLAUDE.md`.
@@ -334,7 +334,7 @@ Cada tarefa: **Objetivo · Arquivos · Passos · Aceite**. 🔍 = revisão com O
 
 ### T12 — Papel de parede + Atalhos
 - **Arquivos:** `WallpaperComposer.swift`, `DailyWallpaperIntent.swift`, `Settings/WallpaperSetupGuide.swift`.
-- **Passos:** compor com `ImageRenderer` (SwiftUI) na escala da tela; salvar PNG em `SharedStore.wallpaperURL(for:)` e apagar os PNGs com mais de 7 dias (senão acumulam no App Group); botão "Salvar na galeria" (`PHPhotoLibrary` só escrita); `AppIntent` "Papel de parede do dia" retornando `IntentFile` (PNG) com `openAppWhenRun = false`; `AppShortcutsProvider` com frase "Papel de parede do Ultra Mind".
+- **Passos:** compor com `ImageRenderer` (SwiftUI) na escala da tela; salvar PNG em `SharedStore.wallpaperURL(for:)` e apagar os PNGs com mais de 7 dias (senão acumulam no App Group); botão "Salvar na galeria" (`PHPhotoLibrary` só escrita); `AppIntent` "Papel de parede do dia" retornando `IntentFile` (PNG) com `openAppWhenRun = false`; `AppShortcutsProvider` com frase "Papel de parede do Fudōshin".
 - **Guia (5 passos com imagens/texto):** Atalhos → Automação → Horário do dia → ação "Papel de parede do dia" → "Definir papel de parede" → desativar "Perguntar antes de executar".
 - **Aceite:** no iPhone físico, uma automação criada manualmente troca o papel de parede sem abrir o app; arquivo do dia já existe antes do intent rodar; se não existir, o intent gera na hora.
 
