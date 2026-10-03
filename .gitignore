@@ -5,3 +5,4 @@ DerivedData/
 build/
 *.xcuserstate
 build-log.txt
+.claude/settings.local.json

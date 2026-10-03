@@ -1,9 +1,12 @@
 import Foundation
 import SwiftData
 
+/// Registro de entrega de uma mensagem num dia.
+/// O DailyPlanner deve fazer upsert (atualizar o registro existente do dia) em vez de inserir
+/// um novo, pois dayValue é @Attribute(.unique).
 @Model
 final class DeliveryLog {
-    var dayValue: String
+    @Attribute(.unique) var dayValue: String
     var messageID: String
     var imageID: String
     var triggerRaw: String

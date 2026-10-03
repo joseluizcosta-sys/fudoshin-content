@@ -31,4 +31,12 @@ final class WeekPlan {
         }
         self.sessionsRaw = raw
     }
+
+    /// Retorna a sessão do dia da semana que contém `date`.
+    /// Calendar.weekday: dom=1, seg=2 ... sáb=7  →  índice interno: seg=0 ... dom=6.
+    func session(on date: Date, calendar: Calendar = .current) -> SessionType? {
+        let weekday = calendar.component(.weekday, from: date)
+        let index = (weekday + 5) % 7   // dom=1→6, seg=2→0, ..., sáb=7→5
+        return sessions[index]
+    }
 }

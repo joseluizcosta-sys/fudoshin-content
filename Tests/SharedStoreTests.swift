@@ -72,21 +72,22 @@ final class SharedStoreTests: XCTestCase {
         XCTAssertEqual(loaded.entries, entries)
     }
 
-    // MARK: - SharedPreferences
+    // MARK: - SharedPreferences (loadPreferences — cria arquivos)
 
     func testSaveAndLoadSharedPreferences() throws {
-        let prefs = SharedPreferences(
-            installID: "test-uuid",
-            changeHour: 5,
-            notificationHour: 8,
-            categories: [.rua, .trilha],
-            quoteOnWallpaper: true,
-            isPremium: true
-        )
+        // loadPreferences gera install_id.txt; guardamos o ID para comparar depois.
+        var prefs = SharedStore.loadPreferences()
+        let generatedID = prefs.installID
+
+        prefs.changeHour = 5
+        prefs.notificationHour = 8
+        prefs.categories = [.rua, .trilha]
+        prefs.quoteOnWallpaper = true
+        prefs.isPremium = true
         try SharedStore.save(prefs)
 
         let loaded = SharedStore.loadPreferences()
-        XCTAssertEqual(loaded.installID, "test-uuid")
+        XCTAssertEqual(loaded.installID, generatedID)   // install_id.txt é a fonte de verdade
         XCTAssertEqual(loaded.changeHour, 5)
         XCTAssertEqual(loaded.notificationHour, 8)
         XCTAssertEqual(loaded.categories, [.rua, .trilha])
@@ -107,6 +108,25 @@ final class SharedStoreTests: XCTestCase {
         XCTAssertNotNil(UUID(uuidString: prefs.installID))
     }
 
+    func testInstallIDStoredInSeparateFile() throws {
+        let prefs = SharedStore.loadPreferences()
+        let idFile = tempDir.appendingPathComponent("install_id.txt")
+        let stored = try String(contentsOf: idFile, encoding: .utf8)
+        XCTAssertEqual(stored, prefs.installID)
+    }
+
+    func testInstallIDFileNeverOverwritten() throws {
+        // Primeira chamada: cria install_id.txt
+        let id1 = SharedStore.loadPreferences().installID
+        // Segunda chamada: deve ler o mesmo arquivo, não sobrescrever
+        let id2 = SharedStore.loadPreferences().installID
+        XCTAssertEqual(id1, id2)
+        // Verificar diretamente no arquivo
+        let idFile = tempDir.appendingPathComponent("install_id.txt")
+        let stored = try String(contentsOf: idFile, encoding: .utf8)
+        XCTAssertEqual(stored, id1)
+    }
+
     func testDefaultPreferencesValues() {
         let prefs = SharedStore.loadPreferences()
         XCTAssertEqual(prefs.changeHour, 0)
@@ -114,6 +134,49 @@ final class SharedStoreTests: XCTestCase {
         XCTAssertEqual(prefs.categories, [.trail])
         XCTAssertFalse(prefs.quoteOnWallpaper)
         XCTAssertFalse(prefs.isPremium)
+    }
+
+    // MARK: - loadPreferencesIfExists (apenas leitura — widget)
+
+    func testLoadPreferencesIfExistsReturnsNilWhenAbsent() {
+        XCTAssertNil(SharedStore.loadPreferencesIfExists())
+    }
+
+    func testLoadPreferencesIfExistsReturnsNilWithoutInstallIDFile() throws {
+        // Só o JSON existe; install_id.txt não existe → nil
+        let prefs = SharedPreferences.default
+        try SharedStore.save(prefs)
+        XCTAssertNil(SharedStore.loadPreferencesIfExists())
+    }
+
+    func testLoadPreferencesIfExistsReturnsPrefWhenBothFilesExist() {
+        let prefs = SharedStore.loadPreferences()   // cria ambos os arquivos
+        let loaded = SharedStore.loadPreferencesIfExists()
+        XCTAssertNotNil(loaded)
+        XCTAssertEqual(loaded?.installID, prefs.installID)
+    }
+
+    // MARK: - Compatibilidade com JSON antigo
+
+    func testLegacyJSONWithMissingFieldsDecodesWithDefaults() throws {
+        // Cria install_id.txt explicitamente
+        try "legacy-uuid".write(
+            to: tempDir.appendingPathComponent("install_id.txt"),
+            atomically: true, encoding: .utf8
+        )
+        // JSON antigo sem 'categories' e 'quoteOnWallpaper'
+        let json = #"{"installID":"ignored","changeHour":3,"notificationHour":6,"isPremium":true}"#
+        try json.data(using: .utf8)!.write(
+            to: tempDir.appendingPathComponent("shared_preferences.json"),
+            options: .atomic
+        )
+
+        let loaded = SharedStore.loadPreferences()
+        XCTAssertEqual(loaded.installID, "legacy-uuid")   // install_id.txt sobrepõe o JSON
+        XCTAssertTrue(loaded.isPremium)                   // preservado
+        XCTAssertEqual(loaded.changeHour, 3)              // preservado
+        XCTAssertEqual(loaded.categories, [.trail])       // default (campo ausente)
+        XCTAssertFalse(loaded.quoteOnWallpaper)           // default (campo ausente)
     }
 
     // MARK: - wallpaperURL

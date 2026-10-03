@@ -8,15 +8,39 @@ struct SharedPreferences: Codable {
     var quoteOnWallpaper: Bool
     var isPremium: Bool
 
+    enum CodingKeys: String, CodingKey {
+        case installID, changeHour, notificationHour, categories, quoteOnWallpaper, isPremium
+    }
+
+    // Campos ausentes (JSON de versão anterior) recebem valores padrão sem invalidar o arquivo.
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        installID = (try? c.decodeIfPresent(String.self, forKey: .installID)) ?? UUID().uuidString
+        changeHour = (try? c.decodeIfPresent(Int.self, forKey: .changeHour)) ?? 0
+        notificationHour = (try? c.decodeIfPresent(Int.self, forKey: .notificationHour)) ?? 7
+        categories = (try? c.decodeIfPresent([ImageCategory].self, forKey: .categories)) ?? [.trail]
+        quoteOnWallpaper = (try? c.decodeIfPresent(Bool.self, forKey: .quoteOnWallpaper)) ?? false
+        isPremium = (try? c.decodeIfPresent(Bool.self, forKey: .isPremium)) ?? false
+    }
+
+    init(
+        installID: String,
+        changeHour: Int = 0,
+        notificationHour: Int = 7,
+        categories: [ImageCategory] = [.trail],
+        quoteOnWallpaper: Bool = false,
+        isPremium: Bool = false
+    ) {
+        self.installID = installID
+        self.changeHour = changeHour
+        self.notificationHour = notificationHour
+        self.categories = categories
+        self.quoteOnWallpaper = quoteOnWallpaper
+        self.isPremium = isPremium
+    }
+
     static var `default`: SharedPreferences {
-        SharedPreferences(
-            installID: UUID().uuidString,
-            changeHour: 0,
-            notificationHour: 7,
-            categories: [.trail],
-            quoteOnWallpaper: false,
-            isPremium: false
-        )
+        SharedPreferences(installID: UUID().uuidString)
     }
 }
 
@@ -28,17 +52,39 @@ enum SharedStore {
 
     private static var baseURL: URL {
         if let url = _baseURL { return url }
-        return FileManager.default
-            .containerURL(forSecurityApplicationGroupIdentifier: groupID)
-            ?? FileManager.default.temporaryDirectory
+        guard let url = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: groupID) else {
+            assertionFailure("App Group '\(groupID)' não configurado — verifique entitlements e provisioning")
+            return FileManager.default.temporaryDirectory
+        }
+        return url
     }
 
-    private static var planURL: URL {
-        baseURL.appendingPathComponent("daily_plan.json")
+    private static var installIDURL: URL { baseURL.appendingPathComponent("install_id.txt") }
+    private static var planURL: URL    { baseURL.appendingPathComponent("daily_plan.json") }
+    private static var prefsURL: URL   { baseURL.appendingPathComponent("shared_preferences.json") }
+
+    // MARK: - installID
+
+    // Lê install_id.txt; se ausente, gera UUID e grava (nunca sobrescreve). Uso exclusivo do app.
+    private static func resolveInstallID() -> String {
+        let url = installIDURL
+        if let existing = try? String(contentsOf: url, encoding: .utf8), !existing.isEmpty {
+            return existing
+        }
+        let id = UUID().uuidString
+        try? id.write(to: url, atomically: true, encoding: .utf8)
+        return id
     }
-    private static var prefsURL: URL {
-        baseURL.appendingPathComponent("shared_preferences.json")
+
+    // Lê install_id.txt sem criar nada. Seguro para o widget chamar.
+    private static func readInstallIDIfExists() -> String? {
+        guard let id = try? String(contentsOf: installIDURL, encoding: .utf8),
+              !id.isEmpty else { return nil }
+        return id
     }
+
+    // MARK: - DailyPlan
 
     static func loadPlan() -> DailyPlan? {
         guard let data = try? Data(contentsOf: planURL) else { return nil }
@@ -50,14 +96,33 @@ enum SharedStore {
         try data.write(to: planURL, options: .atomic)
     }
 
-    // Primeira chamada sem arquivo existente: gera installID, persiste e devolve.
+    // MARK: - SharedPreferences
+
+    /// Carrega preferências, criando install_id.txt e o arquivo de preferências se ausentes.
+    /// **Uso exclusivo do app** — nunca chamar do widget.
     static func loadPreferences() -> SharedPreferences {
+        let id = resolveInstallID()
         if let data = try? Data(contentsOf: prefsURL),
-           let prefs = try? JSONDecoder().decode(SharedPreferences.self, from: data) {
+           var prefs = try? JSONDecoder().decode(SharedPreferences.self, from: data) {
+            prefs.installID = id        // install_id.txt é a fonte de verdade
             return prefs
         }
-        let prefs = SharedPreferences.default
+        var prefs = SharedPreferences.default
+        prefs.installID = id
         try? save(prefs)
+        return prefs
+    }
+
+    /// Lê preferências sem criar nem alterar nenhum arquivo.
+    /// Retorna nil se install_id.txt ou shared_preferences.json não existirem.
+    /// **Widget usa esta função**; se nil, usar installID `"pending"` no fallback local.
+    static func loadPreferencesIfExists() -> SharedPreferences? {
+        guard let id = readInstallIDIfExists(),
+              let data = try? Data(contentsOf: prefsURL),
+              var prefs = try? JSONDecoder().decode(SharedPreferences.self, from: data) else {
+            return nil
+        }
+        prefs.installID = id
         return prefs
     }
 

@@ -3,7 +3,7 @@ import SwiftData
 
 @Model
 final class JournalEntry {
-    var dayValue: String
+    @Attribute(.unique) var dayValue: String
     var controlled: String
     var notControlled: String
     var note: String
