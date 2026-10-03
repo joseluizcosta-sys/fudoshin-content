@@ -18,6 +18,20 @@ struct AtletaEstoicoApp: App {
         }
         _ = SharedStore.loadPreferences()
 
+        // App.init() é sempre chamado na main thread; assumeIsolated é seguro.
+        // Criar o AppEnvironment aqui garante que BGTask e HealthKit observer
+        // funcionem mesmo quando o iOS acorda o app sem renderizar a view.
+        MainActor.assumeIsolated {
+            let ctx = container.mainContext
+            let env = AppEnvironment(modelContext: ctx)
+            let profiles = (try? ctx.fetch(FetchDescriptor<AthleteProfile>())) ?? []
+            if profiles.first?.onboardingDone == true {
+                // Apple recomenda registrar observer queries no launch.
+                env.planner.startObserving()
+                env.scheduleBackgroundRefresh()
+            }
+        }
+
         // Deve ser registrado antes do app terminar de lançar.
         BGTaskScheduler.shared.register(
             forTaskWithIdentifier: "com.atletaestoico.refresh",
@@ -27,14 +41,19 @@ struct AtletaEstoicoApp: App {
                 task.setTaskCompleted(success: true)
                 return
             }
+            // Flag para garantir setTaskCompleted uma única vez
+            // (expiração vs. conclusão normal são mutuamente exclusivos).
+            var completed = false
             let workTask = Task { @MainActor in
                 await AppEnvironment.shared?.planner.refresh()
                 AppEnvironment.shared?.scheduleBackgroundRefresh()
-                bgTask.setTaskCompleted(success: true)
+                if !completed { completed = true; bgTask.setTaskCompleted(success: true) }
             }
             bgTask.expirationHandler = {
                 workTask.cancel()
-                Task { @MainActor in bgTask.setTaskCompleted(success: false) }
+                Task { @MainActor in
+                    if !completed { completed = true; bgTask.setTaskCompleted(success: false) }
+                }
             }
         }
     }
@@ -42,7 +61,6 @@ struct AtletaEstoicoApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
-                .task { await setupEnvironment() }
                 .onChange(of: scenePhase) { _, phase in
                     guard phase == .active else { return }
                     Task { @MainActor in
@@ -51,17 +69,5 @@ struct AtletaEstoicoApp: App {
                 }
         }
         .modelContainer(container)
-    }
-
-    @MainActor
-    private func setupEnvironment() async {
-        guard AppEnvironment.shared == nil else { return }
-        let env = AppEnvironment(modelContext: container.mainContext)
-        let profiles = (try? container.mainContext.fetch(FetchDescriptor<AthleteProfile>())) ?? []
-        if profiles.first?.onboardingDone == true {
-            env.startIfOnboardingDone()
-            await env.planner.refresh()
-        }
-        env.scheduleBackgroundRefresh()
     }
 }
