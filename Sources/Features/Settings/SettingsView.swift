@@ -4,7 +4,10 @@ import SwiftData
 struct SettingsView: View {
     @Environment(\.modelContext) private var ctx
     @Environment(\.dismiss) private var dismiss
+    @Query private var races: [Race]
     @State private var vm: SettingsViewModel?
+    @State private var showEditRace = false
+    @State private var showEditWeek = false
 
     var body: some View {
         NavigationStack {
@@ -88,8 +91,20 @@ struct SettingsView: View {
 
             // Editar prova e semana
             Section {
-                NavigationLink("settings.edit_race")  { OnboardingFlow() }
-                NavigationLink("settings.edit_week")  { OnboardingFlow() }
+                Button("settings.edit_race") { showEditRace = true }
+                    .foregroundStyle(Theme.primaryText)
+                Button("settings.edit_week") { showEditWeek = true }
+                    .foregroundStyle(Theme.primaryText)
+            }
+            .sheet(isPresented: $showEditRace) {
+                RaceEditView(race: races.first) {
+                    await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
+                }
+            }
+            .sheet(isPresented: $showEditWeek) {
+                WeekEditView {
+                    await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
+                }
             }
         }
     }

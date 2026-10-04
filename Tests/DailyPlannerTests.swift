@@ -461,4 +461,29 @@ final class DailyPlannerTests: XCTestCase {
                        "Novo plano deve começar hoje")
         XCTAssertNotEqual(plan.entries[0].messageID, "old", "Plano velho deve ser substituído")
     }
+
+    // MARK: - (f) invalidateToday recalcula o gatilho quando prova muda
+
+    func testInvalidateTodayClearsEventStickyAfterRaceChange() async throws {
+        // Prova a 7 dias de hoje → marco_prova
+        let raceDateT7 = spCal.date(byAdding: .day, value: 7, to: now)!
+        let race = Race(name: "Test", date: raceDateT7, distanceKm: 100, category: .trail)
+        context.insert(race)
+        try context.save()
+
+        await planner.refresh(now: now, calendar: spCal)
+        let plan1 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan1.entries[0].trigger, .marcoProva,
+                       "Com prova a 7 dias, gatilho deve ser marco_prova")
+
+        // Muda a prova para 60 dias → marco_prova não se aplica mais
+        race.date = spCal.date(byAdding: .day, value: 60, to: now)!
+        try context.save()
+
+        // invalidateToday: true → ignora o plano anterior e recalcula hoje
+        await planner.refresh(now: now, invalidateToday: true, calendar: spCal)
+        let plan2 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertNotEqual(plan2.entries[0].trigger, .marcoProva,
+                          "Após mudar a data da prova com invalidateToday, gatilho não deve ser marco_prova")
+    }
 }

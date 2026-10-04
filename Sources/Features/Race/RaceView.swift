@@ -3,15 +3,26 @@ import SwiftData
 
 struct RaceView: View {
     @Query private var races: [Race]
-    @State private var showOnboarding = false
+    @State private var showEditRace = false
+    @State private var showCreateRace = false
 
     private var race: Race? { races.first }
+
+    private func onSaved() async {
+        await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
+    }
 
     var body: some View {
         NavigationStack {
             Group {
                 if let race {
-                    raceContent(race)
+                    let isPast = Calendar.current.startOfDay(for: race.date)
+                        < Calendar.current.startOfDay(for: Date())
+                    if isPast {
+                        pastRaceContent(race)
+                    } else {
+                        raceContent(race)
+                    }
                 } else {
                     noRaceContent
                 }
@@ -19,10 +30,28 @@ struct RaceView: View {
             .background(Theme.background.ignoresSafeArea())
             .navigationTitle("race.title")
             .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                if race != nil {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            showEditRace = true
+                        } label: {
+                            Image(systemName: "pencil")
+                        }
+                        .accessibilityLabel(Text("race_edit.title.edit"))
+                    }
+                }
+            }
+            .sheet(isPresented: $showEditRace) {
+                RaceEditView(race: race, onSaved: onSaved)
+            }
+            .sheet(isPresented: $showCreateRace) {
+                RaceEditView(race: nil, onSaved: onSaved)
+            }
         }
     }
 
-    // MARK: - Com prova
+    // MARK: - Com prova (futura)
 
     @ViewBuilder
     private func raceContent(_ race: Race) -> some View {
@@ -35,7 +64,6 @@ struct RaceView: View {
         ScrollView {
             VStack(spacing: Theme.Spacing.large) {
 
-                // Arco de progresso + contagem regressiva
                 VStack(spacing: Theme.Spacing.small) {
                     progressArc(progress: progress, days: days)
 
@@ -56,7 +84,6 @@ struct RaceView: View {
 
                 Divider()
 
-                // Marcos
                 VStack(alignment: .leading, spacing: Theme.Spacing.small) {
                     Text("race.milestones.section")
                         .font(.caption.weight(.semibold))
@@ -71,6 +98,28 @@ struct RaceView: View {
                 .padding(.horizontal, Theme.Spacing.large)
             }
         }
+    }
+
+    // MARK: - Prova passada
+
+    private func pastRaceContent(_ race: Race) -> some View {
+        VStack(spacing: Theme.Spacing.medium) {
+            Image(systemName: "flag.checkered.2.crossed")
+                .font(.system(size: 56))
+                .foregroundStyle(Theme.accent.opacity(0.7))
+            Text("race.completed.title")
+                .font(.title3.weight(.semibold))
+                .foregroundStyle(Theme.primaryText)
+            Text(race.name)
+                .font(.body)
+                .foregroundStyle(Theme.secondaryText)
+            Button("race.completed.action") { showCreateRace = true }
+                .buttonStyle(.borderedProminent)
+                .tint(Theme.accent)
+                .padding(.top, Theme.Spacing.small)
+        }
+        .padding(Theme.Spacing.large)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     // MARK: - Arco de progresso
@@ -121,13 +170,12 @@ struct RaceView: View {
                 .foregroundStyle(Theme.secondaryText)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, Theme.Spacing.large)
-            Button("race.no_race.action") { showOnboarding = true }
+            Button("race.no_race.action") { showCreateRace = true }
                 .buttonStyle(.borderedProminent)
                 .tint(Theme.accent)
         }
         .padding(Theme.Spacing.large)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .sheet(isPresented: $showOnboarding) { OnboardingFlow() }
     }
 
     // MARK: - Helpers

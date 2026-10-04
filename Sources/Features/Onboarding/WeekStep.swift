@@ -69,7 +69,7 @@ struct WeekStep: View {
 
 // MARK: - Day chip
 
-private struct DayChip: View {
+struct DayChip: View {
     let dayKey: String
     let dayIndex: Int      // 0=seg … 6=dom
     let session: SessionType?

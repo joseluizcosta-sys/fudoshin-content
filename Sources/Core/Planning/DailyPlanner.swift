@@ -68,22 +68,22 @@ final class DailyPlanner {
 
     /// Gera ou atualiza o plano de 7 dias. Reentrada segura: chamadas simultâneas
     /// não duplicam trabalho — a segunda marca pendente e roda uma única vez ao terminar.
-    func refresh(now: Date = Date(), calendar: Calendar = .current) async {
+    /// `invalidateToday: true` ignora o sticky do dia, forçando recálculo completo de hoje.
+    func refresh(now: Date = Date(), invalidateToday: Bool = false, calendar: Calendar = .current) async {
         if isRefreshing {
             pendingRefresh = true
             return
         }
         isRefreshing = true
-        await _doRefresh(now: now, calendar: calendar)
+        await _doRefresh(now: now, invalidateToday: invalidateToday, calendar: calendar)
         isRefreshing = false
         if pendingRefresh {
             pendingRefresh = false
-            // Usa Date() fresco; `now` do chamador anterior está desatualizado.
             Task { await self.refresh() }
         }
     }
 
-    private func _doRefresh(now: Date, calendar: Calendar) async {
+    private func _doRefresh(now: Date, invalidateToday: Bool = false, calendar: Calendar) async {
         let cal = calendar
         let prefs = SharedStore.loadPreferences()
         let todayKey = DayKey(now, calendar: cal)
@@ -96,8 +96,8 @@ final class DailyPlanner {
         )) ?? []
 
         let existingPlan = SharedStore.loadPlan()
-        let existingToday = existingPlan?.entries.first { $0.day == todayKey }
-        let todayLog = logs.first { $0.dayValue == todayKey.value }
+        let existingToday = invalidateToday ? nil : existingPlan?.entries.first { $0.day == todayKey }
+        let todayLog = invalidateToday ? nil : logs.first { $0.dayValue == todayKey.value }
 
         let todayCtx = await contextBuilder.build(
             race: race, weekPlan: week, profile: profile,
