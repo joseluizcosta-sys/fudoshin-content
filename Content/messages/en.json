@@ -101,6 +101,54 @@
       "texto_curto": "Place the mind in one spot and you fall into one-sidedness.",
       "texto_inline": "Don't fix the mind",
       "reflexao": "Dwelling on one bad split makes you miss the rest of the race."
+    },
+    "dg-regra-40": {
+      "texto": "When your mind says you're done, your body still has much more to give. Fatigue shows up long before the limit.",
+      "texto_curto": "When the mind says you're done, there's still more.",
+      "texto_inline": "There's still more",
+      "reflexao": "At the mile where everything begs you to stop, remember: that warning comes early on purpose."
+    },
+    "dg-vitorias": {
+      "texto": "In the hardest moments, reach back for the struggles you've already overcome. They're fuel.",
+      "texto_curto": "In the hard stretch, recall the wins you already have.",
+      "texto_inline": "Recall what you beat",
+      "reflexao": "Think of your toughest session this year. You got through it. You'll get through today too."
+    },
+    "dg-mente-calejada": {
+      "texto": "Doing hard things on purpose, when no one is watching, prepares the mind for the day you have no choice.",
+      "texto_curto": "Doing hard things on purpose toughens the mind.",
+      "texto_inline": "Toughen the mind",
+      "reflexao": "The session you didn't want to do is the one that counts most on race day."
+    },
+    "dg-espelho": {
+      "texto": "Be honest with yourself about where you are and what's missing. Change starts without excuses.",
+      "texto_curto": "Be honest with yourself: progress starts without excuses.",
+      "texto_inline": "No excuses",
+      "reflexao": "Look at last week without dressing it up. What did you do? What will you do differently?"
+    },
+    "ek-disciplina": {
+      "texto": "Discipline doesn't confine you: it's what sets an athlete free.",
+      "texto_curto": "Discipline doesn't confine you: it sets you free.",
+      "texto_inline": "Discipline frees",
+      "reflexao": "Keeping the promise to yourself, even when you don't feel like it, is what frees you on race day."
+    },
+    "ek-limites": {
+      "texto": "The limits you imagine usually sit well before your real ones.",
+      "texto_curto": "The limit you imagine comes before the real one.",
+      "texto_inline": "Past what you imagine",
+      "reflexao": "Before you say you can't, ask: is that a fact or a fear?"
+    },
+    "ek-sorriso": {
+      "texto": "Smiling in the hardest stretch relaxes the body and tells the mind everything is under control.",
+      "texto_curto": "Smile in the hard stretch: the body relaxes, the mind settles.",
+      "texto_inline": "Smile through it",
+      "reflexao": "When the pain tightens, drop your shoulders and smile. It seems small, but it changes your stride."
+    },
+    "ek-constancia": {
+      "texto": "Results come from everyday consistency, not from one heroic workout.",
+      "texto_curto": "Results come from consistency, not one heroic workout.",
+      "texto_inline": "Consistency wins",
+      "reflexao": "Today's run doesn't need to be epic. It needs to happen, and tomorrow too."
     }
   },
   "perguntas_diario": [

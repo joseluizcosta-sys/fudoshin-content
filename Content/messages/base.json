@@ -38,6 +38,16 @@
       "pt-BR": "Takuan Sōhō",
       "en": "Takuan Sōhō",
       "es": "Takuan Sōhō"
+    },
+    "david_goggins": {
+      "pt-BR": "David Goggins",
+      "en": "David Goggins",
+      "es": "David Goggins"
+    },
+    "eliud_kipchoge": {
+      "pt-BR": "Eliud Kipchoge",
+      "en": "Eliud Kipchoge",
+      "es": "Eliud Kipchoge"
     }
   },
   "obras": {
@@ -70,6 +80,16 @@
       "pt-BR": "Fudōchi Shinmyōroku",
       "en": "Fudōchi Shinmyōroku",
       "es": "Fudōchi Shinmyōroku"
+    },
+    "cant_hurt_me": {
+      "pt-BR": "Nada Pode Me Ferir",
+      "en": "Can't Hurt Me",
+      "es": "Nada puede lastimarme"
+    },
+    "kipchoge_entrevistas": {
+      "pt-BR": "Entrevistas",
+      "en": "Interviews",
+      "es": "Entrevistas"
     }
   },
   "gatilhos": [
@@ -293,6 +313,110 @@
       ],
       "texto_original": "心を一所に置けば、偏に落ると云也",
       "verificacao": "pendente — conferir tradução contra o original japonês"
+    },
+    {
+      "id": "dg-regra-40",
+      "autor": "david_goggins",
+      "obra": "cant_hurt_me",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
+    },
+    {
+      "id": "dg-vitorias",
+      "autor": "david_goggins",
+      "obra": "cant_hurt_me",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "marco_prova",
+        "retorno"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
+    },
+    {
+      "id": "dg-mente-calejada",
+      "autor": "david_goggins",
+      "obra": "cant_hurt_me",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "vespera_chave",
+        "geral"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
+    },
+    {
+      "id": "dg-espelho",
+      "autor": "david_goggins",
+      "obra": "cant_hurt_me",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "retorno",
+        "geral"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
+    },
+    {
+      "id": "ek-disciplina",
+      "autor": "eliud_kipchoge",
+      "obra": "kipchoge_entrevistas",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "geral",
+        "retorno"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
+    },
+    {
+      "id": "ek-limites",
+      "autor": "eliud_kipchoge",
+      "obra": "kipchoge_entrevistas",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
+    },
+    {
+      "id": "ek-sorriso",
+      "autor": "eliud_kipchoge",
+      "obra": "kipchoge_entrevistas",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
+    },
+    {
+      "id": "ek-constancia",
+      "autor": "eliud_kipchoge",
+      "obra": "kipchoge_entrevistas",
+      "ref": "",
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
+      "tipo": "parafrase",
+      "gatilhos": [
+        "pos_treino",
+        "descanso"
+      ],
+      "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     }
   ],
   "limites_widget": {

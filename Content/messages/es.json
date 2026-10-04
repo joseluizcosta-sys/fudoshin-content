@@ -101,6 +101,54 @@
       "texto_curto": "Mente fija en un solo lugar cae en la parcialidad.",
       "texto_inline": "No fijes la mente",
       "reflexao": "Darle vueltas a un mal parcial te hace perder el resto de la carrera."
+    },
+    "dg-regra-40": {
+      "texto": "Cuando la mente dice que se acabó, el cuerpo todavía tiene mucho más. El cansancio llega antes del límite.",
+      "texto_curto": "Cuando la mente dice que se acabó, aún queda más.",
+      "texto_inline": "Aún queda más",
+      "reflexao": "En el kilómetro en que todo te pide parar, recuerda: ese aviso llega antes de tiempo a propósito."
+    },
+    "dg-vitorias": {
+      "texto": "En los momentos más duros, busca en la memoria las dificultades que ya venciste. Son combustible.",
+      "texto_curto": "En el tramo duro, recuerda las victorias que ya tienes.",
+      "texto_inline": "Recuerda lo que venciste",
+      "reflexao": "Piensa en tu entrenamiento más difícil del año. Ya lo superaste. Hoy también."
+    },
+    "dg-mente-calejada": {
+      "texto": "Hacer lo difícil a propósito, cuando nadie mira, prepara la mente para el día en que no haya opción.",
+      "texto_curto": "Hacer lo difícil a propósito endurece la mente.",
+      "texto_inline": "Endurece la mente",
+      "reflexao": "El entrenamiento que no querías hacer es el que más cuenta en la carrera."
+    },
+    "dg-espelho": {
+      "texto": "Sé honesto contigo sobre dónde estás y lo que falta. El cambio empieza sin excusas.",
+      "texto_curto": "Sé honesto contigo: el progreso empieza sin excusas.",
+      "texto_inline": "Sin excusas",
+      "reflexao": "Mira la última semana sin adornarla. ¿Qué hiciste? ¿Qué harás distinto?"
+    },
+    "ek-disciplina": {
+      "texto": "La disciplina no encierra: es lo que da libertad a quien entrena.",
+      "texto_curto": "La disciplina no encierra: libera a quien entrena.",
+      "texto_inline": "La disciplina libera",
+      "reflexao": "Cumplir lo pactado contigo, aun sin ganas, es lo que te da libertad el día de la carrera."
+    },
+    "ek-limites": {
+      "texto": "Los límites que imaginas suelen estar mucho antes de los reales.",
+      "texto_curto": "El límite que imaginas llega antes que el real.",
+      "texto_inline": "Más allá de lo imaginado",
+      "reflexao": "Antes de decir que no puedes, pregúntate: ¿es un hecho o un miedo?"
+    },
+    "ek-sorriso": {
+      "texto": "Sonreír en el tramo más duro relaja el cuerpo y le dice a la mente que todo está bajo control.",
+      "texto_curto": "Sonríe en el tramo duro: el cuerpo se relaja, la mente se calma.",
+      "texto_inline": "Sonríe en lo difícil",
+      "reflexao": "Cuando el dolor apriete, suelta los hombros y sonríe. Parece poco, pero cambia la zancada."
+    },
+    "ek-constancia": {
+      "texto": "El resultado viene de la constancia de cada día, no de un entrenamiento heroico.",
+      "texto_curto": "El resultado viene de la constancia, no de un entrenamiento heroico.",
+      "texto_inline": "La constancia gana",
+      "reflexao": "El entrenamiento de hoy no tiene que ser épico. Tiene que existir, y mañana también."
     }
   },
   "perguntas_diario": [
