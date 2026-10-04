@@ -2,7 +2,7 @@
 """Planilha mestre de frases <-> JSONs do app.
 
 Uso (rodar na raiz do projeto):
-  python3 tools/content_sheet.py export        # JSONs -> Content/Frases_Fudoshin.xlsx (sobrescreve a planilha)
+  python3 tools/content_sheet.py export        # JSONs -> planilha (só na criação; com planilha existente exige --force)
   python3 tools/content_sheet.py check         # valida a planilha, não grava nada
   python3 tools/content_sheet.py build         # valida e gera os JSONs (só grava se não houver erro)
 
@@ -27,6 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 MSG_DIR = ROOT / "Content" / "messages"
 XLSX = ROOT / "Content" / "Frases_Fudoshin.xlsx"
 
+STATUS = ["ativa", "rascunho", "removida"]
 META_COLS = ["id", "autor", "obra", "ref", "tipo", "gatilhos",
              "base_dominio_publico", "texto_original", "verificacao"]
 TEXT_FIELDS = [("texto", "texto"), ("curto", "texto_curto"),
@@ -58,6 +59,9 @@ def text_cols(langs):
 
 # ---------------------------------------------------------------- export
 def export():
+    if XLSX.exists() and "--force" not in sys.argv:
+        sys.exit("A planilha já existe. 'export' recria a partir dos JSONs e APAGA rascunhos, removidas e "
+                 "edições não convertidas. Se é isso mesmo: python3 tools/content_sheet.py export --force")
     base = load(MSG_DIR / "base.json")
     langs = langs_of(base)
     lang = {l: load(MSG_DIR / f"{l}.json") for l in langs}
@@ -72,10 +76,10 @@ def export():
     wg = wb.create_sheet("Gatilhos")
 
     # Mensagens
-    cols = META_COLS + text_cols(langs)
+    cols = ["status"] + META_COLS + text_cols(langs)
     ws.append(cols)
     for m in base["mensagens"]:
-        row = []
+        row = ["ativa"]
         for c in META_COLS:
             v = m.get(c, "")
             row.append(", ".join(v) if c == "gatilhos" else v)
@@ -87,15 +91,15 @@ def export():
             row += [t.get(k, "") for _, k in TEXT_FIELDS]
         ws.append(row)
     style_table(ws, len(cols))
-    widths = {"id": 18, "autor": 16, "obra": 18, "ref": 8, "tipo": 11, "gatilhos": 26,
+    widths = {"status": 11, "id": 18, "autor": 16, "obra": 18, "ref": 8, "tipo": 11, "gatilhos": 26,
               "base_dominio_publico": 26, "texto_original": 30, "verificacao": 30}
     for i, c in enumerate(cols, 1):
         w = widths.get(c) or (16 if c.startswith("inline") else 30 if c.startswith("curto") else 45)
         ws.column_dimensions[get_column_letter(i)].width = w
-        if i <= len(META_COLS):
+        if i <= len(META_COLS) + 1:
             for r in range(2, ws.max_row + 1):
                 ws.cell(r, i).fill = META_FILL
-    ws.freeze_panes = "B2"
+    ws.freeze_panes = "C2"
     last = 1000
     for i, c in enumerate(cols, 1):
         L = get_column_letter(i)
@@ -105,10 +109,10 @@ def export():
         if c.startswith("inline_"):
             ws.conditional_formatting.add(rng, FormulaRule(formula=[f"LEN({L}2)>{lim['texto_inline_max']}"], fill=RED_FILL))
         if c.startswith(("texto_", "curto_", "inline_", "reflexao_")) and c != "texto_original" or c in ("autor", "obra", "tipo", "gatilhos"):
-            ws.conditional_formatting.add(rng, FormulaRule(formula=[f'AND($A2<>"",LEN(TRIM({L}2))=0)'], fill=RED_FILL))
+            ws.conditional_formatting.add(rng, FormulaRule(formula=[f'AND($A2="ativa",LEN(TRIM({L}2))=0)'], fill=RED_FILL))
     dv = lambda f: DataValidation(type="list", formula1=f, allow_blank=False, showErrorMessage=True)
     col = {c: get_column_letter(i) for i, c in enumerate(cols, 1)}
-    for name, f in (("tipo", '"citacao,parafrase"'),
+    for name, f in (("status", '"ativa,rascunho,removida"'), ("tipo", '"citacao,parafrase"'),
                     ("autor", f"=Autores!$A$2:$A${last}"),
                     ("obra", f"=Obras!$A$2:$A${last}")):
         d = dv(f); ws.add_data_validation(d); d.add(f"{col[name]}2:{col[name]}{last}")
@@ -138,6 +142,11 @@ def export():
     lines = [
         ("Planilha mestre de frases do Fudōshin", True),
         ("Esta planilha é a fonte da verdade. Os arquivos JSON do app são gerados a partir dela.", False),
+        ("", False),
+        ("Status de cada linha", True),
+        ("ativa = entra no app. Precisa estar completa nos 3 idiomas.", False),
+        ("rascunho = não entra no app. Pode estar incompleta (ex.: só em português, aguardando tradução).", False),
+        ("removida = não entra no app. Fica na planilha como histórico, para não ser adicionada de novo.", False),
         ("", False),
         ("Onde editar", True),
         ("Aba Mensagens: uma linha por frase. Colunas cinza = dados da frase; colunas brancas = textos por idioma.", False),
@@ -230,7 +239,7 @@ def collect(base):
 
     autores, obras = names("Autores"), names("Obras")
     head, rows = read_sheet(wb, "Mensagens")
-    need = META_COLS + text_cols(langs)
+    need = ["status"] + META_COLS + text_cols(langs)
     miss = [c for c in need if c not in head]
     if miss:
         errors.append(f"Mensagens: faltam colunas {miss}")
@@ -239,14 +248,26 @@ def collect(base):
     valid_trig = set(base["gatilhos"])
     msgs, texts, seen = [], {l: OrderedDict() for l in langs}, {}
     pend = 0
+    skipped = {"rascunho": 0, "removida": 0}
     for n, d in rows:
         mid = d["id"]
         where = f"Mensagens linha {n} ({mid or 'sem id'})"
+        st = d["status"].lower()
+        if st not in STATUS:
+            errors.append(f"{where}: status deve ser ativa, rascunho ou removida"); continue
+        if mid and mid in seen:
+            errors.append(f"{where}: id repetido (também na linha {seen[mid]})")
+        if mid:
+            seen.setdefault(mid, n)
+        if st != "ativa":
+            skipped[st] += 1
+            if st == "rascunho":
+                faltam = [f"{s}_{l}" for l in langs for s, _ in TEXT_FIELDS if not d[f"{s}_{l}"]]
+                if faltam:
+                    warns.append(f"{where}: rascunho, falta {', '.join(faltam)}")
+            continue
         if not ID_RE.match(mid):
             errors.append(f"{where}: id inválido (use minúsculas, números e hífen)")
-        if mid in seen:
-            errors.append(f"{where}: id repetido (também na linha {seen[mid]})")
-        seen[mid] = n
         if d["autor"] not in autores:
             errors.append(f"{where}: autor '{d['autor']}' não está na aba Autores")
         if d["obra"] not in obras:
@@ -300,6 +321,8 @@ def collect(base):
     for t in valid_trig:
         cnt = sum(t in m["gatilhos"] for m in msgs)
         if cnt < 3: warns.append(f"Gatilho '{t}' tem só {cnt} frase(s): risco de repetição")
+    if any(skipped.values()):
+        warns.append(f"Fora do app: {skipped['rascunho']} rascunho(s), {skipped['removida']} removida(s)")
     if pend:
         warns.append(f"{pend} frase(s) com verificação pendente — conferir antes de publicar")
     return (autores, obras, msgs), texts, langs, errors, warns
