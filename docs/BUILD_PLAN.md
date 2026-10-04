@@ -15,7 +15,7 @@
 | T06 | ✅ Concluída (03/10/2026) — 110/110 testes passando no simulador (revisão incluída) |
 | T07 | ✅ Concluída (03/10/2026) — 132/132 testes passando no simulador (revisão incluída) |
 | T08 | ✅ Concluída (03/10/2026) — 143/143 testes passando no simulador (revisão incluída) |
-| T09 | ✅ Concluída (03/10/2026) — 152/152 testes passando no simulador |
+| T09 | ✅ Concluída (03/10/2026) — 157/157 testes passando no simulador (revisão incluída) |
 
 Atualize esta tabela ao final de cada tarefa.
 
@@ -254,8 +254,12 @@ Gatilhos **de evento** (substituem a entrada de hoje quando ocorrem): pos_treino
 - Toque abre `atletaestoico://today`.
 
 ### 3.6 Notificações
-- Máximo **1 por dia**. Agendar os próximos 7 dias no `notificationHour` com o conteúdo do plano.
-- Gatilho de evento (pos_treino) só notifica se ainda não houve notificação entregue hoje; nesse caso cancela a agendada do dia.
+- Máximo **1 planejada + 1 de evento** por dia. Agendar os próximos 7 dias no `notificationHour` com o conteúdo do plano. Identificador: `"daily-yyyy-MM-dd"`. Reagendar = cancela todos os `"daily-*"` pendentes e recria.
+- **sono_ruim**: sem notificação imediata. O conteúdo sono_ruim entra no aviso agendado da manhã (o plano já carrega o trigger). Se a hora já passou, nenhuma notificação.
+- **pos_treino / retorno**: notificação imediata (`"now-yyyy-MM-dd"`, `UNTimeIntervalTrigger 1s`). Cancela `"daily-hoje"` pendente. `DeliveryLog.notified` marca que o evento foi notificado; segunda ocorrência no mesmo dia → nada.
+- **Horário de silêncio 21h–7h**: notificação de evento (`pos_treino`/`retorno`) não dispara na hora. O conteúdo ainda vale para widget e app.
+- **Permissão**: `.authorized`, `.provisional` e `.ephemeral` são aceitos. Sem permissão, não fazer nada e não mostrar erro.
+- Toque abre `atletaestoico://today`. Corpo: `shortText + " — " + author`. Título por gatilho via String Catalog.
 
 ### 3.7 Papel de parede
 - Resolução: tamanho da tela em pixels (`UIScreen.main.nativeBounds`), retrato.

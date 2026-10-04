@@ -32,11 +32,17 @@ struct LiveNotificationScheduler: NotificationScheduling {
     static let dailyPrefix = "daily-"
     /// Prefixo das notificações de evento (imediatas).
     static let nowPrefix = "now-"
+    /// Horário de início do silêncio (inclusive).
+    static let quietStart = 21
+    /// Horário de fim do silêncio (exclusive).
+    static let quietEnd = 7
 
     private let center: NotificationCenterProviding
+    private let bundle: Bundle
 
-    init(center: NotificationCenterProviding = LiveNotificationCenter()) {
+    init(center: NotificationCenterProviding = LiveNotificationCenter(), bundle: Bundle = .main) {
         self.center = center
+        self.bundle = bundle
     }
 
     // MARK: - NotificationScheduling
@@ -47,7 +53,7 @@ struct LiveNotificationScheduler: NotificationScheduling {
                        now: Date(), calendar: .current)
     }
 
-    func scheduleImmediate(entry: DailyEntry) async {
+    func scheduleImmediate(entry: DailyEntry) async -> Bool {
         await scheduleImmediate(entry: entry, now: Date(), calendar: .current)
     }
 
@@ -60,7 +66,7 @@ struct LiveNotificationScheduler: NotificationScheduling {
         now: Date,
         calendar: Calendar
     ) async {
-        guard await center.authorizationStatus() == .authorized else { return }
+        guard isAuthorized(await center.authorizationStatus()) else { return }
 
         // Cancela todos os agendamentos diários pendentes antes de recriar.
         let pending = await center.pendingRequests()
@@ -71,17 +77,13 @@ struct LiveNotificationScheduler: NotificationScheduling {
         let todayKey = DayKey(now, calendar: cal)
 
         for entry in plan.entries {
-            // Hoje já notificado → pular.
             if entry.day == todayKey && alreadyNotifiedToday { continue }
 
-            // Calcular data de disparo: notificationHour no dia da entrada.
             guard let dayStart = entry.day.startOfDay(calendar: cal),
                   let fireDate = cal.date(bySettingHour: notificationHour,
-                                          minute: 0, second: 0, of: dayStart)
+                                          minute: 0, second: 0, of: dayStart),
+                  fireDate > now
             else { continue }
-
-            // Pular datas já passadas.
-            guard fireDate > now else { continue }
 
             let content = makeContent(for: entry)
             let comps = cal.dateComponents([.year, .month, .day, .hour, .minute, .second], from: fireDate)
@@ -95,8 +97,13 @@ struct LiveNotificationScheduler: NotificationScheduling {
         }
     }
 
-    func scheduleImmediate(entry: DailyEntry, now: Date, calendar: Calendar) async {
-        guard await center.authorizationStatus() == .authorized else { return }
+    @discardableResult
+    func scheduleImmediate(entry: DailyEntry, now: Date, calendar: Calendar) async -> Bool {
+        guard isAuthorized(await center.authorizationStatus()) else { return false }
+
+        // Horário de silêncio: 21h–7h — não enviar notificação imediata.
+        let hour = calendar.component(.hour, from: now)
+        guard hour >= Self.quietEnd && hour < Self.quietStart else { return false }
 
         // Cancela a notificação diária de hoje, se ainda estiver pendente.
         let todayDailyID = Self.dailyPrefix + DayKey(now, calendar: calendar).value
@@ -110,6 +117,13 @@ struct LiveNotificationScheduler: NotificationScheduling {
             trigger: trigger
         )
         try? await center.add(request)
+        return true
+    }
+
+    // MARK: - Autorização
+
+    private func isAuthorized(_ status: UNAuthorizationStatus) -> Bool {
+        status == .authorized || status == .provisional || status == .ephemeral
     }
 
     // MARK: - Conteúdo da notificação
@@ -126,11 +140,28 @@ struct LiveNotificationScheduler: NotificationScheduling {
     private func notificationTitle(for entry: DailyEntry) -> String {
         if entry.trigger == .marcoProva, let days = entry.daysToRace {
             if days == 0 {
-                return String(localized: "notification.title.marco_prova.d0")
+                return localizedString("notification.title.marco_prova.d0")
             }
-            let fmt = String(localized: "notification.title.marco_prova.format")
+            let fmt = localizedString("notification.title.marco_prova.format")
             return String(format: fmt, days)
         }
-        return String(localized: "notification.title.\(entry.trigger.rawValue)")
+        return localizedString(notificationTitleKey(for: entry.trigger))
+    }
+
+    /// Chave de localização para o título do gatilho. `internal` para testes.
+    func notificationTitleKey(for trigger: Trigger) -> String {
+        switch trigger {
+        case .geral:        return "notification.title.geral"
+        case .vesperaChave: return "notification.title.vespera_chave"
+        case .posTreino:    return "notification.title.pos_treino"
+        case .sonoRuim:     return "notification.title.sono_ruim"
+        case .descanso:     return "notification.title.descanso"
+        case .retorno:      return "notification.title.retorno"
+        case .marcoProva:   return "notification.title.marco_prova"
+        }
+    }
+
+    private func localizedString(_ key: String) -> String {
+        bundle.localizedString(forKey: key, value: key, table: nil)
     }
 }

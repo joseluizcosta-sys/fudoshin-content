@@ -51,7 +51,10 @@ struct RaceStep: View {
                             selection: $state.raceCategory
                         ) {
                             ForEach(ImageCategory.allCases, id: \.self) { cat in
-                                Text(LocalizedStringKey("category.\(cat.rawValue)")).tag(cat)
+                                // Montar a chave como String antes de converter para LocalizedStringKey;
+                                // interpolar diretamente em LocalizedStringKey() gera chave "category.%@".
+                                let key = "category.\(cat.rawValue)"
+                                Text(LocalizedStringKey(key)).tag(cat)
                             }
                         }
                     }

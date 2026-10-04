@@ -25,6 +25,9 @@ final class DailyPlanner {
 
     /// Gatilhos de evento: uma vez gravados no DeliveryLog de hoje, não são rebaixados.
     static let eventTriggers: Set<Trigger> = [.posTreino, .sonoRuim, .retorno]
+    /// Gatilhos que disparam notificação imediata (fora do horário de silêncio).
+    /// sono_ruim é event trigger mas não imediato: o conteúdo vai no aviso agendado da manhã.
+    private static let immediateNotifyTriggers: Set<Trigger> = [.posTreino, .retorno]
     /// Gatilhos permitidos em dias futuros (planejáveis sem dados de evento).
     private static let plannableTriggers: Set<Trigger> = [.marcoProva, .vesperaChave, .descanso, .geral]
 
@@ -142,26 +145,29 @@ final class DailyPlanner {
             entries.append(entry)
         }
 
-        // Lógica de notificação de evento:
-        // gatilho de evento + ainda não notificado hoje → notificar agora.
-        let isEvent = Self.eventTriggers.contains(todayEntry.trigger)
+        // pos_treino/retorno: notificação imediata se ainda não notificado hoje.
+        // sono_ruim: sem imediata — o conteúdo vai no aviso agendado da manhã (via schedule).
         let alreadyNotified = todayLog?.notified == true
-        let shouldNotifyNow = isEvent && !alreadyNotified
+        let shouldTryImmediate = Self.immediateNotifyTriggers.contains(todayEntry.trigger) && !alreadyNotified
 
         let plan = DailyPlan(generatedAt: now, entries: entries)
         try? SharedStore.save(plan)
-        upsertDeliveryLog(entry: todayEntry, logs: logs, markNotified: shouldNotifyNow)
 
         await wallpaper.prepareWallpaper(for: todayEntry)
         widgetReloader.reloadAllTimelines()
 
-        if shouldNotifyNow {
-            await notifications.scheduleImmediate(entry: todayEntry)
+        // scheduleImmediate retorna false em horário de silêncio (21h–7h) ou sem permissão.
+        var didNotify = false
+        if shouldTryImmediate {
+            didNotify = await notifications.scheduleImmediate(entry: todayEntry)
         }
+
+        upsertDeliveryLog(entry: todayEntry, logs: logs, markNotified: didNotify)
+
         await notifications.schedule(
             plan: plan,
             notificationHour: prefs.notificationHour,
-            alreadyNotifiedToday: shouldNotifyNow || alreadyNotified
+            alreadyNotifiedToday: didNotify || alreadyNotified
         )
     }
 

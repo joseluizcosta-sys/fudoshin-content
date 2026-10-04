@@ -7,12 +7,14 @@ import SwiftData
 final class MockNotificationScheduler: NotificationScheduling {
     private(set) var scheduleAlreadyNotified: [Bool] = []
     private(set) var immediateCalls: [DailyEntry] = []
+    var immediateReturns = true   // controla o que scheduleImmediate retorna
 
     func schedule(plan: DailyPlan, notificationHour: Int, alreadyNotifiedToday: Bool) async {
         scheduleAlreadyNotified.append(alreadyNotifiedToday)
     }
-    func scheduleImmediate(entry: DailyEntry) async {
+    func scheduleImmediate(entry: DailyEntry) async -> Bool {
         immediateCalls.append(entry)
+        return immediateReturns
     }
 }
 
