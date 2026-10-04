@@ -215,11 +215,8 @@ final class DailyPlanner {
         calendar: Calendar
     ) async -> DailyEntry {
         let msg = messages.first { $0.id == existing.messageID }
-        let daysToRace: Int? = context.raceDate.flatMap { raceDate in
-            let raceStart = calendar.startOfDay(for: raceDate)
-            let d = calendar.dateComponents([.day], from: context.today, to: raceStart).day ?? -1
-            return d >= 0 ? d : nil
-        }
+        let (daysToRace, totalDaysToRace) = raceDays(context: context, day: existing.day,
+                                                      calendar: calendar)
         let reflection = await personalizer.personalize(
             reflection: msg?.reflection ?? existing.reflection,
             why: why,
@@ -234,7 +231,8 @@ final class DailyPlanner {
             inlineText: msg?.inlineText ?? existing.inlineText,
             author: msg?.author ?? existing.author,
             reflection: reflection,
-            daysToRace: daysToRace
+            daysToRace: daysToRace,
+            totalDaysToRace: totalDaysToRace
         )
     }
 
@@ -250,12 +248,7 @@ final class DailyPlanner {
         calendar: Calendar
     ) async -> DailyEntry {
         let cal = calendar
-
-        let daysToRace: Int? = context.raceDate.flatMap { raceDate in
-            let raceStart = cal.startOfDay(for: raceDate)
-            let d = cal.dateComponents([.day], from: context.today, to: raceStart).day ?? -1
-            return d >= 0 ? d : nil
-        }
+        let (daysToRace, totalDaysToRace) = raceDays(context: context, day: day, calendar: cal)
 
         let thirtyAgo = cal.date(byAdding: .day, value: -30, to: context.today) ?? context.today
         let thirtyKey = DayKey(thirtyAgo, calendar: cal)
@@ -297,8 +290,36 @@ final class DailyPlanner {
             inlineText: output.inlineText,
             author: msg?.author ?? "",
             reflection: reflection,
-            daysToRace: daysToRace
+            daysToRace: daysToRace,
+            totalDaysToRace: totalDaysToRace
         )
+    }
+
+    // MARK: - Cálculo de dias para a prova
+
+    /// Devolve (daysToRace, totalDaysToRace). `totalDaysToRace` = dias de criação até a prova (≥ 1).
+    private func raceDays(
+        context: TrainingContext,
+        day: DayKey,
+        calendar: Calendar
+    ) -> (daysToRace: Int?, totalDaysToRace: Int?) {
+        guard let raceDate = context.raceDate else { return (nil, nil) }
+        let cal = calendar
+        // daysToRace: dias do dia da entrada até a prova
+        let entryStart = day.startOfDay(calendar: cal) ?? context.today
+        let raceStart = cal.startOfDay(for: raceDate)
+        let d = cal.dateComponents([.day], from: entryStart, to: raceStart).day ?? -1
+        let dtr: Int? = d >= 0 ? d : nil
+        // totalDaysToRace: dias de criação da prova até a prova
+        let total: Int?
+        if let created = context.raceCreatedAt {
+            let createdStart = cal.startOfDay(for: created)
+            let t = cal.dateComponents([.day], from: createdStart, to: raceStart).day ?? 0
+            total = max(1, t)
+        } else {
+            total = nil
+        }
+        return (dtr, total)
     }
 
     // MARK: - DeliveryLog upsert

@@ -1,0 +1,105 @@
+import SwiftUI
+import SwiftData
+
+struct SettingsView: View {
+    @Environment(\.modelContext) private var ctx
+    @Environment(\.dismiss) private var dismiss
+    @State private var vm: SettingsViewModel?
+
+    var body: some View {
+        NavigationStack {
+            Group {
+                if let vm {
+                    form(vm)
+                } else {
+                    ProgressView()
+                }
+            }
+            .navigationTitle("settings.title")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("settings.done") {
+                        Task { await vm?.save(); dismiss() }
+                    }
+                    .fontWeight(.semibold)
+                }
+            }
+        }
+        .onAppear {
+            if vm == nil { vm = SettingsViewModel(modelContext: ctx) }
+        }
+    }
+
+    @ViewBuilder
+    private func form(_ vm: SettingsViewModel) -> some View {
+        Form {
+            // Horários
+            Section("settings.section.schedule") {
+                Picker("settings.change_hour", selection: Binding(
+                    get: { vm.prefs.changeHour },
+                    set: { vm.prefs.changeHour = $0 }
+                )) {
+                    ForEach(0..<24, id: \.self) { h in
+                        Text(hourLabel(h)).tag(h)
+                    }
+                }
+                Picker("settings.notification_hour", selection: Binding(
+                    get: { vm.prefs.notificationHour },
+                    set: { vm.prefs.notificationHour = $0 }
+                )) {
+                    ForEach(0..<24, id: \.self) { h in
+                        Text(hourLabel(h)).tag(h)
+                    }
+                }
+            }
+
+            // Aparência
+            Section("settings.section.appearance") {
+                Toggle("settings.quote_on_wallpaper", isOn: Binding(
+                    get: { vm.prefs.quoteOnWallpaper },
+                    set: { vm.prefs.quoteOnWallpaper = $0 }
+                ))
+                Section("settings.categories.section") {
+                    ForEach(ImageCategory.allCases, id: \.self) { cat in
+                        let key = "category.\(cat.rawValue)"
+                        Toggle(LocalizedStringKey(key), isOn: Binding(
+                            get: { vm.prefs.categories.contains(cat) },
+                            set: { on in
+                                if on { vm.prefs.categories.append(cat) }
+                                else  { vm.prefs.categories.removeAll { $0 == cat } }
+                                if vm.prefs.categories.isEmpty { vm.prefs.categories = [cat] }
+                            }
+                        ))
+                    }
+                }
+            }
+
+            // Treino
+            Section("settings.section.training") {
+                HStack {
+                    Text("settings.sleep_goal")
+                    Spacer()
+                    Stepper(
+                        value: Binding(get: { vm.sleepGoalHours }, set: { vm.sleepGoalHours = $0 }),
+                        in: 4...12, step: 0.5
+                    ) {
+                        Text(String(format: "%.1f h", vm.sleepGoalHours))
+                            .foregroundStyle(Theme.secondaryText)
+                    }
+                }
+            }
+
+            // Editar prova e semana
+            Section {
+                NavigationLink("settings.edit_race")  { OnboardingFlow() }
+                NavigationLink("settings.edit_week")  { OnboardingFlow() }
+            }
+        }
+    }
+
+    private func hourLabel(_ h: Int) -> String {
+        let date = Calendar.current.date(bySettingHour: h, minute: 0, second: 0, of: Date()) ?? Date()
+        return date.formatted(date: .omitted, time: .shortened)
+    }
+}

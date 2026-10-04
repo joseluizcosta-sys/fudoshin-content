@@ -3,6 +3,7 @@ import Foundation
 struct TrainingContext {
     let today: Date                         // startOfDay do dispositivo
     let raceDate: Date?
+    let raceCreatedAt: Date?               // para calcular totalDaysToRace no Gauge
     let raceCategory: ImageCategory?
     let tomorrowSession: SessionType?
     let todaySession: SessionType?
@@ -15,6 +16,7 @@ struct TrainingContext {
     init(
         today: Date = Calendar.current.startOfDay(for: Date()),
         raceDate: Date? = nil,
+        raceCreatedAt: Date? = nil,
         raceCategory: ImageCategory? = nil,
         tomorrowSession: SessionType? = nil,
         todaySession: SessionType? = nil,
@@ -26,6 +28,7 @@ struct TrainingContext {
     ) {
         self.today = today
         self.raceDate = raceDate
+        self.raceCreatedAt = raceCreatedAt
         self.raceCategory = raceCategory
         self.tomorrowSession = tomorrowSession
         self.todaySession = todaySession

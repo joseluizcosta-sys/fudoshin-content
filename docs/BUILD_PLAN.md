@@ -17,6 +17,7 @@
 | T08 | ✅ Concluída (03/10/2026) — 143/143 testes passando no simulador (revisão incluída) |
 | T09 | ✅ Concluída (03/10/2026) — 157/157 testes passando no simulador (revisão incluída) |
 | T11 | ✅ Concluída (03/10/2026) — 162/162 testes passando no simulador (revisão incluída) |
+| T10 | ✅ Concluída (03/10/2026) — 174/174 testes passando no simulador (inclui ajustes T11) |
 
 Atualize esta tabela ao final de cada tarefa.
 

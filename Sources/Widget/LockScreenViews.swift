@@ -14,7 +14,7 @@ struct RectangularView: View {
                 .lineLimit(3)
             Text("— \(entry.entry.author)")
                 .font(.caption2)
-                .foregroundStyle(.secondary)
+                .foregroundStyle(.primary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.8)
         }
@@ -42,7 +42,8 @@ struct CircularView: View {
     var body: some View {
         Group {
             if let days = entry.entry.daysToRace, days >= 0 {
-                Gauge(value: Double(365 - min(days, 365)), in: 0...365) {
+                // progress = 1 - (diasRestantes / diasTotais): 0 na criação, 1 no dia da prova.
+                Gauge(value: entry.entry.gaugeProgress) {
                     EmptyView()
                 } currentValueLabel: {
                     VStack(spacing: 0) {

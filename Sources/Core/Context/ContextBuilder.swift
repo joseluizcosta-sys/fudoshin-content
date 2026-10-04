@@ -53,6 +53,7 @@ final class ContextBuilder {
         return TrainingContext(
             today:                    cal.startOfDay(for: now),
             raceDate:                 race?.date,
+            raceCreatedAt:            race?.createdAt,
             raceCategory:             race?.category,
             tomorrowSession:          tomorrowSession,
             todaySession:             todaySession,
