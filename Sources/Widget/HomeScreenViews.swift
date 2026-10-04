@@ -80,6 +80,7 @@ struct FudoshinWidgetEntryView: View {
             }
         }
         .widgetURL(URL(string: "atletaestoico://today"))
+        .redacted(reason: entry.isPlaceholder ? .placeholder : [])
     }
 }
 
@@ -88,11 +89,11 @@ struct FudoshinWidgetEntryView: View {
 #Preview("Medium", as: .systemMedium) {
     FudoshinWidget()
 } timeline: {
-    DailyWidgetEntry.placeholder
+    DailyWidgetEntry.preview
 }
 
 #Preview("Large", as: .systemLarge) {
     FudoshinWidget()
 } timeline: {
-    DailyWidgetEntry.placeholder
+    DailyWidgetEntry.preview
 }

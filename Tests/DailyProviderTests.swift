@@ -6,9 +6,9 @@ final class DailyProviderTests: XCTestCase {
 
     var messages: [Message]!
     var images: [ImageAsset]!
-    var prefs: SharedPreferences!
+    var prefs: SharedPreferences!    // changeHour = 0
     var spCal: Calendar!
-    var baseNow: Date!   // 2026-10-03 10:00 America/Sao_Paulo
+    var baseNow: Date!               // 2026-10-03 10:00 America/Sao_Paulo
 
     override func setUpWithError() throws {
         SharedStore._baseURL = FileManager.default.temporaryDirectory
@@ -40,6 +40,13 @@ final class DailyProviderTests: XCTestCase {
 
     // MARK: - Helpers
 
+    private func date(day: Int = 3, hour: Int = 10) -> Date {
+        spCal.date(from: DateComponents(
+            timeZone: TimeZone(identifier: "America/Sao_Paulo"),
+            year: 2026, month: 10, day: day, hour: hour, minute: 0, second: 0
+        ))!
+    }
+
     private func fakePlan(startingAt now: Date, count: Int = 7) -> DailyPlan {
         let todayStart = spCal.startOfDay(for: now)
         let entries = (0..<count).compactMap { offset -> DailyEntry? in
@@ -54,7 +61,7 @@ final class DailyProviderTests: XCTestCase {
         return DailyPlan(generatedAt: now, entries: entries)
     }
 
-    // MARK: - Testes
+    // MARK: - Testes: plano válido
 
     func testValidPlanProduces7Entries() {
         let plan = fakePlan(startingAt: baseNow)
@@ -67,7 +74,6 @@ final class DailyProviderTests: XCTestCase {
 
         XCTAssertEqual(items.count, 7, "Plano válido deve gerar 7 entries na timeline")
 
-        // Cada entry deve disparar na changeHour (0h) do seu dia.
         let todayStart = spCal.startOfDay(for: baseNow)
         for (i, item) in items.enumerated() {
             let expectedDayStart = spCal.date(byAdding: .day, value: i, to: todayStart)!
@@ -79,24 +85,34 @@ final class DailyProviderTests: XCTestCase {
         }
     }
 
-    func testNoPlanProduces1GeneralEntry() {
+    // MARK: - Testes: sem plano → 7 entradas em datas crescentes
+
+    func testNoPlanProduces7GeneralEntries() {
+        // changeHour = 0, baseNow = 10h → now >= midnight → sem ontem
         let items = DailyTimelineGenerator.items(
             plan: nil, prefs: prefs,
             fallbackMessages: messages, fallbackImages: images,
             now: baseNow, calendar: spCal
         )
 
-        XCTAssertEqual(items.count, 1, "Sem plano deve gerar 1 entrada de fallback")
-        XCTAssertEqual(items[0].entry.trigger, .geral, "Fallback deve usar gatilho geral")
-        XCTAssertFalse(items[0].entry.shortText.isEmpty, "Fallback deve ter texto")
-        XCTAssertFalse(items[0].entry.author.isEmpty,    "Fallback deve ter autor")
+        XCTAssertEqual(items.count, 7, "Sem plano deve gerar 7 entradas de fallback")
+        for item in items {
+            XCTAssertEqual(item.entry.trigger, .geral)
+            XCTAssertFalse(item.entry.shortText.isEmpty, "Texto não pode ser vazio")
+            XCTAssertFalse(item.entry.author.isEmpty, "Autor não pode ser vazio")
+        }
+        // Datas crescentes
+        for i in 1..<items.count {
+            XCTAssertGreaterThan(items[i].date, items[i - 1].date,
+                                 "Datas devem ser estritamente crescentes")
+        }
     }
 
-    func testStalePlanProducesLocalEntry() throws {
-        // Plano cujas entradas terminaram antes de hoje (todos os dias já passaram).
+    // MARK: - Testes: plano vencido → 7 entradas locais
+
+    func testStalePlanProduces7LocalEntries() {
         let eightDaysAgo = spCal.date(byAdding: .day, value: -8, to: baseNow)!
         let stalePlan = fakePlan(startingAt: eightDaysAgo, count: 7)
-        // Entradas: Oct -7 a Oct -1 relativo a Oct 3 → todas no passado.
 
         let items = DailyTimelineGenerator.items(
             plan: stalePlan, prefs: prefs,
@@ -104,7 +120,49 @@ final class DailyProviderTests: XCTestCase {
             now: baseNow, calendar: spCal
         )
 
-        XCTAssertEqual(items.count, 1, "Plano vencido deve gerar 1 entrada local")
-        XCTAssertEqual(items[0].entry.trigger, .geral)
+        XCTAssertEqual(items.count, 7, "Plano vencido deve gerar 7 entradas locais")
+        for item in items {
+            XCTAssertEqual(item.entry.trigger, .geral)
+        }
+    }
+
+    // MARK: - Testes: antes da changeHour → inclui ontem
+
+    func testBeforeChangeHourIncludesYesterdayEntry() {
+        // changeHour = 6, now = 03:00 → before changeHour → ontem incluído
+        var prefsEarly = SharedPreferences(installID: "test-widget", changeHour: 6)
+        let earlyNow = date(day: 3, hour: 3)
+
+        let items = DailyTimelineGenerator.items(
+            plan: nil, prefs: prefsEarly,
+            fallbackMessages: messages, fallbackImages: images,
+            now: earlyNow, calendar: spCal
+        )
+
+        // ontem (Oct 2) + 7 dias (Oct 3–9) = 8
+        XCTAssertEqual(items.count, 8,
+                       "Antes da changeHour: ontem + 7 dias = 8 entradas")
+
+        let yesterdayAt6 = date(day: 2, hour: 6)
+        XCTAssertEqual(items[0].date, yesterdayAt6,
+                       "Primeira entrada deve ser ontem às changeHour")
+
+        let todayAt6 = date(day: 3, hour: 6)
+        XCTAssertEqual(items[1].date, todayAt6,
+                       "Segunda entrada deve ser hoje às changeHour")
+    }
+
+    func testAfterChangeHourNoYesterdayEntry() {
+        // changeHour = 0, now = 10h → after changeHour → sem ontem
+        let items = DailyTimelineGenerator.items(
+            plan: nil, prefs: prefs,
+            fallbackMessages: messages, fallbackImages: images,
+            now: baseNow, calendar: spCal
+        )
+
+        XCTAssertEqual(items.count, 7, "Após a changeHour: sem ontem → 7 entradas")
+        // Primeira data = hoje à meia-noite
+        let todayMidnight = spCal.startOfDay(for: baseNow)
+        XCTAssertEqual(items[0].date, todayMidnight, "Primeira entrada às 00h de hoje")
     }
 }

@@ -68,17 +68,17 @@ struct CircularView: View {
 #Preview("Rectangular", as: .accessoryRectangular) {
     FudoshinWidget()
 } timeline: {
-    DailyWidgetEntry.placeholder
+    DailyWidgetEntry.preview
 }
 
 #Preview("Inline", as: .accessoryInline) {
     FudoshinWidget()
 } timeline: {
-    DailyWidgetEntry.placeholder
+    DailyWidgetEntry.preview
 }
 
 #Preview("Circular", as: .accessoryCircular) {
     FudoshinWidget()
 } timeline: {
-    DailyWidgetEntry.placeholder
+    DailyWidgetEntry.preview
 }
