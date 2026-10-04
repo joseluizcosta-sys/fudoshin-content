@@ -10,6 +10,7 @@ struct RaceEditView: View {
 
     @State private var model: RaceEditModel?
     @State private var showRemoveConfirm = false
+    @State private var saveError = false
 
     init(race: Race? = nil, onSaved: @escaping () async -> Void = {}) {
         self.existingRace = race
@@ -37,13 +38,20 @@ struct RaceEditView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("race_edit.save") {
                         guard let m = model else { return }
-                        try? m.save(into: ctx)
-                        Task { await onSaved() }
-                        dismiss()
+                        do {
+                            try m.save(into: ctx)
+                            Task { await onSaved() }
+                            dismiss()
+                        } catch {
+                            saveError = true
+                        }
                     }
                     .fontWeight(.semibold)
                     .disabled(!(model?.isValid ?? false))
                 }
+            }
+            .alert("edit.save_error", isPresented: $saveError) {
+                Button("OK") {}
             }
         }
         .onAppear {
@@ -109,9 +117,13 @@ struct RaceEditView: View {
             titleVisibility: .visible
         ) {
             Button("race_edit.remove.confirm.action", role: .destructive) {
-                try? model.remove(from: ctx)
-                Task { await onSaved() }
-                dismiss()
+                do {
+                    try model.remove(from: ctx)
+                    Task { await onSaved() }
+                    dismiss()
+                } catch {
+                    saveError = true
+                }
             }
             Button("race_edit.cancel", role: .cancel) {}
         } message: {

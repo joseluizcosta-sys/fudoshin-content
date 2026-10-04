@@ -9,6 +9,7 @@ struct WeekEditView: View {
     private let onSaved: () async -> Void
 
     @State private var model: WeekEditModel?
+    @State private var saveError = false
 
     private let days: [(key: String, index: Int)] = [
         ("weekday.short.mon", 0), ("weekday.short.tue", 1),
@@ -55,12 +56,19 @@ struct WeekEditView: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("race_edit.save") {
                         guard let m = model else { return }
-                        try? m.save(into: ctx)
-                        Task { await onSaved() }
-                        dismiss()
+                        do {
+                            try m.save(into: ctx)
+                            Task { await onSaved() }
+                            dismiss()
+                        } catch {
+                            saveError = true
+                        }
                     }
                     .fontWeight(.semibold)
                 }
+            }
+            .alert("edit.save_error", isPresented: $saveError) {
+                Button("OK") {}
             }
         }
         .onAppear {

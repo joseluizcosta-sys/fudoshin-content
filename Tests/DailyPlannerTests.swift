@@ -462,6 +462,70 @@ final class DailyPlannerTests: XCTestCase {
         XCTAssertNotEqual(plan.entries[0].messageID, "old", "Plano velho deve ser substituído")
     }
 
+    // MARK: - (g) invalidateToday propagado na fila de reentrada
+
+    func testPendingRefreshCarriesInvalidateToday() async throws {
+        // pos_treino torna-se sticky
+        let workoutEnd = now.addingTimeInterval(-3600)
+        health.workoutsToReturn = [
+            WorkoutSummary(start: workoutEnd.addingTimeInterval(-3600),
+                          end: workoutEnd, distanceKm: 10, activityType: .running)
+        ]
+        await planner.refresh(now: now, calendar: spCal)
+        XCTAssertEqual(SharedStore.loadPlan()?.entries.first?.trigger, .posTreino)
+
+        // Remove o treino: sem invalidateToday o sticky persistiria
+        health.workoutsToReturn = []
+
+        // Dois refreshes concorrentes: um sem o flag, outro com invalidateToday: true.
+        // O que for enfileirado deve propagar o flag; com a correção o sticky é eliminado.
+        async let r1: Void = planner.refresh(now: now, calendar: spCal)
+        async let r2: Void = planner.refresh(now: now, invalidateToday: true, calendar: spCal)
+        _ = await (r1, r2)
+
+        let plan = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertNotEqual(plan.entries[0].trigger, .posTreino,
+                          "invalidateToday propagado na fila deve eliminar o evento sticky")
+    }
+
+    // MARK: - (h) invalidateToday não dispara notificação duplicada quando já notificado
+
+    func testInvalidateTodayDoesNotDuplicateNotification() async throws {
+        let workoutEnd = now.addingTimeInterval(-3600)
+        health.workoutsToReturn = [
+            WorkoutSummary(start: workoutEnd.addingTimeInterval(-3600),
+                          end: workoutEnd, distanceKm: 10, activityType: .running)
+        ]
+        notifications.immediateReturns = true
+        await planner.refresh(now: now, calendar: spCal)
+
+        XCTAssertEqual(notifications.immediateCalls.count, 1, "Primeiro refresh deve notificar")
+        let log = try XCTUnwrap(
+            (try? context.fetch(FetchDescriptor<DeliveryLog>()))?.first
+        )
+        XCTAssertTrue(log.notified, "Log deve estar marcado como notificado")
+
+        // invalidateToday: true com log notified = true — não deve repetir scheduleImmediate
+        await planner.refresh(now: now, invalidateToday: true, calendar: spCal)
+
+        XCTAssertEqual(notifications.immediateCalls.count, 1,
+                       "invalidateToday não deve duplicar notificação imediata")
+        XCTAssertTrue(notifications.scheduleAlreadyNotified.last == true,
+                      "schedule deve receber alreadyNotifiedToday: true após invalidateToday com log notificado")
+    }
+
+    // MARK: - (i) DeliveryLog de hoje permanece único após refresh com invalidação
+
+    func testInvalidateTodayKeepsSingleDeliveryLog() async throws {
+        await planner.refresh(now: now, calendar: spCal)
+        await planner.refresh(now: now, invalidateToday: true, calendar: spCal)
+
+        let allLogs = (try? context.fetch(FetchDescriptor<DeliveryLog>())) ?? []
+        let todayLogs = allLogs.filter { $0.dayValue == DayKey(now, calendar: spCal).value }
+        XCTAssertEqual(todayLogs.count, 1,
+                       "Deve haver exatamente um DeliveryLog para hoje após refresh com invalidateToday")
+    }
+
     // MARK: - (f) invalidateToday recalcula o gatilho quando prova muda
 
     func testInvalidateTodayClearsEventStickyAfterRaceChange() async throws {

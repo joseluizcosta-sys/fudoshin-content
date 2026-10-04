@@ -22,6 +22,8 @@ final class DailyPlanner {
     // marca pendente e roda mais uma vez ao terminar.
     private var isRefreshing = false
     private var pendingRefresh = false
+    // Acumula com OR: se qualquer chamada pendente pedir invalidação, ela é propagada.
+    private var pendingInvalidateToday = false
 
     /// Gatilhos de evento: uma vez gravados no DeliveryLog de hoje, não são rebaixados.
     static let eventTriggers: Set<Trigger> = [.posTreino, .sonoRuim, .retorno]
@@ -72,14 +74,18 @@ final class DailyPlanner {
     func refresh(now: Date = Date(), invalidateToday: Bool = false, calendar: Calendar = .current) async {
         if isRefreshing {
             pendingRefresh = true
+            pendingInvalidateToday = pendingInvalidateToday || invalidateToday
             return
         }
         isRefreshing = true
         await _doRefresh(now: now, invalidateToday: invalidateToday, calendar: calendar)
         isRefreshing = false
         if pendingRefresh {
+            let shouldInvalidate = pendingInvalidateToday
             pendingRefresh = false
-            Task { await self.refresh() }
+            pendingInvalidateToday = false
+            // Usa Date() fresco e propaga o flag acumulado.
+            await refresh(invalidateToday: shouldInvalidate)
         }
     }
 
@@ -96,8 +102,10 @@ final class DailyPlanner {
         )) ?? []
 
         let existingPlan = SharedStore.loadPlan()
+        // invalidateToday anula apenas o sticky (existingToday); todayLog continua sendo lido
+        // para alreadyNotified e para o upsert do DeliveryLog, evitando notificação duplicada.
         let existingToday = invalidateToday ? nil : existingPlan?.entries.first { $0.day == todayKey }
-        let todayLog = invalidateToday ? nil : logs.first { $0.dayValue == todayKey.value }
+        let todayLog = logs.first { $0.dayValue == todayKey.value }
 
         let todayCtx = await contextBuilder.build(
             race: race, weekPlan: week, profile: profile,
