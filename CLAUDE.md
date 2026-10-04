@@ -30,3 +30,7 @@ xcodebuild -scheme AtletaEstoico -destination 'platform=iOS Simulator,name=iPhon
 - Identificador de dia: `DayKey` (string `yyyy-MM-dd`).
 - UI: `Text("chave")`/`String(localized:)` com String Catalog (app e widget). Datas e distâncias com formatadores do sistema (`Date.FormatStyle`, `Measurement`).
 - Idioma do conteúdo: `Bundle.main.preferredLocalizations.first`, com fallback `en` → `pt-BR`. Idioma de desenvolvimento = `en`: aparelho em idioma não suportado (ex.: alemão) recebe interface e conteúdo em inglês.
+
+## Conteúdo (frases)
+- A fonte da verdade é `Content/Frases_Fudoshin.xlsx`. Os JSONs em `Content/messages/` são **gerados** por `python3 tools/content_sheet.py build`. Não edite os JSONs à mão; se precisar mudar uma frase, edite a planilha e rode o build.
+- Campos que não são frases (perguntas do diário, `inline_contexto`, limites, revisão) continuam nos JSONs e são preservados pelo build.

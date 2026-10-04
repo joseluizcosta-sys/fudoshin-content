@@ -6,3 +6,6 @@ build/
 *.xcuserstate
 build-log.txt
 .claude/settings.local.json
+
+# Excel/Numbers lock files
+~$*.xlsx

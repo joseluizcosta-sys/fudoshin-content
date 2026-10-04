@@ -107,84 +107,84 @@
       "autor": "marco_aurelio",
       "obra": "meditacoes",
       "ref": "5.1",
-      "base_dominio_publico": "George Long, 1862",
       "tipo": "citacao",
       "gatilhos": [
         "vespera_chave",
         "sono_ruim"
-      ]
+      ],
+      "base_dominio_publico": "George Long, 1862"
     },
     {
       "id": "ep-ench-1",
       "autor": "epicteto",
       "obra": "enchiridion",
       "ref": "1",
-      "base_dominio_publico": "George Long, 1877",
       "tipo": "citacao",
       "gatilhos": [
         "marco_prova",
         "geral"
-      ]
+      ],
+      "base_dominio_publico": "George Long, 1877"
     },
     {
       "id": "ep-ench-5",
       "autor": "epicteto",
       "obra": "enchiridion",
       "ref": "5",
-      "base_dominio_publico": "George Long, 1877",
       "tipo": "citacao",
       "gatilhos": [
         "pos_treino",
         "sono_ruim"
-      ]
+      ],
+      "base_dominio_publico": "George Long, 1877"
     },
     {
       "id": "ma-4-49",
       "autor": "marco_aurelio",
       "obra": "meditacoes",
       "ref": "4.49",
-      "base_dominio_publico": "George Long, 1862",
       "tipo": "citacao",
       "gatilhos": [
         "marco_prova",
         "vespera_chave"
-      ]
+      ],
+      "base_dominio_publico": "George Long, 1862"
     },
     {
       "id": "sen-ep13-4",
       "autor": "seneca",
       "obra": "cartas_lucilio",
       "ref": "13.4",
-      "base_dominio_publico": "Richard M. Gummere, 1917",
       "tipo": "citacao",
       "gatilhos": [
         "marco_prova",
         "sono_ruim"
-      ]
+      ],
+      "base_dominio_publico": "Richard M. Gummere, 1917"
     },
     {
       "id": "ma-8-47",
       "autor": "marco_aurelio",
       "obra": "meditacoes",
       "ref": "8.47",
-      "base_dominio_publico": "George Long, 1862",
       "tipo": "citacao",
       "gatilhos": [
         "pos_treino",
         "retorno"
-      ]
+      ],
+      "base_dominio_publico": "George Long, 1862"
     },
     {
       "id": "mm-gorin-agua-mente",
       "autor": "miyamoto_musashi",
       "obra": "gorin_no_sho",
       "ref": "Mizu no maki",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "marco_prova",
         "vespera_chave"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "兵法の道において、心の持ちやうは、常の心に替る事なかれ",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -193,12 +193,12 @@
       "autor": "miyamoto_musashi",
       "obra": "gorin_no_sho",
       "ref": "Mizu no maki",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "vespera_chave",
         "geral"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "観の目つよく、見の目よはく、遠き所を近く見、ちかき所を遠く見る事",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -207,12 +207,12 @@
       "autor": "miyamoto_musashi",
       "obra": "gorin_no_sho",
       "ref": "Mizu no maki",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "descanso",
         "geral"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "常の身を兵法の身とし、兵法の身をつねの身とする事肝要也",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -221,12 +221,12 @@
       "autor": "miyamoto_musashi",
       "obra": "gorin_no_sho",
       "ref": "Mizu no maki",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "pos_treino",
         "retorno"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "千日の稽古を鍛とし、万日の稽古を錬とす",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -235,12 +235,12 @@
       "autor": "miyamoto_musashi",
       "obra": "gorin_no_sho",
       "ref": "Chi no maki",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "vespera_chave",
         "descanso"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "第九に、役にたたぬ事をせざる事",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -249,12 +249,12 @@
       "autor": "miyamoto_musashi",
       "obra": "dokkodo",
       "ref": "1645",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "pos_treino",
         "retorno"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "我事において後悔をせず",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -263,12 +263,12 @@
       "autor": "miyamoto_musashi",
       "obra": "dokkodo",
       "ref": "1645",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "geral",
         "marco_prova"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "身を浅く思、世を深く思ふ",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -277,12 +277,12 @@
       "autor": "takuan_soho",
       "obra": "fudochi_shinmyoroku",
       "ref": "不動智",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "marco_prova",
         "geral"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "不動とは、石か木かのやうに、無性なる義理にてはなし。向ふへも、左へも、右へも、十方八方へ、心は動き度きやうに動きながら、卒度も止らぬ心を、不動智と申し候",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -291,12 +291,12 @@
       "autor": "takuan_soho",
       "obra": "fudochi_shinmyoroku",
       "ref": "心の置所",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "marco_prova",
         "vespera_chave"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "何処にも置かねば、我身にいっぱいに行きわたりて、全体に延びひろごりてある",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -305,12 +305,12 @@
       "autor": "takuan_soho",
       "obra": "fudochi_shinmyoroku",
       "ref": "心の置所",
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "tipo": "citacao",
       "gatilhos": [
         "sono_ruim",
         "pos_treino"
       ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
       "texto_original": "心を一所に置けば、偏に落ると云也",
       "verificacao": "pendente — conferir tradução contra o original japonês"
     },
@@ -319,12 +319,12 @@
       "autor": "david_goggins",
       "obra": "cant_hurt_me",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "marco_prova",
         "vespera_chave"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
@@ -332,12 +332,12 @@
       "autor": "david_goggins",
       "obra": "cant_hurt_me",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "marco_prova",
         "retorno"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
@@ -345,12 +345,12 @@
       "autor": "david_goggins",
       "obra": "cant_hurt_me",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "vespera_chave",
         "geral"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
@@ -358,12 +358,12 @@
       "autor": "david_goggins",
       "obra": "cant_hurt_me",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "retorno",
         "geral"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
@@ -371,12 +371,12 @@
       "autor": "eliud_kipchoge",
       "obra": "kipchoge_entrevistas",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "geral",
         "retorno"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
@@ -384,12 +384,12 @@
       "autor": "eliud_kipchoge",
       "obra": "kipchoge_entrevistas",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "marco_prova",
         "vespera_chave"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
@@ -397,12 +397,12 @@
       "autor": "eliud_kipchoge",
       "obra": "kipchoge_entrevistas",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "marco_prova",
         "vespera_chave"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
@@ -410,12 +410,12 @@
       "autor": "eliud_kipchoge",
       "obra": "kipchoge_entrevistas",
       "ref": "",
-      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "tipo": "parafrase",
       "gatilhos": [
         "pos_treino",
         "descanso"
       ],
+      "base_dominio_publico": "Não se aplica: paráfrase própria da ideia, sem trecho literal (ver DIREITOS.md, regra 2)",
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     }
   ],
