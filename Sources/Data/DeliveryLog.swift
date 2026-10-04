@@ -10,7 +10,7 @@ final class DeliveryLog {
     var messageID: String
     var imageID: String
     var triggerRaw: String
-    var notified: Bool
+    var notified: Bool = false   // default na declaração → migração SwiftData funciona
 
     var day: DayKey {
         get { DayKey(value: dayValue) }

@@ -8,8 +8,8 @@ final class Race {
     var distanceKm: Double
     var categoryRaw: String
     /// Data de cadastro da prova. Usada para calcular o progresso do Gauge circular.
-    /// Padrão = `Date()` para registros anteriores (migração lightweight).
-    var createdAt: Date
+    /// Default na declaração (não só no init) → SwiftData usa este valor na migração.
+    var createdAt: Date = Date.now
 
     var category: ImageCategory {
         get { ImageCategory(rawValue: categoryRaw) ?? .trail }
