@@ -12,10 +12,15 @@ struct RootView: View {
     }
 
     var body: some View {
-        if onboardingDone {
-            mainPlaceholder
-        } else {
-            OnboardingFlow()
+        Group {
+            if onboardingDone {
+                mainPlaceholder
+            } else {
+                OnboardingFlow()
+            }
+        }
+        .onOpenURL { _ in
+            // Deep link atletaestoico://today — navegação real em T10.
         }
     }
 
