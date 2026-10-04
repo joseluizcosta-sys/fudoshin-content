@@ -232,7 +232,8 @@ final class DailyPlanner {
             author: msg?.author ?? existing.author,
             reflection: reflection,
             daysToRace: daysToRace,
-            totalDaysToRace: totalDaysToRace
+            totalDaysToRace: totalDaysToRace,
+            isParaphrase: msg.map { $0.kind == "parafrase" } ?? existing.isParaphrase
         )
     }
 
@@ -291,7 +292,8 @@ final class DailyPlanner {
             author: msg?.author ?? "",
             reflection: reflection,
             daysToRace: daysToRace,
-            totalDaysToRace: totalDaysToRace
+            totalDaysToRace: totalDaysToRace,
+            isParaphrase: msg?.kind == "parafrase"
         )
     }
 

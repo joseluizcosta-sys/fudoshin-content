@@ -93,7 +93,7 @@ struct TodayView: View {
 
             // Autor + obra + referência
             VStack(alignment: .leading, spacing: 2) {
-                Text("— \(e.author)")
+                Text(attributionText(author: e.author, isParaphrase: e.isParaphrase))
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(Theme.primaryText)
                 if let work = msg?.work, let ref = msg?.reference, !work.isEmpty {

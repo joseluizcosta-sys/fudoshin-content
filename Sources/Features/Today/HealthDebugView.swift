@@ -57,7 +57,7 @@ struct HealthDebugView: View {
                                 .foregroundStyle(.secondary)
                         }
                         Text(entry.shortText).font(.caption2)
-                        Text("— \(entry.author)").font(.caption2).foregroundStyle(.secondary)
+                        Text(attributionText(author: entry.author, isParaphrase: entry.isParaphrase)).font(.caption2).foregroundStyle(.secondary)
                         Text(entry.inlineText).font(.caption2).italic().foregroundStyle(.secondary)
                     }
                 }

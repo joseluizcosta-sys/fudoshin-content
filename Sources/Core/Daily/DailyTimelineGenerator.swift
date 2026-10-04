@@ -103,7 +103,8 @@ enum DailyTimelineGenerator {
             inlineText: msg?.inlineText ?? "",
             author:     msg?.author ?? "",
             reflection: msg?.reflection ?? "",
-            daysToRace: nil
+            daysToRace: nil,
+            isParaphrase: msg?.kind == "parafrase"
         )
     }
 }

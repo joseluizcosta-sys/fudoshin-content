@@ -12,7 +12,7 @@ struct RectangularView: View {
                 .font(.caption)
                 .minimumScaleFactor(0.8)
                 .lineLimit(3)
-            Text("— \(entry.entry.author)")
+            Text(attributionText(author: entry.entry.author, isParaphrase: entry.entry.isParaphrase))
                 .font(.caption2)
                 .foregroundStyle(.primary)
                 .lineLimit(1)

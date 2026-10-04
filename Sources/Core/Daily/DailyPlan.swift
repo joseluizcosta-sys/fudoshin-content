@@ -12,17 +12,21 @@ struct DailyEntry: Codable, Equatable {
     let daysToRace: Int?
     /// Dias totais entre cadastro e a prova. Nil em entradas sem prova.
     let totalDaysToRace: Int?
+    /// true quando a mensagem é paráfrase (kind == "parafrase").
+    /// false em planos antigos sem este campo (backward-compatible).
+    let isParaphrase: Bool
 
     init(day: DayKey, messageID: String, imageID: String, trigger: Trigger,
          shortText: String, inlineText: String, author: String, reflection: String,
-         daysToRace: Int?, totalDaysToRace: Int? = nil) {
+         daysToRace: Int?, totalDaysToRace: Int? = nil, isParaphrase: Bool = false) {
         self.day = day; self.messageID = messageID; self.imageID = imageID
         self.trigger = trigger; self.shortText = shortText; self.inlineText = inlineText
         self.author = author; self.reflection = reflection
         self.daysToRace = daysToRace; self.totalDaysToRace = totalDaysToRace
+        self.isParaphrase = isParaphrase
     }
 
-    // Backward-compatible decoder: campos ausentes em JSON antigo → nil.
+    // Backward-compatible decoder: campos ausentes em JSON antigo recebem padrão seguro.
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         day = try c.decode(DayKey.self, forKey: .day)
@@ -35,6 +39,7 @@ struct DailyEntry: Codable, Equatable {
         reflection = try c.decode(String.self, forKey: .reflection)
         daysToRace = try? c.decodeIfPresent(Int.self, forKey: .daysToRace)
         totalDaysToRace = try? c.decodeIfPresent(Int.self, forKey: .totalDaysToRace)
+        isParaphrase = (try? c.decodeIfPresent(Bool.self, forKey: .isParaphrase)) ?? false
     }
 
     /// Progresso do Gauge circular: 0.0 na criação da prova, 1.0 no dia da prova.

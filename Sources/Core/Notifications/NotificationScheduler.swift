@@ -131,7 +131,7 @@ struct LiveNotificationScheduler: NotificationScheduling {
     private func makeContent(for entry: DailyEntry) -> UNMutableNotificationContent {
         let content = UNMutableNotificationContent()
         content.title = notificationTitle(for: entry)
-        content.body  = "\(entry.shortText) — \(entry.author)"
+        content.body  = "\(entry.shortText) \(attributionText(author: entry.author, isParaphrase: entry.isParaphrase))"
         content.sound = .default
         content.userInfo = ["url": "atletaestoico://today"]
         return content

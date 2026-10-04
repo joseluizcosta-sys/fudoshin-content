@@ -40,6 +40,28 @@
         }
       }
     },
+    "attribution.inspired": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inspired by %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inspirado en %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inspirado em %@"
+          }
+        }
+      }
+    },
     "category.rua": {
       "extractionState": "stale",
       "localizations": {

@@ -39,7 +39,7 @@ struct HomeView: View {
                 .lineLimit(family == .systemLarge ? 5 : 3)
                 .minimumScaleFactor(0.85)
 
-            Text("— \(entry.entry.author)")
+            Text(attributionText(author: entry.entry.author, isParaphrase: entry.entry.isParaphrase))
                 .font(.caption)
                 .foregroundStyle(Color.wSub)
                 .lineLimit(1)
