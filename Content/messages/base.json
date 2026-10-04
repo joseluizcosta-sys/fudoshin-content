@@ -49,10 +49,10 @@
       "en": "Eliud Kipchoge",
       "es": "Eliud Kipchoge"
     },
-    "ultra_runner": {
-      "pt-BR": "Ultra Runner",
-      "en": "Ultra Runner",
-      "es": "Ultra Runner"
+    "fudoshin": {
+      "pt-BR": "Fudōshin",
+      "en": "Fudōshin",
+      "es": "Fudōshin"
     }
   },
   "obras": {
@@ -430,7 +430,7 @@
     },
     {
       "id": "ur-mente-adapta",
-      "autor": "ultra_runner",
+      "autor": "fudoshin",
       "obra": "frases_proprias",
       "ref": "",
       "tipo": "propria",
