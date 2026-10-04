@@ -26,13 +26,14 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 MSG_DIR = ROOT / "Content" / "messages"
 XLSX = ROOT / "Content" / "Frases_Fudoshin.xlsx"
+NUMBERS = ROOT / "Content" / "Frases_Fudoshin.numbers"   # se existir, é a fonte da verdade
 
 STATUS = ["ativa", "rascunho", "removida"]
 META_COLS = ["id", "autor", "obra", "ref", "tipo", "gatilhos",
              "base_dominio_publico", "texto_original", "verificacao"]
 TEXT_FIELDS = [("texto", "texto"), ("curto", "texto_curto"),
                ("inline", "texto_inline"), ("reflexao", "reflexao")]
-TIPOS = ["citacao", "parafrase"]
+TIPOS = ["citacao", "parafrase", "propria"]
 ID_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 
 FONT = "Arial"
@@ -59,7 +60,7 @@ def text_cols(langs):
 
 # ---------------------------------------------------------------- export
 def export():
-    if XLSX.exists() and "--force" not in sys.argv:
+    if (XLSX.exists() or NUMBERS.exists()) and "--force" not in sys.argv:
         sys.exit("A planilha já existe. 'export' recria a partir dos JSONs e APAGA rascunhos, removidas e "
                  "edições não convertidas. Se é isso mesmo: python3 tools/content_sheet.py export --force")
     base = load(MSG_DIR / "base.json")
@@ -112,7 +113,7 @@ def export():
             ws.conditional_formatting.add(rng, FormulaRule(formula=[f'AND($A2="ativa",LEN(TRIM({L}2))=0)'], fill=RED_FILL))
     dv = lambda f: DataValidation(type="list", formula1=f, allow_blank=False, showErrorMessage=True)
     col = {c: get_column_letter(i) for i, c in enumerate(cols, 1)}
-    for name, f in (("status", '"ativa,rascunho,removida"'), ("tipo", '"citacao,parafrase"'),
+    for name, f in (("status", '"ativa,rascunho,removida"'), ("tipo", '"citacao,parafrase,propria"'),
                     ("autor", f"=Autores!$A$2:$A${last}"),
                     ("obra", f"=Obras!$A$2:$A${last}")):
         d = dv(f); ws.add_data_validation(d); d.add(f"{col[name]}2:{col[name]}{last}")
@@ -155,7 +156,7 @@ def export():
         ("", False),
         ("Regras de preenchimento", True),
         ("id: minúsculas, números e hífen, único (ex.: sen-ira-3). Nunca mude o id de uma frase publicada.", False),
-        ("tipo: citacao (trecho de obra em domínio público, ref obrigatória) ou parafrase (ideia com nossas palavras; app mostra 'Inspirado em').", False),
+        ("tipo propria: frase original nossa (sem ref). tipo: citacao (trecho de obra em domínio público, ref obrigatória) ou parafrase (ideia com nossas palavras; app mostra 'Inspirado em').", False),
         ("gatilhos: separados por vírgula, ex.: marco_prova, vespera_chave", False),
         (f"curto_*: até {lim['texto_curto_max']} caracteres (widget e notificação). inline_*: até {lim['texto_inline_max']}. Célula fica vermelha se passar.", False),
         ("Célula vermelha em coluna obrigatória = está vazia.", False),
@@ -200,10 +201,26 @@ def cell(v):
     return str(v).strip()
 
 
+def open_source():
+    """Numbers tem prioridade (é onde o JC edita). Sem ele, usa o .xlsx."""
+    if NUMBERS.exists():
+        try:
+            from numbers_parser import Document
+        except ImportError:
+            sys.exit("Para ler o arquivo .numbers instale: pip3 install --user numbers-parser")
+        doc = Document(str(NUMBERS))
+        sheets = {s.name: s.tables[0].rows(values_only=True) for s in doc.sheets if s.tables}
+        return NUMBERS.name, sheets
+    if not XLSX.exists():
+        sys.exit("Nenhuma planilha encontrada em Content/. Rode 'export' primeiro.")
+    wb = openpyxl.load_workbook(XLSX, data_only=True)
+    return XLSX.name, {n: list(wb[n].iter_rows(values_only=True)) for n in wb.sheetnames}
+
+
 def read_sheet(wb, name):
-    if name not in wb.sheetnames:
+    if name not in wb:
         raise SystemExit(f"Aba '{name}' não encontrada na planilha")
-    rows = list(wb[name].iter_rows(values_only=True))
+    rows = list(wb[name])
     head = [cell(h) for h in rows[0]]
     out = []
     for n, r in enumerate(rows[1:], 2):
@@ -216,7 +233,8 @@ def read_sheet(wb, name):
 def collect(base):
     langs = langs_of(base)
     lim = base["limites_widget"]["padrao"]
-    wb = openpyxl.load_workbook(XLSX, data_only=True)
+    src, wb = open_source()
+    print(f"Lendo {src}")
     errors, warns = [], []
 
     def names(sheet):
@@ -273,7 +291,7 @@ def collect(base):
         if d["obra"] not in obras:
             errors.append(f"{where}: obra '{d['obra']}' não está na aba Obras")
         if d["tipo"] not in TIPOS:
-            errors.append(f"{where}: tipo deve ser citacao ou parafrase")
+            errors.append(f"{where}: tipo deve ser citacao, parafrase ou propria")
         if d["tipo"] == "citacao" and not d["ref"]:
             errors.append(f"{where}: citação sem ref (livro.capítulo) — DIREITOS.md regra 3")
         if d["tipo"] == "citacao" and not d["base_dominio_publico"]:
@@ -329,8 +347,6 @@ def collect(base):
 
 
 def run(write):
-    if not XLSX.exists():
-        sys.exit(f"Planilha não encontrada: {XLSX}. Rode 'export' primeiro.")
     base = load(MSG_DIR / "base.json")
     meta, texts, langs, errors, warns = collect(base)
     for w in warns:

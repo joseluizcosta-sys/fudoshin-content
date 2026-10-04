@@ -149,6 +149,12 @@
       "texto_curto": "El resultado viene de la constancia, no de un entrenamiento heroico.",
       "texto_inline": "La constancia gana",
       "reflexao": "El entrenamiento de hoy no tiene que ser épico. Tiene que existir, y mañana también."
+    },
+    "ur-mente-adapta": {
+      "texto": "Al principio, el cuerpo pide comodidad y se resiste. La mente insiste, y el cuerpo se adapta.",
+      "texto_curto": "El cuerpo se resiste al principio. La mente insiste y él se adapta.",
+      "texto_inline": "La mente insiste.",
+      "reflexao": "La incomodidad del comienzo pasa. La adaptación queda, y es la mente la que te lleva hasta ella."
     }
   },
   "perguntas_diario": [

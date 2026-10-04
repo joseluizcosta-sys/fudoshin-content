@@ -25,10 +25,10 @@
       "reflexao": "O treino ruim foi um dado. A história que você conta sobre ele é escolha."
     },
     "ma-4-49": {
-      "texto": "Seja como o promontório, contra o qual as ondas quebram sem parar; ele permanece firme, e a água se acalma ao seu redor.",
-      "texto_curto": "Seja o promontório: as ondas quebram, ele fica.",
-      "texto_inline": "Seja o promontório",
-      "reflexao": "No km difícil, você não precisa vencer a onda. Só precisa ficar de pé."
+      "texto": "Seja como o rochedo, contra o qual as ondas quebram sem parar; ele permanece firme, e a água se acalma ao seu redor.",
+      "texto_curto": "Seja o rochedo: as ondas quebram, ele não.",
+      "texto_inline": "Seja o rochedo",
+      "reflexao": "Na parte difícil, você não precisa vencer as dificuldades. Só precisa ficar de pé."
     },
     "sen-ep13-4": {
       "texto": "Sofremos mais na imaginação do que na realidade.",
@@ -45,7 +45,7 @@
     "mm-gorin-agua-mente": {
       "texto": "No caminho da estratégia, não deixe a mente mudar: que ela seja a mesma de todo dia, ampla e reta, sem tensão e sem frouxidão.",
       "texto_curto": "Na luta, a mente não muda: ampla, reta, sem tensão.",
-      "texto_inline": "Mente de todo dia",
+      "texto_inline": "Mente forte todo dia",
       "reflexao": "Não guarde uma versão especial de você para a prova. A calma de hoje é a calma da largada."
     },
     "mm-gorin-agua-olhar": {
@@ -149,6 +149,12 @@
       "texto_curto": "O resultado vem da constância, não de um treino heroico.",
       "texto_inline": "Constância vence",
       "reflexao": "O treino de hoje não precisa ser épico. Precisa existir, e amanhã também."
+    },
+    "ur-mente-adapta": {
+      "texto": "No início, o corpo pede conforto e resiste. A mente insiste, e o corpo se adapta.",
+      "texto_curto": "O corpo resiste no início. A mente insiste, e ele se adapta.",
+      "texto_inline": "A mente insiste.",
+      "reflexao": "O desconforto do começo passa. A adaptação fica, e é a mente que leva você até ela."
     }
   },
   "perguntas_diario": [
