@@ -54,12 +54,8 @@ struct SettingsView: View {
                 }
             }
 
-            // Aparência
+            // Aparência (frase no papel de parede só aparece a partir da T12)
             Section("settings.section.appearance") {
-                Toggle("settings.quote_on_wallpaper", isOn: Binding(
-                    get: { vm.prefs.quoteOnWallpaper },
-                    set: { vm.prefs.quoteOnWallpaper = $0 }
-                ))
                 Section("settings.categories.section") {
                     ForEach(ImageCategory.allCases, id: \.self) { cat in
                         let key = "category.\(cat.rawValue)"
@@ -84,7 +80,7 @@ struct SettingsView: View {
                         value: Binding(get: { vm.sleepGoalHours }, set: { vm.sleepGoalHours = $0 }),
                         in: 4...12, step: 0.5
                     ) {
-                        Text(String(format: "%.1f h", vm.sleepGoalHours))
+                        Text(sleepLabel(vm.sleepGoalHours))
                             .foregroundStyle(Theme.secondaryText)
                     }
                 }
@@ -96,6 +92,12 @@ struct SettingsView: View {
                 NavigationLink("settings.edit_week")  { OnboardingFlow() }
             }
         }
+    }
+
+    private func sleepLabel(_ hours: Double) -> String {
+        hours.truncatingRemainder(dividingBy: 1) == 0
+            ? "\(Int(hours)) h"
+            : String(format: "%.1f h", hours)
     }
 
     private func hourLabel(_ h: Int) -> String {

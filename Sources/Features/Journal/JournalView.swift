@@ -27,6 +27,7 @@ struct JournalView: View {
                 }
             }
             .listStyle(.insetGrouped)
+            .scrollContentBackground(.hidden)
             .background(Theme.background.ignoresSafeArea())
             .navigationTitle("journal.title")
             .navigationBarTitleDisplayMode(.large)

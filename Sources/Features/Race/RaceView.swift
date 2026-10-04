@@ -29,21 +29,16 @@ struct RaceView: View {
         let cal = Calendar.current
         let today = cal.startOfDay(for: Date())
         let raceDay = cal.startOfDay(for: race.date)
-        let days = cal.dateComponents([.day], from: today, to: raceDay).day ?? 0
+        let days = max(0, cal.dateComponents([.day], from: today, to: raceDay).day ?? 0)
+        let progress = raceProgress(race: race, daysToRace: days)
 
         ScrollView {
             VStack(spacing: Theme.Spacing.large) {
-                // Contagem regressiva
-                VStack(spacing: 8) {
-                    if days > 0 {
-                        Text(String(format: String(localized: "race.days_remaining.format"), days))
-                            .font(.system(size: 64, weight: .bold, design: .rounded))
-                            .foregroundStyle(Theme.accent)
-                    } else {
-                        Text("race.race_day")
-                            .font(.system(size: 42, weight: .bold, design: .rounded))
-                            .foregroundStyle(Theme.accent)
-                    }
+
+                // Arco de progresso + contagem regressiva
+                VStack(spacing: Theme.Spacing.small) {
+                    progressArc(progress: progress, days: days)
+
                     Text(race.name)
                         .font(.title3.weight(.medium))
                         .foregroundStyle(Theme.primaryText)
@@ -78,6 +73,39 @@ struct RaceView: View {
         }
     }
 
+    // MARK: - Arco de progresso
+
+    @ViewBuilder
+    private func progressArc(progress: Double, days: Int) -> some View {
+        ZStack {
+            Circle()
+                .stroke(Theme.accent.opacity(0.15), lineWidth: 8)
+            Circle()
+                .trim(from: 0, to: progress)
+                .stroke(Theme.accent,
+                        style: StrokeStyle(lineWidth: 8, lineCap: .round))
+                .rotationEffect(.degrees(-90))
+                .animation(.easeOut(duration: 0.6), value: progress)
+
+            if days > 0 {
+                VStack(spacing: 0) {
+                    Text("\(days)")
+                        .font(.system(size: 36, weight: .bold, design: .rounded))
+                        .foregroundStyle(Theme.accent)
+                    Text(String(localized: "race.days_label"))
+                        .font(.caption2)
+                        .foregroundStyle(Theme.secondaryText)
+                }
+            } else {
+                Image(systemName: "flag.checkered")
+                    .font(.system(size: 32))
+                    .foregroundStyle(Theme.accent)
+            }
+        }
+        .frame(width: 140, height: 140)
+        .padding(.bottom, 4)
+    }
+
     // MARK: - Sem prova
 
     private var noRaceContent: some View {
@@ -103,6 +131,14 @@ struct RaceView: View {
     }
 
     // MARK: - Helpers
+
+    private func raceProgress(race: Race, daysToRace: Int) -> Double {
+        let cal = Calendar.current
+        let created = cal.startOfDay(for: race.createdAt)
+        let raceDay = cal.startOfDay(for: race.date)
+        let total = max(1, cal.dateComponents([.day], from: created, to: raceDay).day ?? 1)
+        return max(0, min(1, 1.0 - Double(daysToRace) / Double(total)))
+    }
 
     struct Milestone { let key: String; let label: LocalizedStringKey; let passed: Bool }
 

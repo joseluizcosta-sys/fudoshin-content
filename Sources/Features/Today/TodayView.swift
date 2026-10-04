@@ -7,6 +7,7 @@ struct TodayView: View {
     @State private var library: ContentLibrary? = try? ContentLibrary()
     @State private var showSettings = false
     @State private var showJournal = false
+    @Query(sort: \JournalEntry.dayValue) private var journalEntries: [JournalEntry]
     #if DEBUG
     @State private var showDebug = false
     #endif
@@ -16,11 +17,16 @@ struct TodayView: View {
         return plan?.entries.first { $0.day.value == key }
     }
 
+    private var hasTodayJournal: Bool {
+        let key = DayKey(Date()).value
+        return journalEntries.contains { $0.dayValue == key }
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    gradientHeader
+                    imageHeader
                     if let e = todayEntry {
                         entryBody(e)
                     } else {
@@ -49,38 +55,43 @@ struct TodayView: View {
         }
     }
 
-    // MARK: - Sub-views
+    // MARK: - Cabeçalho (reservado para imagem em T12; por ora gradiente + 不動心)
 
-    private var gradientHeader: some View {
-        LinearGradient(
-            colors: [Color(red: 0.07, green: 0.08, blue: 0.09),
-                     Color(red: 0.18, green: 0.12, blue: 0.09)],
-            startPoint: .topLeading, endPoint: .bottomTrailing
-        )
-        .frame(height: 220)
-        .overlay(alignment: .bottomLeading) {
-            if let e = todayEntry {
-                Text(e.shortText)
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(.white.opacity(0.85))
-                    .lineLimit(3)
-                    .minimumScaleFactor(0.85)
-                    .padding(Theme.Spacing.medium)
-            }
+    private var imageHeader: some View {
+        ZStack {
+            LinearGradient(
+                colors: [Color(red: 0.07, green: 0.08, blue: 0.09),
+                         Color(red: 0.10, green: 0.09, blue: 0.08)],
+                startPoint: .topLeading, endPoint: .bottomTrailing
+            )
+            Text("不動心")
+                .font(.system(size: 96, weight: .thin))
+                .foregroundStyle(Color.white.opacity(0.08))
+                .allowsHitTesting(false)
         }
+        .frame(height: 220)
     }
+
+    // MARK: - Corpo
 
     @ViewBuilder
     private func entryBody(_ e: DailyEntry) -> some View {
         let msg = library?.message(withID: e.messageID)
         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-            // Frase completa (text) ou shortText como fallback
+
+            // Etiqueta de contexto (acima da frase)
+            Text(contextLabel(e))
+                .font(.caption.weight(.semibold))
+                .foregroundStyle(Theme.accent)
+                .textCase(.uppercase)
+
+            // Frase completa uma única vez
             Text(msg?.text ?? e.shortText)
                 .font(.body)
                 .foregroundStyle(Theme.primaryText)
                 .fixedSize(horizontal: false, vertical: true)
 
-            // Autor, obra, referência
+            // Autor + obra + referência
             VStack(alignment: .leading, spacing: 2) {
                 Text("— \(e.author)")
                     .font(.subheadline.weight(.medium))
@@ -108,8 +119,25 @@ struct TodayView: View {
                 }
             }
 
-            // Revisão da noite
-            Button { showJournal = true } label: {
+            // Botão de revisão (estado conforme JournalEntry de hoje)
+            journalButton
+        }
+        .padding(Theme.Spacing.large)
+    }
+
+    // MARK: - Botão de revisão
+
+    private var journalButton: some View {
+        Button { showJournal = true } label: {
+            if hasTodayJournal {
+                Label("today.journal.done", systemImage: "checkmark")
+                    .font(.body.weight(.medium))
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 14)
+                    .background(Theme.secondaryText.opacity(0.12),
+                                in: RoundedRectangle(cornerRadius: 12))
+                    .foregroundStyle(Theme.primaryText)
+            } else {
                 Text("today.journal.button")
                     .font(.body.weight(.medium))
                     .frame(maxWidth: .infinity)
@@ -117,9 +145,17 @@ struct TodayView: View {
                     .background(Theme.accent, in: RoundedRectangle(cornerRadius: 12))
                     .foregroundStyle(.white)
             }
-            .buttonStyle(.plain)
         }
-        .padding(Theme.Spacing.large)
+        .buttonStyle(.plain)
+    }
+
+    // MARK: - Helpers
+
+    private func contextLabel(_ e: DailyEntry) -> String {
+        guard e.trigger != .geral, !e.inlineText.isEmpty else {
+            return String(localized: "today.context.geral")
+        }
+        return e.inlineText
     }
 
     @ToolbarContentBuilder
