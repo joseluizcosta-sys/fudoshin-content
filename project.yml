@@ -37,6 +37,7 @@ targets:
         BGTaskSchedulerPermittedIdentifiers: [com.atletaestoico.refresh]
         CFBundleURLTypes:
           - CFBundleURLSchemes: [atletaestoico]
+        LSApplicationQueriesSchemes: [x-apple-health]
     entitlements:
       path: Resources/AtletaEstoico.entitlements
       properties:

@@ -8,6 +8,7 @@ struct SettingsView: View {
     @State private var vm: SettingsViewModel?
     @State private var showEditRace = false
     @State private var showEditWeek = false
+    @State private var showSyncGuide = false
 
     var body: some View {
         NavigationStack {
@@ -88,6 +89,16 @@ struct SettingsView: View {
                     }
                 }
             }
+
+            // Dispositivo e sincronização
+            Section {
+                Button { showSyncGuide = true } label: {
+                    Label("settings.connect_watch",
+                          systemImage: "applewatch.radiowaves.left.and.right")
+                }
+                .foregroundStyle(Theme.primaryText)
+            }
+            .sheet(isPresented: $showSyncGuide) { SyncGuideView() }
 
             // Editar prova e semana
             Section {

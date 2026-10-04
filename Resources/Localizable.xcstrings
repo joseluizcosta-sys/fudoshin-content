@@ -2970,6 +2970,512 @@
           }
         }
       }
+    },
+    "settings.connect_watch": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect Watch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar reloj"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar relógio"
+          }
+        }
+      }
+    },
+    "sync_guide.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect Watch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar reloj"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conectar relógio"
+          }
+        }
+      }
+    },
+    "sync_guide.intro": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin reads your workouts and sleep from the Health app. If you use Garmin, Garmin Connect needs to send your data to Health."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin lee tus entrenamientos y sueño desde la app Salud. Si usas Garmin, Garmin Connect necesita enviar los datos a Salud."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Fudōshin lê seus treinos e seu sono pelo app Saúde. Se você usa Garmin, o Garmin Connect precisa enviar os dados para o Saúde."
+          }
+        }
+      }
+    },
+    "sync_guide.step1.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In Garmin Connect"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En Garmin Connect"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Garmin Connect"
+          }
+        }
+      }
+    },
+    "sync_guide.step1.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "More (or your profile) → Settings → Connected Apps → Apple Health → Connect.\n\nAllow: Workouts, Walking + Running Distance, Sleep."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más (o tu perfil) → Configuración → Aplicaciones conectadas → Salud → Conectar.\n\nPermite: Ejercicio, Distancia en carrera y caminata, Sueño."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mais (ou seu perfil) → Configurações → Aplicativos conectados → Apple Saúde → Conectar.\n\nLibere: Exercícios, Distância de caminhada e corrida, Sono."
+          }
+        }
+      }
+    },
+    "sync_guide.step2.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "In the Health App"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En la app Salud"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No app Saúde"
+          }
+        }
+      }
+    },
+    "sync_guide.step2.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap your profile → Apps → Fudōshin → enable Workouts, Distance and Sleep."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca tu perfil → Apps → Fudōshin → activa Ejercicio, Distancia y Sueño."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toque no seu perfil → Apps → Fudōshin → ative Exercícios, Distância e Sono."
+          }
+        }
+      }
+    },
+    "sync_guide.step2.open_health": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Health"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir Salud"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abrir o app Saúde"
+          }
+        }
+      }
+    },
+    "sync_guide.step3.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After Each Workout"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Después de cada entrenamiento"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depois de cada treino"
+          }
+        }
+      }
+    },
+    "sync_guide.step3.body": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Garmin Connect to sync your watch. Without this, the workout won't reach Health and the post-workout message won't appear."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre Garmin Connect para sincronizar tu reloj. Sin esto, el entrenamiento no llega a Salud y el mensaje post-entrenamiento no aparecerá."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o Garmin Connect para o relógio sincronizar. Sem isso, o treino não chega ao Saúde e a mensagem pós-treino não aparece."
+          }
+        }
+      }
+    },
+    "sync_guide.troubleshoot.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If Something Doesn't Appear"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si algo no aparece"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se algo não aparecer"
+          }
+        }
+      }
+    },
+    "sync_guide.troubleshoot.no_workout": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout not showing: sync your watch in Garmin Connect."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamiento no aparece: sincroniza el reloj en Garmin Connect."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Treino não aparece: sincronize o relógio no Garmin Connect."
+          }
+        }
+      }
+    },
+    "sync_guide.troubleshoot.old_data": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Old history not showing: Garmin only sends new data; it normalizes in a few days."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El historial antiguo no aparece: Garmin solo envía datos nuevos; en pocos días se normaliza."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Histórico antigo não aparece: o Garmin envia só dados novos; em poucos dias normaliza."
+          }
+        }
+      }
+    },
+    "sync_guide.troubleshoot.bad_sleep": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strange sleep data: Health → Sleep → Data Sources → put Garmin first."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sueño extraño: Salud → Sueño → Fuentes de datos → pon Garmin primero."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sono estranho: Saúde → Sono → Fontes de dados → Garmin em primeiro."
+          }
+        }
+      }
+    },
+    "sync_guide.troubleshoot.duplicates": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duplicate workouts: choose one primary source in Workouts → Data Sources."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entrenamientos duplicados: elige una fuente principal en Ejercicio → Fuentes de datos."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Treinos duplicados: escolha uma fonte principal em Exercícios → Fontes de dados."
+          }
+        }
+      }
+    },
+    "sync_guide.status.title": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Status"
+          }
+        }
+      }
+    },
+    "sync_guide.status.workouts_ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Workouts found in the last 7 days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Entrenamientos encontrados en los últimos 7 días"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Treinos encontrados nos últimos 7 dias"
+          }
+        }
+      }
+    },
+    "sync_guide.status.workouts_missing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ No workouts in the last 7 days"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Sin entrenamientos en los últimos 7 días"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Nenhum treino nos últimos 7 dias"
+          }
+        }
+      }
+    },
+    "sync_guide.status.sleep_ok": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Last night's sleep found"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Sueño de anoche encontrado"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✓ Sono da última noite encontrado"
+          }
+        }
+      }
+    },
+    "sync_guide.status.sleep_missing": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ No sleep data for last night"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Sin registro de sueño anoche"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "✗ Sem registro de sono da última noite"
+          }
+        }
+      }
+    },
+    "sync_guide.status.check_again": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check Again"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar de nuevo"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verificar de novo"
+          }
+        }
+      }
+    },
+    "sync_hint.message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No recent workouts or sleep found. Connect watch →"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No encontramos entrenamientos ni sueño recientes. Conectar reloj →"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Não encontramos treinos nem sono recentes. Conectar relógio →"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

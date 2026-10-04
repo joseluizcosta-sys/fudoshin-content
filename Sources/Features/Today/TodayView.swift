@@ -26,6 +26,7 @@ struct TodayView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
+                    SyncHintBanner()
                     imageHeader
                     if let e = todayEntry {
                         entryBody(e)

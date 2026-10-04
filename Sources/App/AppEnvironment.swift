@@ -9,13 +9,16 @@ final class AppEnvironment {
     nonisolated(unsafe) static var shared: AppEnvironment?
 
     let planner: DailyPlanner
+    let healthProvider: any HealthDataProviding
 
     init(modelContext: ModelContext) {
         guard let lib = try? ContentLibrary() else {
             fatalError("ContentLibrary: arquivos de conteúdo ausentes no bundle")
         }
 
-        let builder = ContextBuilder(healthProvider: HealthKitService())
+        let healthProv = HealthKitService()
+        self.healthProvider = healthProv
+        let builder = ContextBuilder(healthProvider: healthProv)
 
         let personalizer: ReflectionPersonalizer
         #if canImport(FoundationModels)
