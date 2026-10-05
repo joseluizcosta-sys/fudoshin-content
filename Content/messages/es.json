@@ -154,12 +154,12 @@
       "texto": "Si no te rindes, todavía tienes una oportunidad.",
       "texto_curto": "Si no te rindes, todavía tienes una oportunidad.",
       "texto_inline": "Persiste.",
-      "reflexao": "Rendirse es para siempre. Persiste."
+      "reflexao": "Mientras sigas, la carrera no ha terminado."
     },
-    "fd-caia-levante": {
-      "texto": "Cae. Levántate. Inténtalo de nuevo.",
-      "texto_curto": "Cae. Levántate. Inténtalo de nuevo.",
-      "texto_inline": "Inténtalo de nuevo.",
+    "pj-nanakorobi-yaoki": {
+      "texto": "Cae siete veces, levántate ocho.",
+      "texto_curto": "Cae siete veces, levántate ocho.",
+      "texto_inline": "Levántate ocho.",
       "reflexao": "Solo pierde quien se rinde."
     }
   },

@@ -53,6 +53,11 @@
       "pt-BR": "Fudōshin",
       "en": "Fudōshin",
       "es": "Fudōshin"
+    },
+    "proverbio_japones": {
+      "pt-BR": "Provérbio japonês",
+      "en": "Japanese proverb",
+      "es": "Proverbio japonés"
     }
   },
   "obras": {
@@ -100,6 +105,11 @@
       "pt-BR": "Frases próprias",
       "en": "Original sayings",
       "es": "Frases propias"
+    },
+    "proverbios_japoneses": {
+      "pt-BR": "Provérbios japoneses",
+      "en": "Japanese proverbs",
+      "es": "Proverbios japoneses"
     }
   },
   "gatilhos": [
@@ -441,16 +451,18 @@
       "base_dominio_publico": "Não se aplica: frase própria"
     },
     {
-      "id": "fd-caia-levante",
-      "autor": "fudoshin",
-      "obra": "frases_proprias",
-      "ref": "",
-      "tipo": "propria",
+      "id": "pj-nanakorobi-yaoki",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "七転び八起き",
+      "tipo": "citacao",
       "gatilhos": [
         "geral",
         "retorno"
       ],
-      "base_dominio_publico": "Não se aplica: frase própria"
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "七転び八起き (nanakorobi yaoki)",
+      "verificacao": "pendente — conferir leitura e tradução com leitor de japonês (DIREITOS.md, regra 1b)"
     }
   ],
   "limites_widget": {

@@ -154,12 +154,12 @@
       "texto": "Se você não desiste, ainda tem uma chance.",
       "texto_curto": "Se você não desiste, ainda tem uma chance.",
       "texto_inline": "Persista",
-      "reflexao": "Desistir é para sempre. Persista."
+      "reflexao": "Enquanto você continua, a prova não acabou."
     },
-    "fd-caia-levante": {
-      "texto": "Caia. Levante-se. Tente novamente.",
-      "texto_curto": "Caia. Levante-se. Tente novamente.",
-      "texto_inline": "Tente novamente.",
+    "pj-nanakorobi-yaoki": {
+      "texto": "Caia sete vezes, levante-se oito.",
+      "texto_curto": "Caia sete vezes, levante-se oito.",
+      "texto_inline": "Levante-se oito.",
       "reflexao": "Só perde quem desiste."
     }
   },

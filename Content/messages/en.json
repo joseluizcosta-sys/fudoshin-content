@@ -154,12 +154,12 @@
       "texto": "If you don't quit, you still have a chance.",
       "texto_curto": "If you don't quit, you still have a chance.",
       "texto_inline": "Persist.",
-      "reflexao": "Quitting is forever. Persist."
+      "reflexao": "As long as you keep going, the race isn't over."
     },
-    "fd-caia-levante": {
-      "texto": "Fall. Get up. Try again.",
-      "texto_curto": "Fall. Get up. Try again.",
-      "texto_inline": "Try again.",
+    "pj-nanakorobi-yaoki": {
+      "texto": "Fall seven times, stand up eight.",
+      "texto_curto": "Fall seven times, stand up eight.",
+      "texto_inline": "Stand up eight.",
       "reflexao": "Only those who quit lose."
     }
   },
