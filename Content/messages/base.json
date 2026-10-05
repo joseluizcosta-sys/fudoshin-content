@@ -429,7 +429,19 @@
       "verificacao": "pendente — conferir que a ideia representa fielmente o autor, sem trecho literal"
     },
     {
-      "id": "ur-mente-adapta",
+      "id": "fd-nao-desista",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "geral",
+        "retorno"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-caia-levante",
       "autor": "fudoshin",
       "obra": "frases_proprias",
       "ref": "",

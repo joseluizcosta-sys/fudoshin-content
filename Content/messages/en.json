@@ -150,11 +150,17 @@
       "texto_inline": "Consistency wins",
       "reflexao": "Today's run doesn't need to be epic. It needs to happen, and tomorrow too."
     },
-    "ur-mente-adapta": {
-      "texto": "At first, the body craves comfort and resists. The mind persists, and the body adapts.",
-      "texto_curto": "The body resists at first. The mind persists, and it adapts.",
-      "texto_inline": "The mind persists.",
-      "reflexao": "The discomfort of the beginning passes. The adaptation stays, and it is the mind that carries you there."
+    "fd-nao-desista": {
+      "texto": "If you don't quit, you still have a chance.",
+      "texto_curto": "If you don't quit, you still have a chance.",
+      "texto_inline": "Persist.",
+      "reflexao": "Quitting is forever. Persist."
+    },
+    "fd-caia-levante": {
+      "texto": "Fall. Get up. Try again.",
+      "texto_curto": "Fall. Get up. Try again.",
+      "texto_inline": "Try again.",
+      "reflexao": "Only those who quit lose."
     }
   },
   "perguntas_diario": [

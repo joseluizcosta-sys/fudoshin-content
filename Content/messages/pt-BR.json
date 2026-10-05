@@ -150,11 +150,17 @@
       "texto_inline": "Constância vence",
       "reflexao": "O treino de hoje não precisa ser épico. Precisa existir, e amanhã também."
     },
-    "ur-mente-adapta": {
-      "texto": "No início, o corpo pede conforto e resiste. A mente insiste, e o corpo se adapta.",
-      "texto_curto": "O corpo resiste no início. A mente insiste, e ele se adapta.",
-      "texto_inline": "A mente insiste.",
-      "reflexao": "O desconforto do começo passa. A adaptação fica, e é a mente que leva você até ela."
+    "fd-nao-desista": {
+      "texto": "Se você não desiste, ainda tem uma chance.",
+      "texto_curto": "Se você não desiste, ainda tem uma chance.",
+      "texto_inline": "Persista",
+      "reflexao": "Desistir é para sempre. Persista."
+    },
+    "fd-caia-levante": {
+      "texto": "Caia. Levante-se. Tente novamente.",
+      "texto_curto": "Caia. Levante-se. Tente novamente.",
+      "texto_inline": "Tente novamente.",
+      "reflexao": "Só perde quem desiste."
     }
   },
   "perguntas_diario": [
