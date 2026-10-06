@@ -3,6 +3,9 @@ import Foundation
 /// Função pura: recebe TrainingContext e o instante atual, nunca chama Date() internamente.
 enum TriggerEngine {
 
+    /// Dias sem treino a partir dos quais o gatilho "retorno" é elegível.
+    static let returnThresholdDays = 7
+
     static func trigger(
         for c: TrainingContext,
         now: Date,
@@ -40,8 +43,18 @@ enum TriggerEngine {
         // 5. descanso — hoje é dia de descanso
         if c.todaySession == .descanso { return .descanso }
 
-        // 6. retorno — 5 ou mais dias sem treino
-        if let days = c.daysSinceLastWorkout, days >= 5 { return .retorno }
+        // 6. retorno — returnThresholdDays ou mais dias sem treino
+        //    Com dado externo recente (≤ 48h): pausa real → .retorno.
+        //    Com dado externo antigo (> 48h): sincronização suspeita → não .retorno, cai para geral.
+        //    Sem dado externo nenhum (sem relógio nos últimos 30 dias): .retorno.
+        if let days = c.daysSinceLastWorkout, days >= returnThresholdDays {
+            if let extDate = c.lastExternalDataDate {
+                if now.timeIntervalSince(extDate) <= 48 * 3600 { return .retorno }
+                // else: syncSuspect — segue para geral
+            } else {
+                return .retorno
+            }
+        }
 
         // 7. geral — nenhuma condição anterior
         return .geral

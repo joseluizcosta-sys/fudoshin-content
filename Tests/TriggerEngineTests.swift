@@ -24,9 +24,11 @@ final class TriggerEngineTests: XCTestCase {
         lastPostWorkoutDelivered: Date? = nil,
         lastNightSleepHours: Double? = nil,
         sleepGoalHours: Double = 7,
-        daysSinceLastWorkout: Int? = nil
+        daysSinceLastWorkout: Int? = nil,
+        lastExternalDataDate: Date? = nil
     ) -> TrainingContext {
         TrainingContext(
+            now: ref,
             raceDate: raceDate,
             tomorrowSession: tomorrowSession,
             todaySession: todaySession,
@@ -34,7 +36,8 @@ final class TriggerEngineTests: XCTestCase {
             lastPostWorkoutDelivered: lastPostWorkoutDelivered,
             lastNightSleepHours: lastNightSleepHours,
             sleepGoalHours: sleepGoalHours,
-            daysSinceLastWorkout: daysSinceLastWorkout
+            daysSinceLastWorkout: daysSinceLastWorkout,
+            lastExternalDataDate: lastExternalDataDate
         )
     }
 
@@ -118,11 +121,34 @@ final class TriggerEngineTests: XCTestCase {
 
     // MARK: - Regra 6: retorno
 
-    func testRetorno_5Days() {
-        XCTAssertEqual(TriggerEngine.trigger(for: ctx(daysSinceLastWorkout: 5), now: ref), .retorno)
+    // (a) 6 dias sem treino → não é retorno (abaixo do threshold de 7)
+    func testRetorno_DoesNotFire_6Days() {
+        XCTAssertNotEqual(TriggerEngine.trigger(for: ctx(daysSinceLastWorkout: 6), now: ref), .retorno)
     }
     func testRetorno_DoesNotFire_4Days() {
         XCTAssertNotEqual(TriggerEngine.trigger(for: ctx(daysSinceLastWorkout: 4), now: ref), .retorno)
+    }
+
+    // (b) 7 dias + dado externo há 10h → .retorno (pausa real: relógio sincronizando)
+    func testRetorno_7Days_RecentExternalData() {
+        let extDate = ref.addingTimeInterval(-10 * 3600)  // 10h atrás
+        XCTAssertEqual(
+            TriggerEngine.trigger(for: ctx(daysSinceLastWorkout: 7, lastExternalDataDate: extDate), now: ref),
+            .retorno
+        )
+    }
+
+    // (c) 7 dias + último dado externo há 3 dias → não .retorno (syncSuspect)
+    func testRetorno_DoesNotFire_SyncSuspect() {
+        let extDate = ref.addingTimeInterval(-3 * 24 * 3600)  // 72h atrás
+        let context = ctx(daysSinceLastWorkout: 7, lastExternalDataDate: extDate)
+        XCTAssertNotEqual(TriggerEngine.trigger(for: context, now: ref), .retorno)
+        XCTAssertTrue(context.syncSuspect, "Context deve expor syncSuspect == true")
+    }
+
+    // (d) 7 dias + sem dado externo → .retorno (sem relógio nos últimos 30 dias)
+    func testRetorno_7Days_NoExternalData() {
+        XCTAssertEqual(TriggerEngine.trigger(for: ctx(daysSinceLastWorkout: 7), now: ref), .retorno)
     }
 
     // MARK: - Regra 7: geral

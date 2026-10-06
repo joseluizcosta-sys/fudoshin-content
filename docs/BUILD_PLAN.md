@@ -225,7 +225,8 @@ Avaliar em ordem; o primeiro que bater vence.
 3. **sono_ruim** — `lastNightSleepHours` existe e é `< sleepGoalHours - 1` (padrão: < 6h) **e** agora é antes das 12h.
 4. **vespera_chave** — amanhã é `.longo` ou `.forte`.
 5. **descanso** — hoje é `.descanso`.
-6. **retorno** — `daysSinceLastWorkout >= 5`.
+6. **retorno** — `daysSinceLastWorkout >= 7` (constante `TriggerEngine.returnThresholdDays`).
+   Com `lastExternalDataDate` ≤ 48h: pausa real → `.retorno`. Com `lastExternalDataDate` > 48h: sincronização suspeita (`syncSuspect`) → **não** `.retorno`, cai para geral. Sem `lastExternalDataDate` (sem relógio nos últimos 30 dias): `.retorno`.
 7. **geral** — caso contrário.
 
 Gatilhos **planejáveis** (entram no plano de 7 dias): marco_prova, vespera_chave, descanso, geral.

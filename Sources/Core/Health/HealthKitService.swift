@@ -12,6 +12,7 @@ final class HealthKitService: HealthDataProviding {
         let types: Set<HKObjectType> = [
             HKObjectType.workoutType(),
             HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!,
+            HKQuantityType(.stepCount),
         ]
         try await store.requestAuthorization(toShare: [], read: types)
     }
@@ -95,6 +96,31 @@ final class HealthKitService: HealthDataProviding {
             .map { DateInterval(start: $0.startDate, end: $0.endDate) }
 
         return SleepCalculator.totalHours(from: intervals)
+    }
+
+    // MARK: - External data signal
+
+    func lastExternalDataDate(within days: Int) async throws -> Date? {
+        guard HKHealthStore.isHealthDataAvailable() else { return nil }
+        let start = Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date()
+        let timePred = HKQuery.predicateForSamples(withStart: start, end: nil, options: .strictStartDate)
+        let stepType = HKQuantityType(.stepCount)
+
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [HKSamplePredicate<HKQuantitySample>.quantitySample(
+                type: stepType, predicate: timePred
+            )],
+            sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
+            limit: 50
+        )
+        let samples = try await descriptor.result(for: store)
+
+        let external = samples.first { sample in
+            let bundleID = sample.sourceRevision.source.bundleIdentifier
+            let product  = sample.sourceRevision.productType ?? ""
+            return !bundleID.hasPrefix("com.apple.health") || product.hasPrefix("Watch")
+        }
+        return external?.endDate
     }
 
     // MARK: - Observer

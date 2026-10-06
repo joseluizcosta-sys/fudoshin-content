@@ -5,13 +5,16 @@ import Foundation
 final class MockHealthProvider: HealthDataProviding {
     var workoutsToReturn: [WorkoutSummary] = []
     var sleepHoursToReturn: Double? = nil
+    var lastExternalDataDateToReturn: Date? = nil
     var authorizationError: Error? = nil
     var workoutsError: Error? = nil
     var sleepError: Error? = nil
+    var externalDataError: Error? = nil
     private(set) var onChangeCallback: (() async -> Void)?
     private(set) var authCallCount = 0
     private(set) var workoutCallCount = 0
     private(set) var sleepCallCount = 0
+    private(set) var externalDataCallCount = 0
 
     func requestAuthorization() async throws {
         authCallCount += 1
@@ -28,6 +31,12 @@ final class MockHealthProvider: HealthDataProviding {
         sleepCallCount += 1
         if let error = sleepError { throw error }
         return sleepHoursToReturn
+    }
+
+    func lastExternalDataDate(within days: Int) async throws -> Date? {
+        externalDataCallCount += 1
+        if let error = externalDataError { throw error }
+        return lastExternalDataDateToReturn
     }
 
     func startObserving(onChange: @escaping () async -> Void) {

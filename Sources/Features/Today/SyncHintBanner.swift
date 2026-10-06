@@ -7,13 +7,13 @@ struct SyncHintBanner: View {
     @State private var isDismissed = false
     @State private var showGuide = false
 
-    private var shouldShow: Bool {
-        !isDismissed && policy?.shouldShow == true
+    private var shouldShowAny: Bool {
+        !isDismissed && (policy?.shouldShow == true || policy?.shouldShowSyncSuspect == true)
     }
 
     var body: some View {
         Group {
-            if shouldShow {
+            if shouldShowAny {
                 banner
                     .sheet(isPresented: $showGuide) { SyncGuideView() }
             }
@@ -30,7 +30,7 @@ struct SyncHintBanner: View {
     private var banner: some View {
         HStack(spacing: Theme.Spacing.small) {
             Button { showGuide = true } label: {
-                Text("sync_hint.message")
+                bannerMessage
                     .font(.footnote)
                     .foregroundStyle(Theme.primaryText)
                     .multilineTextAlignment(.leading)
@@ -52,12 +52,23 @@ struct SyncHintBanner: View {
         .background(Theme.accent.opacity(0.08))
     }
 
+    @ViewBuilder
+    private var bannerMessage: some View {
+        if policy?.shouldShowSyncSuspect == true,
+           let days = policy?.daysSinceExternalData {
+            Text(String(format: String(localized: "sync_hint.suspect_message"), Int64(days)))
+        } else {
+            Text("sync_hint.message")
+        }
+    }
+
     private func loadPolicy() async {
         guard let provider = AppEnvironment.shared?.healthProvider else { return }
         let dismissedAt = UserDefaults.standard.object(forKey: dismissedAtKey) as? Date
 
         let workoutsResult: Result<[WorkoutSummary], Error>
         let sleepResult: Result<Double?, Error>
+        let externalDataResult: Result<Date?, Error>
 
         do {
             let w = try await provider.recentWorkouts(days: 7)
@@ -73,9 +84,17 @@ struct SyncHintBanner: View {
             sleepResult = .failure(error)
         }
 
+        do {
+            let e = try await provider.lastExternalDataDate(within: 30)
+            externalDataResult = .success(e)
+        } catch {
+            externalDataResult = .failure(error)
+        }
+
         policy = SyncHintPolicy(
             workoutsResult: workoutsResult,
             sleepResult: sleepResult,
+            externalDataResult: externalDataResult,
             dismissedAt: dismissedAt,
             now: Date()
         )

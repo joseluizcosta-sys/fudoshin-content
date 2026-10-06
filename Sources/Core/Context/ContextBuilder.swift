@@ -20,13 +20,16 @@ final class ContextBuilder {
     ) async -> TrainingContext {
         let cal = calendar
 
-        // Treinos dos últimos 30 dias para cobrir retorno de até 5 semanas.
+        // Treinos dos últimos 30 dias para cobrir retorno de até 4 semanas.
         // Erros do provedor = sem dados (nil), nunca propagados.
         let workouts = (try? await healthProvider.recentWorkouts(days: 30)) ?? []
         let lastWorkout = workouts.first
 
         // Sono — erro = nil (sem dados)
         let sleepHours = try? await healthProvider.lastNightSleepHours(reference: now)
+
+        // Dado externo (relógio/Garmin) — erro = nil (sem dados)
+        let externalDataDate = try? await healthProvider.lastExternalDataDate(within: 30)
 
         // Dias desde o último treino (dias de calendário entre o fim do último treino e hoje)
         let daysSince: Int? = lastWorkout.map { w in
@@ -52,6 +55,7 @@ final class ContextBuilder {
 
         return TrainingContext(
             today:                    cal.startOfDay(for: now),
+            now:                      now,
             raceDate:                 race?.date,
             raceCreatedAt:            race?.createdAt,
             raceCategory:             race?.category,
@@ -61,7 +65,8 @@ final class ContextBuilder {
             lastPostWorkoutDelivered: lastPostWorkoutDelivered,
             lastNightSleepHours:      sleepHours,
             sleepGoalHours:           profile?.sleepGoalHours ?? 7,
-            daysSinceLastWorkout:     daysSince
+            daysSinceLastWorkout:     daysSince,
+            lastExternalDataDate:     externalDataDate
         )
     }
 }

@@ -3549,6 +3549,52 @@
           }
         }
       }
+    },
+    "sync_hint.suspect_message": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your watch hasn't synced for %lld days. Connect watch →"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus entrenamientos no llegan del reloj hace %lld días. Conectar reloj →"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seus treinos não chegam do relógio há %lld dias. Conectar relógio →"
+          }
+        }
+      }
+    },
+    "sync_guide.status.last_watch_data": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last watch data: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último dato del reloj: %@"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Último dado do relógio: %@"
+          }
+        }
+      }
     }
   },
   "version": "1.1"

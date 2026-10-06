@@ -5,8 +5,9 @@ struct SyncGuideView: View {
 
     private let healthProvider: (any HealthDataProviding)?
 
-    @State private var workoutsOK: Bool? = nil
-    @State private var sleepOK: Bool?    = nil
+    @State private var workoutsOK: Bool?      = nil
+    @State private var sleepOK: Bool?         = nil
+    @State private var lastWatchDate: Date?   = nil
     @State private var isChecking = false
 
     init(healthProvider: (any HealthDataProviding)? = nil) {
@@ -143,6 +144,12 @@ struct SyncGuideView: View {
                           missingKey: "sync_guide.status.workouts_missing")
                 statusRow(ok: sleepOK, okKey: "sync_guide.status.sleep_ok",
                           missingKey: "sync_guide.status.sleep_missing")
+                if let date = lastWatchDate {
+                    let rel = RelativeDateTimeFormatter().localizedString(for: date, relativeTo: Date())
+                    Text(String(format: String(localized: "sync_guide.status.last_watch_data"), rel))
+                        .font(.callout)
+                        .foregroundStyle(Theme.secondaryText)
+                }
             }
 
             Button {
@@ -177,6 +184,7 @@ struct SyncGuideView: View {
         isChecking = true
         workoutsOK = nil
         sleepOK = nil
+        lastWatchDate = nil
         do {
             let workouts = try await provider.recentWorkouts(days: 7)
             workoutsOK = !workouts.isEmpty
@@ -189,6 +197,7 @@ struct SyncGuideView: View {
         } catch {
             sleepOK = false
         }
+        lastWatchDate = try? await provider.lastExternalDataDate(within: 30)
         isChecking = false
     }
 }
