@@ -191,6 +191,426 @@
       "texto_curto": "Não negocie. Execute.",
       "texto_inline": "Levante e faça.",
       "reflexao": "As manhãs trazem as primeiras decisões do dia. Não negocie com a preguiça."
+    },
+    "ma-4-3": {
+      "texto": "O universo é mudança; a vida é opinião.",
+      "texto_curto": "O universo é mudança; a vida é opinião.",
+      "texto_inline": "A vida é opinião",
+      "reflexao": "O treino ruim já mudou. O que fica é o que você pensa dele."
+    },
+    "ma-5-16": {
+      "texto": "A alma ganha a cor dos seus pensamentos.",
+      "texto_curto": "A alma ganha a cor dos seus pensamentos.",
+      "texto_inline": "Cuide dos pensamentos",
+      "reflexao": "No dia de descanso, escolha bem o que alimenta sua cabeça. A mente também se recupera."
+    },
+    "ma-7-69": {
+      "texto": "A perfeição do caráter é viver cada dia como se fosse o último, sem agitação, sem preguiça, sem fingimento.",
+      "texto_curto": "Viva cada dia sem agitação, sem preguiça, sem fingimento.",
+      "texto_inline": "Sem agitação",
+      "reflexao": "Treine hoje como se fosse o único treino que importa. Sem pressa e sem atalhos."
+    },
+    "ma-8-36": {
+      "texto": "Não se perturbe pensando na vida inteira. Pergunte apenas: o que há de insuportável neste momento?",
+      "texto_curto": "Não pense na vida inteira. O que há de insuportável agora?",
+      "texto_inline": "Só este momento",
+      "reflexao": "Não pense nos 100 km que faltam. Pense neste quilômetro. Ele você aguenta."
+    },
+    "ma-10-16": {
+      "texto": "Chega de discutir como deve ser uma pessoa boa. Seja uma.",
+      "texto_curto": "Chega de discutir como deve ser uma pessoa boa. Seja uma.",
+      "texto_inline": "Seja, não discuta",
+      "reflexao": "Pare de planejar o treino perfeito. Vá e faça o treino possível."
+    },
+    "ma-7-8": {
+      "texto": "Não deixe o futuro te perturbar. Você o enfrentará, se precisar, com a mesma razão que usa hoje.",
+      "texto_curto": "Não deixe o futuro te perturbar. Você o enfrentará quando chegar.",
+      "texto_inline": "O futuro espera",
+      "reflexao": "A ansiedade da véspera é imaginação. Amanhã você terá as mesmas armas de hoje."
+    },
+    "ma-4-24": {
+      "texto": "Se quer tranquilidade, faça pouco. Faça apenas o essencial.",
+      "texto_curto": "Se quer tranquilidade, faça pouco. Faça apenas o essencial.",
+      "texto_inline": "Só o essencial",
+      "reflexao": "Descansar também é treino. Hoje, o essencial é deixar o corpo se reconstruir."
+    },
+    "ma-8-32": {
+      "texto": "Construa sua vida ação por ação.",
+      "texto_curto": "Construa sua vida ação por ação.",
+      "texto_inline": "Ação por ação",
+      "reflexao": "Um treino não faz um atleta. Cem treinos feitos, sim. Hoje foi mais um."
+    },
+    "ma-3-10": {
+      "texto": "Cada um vive apenas o presente; o resto já foi vivido ou é incerto.",
+      "texto_curto": "Cada um vive apenas o presente; o resto já foi vivido ou é incerto.",
+      "texto_inline": "Só o presente",
+      "reflexao": "O km 80 ainda não existe. O km de agora, sim. Corra este."
+    },
+    "ma-6-2": {
+      "texto": "Que não faça diferença se você sente frio ou calor, desde que esteja fazendo o seu dever.",
+      "texto_curto": "Frio ou calor, não importa: faça o seu dever.",
+      "texto_inline": "Faça o seu dever",
+      "reflexao": "Chuva, calor ou vento não estão no seu controle. O treino de hoje está."
+    },
+    "ma-5-20": {
+      "texto": "O que impede a ação faz a ação avançar. O que está no caminho vira o caminho.",
+      "texto_curto": "O que está no caminho vira o caminho.",
+      "texto_inline": "O obstáculo vira caminho",
+      "reflexao": "A lesão, a semana perdida, o treino ruim: tudo isso vira parte da preparação."
+    },
+    "ma-4-17": {
+      "texto": "Não viva como se tivesse dez mil anos pela frente. Enquanto vive, enquanto pode, seja bom.",
+      "texto_curto": "Não viva como se tivesse dez mil anos pela frente.",
+      "texto_inline": "Não adie",
+      "reflexao": "O treino adiado para amanhã costuma virar o treino que não aconteceu."
+    },
+    "sen-ep1-1": {
+      "texto": "Reivindique a si mesmo e guarde o tempo que até agora lhe era tirado ou escapava.",
+      "texto_curto": "Tome posse do seu tempo.",
+      "texto_inline": "Seu tempo é seu",
+      "reflexao": "Ninguém vai te dar uma hora livre para treinar. Você a toma."
+    },
+    "sen-ep2-2": {
+      "texto": "Quem está em toda parte não está em lugar nenhum.",
+      "texto_curto": "Quem está em toda parte não está em lugar nenhum.",
+      "texto_inline": "Foque em uma coisa",
+      "reflexao": "Um objetivo por vez. Hoje, o treino de hoje."
+    },
+    "sen-ep71-3": {
+      "texto": "Para quem não sabe a que porto se dirige, nenhum vento é favorável.",
+      "texto_curto": "Para quem não sabe a que porto se dirige, nenhum vento é favorável.",
+      "texto_inline": "Saiba seu destino",
+      "reflexao": "Sem prova no calendário, todo treino parece opcional. Defina o seu porto."
+    },
+    "sen-ep78-13": {
+      "texto": "A dor é leve se a opinião não lhe acrescenta nada.",
+      "texto_curto": "A dor é leve se a opinião não lhe acrescenta nada.",
+      "texto_inline": "Não aumente a dor",
+      "reflexao": "A perna dói. A história que você conta sobre a dor é que pode dobrá-la."
+    },
+    "sen-ep96-5": {
+      "texto": "Viver, Lucílio, é combater.",
+      "texto_curto": "Viver, Lucílio, é combater.",
+      "texto_inline": "Viver é combater",
+      "reflexao": "Não espere a prova ficar fácil. Fique forte o suficiente para ela."
+    },
+    "sen-ep28-2": {
+      "texto": "Você precisa mudar de alma, não de clima.",
+      "texto_curto": "Você precisa mudar de alma, não de clima.",
+      "texto_inline": "Mude por dentro",
+      "reflexao": "Tênis novo, relógio novo, plano novo. Nada disso adianta sem mudar a cabeça."
+    },
+    "sen-prov-5-10": {
+      "texto": "O fogo prova o ouro; a dificuldade, os fortes.",
+      "texto_curto": "O fogo prova o ouro; a dificuldade, os fortes.",
+      "texto_inline": "Provado no fogo",
+      "reflexao": "O treino duro de hoje não é castigo. É o teste que mostra do que você é feito."
+    },
+    "sen-brev-1-3": {
+      "texto": "Não é que tenhamos pouco tempo, é que desperdiçamos muito.",
+      "texto_curto": "Não é que tenhamos pouco tempo, é que desperdiçamos muito.",
+      "texto_inline": "Não desperdice",
+      "reflexao": "Descansar não é desperdiçar. Rolar a tela por duas horas, sim."
+    },
+    "ep-ench-8": {
+      "texto": "Não peça que as coisas aconteçam como você quer. Queira que aconteçam como acontecem, e você viverá em paz.",
+      "texto_curto": "Não peça que tudo saia como quer. Aceite como sai.",
+      "texto_inline": "Aceite e siga",
+      "reflexao": "Choveu na prova? Aceite a chuva. Brigar com ela só gasta energia."
+    },
+    "ep-ench-29": {
+      "texto": "Quer vencer nas Olimpíadas? Considere o que vem antes e o que vem depois: disciplina, dieta, treino na hora certa, no calor e no frio.",
+      "texto_curto": "Quer vencer? Aceite o que vem antes: disciplina e treino.",
+      "texto_inline": "Aceite o processo",
+      "reflexao": "Todo mundo quer a medalha. Poucos querem as madrugadas que vêm antes dela."
+    },
+    "ep-ench-51": {
+      "texto": "Até quando vai adiar exigir de si o melhor? Agora é a disputa; os jogos já começaram.",
+      "texto_curto": "Até quando vai adiar? Os jogos já começaram.",
+      "texto_inline": "Agora é a disputa",
+      "reflexao": "Não existe segunda-feira ideal para recomeçar. Existe hoje."
+    },
+    "ep-disc-1-24": {
+      "texto": "São as dificuldades que mostram quem somos.",
+      "texto_curto": "São as dificuldades que mostram quem somos.",
+      "texto_inline": "A dificuldade revela",
+      "reflexao": "A subida mais dura da prova não te define. Revela o que você já construiu."
+    },
+    "ep-disc-2-18": {
+      "texto": "Todo hábito se fortalece com as ações correspondentes: o de andar, andando; o de correr, correndo.",
+      "texto_curto": "O hábito de correr se fortalece correndo.",
+      "texto_inline": "Correr, correndo",
+      "reflexao": "Não precisa ser um grande treino. Precisa ser mais um. O hábito é o treino."
+    },
+    "mm-gorin-chi-tanren": {
+      "texto": "Treine o caminho.",
+      "texto_curto": "Treine o caminho.",
+      "texto_inline": "Treine o caminho",
+      "reflexao": "Não existe atalho. Existe o caminho, treinado todos os dias."
+    },
+    "mm-gorin-chi-pequeno": {
+      "texto": "Preste atenção até nas pequenas coisas.",
+      "texto_curto": "Preste atenção até nas pequenas coisas.",
+      "texto_inline": "Cuide do pequeno",
+      "reflexao": "Cadarço, meia, gel, sono. Prova longa se perde nos detalhes."
+    },
+    "mm-gorin-chi-invisivel": {
+      "texto": "Perceba e compreenda o que os olhos não veem.",
+      "texto_curto": "Perceba e compreenda o que os olhos não veem.",
+      "texto_inline": "Veja o invisível",
+      "reflexao": "Ninguém vê a recuperação acontecendo. Mas é no descanso que o corpo fica mais forte."
+    },
+    "mm-dokkodo-deuses": {
+      "texto": "Respeite os deuses e os budas, mas não conte com a ajuda deles.",
+      "texto_curto": "Respeite os deuses e os budas, mas não conte com a ajuda deles.",
+      "texto_inline": "Não conte com sorte",
+      "reflexao": "Na largada, a sorte não corre por você. O treino que você fez, sim."
+    },
+    "pj-keizoku": {
+      "texto": "Continuar é força.",
+      "texto_curto": "Continuar é força.",
+      "texto_inline": "Continuar é força",
+      "reflexao": "Ninguém lembra do treino de hoje daqui a um ano. Mas todos verão o resultado de um ano de treinos."
+    },
+    "pj-ishi-sannen": {
+      "texto": "Até sobre uma pedra, três anos.",
+      "texto_curto": "Até uma pedra fria esquenta em três anos.",
+      "texto_inline": "Paciência",
+      "reflexao": "Resultado na corrida leva tempo. Sente na pedra até ela esquentar."
+    },
+    "pj-chiri-yama": {
+      "texto": "Até a poeira, acumulada, vira montanha.",
+      "texto_curto": "Até a poeira, acumulada, vira montanha.",
+      "texto_inline": "Poeira vira montanha",
+      "reflexao": "Cinco quilômetros hoje parecem pouco. Somados por um ano, viram uma montanha."
+    },
+    "pj-isogaba": {
+      "texto": "Se está com pressa, dê a volta.",
+      "texto_curto": "Com pressa? Vá pelo caminho mais seguro.",
+      "texto_inline": "Sem pressa",
+      "reflexao": "Voltando de lesão, aumentar rápido demais é o caminho mais longo. Vá devagar."
+    },
+    "pj-ame-futte": {
+      "texto": "Depois da chuva, a terra firma.",
+      "texto_curto": "Depois da chuva, a terra firma.",
+      "texto_inline": "A terra firma",
+      "reflexao": "O treino que deu errado também fortalece. Depois dele, você pisa mais firme."
+    },
+    "pj-senri": {
+      "texto": "Até um caminho de mil léguas começa com um passo.",
+      "texto_curto": "Até um caminho de mil léguas começa com um passo.",
+      "texto_inline": "Um passo",
+      "reflexao": "A ultra não começa na largada. Começou no primeiro treino. Dê o de hoje."
+    },
+    "pj-shoshin": {
+      "texto": "Não esqueça o espírito do iniciante.",
+      "texto_curto": "Não esqueça o espírito do iniciante.",
+      "texto_inline": "Mente de iniciante",
+      "reflexao": "Lembra da alegria da sua primeira corrida? Ela ainda está aí, debaixo do relógio e das metas."
+    },
+    "pj-anzuru": {
+      "texto": "Fazer é mais fácil do que se preocupar.",
+      "texto_curto": "Fazer é mais fácil do que se preocupar.",
+      "texto_inline": "Faça, não pense",
+      "reflexao": "O treino de amanhã assusta mais na sua cabeça do que vai assustar na estrada."
+    },
+    "lz-33": {
+      "texto": "Quem vence os outros é forte; quem vence a si mesmo é poderoso.",
+      "texto_curto": "Quem vence os outros é forte; quem vence a si mesmo é poderoso.",
+      "texto_inline": "Vença a si mesmo",
+      "reflexao": "Sua prova é contra o relógio e o terreno. A batalha de verdade é contra a vontade de parar."
+    },
+    "lz-76": {
+      "texto": "O rígido e o duro acompanham a morte; o macio e o flexível acompanham a vida.",
+      "texto_curto": "O rígido se quebra; o flexível vive.",
+      "texto_inline": "Seja flexível",
+      "reflexao": "Alongar, soltar, descansar. O corpo rígido demais é o que se machuca."
+    },
+    "hr-b91": {
+      "texto": "Ninguém entra duas vezes no mesmo rio.",
+      "texto_curto": "Ninguém entra duas vezes no mesmo rio.",
+      "texto_inline": "Tudo flui",
+      "reflexao": "O corpo de hoje não é o de ontem. Respeite o que ele pede agora."
+    },
+    "fd-descanso-treino": {
+      "texto": "Descanso não é pausa no treino. É parte dele.",
+      "texto_curto": "Descanso não é pausa no treino. É parte dele.",
+      "texto_inline": "Descanso é treino",
+      "reflexao": "O músculo não cresce na corrida. Cresce quando você deixa ele se recuperar."
+    },
+    "fd-descanso-culpa": {
+      "texto": "Descansar sem culpa também exige disciplina.",
+      "texto_curto": "Descansar sem culpa também exige disciplina.",
+      "texto_inline": "Descanse sem culpa",
+      "reflexao": "Ficar parado no dia certo é tão difícil quanto correr no dia difícil."
+    },
+    "fd-sono-ajuste": {
+      "texto": "Dormiu mal? Ajuste o plano, não abandone o plano.",
+      "texto_curto": "Dormiu mal? Ajuste o plano, não abandone o plano.",
+      "texto_inline": "Ajuste, não abandone",
+      "reflexao": "Hoje vale mais um treino leve feito do que um treino forte forçado."
+    },
+    "fd-sono-escuta": {
+      "texto": "Ouvir o corpo também é ser forte.",
+      "texto_curto": "Ouvir o corpo também é ser forte.",
+      "texto_inline": "Ouça o corpo",
+      "reflexao": "Cansaço acumulado não se vence com teimosia. Se vence com sono."
+    },
+    "fd-sono-calma": {
+      "texto": "Uma noite ruim não apaga semanas de treino.",
+      "texto_curto": "Uma noite ruim não apaga semanas de treino.",
+      "texto_inline": "Uma noite não apaga",
+      "reflexao": "Na véspera da prova quase ninguém dorme bem. O que te sustenta é o sono das semanas anteriores."
+    },
+    "fd-sono-leve": {
+      "texto": "Hoje, faça menos e faça bem.",
+      "texto_curto": "Hoje, faça menos e faça bem.",
+      "texto_inline": "Menos, e bem",
+      "reflexao": "Treino leve com cabeça boa vale mais do que treino pesado com corpo vazio."
+    },
+    "fd-pos-feito": {
+      "texto": "Feito. Ninguém pode tirar de você o treino de hoje.",
+      "texto_curto": "Feito. Ninguém pode tirar de você o treino de hoje.",
+      "texto_inline": "Feito.",
+      "reflexao": "Guarde esse treino. No dia difícil da prova, ele vai estar lá."
+    },
+    "fd-pos-gratidao": {
+      "texto": "Agradeça às pernas que te trouxeram até aqui.",
+      "texto_curto": "Agradeça às pernas que te trouxeram até aqui.",
+      "texto_inline": "Agradeça às pernas",
+      "reflexao": "Hidrate, coma, alongue. Cuidar do corpo depois é respeitar o que ele acabou de fazer."
+    },
+    "fd-pos-ruim": {
+      "texto": "Treino ruim também conta. Você apareceu.",
+      "texto_curto": "Treino ruim também conta. Você apareceu.",
+      "texto_inline": "Você apareceu",
+      "reflexao": "Nem todo treino é bom. Todo treino feito é um tijolo a mais."
+    },
+    "fd-pos-silencio": {
+      "texto": "O progresso é silencioso. Continue.",
+      "texto_curto": "O progresso é silencioso. Continue.",
+      "texto_inline": "Progresso silencioso",
+      "reflexao": "Você não vê a evolução em um dia. Vai ver olhando para trás em seis meses."
+    },
+    "fd-retorno-recomeco": {
+      "texto": "Recomeçar não é voltar ao zero. É voltar com experiência.",
+      "texto_curto": "Recomeçar não é voltar ao zero. É voltar com experiência.",
+      "texto_inline": "Recomece",
+      "reflexao": "O condicionamento caiu, mas o que você aprendeu ficou. Comece leve."
+    },
+    "fd-retorno-volte": {
+      "texto": "Não precisa voltar onde parou. Precisa só voltar.",
+      "texto_curto": "Não precisa voltar onde parou. Precisa só voltar.",
+      "texto_inline": "Só volte",
+      "reflexao": "Dez minutos hoje valem mais do que o treino perfeito que você vive adiando."
+    },
+    "fd-retorno-paciencia": {
+      "texto": "Volte com paciência. O corpo lembra, mas precisa de tempo.",
+      "texto_curto": "Volte com paciência. O corpo lembra, mas precisa de tempo.",
+      "texto_inline": "Volte com calma",
+      "reflexao": "Aumente o volume aos poucos. A pressa de recuperar o tempo perdido é o que mais machuca."
+    },
+    "fd-retorno-lesao": {
+      "texto": "Lesão não é fracasso. É informação.",
+      "texto_curto": "Lesão não é fracasso. É informação.",
+      "texto_inline": "Lesão é informação",
+      "reflexao": "Entenda o que causou, ajuste e volte mais inteligente."
+    },
+    "fd-prova-confie": {
+      "texto": "O treino está feito. Agora, confie.",
+      "texto_curto": "O treino está feito. Agora, confie.",
+      "texto_inline": "Confie no treino",
+      "reflexao": "Nos últimos dias, não dá para ganhar condicionamento. Dá para chegar descansado e calmo."
+    },
+    "fd-prova-ritmo": {
+      "texto": "Largue com calma. A prova começa no meio.",
+      "texto_curto": "Largue com calma. A prova começa no meio.",
+      "texto_inline": "Largue com calma",
+      "reflexao": "Quem sai rápido demais paga a conta no final. Guarde energia para quando importar."
+    },
+    "fd-prova-dor": {
+      "texto": "A dor vai chegar. Você já sabia, e veio mesmo assim.",
+      "texto_curto": "A dor vai chegar. Você já sabia, e veio mesmo assim.",
+      "texto_inline": "Você veio mesmo assim",
+      "reflexao": "Não se assuste quando doer. Isso estava no plano desde o começo."
+    },
+    "fd-prova-posto": {
+      "texto": "Na prova longa, só existe o próximo posto.",
+      "texto_curto": "Na prova longa, só existe o próximo posto.",
+      "texto_inline": "Até o próximo posto",
+      "reflexao": "Divida a distância. Ninguém corre 100 km. Corre de um posto ao outro, várias vezes."
+    },
+    "fd-vespera-simples": {
+      "texto": "Na véspera, nada de novo. Faça o simples.",
+      "texto_curto": "Na véspera, nada de novo. Faça o simples.",
+      "texto_inline": "Nada de novo",
+      "reflexao": "Mesmo jantar, mesma roupa testada, mesma rotina. O dia de inventar já passou."
+    },
+    "fd-vespera-tensao": {
+      "texto": "Ansiedade antes do treino forte é sinal de que importa.",
+      "texto_curto": "Ansiedade antes do treino forte é sinal de que importa.",
+      "texto_inline": "Importa, e você sabe",
+      "reflexao": "Use a tensão a seu favor. Ela é energia esperando direção."
+    },
+    "fd-pouco-sempre": {
+      "texto": "Correr um pouco sempre vale mais que correr muito às vezes.",
+      "texto_curto": "Correr um pouco sempre vale mais que correr muito às vezes.",
+      "texto_inline": "Pouco, mas sempre",
+      "reflexao": "A semana com quatro treinos médios constrói mais do que a semana com um treino épico."
+    },
+    "fd-respire": {
+      "texto": "Quando tudo apertar, volte para a respiração.",
+      "texto_curto": "Quando tudo apertar, volte para a respiração.",
+      "texto_inline": "Respire",
+      "reflexao": "Respiração calma, ombros soltos, passada curta. Comece pelo que você controla."
+    },
+    "fd-ego": {
+      "texto": "Deixe o ego em casa. Corra o treino que o plano pede.",
+      "texto_curto": "Deixe o ego em casa. Corra o treino que o plano pede.",
+      "texto_inline": "Ego em casa",
+      "reflexao": "Treino leve é para ser leve. Quem acelera no dia fácil chega cansado no dia que importa."
+    },
+    "fd-comparacao": {
+      "texto": "Compare-se apenas com quem você era ontem.",
+      "texto_curto": "Compare-se apenas com quem você era ontem.",
+      "texto_inline": "Só com você mesmo",
+      "reflexao": "O pace dos outros nas redes não é o seu treino. O seu caminho é o seu."
+    },
+    "fd-mente-firme": {
+      "texto": "O corpo se move. A mente, não.",
+      "texto_curto": "O corpo se move. A mente, não.",
+      "texto_inline": "A mente, não.",
+      "reflexao": "Deixe as pernas fazerem o trabalho. A mente fica firme, observando, sem se abalar."
+    },
+    "fd-clima": {
+      "texto": "O tempo lá fora não decide o seu treino. Você decide.",
+      "texto_curto": "O tempo lá fora não decide o seu treino. Você decide.",
+      "texto_inline": "Você decide",
+      "reflexao": "Chuva é só água. Calor é só calor. Ajuste a roupa e o ritmo, e vá."
+    },
+    "fd-semana-leve": {
+      "texto": "Semana leve não é semana perdida.",
+      "texto_curto": "Semana leve não é semana perdida.",
+      "texto_inline": "Semana leve conta",
+      "reflexao": "A recuperação planejada é o que permite a próxima semana forte."
+    },
+    "fd-mente-descansa": {
+      "texto": "Hoje, deixe a mente descansar também.",
+      "texto_curto": "Hoje, deixe a mente descansar também.",
+      "texto_inline": "Mente em silêncio",
+      "reflexao": "Sem planilha, sem relógio, sem metas por um dia. Volte amanhã com a cabeça leve."
+    },
+    "fd-pos-longao": {
+      "texto": "Depois do longão, o trabalho é recuperar.",
+      "texto_curto": "Depois do longão, o trabalho é recuperar.",
+      "texto_inline": "Agora, recupere",
+      "reflexao": "Comer, beber, dormir. O treino de hoje só vira condicionamento se você descansar."
+    },
+    "fd-escolha": {
+      "texto": "Ninguém vai correr por você. E isso é uma liberdade.",
+      "texto_curto": "Ninguém vai correr por você. E isso é uma liberdade.",
+      "texto_inline": "Escolha correr",
+      "reflexao": "Hoje a decisão é só sua. Isso pesa, mas também é o que torna a conquista sua."
     }
   },
   "perguntas_diario": [

@@ -191,6 +191,426 @@
       "texto_curto": "Don't negotiate. Execute.",
       "texto_inline": "Get up and go.",
       "reflexao": "Mornings bring the day's first decisions. Don't negotiate with laziness."
+    },
+    "ma-4-3": {
+      "texto": "The universe is change; life is opinion.",
+      "texto_curto": "The universe is change; life is opinion.",
+      "texto_inline": "Life is opinion",
+      "reflexao": "The bad run is already gone. What remains is what you think of it."
+    },
+    "ma-5-16": {
+      "texto": "The soul takes on the color of its thoughts.",
+      "texto_curto": "The soul takes on the color of its thoughts.",
+      "texto_inline": "Mind your thoughts",
+      "reflexao": "On a rest day, choose carefully what feeds your mind. The mind recovers too."
+    },
+    "ma-7-69": {
+      "texto": "Perfection of character is to live each day as if it were the last, without frenzy, without sloth, without pretense.",
+      "texto_curto": "Live each day without frenzy, without sloth, without pretense.",
+      "texto_inline": "No frenzy, no sloth",
+      "reflexao": "Train today as if it were the only session that matters. No rush, no shortcuts."
+    },
+    "ma-8-36": {
+      "texto": "Do not disturb yourself by thinking of your whole life. Ask only: what is unbearable in this moment?",
+      "texto_curto": "Don't think of your whole life. What is unbearable right now?",
+      "texto_inline": "Only this moment",
+      "reflexao": "Don't think about the 100 km ahead. Think about this kilometer. You can handle it."
+    },
+    "ma-10-16": {
+      "texto": "Waste no more time arguing what a good person should be. Be one.",
+      "texto_curto": "Waste no more time arguing what a good person should be. Be one.",
+      "texto_inline": "Be one",
+      "reflexao": "Stop planning the perfect workout. Go and do the possible one."
+    },
+    "ma-7-8": {
+      "texto": "Never let the future disturb you. You will meet it, if you must, with the same reason you use today.",
+      "texto_curto": "Don't let the future disturb you. You'll meet it when it comes.",
+      "texto_inline": "The future can wait",
+      "reflexao": "Pre-race nerves are imagination. Tomorrow you'll have the same tools as today."
+    },
+    "ma-4-24": {
+      "texto": "If you want tranquility, do less. Do only what is essential.",
+      "texto_curto": "If you want tranquility, do less. Do only what is essential.",
+      "texto_inline": "Only the essential",
+      "reflexao": "Resting is training too. Today, the essential thing is letting your body rebuild."
+    },
+    "ma-8-32": {
+      "texto": "Build your life action by action.",
+      "texto_curto": "Build your life action by action.",
+      "texto_inline": "Action by action",
+      "reflexao": "One run doesn't make an athlete. A hundred finished runs do. Today was one more."
+    },
+    "ma-3-10": {
+      "texto": "Each of us lives only the present; the rest is either past or uncertain.",
+      "texto_curto": "Each of us lives only now; the rest is past or uncertain.",
+      "texto_inline": "Only now",
+      "reflexao": "Kilometer 80 doesn't exist yet. This one does. Run this one."
+    },
+    "ma-6-2": {
+      "texto": "Let it make no difference whether you are cold or warm, as long as you are doing your duty.",
+      "texto_curto": "Cold or warm, it doesn't matter: do your duty.",
+      "texto_inline": "Do your duty",
+      "reflexao": "Rain, heat or wind aren't in your control. Today's session is."
+    },
+    "ma-5-20": {
+      "texto": "The impediment to action advances action. What stands in the way becomes the way.",
+      "texto_curto": "What stands in the way becomes the way.",
+      "texto_inline": "Obstacles become paths",
+      "reflexao": "The injury, the lost week, the bad run: all of it becomes part of the preparation."
+    },
+    "ma-4-17": {
+      "texto": "Do not live as if you had ten thousand years ahead. While you live, while you can, be good.",
+      "texto_curto": "Don't live as if you had ten thousand years ahead.",
+      "texto_inline": "Don't postpone",
+      "reflexao": "The run postponed to tomorrow often becomes the run that never happened."
+    },
+    "sen-ep1-1": {
+      "texto": "Claim yourself for yourself, and gather the time that until now was taken from you or slipped away.",
+      "texto_curto": "Take ownership of your time.",
+      "texto_inline": "Your time is yours",
+      "reflexao": "No one will hand you a free hour to train. You take it."
+    },
+    "sen-ep2-2": {
+      "texto": "Those who are everywhere are nowhere.",
+      "texto_curto": "Those who are everywhere are nowhere.",
+      "texto_inline": "Focus on one thing",
+      "reflexao": "One goal at a time. Today, it's today's session."
+    },
+    "sen-ep71-3": {
+      "texto": "If you don't know which port you are sailing to, no wind is favorable.",
+      "texto_curto": "No wind is favorable if you don't know your port.",
+      "texto_inline": "Know your port",
+      "reflexao": "Without a race on the calendar, every run feels optional. Choose your port."
+    },
+    "sen-ep78-13": {
+      "texto": "Pain is slight if opinion adds nothing to it.",
+      "texto_curto": "Pain is slight if opinion adds nothing to it.",
+      "texto_inline": "Don't add to the pain",
+      "reflexao": "Your legs hurt. The story you tell about the pain is what can double it."
+    },
+    "sen-ep96-5": {
+      "texto": "To live, Lucilius, is to fight.",
+      "texto_curto": "To live, Lucilius, is to fight.",
+      "texto_inline": "To live is to fight",
+      "reflexao": "Don't wait for the race to get easy. Get strong enough for it."
+    },
+    "sen-ep28-2": {
+      "texto": "You need a change of soul, not a change of climate.",
+      "texto_curto": "You need a change of soul, not a change of climate.",
+      "texto_inline": "Change within",
+      "reflexao": "New shoes, new watch, new plan. None of it helps without a change of mind."
+    },
+    "sen-prov-5-10": {
+      "texto": "Fire tests gold; hardship tests the brave.",
+      "texto_curto": "Fire tests gold; hardship tests the brave.",
+      "texto_inline": "Tested by fire",
+      "reflexao": "Today's hard session isn't punishment. It's the test that shows what you're made of."
+    },
+    "sen-brev-1-3": {
+      "texto": "It is not that we have a short time to live, but that we waste much of it.",
+      "texto_curto": "It's not that we have little time, but that we waste much.",
+      "texto_inline": "Don't waste it",
+      "reflexao": "Resting isn't wasting time. Scrolling for two hours is."
+    },
+    "ep-ench-8": {
+      "texto": "Don't demand that things happen as you wish. Wish them to happen as they do, and you will live in peace.",
+      "texto_curto": "Don't demand things go your way. Accept the way they go.",
+      "texto_inline": "Accept and go",
+      "reflexao": "Rain on race day? Accept the rain. Fighting it only wastes energy."
+    },
+    "ep-ench-29": {
+      "texto": "Do you want to win at the Olympics? Consider what comes before and after: discipline, diet, training at set hours, in heat and cold.",
+      "texto_curto": "Want to win? Accept what comes first: discipline and training.",
+      "texto_inline": "Accept the process",
+      "reflexao": "Everyone wants the medal. Few want the early mornings that come before it."
+    },
+    "ep-ench-51": {
+      "texto": "How long will you put off demanding the best of yourself? Now is the contest; the games have begun.",
+      "texto_curto": "How long will you wait? The games have already begun.",
+      "texto_inline": "Now is the contest",
+      "reflexao": "There's no perfect Monday to start again. There's today."
+    },
+    "ep-disc-1-24": {
+      "texto": "It is difficulties that show what people are.",
+      "texto_curto": "It is difficulties that show what people are.",
+      "texto_inline": "Hardship reveals",
+      "reflexao": "The hardest climb of the race doesn't define you. It reveals what you've already built."
+    },
+    "ep-disc-2-18": {
+      "texto": "Every habit is strengthened by the corresponding actions: walking by walking, running by running.",
+      "texto_curto": "The habit of running is strengthened by running.",
+      "texto_inline": "Run by running",
+      "reflexao": "It doesn't need to be a great session. It needs to be one more. The habit is the training."
+    },
+    "mm-gorin-chi-tanren": {
+      "texto": "Train in the way.",
+      "texto_curto": "Train in the way.",
+      "texto_inline": "Train in the way",
+      "reflexao": "There are no shortcuts. There is the way, trained every day."
+    },
+    "mm-gorin-chi-pequeno": {
+      "texto": "Pay attention even to small things.",
+      "texto_curto": "Pay attention even to small things.",
+      "texto_inline": "Mind the small things",
+      "reflexao": "Laces, socks, gels, sleep. Long races are lost in the details."
+    },
+    "mm-gorin-chi-invisivel": {
+      "texto": "Perceive and understand what the eyes cannot see.",
+      "texto_curto": "Perceive and understand what the eyes cannot see.",
+      "texto_inline": "See the unseen",
+      "reflexao": "No one sees recovery happening. But rest is when the body gets stronger."
+    },
+    "mm-dokkodo-deuses": {
+      "texto": "Respect the gods and Buddhas, but do not rely on their help.",
+      "texto_curto": "Respect the gods and Buddhas, but do not rely on their help.",
+      "texto_inline": "Don't count on luck",
+      "reflexao": "At the start line, luck won't run for you. Your training will."
+    },
+    "pj-keizoku": {
+      "texto": "Continuity is strength.",
+      "texto_curto": "Continuity is strength.",
+      "texto_inline": "Continuity is strength",
+      "reflexao": "No one will remember today's run a year from now. Everyone will see the result of a year of runs."
+    },
+    "pj-ishi-sannen": {
+      "texto": "Even on a rock, three years.",
+      "texto_curto": "Sit on a cold rock for three years and it grows warm.",
+      "texto_inline": "Patience",
+      "reflexao": "Running results take time. Sit on the rock until it warms."
+    },
+    "pj-chiri-yama": {
+      "texto": "Even dust, piled up, becomes a mountain.",
+      "texto_curto": "Even dust, piled up, becomes a mountain.",
+      "texto_inline": "Dust becomes mountains",
+      "reflexao": "Five kilometers today feels small. Added up over a year, it becomes a mountain."
+    },
+    "pj-isogaba": {
+      "texto": "If you're in a hurry, go the long way around.",
+      "texto_curto": "In a hurry? Take the safer road.",
+      "texto_inline": "No rush",
+      "reflexao": "Coming back from injury, ramping up too fast is the longest road. Go slow."
+    },
+    "pj-ame-futte": {
+      "texto": "After the rain, the ground hardens.",
+      "texto_curto": "After the rain, the ground hardens.",
+      "texto_inline": "The ground hardens",
+      "reflexao": "The run that went wrong also makes you stronger. After it, you stand on firmer ground."
+    },
+    "pj-senri": {
+      "texto": "Even a thousand-league road begins with one step.",
+      "texto_curto": "Even a thousand-league road begins with one step.",
+      "texto_inline": "One step",
+      "reflexao": "The ultra doesn't start at the start line. It started with your first run. Take today's."
+    },
+    "pj-shoshin": {
+      "texto": "Never forget the beginner's spirit.",
+      "texto_curto": "Never forget the beginner's spirit.",
+      "texto_inline": "Beginner's mind",
+      "reflexao": "Remember the joy of your first run? It's still there, under the watch and the goals."
+    },
+    "pj-anzuru": {
+      "texto": "Doing is easier than worrying.",
+      "texto_curto": "Doing is easier than worrying.",
+      "texto_inline": "Do, don't dwell",
+      "reflexao": "Tomorrow's session is scarier in your head than it will be on the road."
+    },
+    "lz-33": {
+      "texto": "One who conquers others is strong; one who conquers oneself is mighty.",
+      "texto_curto": "Conquering others is strength; conquering yourself is might.",
+      "texto_inline": "Conquer yourself",
+      "reflexao": "Your race is against the clock and the terrain. The real fight is against the urge to stop."
+    },
+    "lz-76": {
+      "texto": "The hard and stiff are companions of death; the soft and supple, companions of life.",
+      "texto_curto": "The rigid breaks; the supple lives.",
+      "texto_inline": "Stay supple",
+      "reflexao": "Stretch, loosen up, rest. The body that's too rigid is the one that gets hurt."
+    },
+    "hr-b91": {
+      "texto": "No one steps into the same river twice.",
+      "texto_curto": "No one steps into the same river twice.",
+      "texto_inline": "Everything flows",
+      "reflexao": "Today's body isn't yesterday's. Respect what it asks for now."
+    },
+    "fd-descanso-treino": {
+      "texto": "Rest isn't a pause from training. It's part of it.",
+      "texto_curto": "Rest isn't a pause from training. It's part of it.",
+      "texto_inline": "Rest is training",
+      "reflexao": "Muscle doesn't grow during the run. It grows when you let it recover."
+    },
+    "fd-descanso-culpa": {
+      "texto": "Resting without guilt takes discipline too.",
+      "texto_curto": "Resting without guilt takes discipline too.",
+      "texto_inline": "Rest without guilt",
+      "reflexao": "Staying still on the right day is as hard as running on the hard day."
+    },
+    "fd-sono-ajuste": {
+      "texto": "Slept badly? Adjust the plan, don't abandon it.",
+      "texto_curto": "Slept badly? Adjust the plan, don't abandon it.",
+      "texto_inline": "Adjust, don't quit",
+      "reflexao": "Today an easy run done beats a hard run forced."
+    },
+    "fd-sono-escuta": {
+      "texto": "Listening to your body is strength too.",
+      "texto_curto": "Listening to your body is strength too.",
+      "texto_inline": "Listen to your body",
+      "reflexao": "Accumulated fatigue isn't beaten by stubbornness. It's beaten by sleep."
+    },
+    "fd-sono-calma": {
+      "texto": "One bad night doesn't erase weeks of training.",
+      "texto_curto": "One bad night doesn't erase weeks of training.",
+      "texto_inline": "One night erases nothing",
+      "reflexao": "Almost no one sleeps well before a race. What carries you is the sleep of the weeks before."
+    },
+    "fd-sono-leve": {
+      "texto": "Today, do less and do it well.",
+      "texto_curto": "Today, do less and do it well.",
+      "texto_inline": "Less, and well",
+      "reflexao": "An easy run with a clear head beats a hard run on an empty body."
+    },
+    "fd-pos-feito": {
+      "texto": "Done. No one can take today's run away from you.",
+      "texto_curto": "Done. No one can take today's run away from you.",
+      "texto_inline": "Done.",
+      "reflexao": "Keep this run. On the hard day of the race, it will be there."
+    },
+    "fd-pos-gratidao": {
+      "texto": "Thank the legs that brought you here.",
+      "texto_curto": "Thank the legs that brought you here.",
+      "texto_inline": "Thank your legs",
+      "reflexao": "Hydrate, eat, stretch. Caring for your body afterwards respects what it just did."
+    },
+    "fd-pos-ruim": {
+      "texto": "A bad run still counts. You showed up.",
+      "texto_curto": "A bad run still counts. You showed up.",
+      "texto_inline": "You showed up",
+      "reflexao": "Not every run is good. Every run done is one more brick."
+    },
+    "fd-pos-silencio": {
+      "texto": "Progress is quiet. Keep going.",
+      "texto_curto": "Progress is quiet. Keep going.",
+      "texto_inline": "Quiet progress",
+      "reflexao": "You won't see progress in a day. You'll see it looking back in six months."
+    },
+    "fd-retorno-recomeco": {
+      "texto": "Starting over isn't going back to zero. It's coming back with experience.",
+      "texto_curto": "Starting over isn't zero. It's coming back with experience.",
+      "texto_inline": "Start again",
+      "reflexao": "Your fitness dropped, but what you learned stayed. Start easy."
+    },
+    "fd-retorno-volte": {
+      "texto": "You don't need to pick up where you left off. You just need to come back.",
+      "texto_curto": "You don't need to resume where you stopped. Just come back.",
+      "texto_inline": "Just come back",
+      "reflexao": "Ten minutes today are worth more than the perfect workout you keep postponing."
+    },
+    "fd-retorno-paciencia": {
+      "texto": "Come back patiently. The body remembers, but it needs time.",
+      "texto_curto": "Come back patiently. The body remembers, but it needs time.",
+      "texto_inline": "Come back slowly",
+      "reflexao": "Increase volume gradually. Rushing to make up lost time is what hurts most."
+    },
+    "fd-retorno-lesao": {
+      "texto": "Injury isn't failure. It's information.",
+      "texto_curto": "Injury isn't failure. It's information.",
+      "texto_inline": "Injury is information",
+      "reflexao": "Understand what caused it, adjust, and come back smarter."
+    },
+    "fd-prova-confie": {
+      "texto": "The training is done. Now, trust it.",
+      "texto_curto": "The training is done. Now, trust it.",
+      "texto_inline": "Trust the training",
+      "reflexao": "In the final days you can't gain fitness. You can arrive rested and calm."
+    },
+    "fd-prova-ritmo": {
+      "texto": "Start calm. The race begins in the middle.",
+      "texto_curto": "Start calm. The race begins in the middle.",
+      "texto_inline": "Start calm",
+      "reflexao": "Those who go out too fast pay the bill at the end. Save energy for when it matters."
+    },
+    "fd-prova-dor": {
+      "texto": "The pain will come. You knew it, and you came anyway.",
+      "texto_curto": "The pain will come. You knew it, and you came anyway.",
+      "texto_inline": "You came anyway",
+      "reflexao": "Don't panic when it hurts. That was part of the plan from the start."
+    },
+    "fd-prova-posto": {
+      "texto": "In a long race, there's only the next aid station.",
+      "texto_curto": "In a long race, there's only the next aid station.",
+      "texto_inline": "To the next aid station",
+      "reflexao": "Break up the distance. No one runs 100 km. They run from one aid station to the next, many times."
+    },
+    "fd-vespera-simples": {
+      "texto": "The day before, nothing new. Keep it simple.",
+      "texto_curto": "The day before, nothing new. Keep it simple.",
+      "texto_inline": "Nothing new",
+      "reflexao": "Same dinner, same tested kit, same routine. The day for experiments is gone."
+    },
+    "fd-vespera-tensao": {
+      "texto": "Nerves before a hard session mean it matters.",
+      "texto_curto": "Nerves before a hard session mean it matters.",
+      "texto_inline": "It matters",
+      "reflexao": "Use the tension. It's energy waiting for direction."
+    },
+    "fd-pouco-sempre": {
+      "texto": "Running a little always beats running a lot sometimes.",
+      "texto_curto": "Running a little always beats running a lot sometimes.",
+      "texto_inline": "A little, always",
+      "reflexao": "A week of four solid runs builds more than a week of one epic run."
+    },
+    "fd-respire": {
+      "texto": "When everything tightens, come back to your breath.",
+      "texto_curto": "When everything tightens, come back to your breath.",
+      "texto_inline": "Breathe",
+      "reflexao": "Calm breathing, loose shoulders, short stride. Start with what you control."
+    },
+    "fd-ego": {
+      "texto": "Leave your ego at home. Run the session the plan calls for.",
+      "texto_curto": "Leave your ego at home. Run the session the plan calls for.",
+      "texto_inline": "Ego at home",
+      "reflexao": "Easy runs are meant to be easy. Speeding up on easy days leaves you tired on the day that counts."
+    },
+    "fd-comparacao": {
+      "texto": "Compare yourself only with who you were yesterday.",
+      "texto_curto": "Compare yourself only with who you were yesterday.",
+      "texto_inline": "Only with yourself",
+      "reflexao": "Other people's pace online isn't your training. Your path is yours."
+    },
+    "fd-mente-firme": {
+      "texto": "The body moves. The mind does not.",
+      "texto_curto": "The body moves. The mind does not.",
+      "texto_inline": "The mind stays",
+      "reflexao": "Let the legs do the work. The mind stays steady, watching, unshaken."
+    },
+    "fd-clima": {
+      "texto": "The weather outside doesn't decide your training. You do.",
+      "texto_curto": "The weather outside doesn't decide your training. You do.",
+      "texto_inline": "You decide",
+      "reflexao": "Rain is just water. Heat is just heat. Adjust your kit and pace, and go."
+    },
+    "fd-semana-leve": {
+      "texto": "An easy week isn't a lost week.",
+      "texto_curto": "An easy week isn't a lost week.",
+      "texto_inline": "Easy weeks count",
+      "reflexao": "Planned recovery is what makes the next hard week possible."
+    },
+    "fd-mente-descansa": {
+      "texto": "Today, let your mind rest too.",
+      "texto_curto": "Today, let your mind rest too.",
+      "texto_inline": "Quiet mind",
+      "reflexao": "No spreadsheet, no watch, no goals for one day. Come back tomorrow with a light head."
+    },
+    "fd-pos-longao": {
+      "texto": "After the long run, the job is to recover.",
+      "texto_curto": "After the long run, the job is to recover.",
+      "texto_inline": "Now, recover",
+      "reflexao": "Eat, drink, sleep. Today's run only becomes fitness if you rest."
+    },
+    "fd-escolha": {
+      "texto": "No one will run for you. And that is a freedom.",
+      "texto_curto": "No one will run for you. And that is a freedom.",
+      "texto_inline": "Choose to run",
+      "reflexao": "Today the decision is yours alone. It's heavy, but it's also what makes the win yours."
     }
   },
   "perguntas_diario": [

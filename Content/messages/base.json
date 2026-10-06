@@ -63,6 +63,16 @@
       "pt-BR": "Jim Rohn",
       "en": "Jim Rohn",
       "es": "Jim Rohn"
+    },
+    "laozi": {
+      "pt-BR": "Lao-Tsé",
+      "en": "Laozi",
+      "es": "Lao-Tse"
+    },
+    "heraclito": {
+      "pt-BR": "Heráclito",
+      "en": "Heraclitus",
+      "es": "Heráclito"
     }
   },
   "obras": {
@@ -120,6 +130,31 @@
       "pt-BR": "Palestras",
       "en": "Lectures",
       "es": "Conferencias"
+    },
+    "discursos": {
+      "pt-BR": "Discursos",
+      "en": "Discourses",
+      "es": "Disertaciones"
+    },
+    "da_providencia": {
+      "pt-BR": "Sobre a Providência",
+      "en": "On Providence",
+      "es": "Sobre la providencia"
+    },
+    "brevidade_vida": {
+      "pt-BR": "Sobre a Brevidade da Vida",
+      "en": "On the Shortness of Life",
+      "es": "Sobre la brevedad de la vida"
+    },
+    "tao_te_ching": {
+      "pt-BR": "Tao Te Ching",
+      "en": "Tao Te Ching",
+      "es": "Tao Te Ching"
+    },
+    "fragmentos": {
+      "pt-BR": "Fragmentos",
+      "en": "Fragments",
+      "es": "Fragmentos"
     }
   },
   "gatilhos": [
@@ -507,6 +542,898 @@
       "gatilhos": [
         "sono_ruim",
         "vespera_chave"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "ma-4-3",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "4.3",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-5-16",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "5.16",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "descanso"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-7-69",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "7.69",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-8-36",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "8.36",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-10-16",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "10.16",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "retorno"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-7-8",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "7.8",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-4-24",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "4.24",
+      "tipo": "citacao",
+      "gatilhos": [
+        "descanso",
+        "geral"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-8-32",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "8.32",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "geral"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-3-10",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "3.10",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "geral"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-6-2",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "6.2",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "geral"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-5-20",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "5.20",
+      "tipo": "citacao",
+      "gatilhos": [
+        "retorno",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ma-4-17",
+      "autor": "marco_aurelio",
+      "obra": "meditacoes",
+      "ref": "4.17",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "George Long, 1862",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-ep1-1",
+      "autor": "seneca",
+      "obra": "cartas_lucilio",
+      "ref": "1.1",
+      "tipo": "citacao",
+      "gatilhos": [
+        "sono_ruim",
+        "geral"
+      ],
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-ep2-2",
+      "autor": "seneca",
+      "obra": "cartas_lucilio",
+      "ref": "2.2",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "descanso"
+      ],
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-ep71-3",
+      "autor": "seneca",
+      "obra": "cartas_lucilio",
+      "ref": "71.3",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "retorno"
+      ],
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-ep78-13",
+      "autor": "seneca",
+      "obra": "cartas_lucilio",
+      "ref": "78.13",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-ep96-5",
+      "autor": "seneca",
+      "obra": "cartas_lucilio",
+      "ref": "96.5",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-ep28-2",
+      "autor": "seneca",
+      "obra": "cartas_lucilio",
+      "ref": "28.2",
+      "tipo": "citacao",
+      "gatilhos": [
+        "retorno",
+        "descanso"
+      ],
+      "base_dominio_publico": "Richard M. Gummere, 1917",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-prov-5-10",
+      "autor": "seneca",
+      "obra": "da_providencia",
+      "ref": "5.10",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Aubrey Stewart, 1900",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "sen-brev-1-3",
+      "autor": "seneca",
+      "obra": "brevidade_vida",
+      "ref": "1.3",
+      "tipo": "citacao",
+      "gatilhos": [
+        "descanso",
+        "geral"
+      ],
+      "base_dominio_publico": "Aubrey Stewart, 1900",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ep-ench-8",
+      "autor": "epicteto",
+      "obra": "enchiridion",
+      "ref": "8",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "George Long, 1877",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ep-ench-29",
+      "autor": "epicteto",
+      "obra": "enchiridion",
+      "ref": "29",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "geral"
+      ],
+      "base_dominio_publico": "George Long, 1877",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ep-ench-51",
+      "autor": "epicteto",
+      "obra": "enchiridion",
+      "ref": "51",
+      "tipo": "citacao",
+      "gatilhos": [
+        "retorno",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "George Long, 1877",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ep-disc-1-24",
+      "autor": "epicteto",
+      "obra": "discursos",
+      "ref": "1.24.1",
+      "tipo": "citacao",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "base_dominio_publico": "George Long, 1877",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "ep-disc-2-18",
+      "autor": "epicteto",
+      "obra": "discursos",
+      "ref": "2.18.1",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "descanso"
+      ],
+      "base_dominio_publico": "George Long, 1877",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "mm-gorin-chi-tanren",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Chi no maki",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "texto_original": "第二に、道の鍛錬する所",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "mm-gorin-chi-pequeno",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Chi no maki",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "descanso"
+      ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "texto_original": "第八に、わずかなる事にも気を付くる事",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "mm-gorin-chi-invisivel",
+      "autor": "miyamoto_musashi",
+      "obra": "gorin_no_sho",
+      "ref": "Chi no maki",
+      "tipo": "citacao",
+      "gatilhos": [
+        "descanso",
+        "geral"
+      ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "texto_original": "第七に、目に見えぬ所をさとつてしる事",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "mm-dokkodo-deuses",
+      "autor": "miyamoto_musashi",
+      "obra": "dokkodo",
+      "ref": "1645",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
+      "texto_original": "仏神は貴し、仏神をたのまず",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-keizoku",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "継続は力なり",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "geral"
+      ],
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "継続は力なり (keizoku wa chikara nari)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-ishi-sannen",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "石の上にも三年",
+      "tipo": "citacao",
+      "gatilhos": [
+        "retorno",
+        "descanso"
+      ],
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "石の上にも三年 (ishi no ue ni mo sannen)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-chiri-yama",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "塵も積もれば山となる",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "descanso"
+      ],
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "塵も積もれば山となる (chiri mo tsumoreba yama to naru)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-isogaba",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "急がば回れ",
+      "tipo": "citacao",
+      "gatilhos": [
+        "retorno",
+        "vespera_chave"
+      ],
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "急がば回れ (isogaba maware)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-ame-futte",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "雨降って地固まる",
+      "tipo": "citacao",
+      "gatilhos": [
+        "pos_treino",
+        "retorno"
+      ],
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "雨降って地固まる (ame futte ji katamaru)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-senri",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "千里の道も一歩から",
+      "tipo": "citacao",
+      "gatilhos": [
+        "retorno",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "千里の道も一歩から (senri no michi mo ippo kara)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-shoshin",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "初心忘るべからず",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "descanso"
+      ],
+      "base_dominio_publico": "Provérbio japonês com origem em Zeami (séc. XV), domínio público",
+      "texto_original": "初心忘るべからず (shoshin wasuru bekarazu)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "pj-anzuru",
+      "autor": "proverbio_japones",
+      "obra": "proverbios_japoneses",
+      "ref": "案ずるより産むが易し",
+      "tipo": "citacao",
+      "gatilhos": [
+        "vespera_chave",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
+      "texto_original": "案ずるより産むが易し (anzuru yori umu ga yasushi)",
+      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
+    },
+    {
+      "id": "lz-33",
+      "autor": "laozi",
+      "obra": "tao_te_ching",
+      "ref": "33",
+      "tipo": "citacao",
+      "gatilhos": [
+        "geral",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "James Legge, 1891",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "lz-76",
+      "autor": "laozi",
+      "obra": "tao_te_ching",
+      "ref": "76",
+      "tipo": "citacao",
+      "gatilhos": [
+        "descanso",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "James Legge, 1891",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "hr-b91",
+      "autor": "heraclito",
+      "obra": "fragmentos",
+      "ref": "B91",
+      "tipo": "citacao",
+      "gatilhos": [
+        "descanso",
+        "retorno"
+      ],
+      "base_dominio_publico": "John Burnet, 1892",
+      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
+    },
+    {
+      "id": "fd-descanso-treino",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "descanso",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-descanso-culpa",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "descanso",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-sono-ajuste",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "sono_ruim",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-sono-escuta",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "sono_ruim",
+        "descanso"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-sono-calma",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "sono_ruim",
+        "vespera_chave"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-sono-leve",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "sono_ruim",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-pos-feito",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "pos_treino",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-pos-gratidao",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "pos_treino",
+        "descanso"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-pos-ruim",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "pos_treino",
+        "retorno"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-pos-silencio",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "pos_treino",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-retorno-recomeco",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "retorno",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-retorno-volte",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "retorno",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-retorno-paciencia",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "retorno",
+        "descanso"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-retorno-lesao",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "retorno",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-prova-confie",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-prova-ritmo",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "marco_prova",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-prova-dor",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "marco_prova",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-prova-posto",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "marco_prova",
+        "vespera_chave"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-vespera-simples",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "vespera_chave",
+        "descanso"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-vespera-tensao",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "vespera_chave",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-pouco-sempre",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "geral",
+        "descanso"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-respire",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "geral",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-ego",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "geral",
+        "pos_treino"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-comparacao",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "geral",
+        "retorno"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-mente-firme",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "geral",
+        "marco_prova"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-clima",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "vespera_chave",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-semana-leve",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "descanso",
+        "geral"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-mente-descansa",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "descanso",
+        "sono_ruim"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-pos-longao",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "pos_treino",
+        "descanso"
+      ],
+      "base_dominio_publico": "Não se aplica: frase própria"
+    },
+    {
+      "id": "fd-escolha",
+      "autor": "fudoshin",
+      "obra": "frases_proprias",
+      "ref": "",
+      "tipo": "propria",
+      "gatilhos": [
+        "geral",
+        "sono_ruim"
       ],
       "base_dominio_publico": "Não se aplica: frase própria"
     }
