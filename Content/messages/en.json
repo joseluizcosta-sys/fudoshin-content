@@ -6,23 +6,11 @@
     "data": null
   },
   "mensagens": {
-    "ma-5-1": {
-      "texto": "In the morning, when you struggle to get up, remember: I am rising to do the work of a human being.",
-      "texto_curto": "I rise to do the work of a human being.",
-      "texto_inline": "Rise. There's work.",
-      "reflexao": "Today's run is work, not mood. Do your part."
-    },
     "ep-ench-1": {
       "texto": "Some things are up to us, and some are not.",
       "texto_curto": "Some things are up to us; others are not.",
       "texto_inline": "Control the controllable",
       "reflexao": "Weather, elevation and rivals aren't up to you. Pace, fueling and attitude are."
-    },
-    "ep-ench-5": {
-      "texto": "People are disturbed not by things, but by the opinions they hold about things.",
-      "texto_curto": "It's not things that disturb us, but our opinions of them.",
-      "texto_inline": "The fact isn't the story",
-      "reflexao": "The bad run was data. The story you tell about it is a choice."
     },
     "ma-4-49": {
       "texto": "Be like the headland against which the waves keep breaking; it stands firm, and the water calms around it.",
@@ -36,23 +24,11 @@
       "texto_inline": "Fear imagines too much",
       "reflexao": "The race you picture at 3 a.m. is always harder than the real one."
     },
-    "ma-8-47": {
-      "texto": "If anything external troubles you, it is not the thing itself but your judgment about it. And it is in your power to wipe out that judgment now.",
-      "texto_curto": "It's not the thing that troubles you, but your judgment of it.",
-      "texto_inline": "Erase the judgment",
-      "reflexao": "Lost the week? Erase the judgment, not the plan."
-    },
     "mm-gorin-agua-mente": {
       "texto": "In the way of strategy, do not let your mind change from its everyday state: keep it broad and straight, neither tense nor slack.",
       "texto_curto": "In battle the mind doesn't change: broad, straight, not tense.",
       "texto_inline": "Everyday mind",
       "reflexao": "Don't save a special version of yourself for race day. Today's calm is the calm at the start line."
-    },
-    "mm-gorin-agua-olhar": {
-      "texto": "Make the perceiving eye strong and the seeing eye weak: see distant things as close and close things as distant.",
-      "texto_curto": "See the far as near and the near as far.",
-      "texto_inline": "Wide gaze",
-      "reflexao": "On a long run, see the whole race without clinging to the next stretch. In the hardest part, do the opposite."
     },
     "mm-gorin-agua-postura": {
       "texto": "Make your everyday stance your combat stance, and your combat stance your everyday stance.",
@@ -66,41 +42,11 @@
       "texto_inline": "1,000 days to forge",
       "reflexao": "One bad week doesn't undo a thousand days. One good week doesn't replace them either."
     },
-    "mm-gorin-chi-inutil": {
-      "texto": "Do nothing that is of no use.",
-      "texto_curto": "Do nothing that is of no use.",
-      "texto_inline": "Nothing useless",
-      "reflexao": "Every session has a purpose. If it doesn't, maybe today is a rest day."
-    },
-    "mm-dokkodo-arrependimento": {
-      "texto": "I do not regret what I have done.",
-      "texto_curto": "I do not regret what I have done.",
-      "texto_inline": "No regrets",
-      "reflexao": "Yesterday's run already happened. Keep the lesson, drop the guilt."
-    },
-    "mm-dokkodo-leveza": {
-      "texto": "Think lightly of yourself and deeply of the world.",
-      "texto_curto": "Think lightly of yourself and deeply of the world.",
-      "texto_inline": "Lightly of yourself",
-      "reflexao": "Your finish time matters less than you think. The road, the sky, the people: look outward."
-    },
     "ts-fudochi-definicao": {
       "texto": "Immovable does not mean being like stone or wood. The mind moves forward, to the sides, in every direction, never stopping anywhere: that is immovable wisdom.",
       "texto_curto": "Immovable isn't stone: it's a mind that moves and never gets stuck.",
       "texto_inline": "Move, don't cling",
       "reflexao": "Fudōshin isn't being rigid. It's moving on without clinging to pain, the watch or fear."
-    },
-    "ts-okidokoro-corpo": {
-      "texto": "If you place the mind nowhere, it spreads out and fills the whole body.",
-      "texto_curto": "Place the mind nowhere, and it fills the whole body.",
-      "texto_inline": "Mind in the whole body",
-      "reflexao": "Don't fix your attention on the ache in your calf. Breathe and feel the whole body working."
-    },
-    "ts-okidokoro-parcial": {
-      "texto": "Place the mind in one spot and you fall into one-sidedness.",
-      "texto_curto": "Place the mind in one spot and you fall into one-sidedness.",
-      "texto_inline": "Don't fix the mind",
-      "reflexao": "Dwelling on one bad split makes you miss the rest of the race."
     },
     "dg-regra-40": {
       "texto": "When your mind says you're done, your body still has much more to give. Fatigue shows up long before the limit.",
@@ -161,6 +107,90 @@
       "texto_curto": "Fall seven times, stand up eight.",
       "texto_inline": "Stand up eight.",
       "reflexao": "Only those who quit lose."
+    },
+    "fd-conforto": {
+      "texto": "No one achieves anything great in comfort. Grow a little every day.",
+      "texto_curto": "Nothing of value is born from comfort.",
+      "texto_inline": "Grow.",
+      "reflexao": "Everyone wakes up tired and unwilling. Those who want to grow get up and go anyway."
+    },
+    "fd-forca-vontade": {
+      "texto": "Willpower is built by doing hard things, again and again.",
+      "texto_curto": "Do hard things, again and again.",
+      "texto_inline": "No excuses.",
+      "reflexao": "Do what needs to be done, no excuses. That is how willpower is built."
+    },
+    "fd-crescimento": {
+      "texto": "Growth comes when we face and overcome our limits.",
+      "texto_curto": "Face your own limits.",
+      "texto_inline": "Face your limits",
+      "reflexao": "The session you want to skip is often the one that makes you grow the most."
+    },
+    "fd-mude": {
+      "texto": "You are the only person with the power to change yourself.",
+      "texto_curto": "Only you can change you.",
+      "texto_inline": "Change.",
+      "reflexao": "When you change, everything changes with you."
+    },
+    "jr-mais-habilidade": {
+      "texto": "Instead of asking for fewer problems, seek more skill to solve them.",
+      "texto_curto": "Seek more skill, not fewer problems.",
+      "texto_inline": "More skill.",
+      "reflexao": "You have a choice: stay as you are or become someone better."
+    },
+    "fd-disciplina": {
+      "texto": "Motivation fades. Discipline builds.",
+      "texto_curto": "Discipline is a decision.",
+      "texto_inline": "Do it anyway.",
+      "reflexao": "It isn't talent or luck. It's your decision to act."
+    },
+    "fd-excecao": {
+      "texto": "Be the person who makes others ask: how do they keep going?",
+      "texto_curto": "Be the exception.",
+      "texto_inline": "Be the exception.",
+      "reflexao": "No one sees the early-morning runs. Everyone sees who is still standing at the end."
+    },
+    "fd-apresentese": {
+      "texto": "Don't complain, don't explain. Show up and do your best.",
+      "texto_curto": "Don't complain. Show up and do your best.",
+      "texto_inline": "Show up.",
+      "reflexao": "Champions don't complain or whine. They're too busy getting better."
+    },
+    "fd-sem-volta": {
+      "texto": "Once you've seen who you can become, there's no going back.",
+      "texto_curto": "Once you see who you can become, there's no going back.",
+      "texto_inline": "No going back.",
+      "reflexao": "There is always room to do more, and better."
+    },
+    "fd-desconforto": {
+      "texto": "Learn to be comfortable with discomfort.",
+      "texto_curto": "Get comfortable being uncomfortable.",
+      "texto_inline": "Embrace discomfort.",
+      "reflexao": "Today's discomfort is tomorrow's easy pace."
+    },
+    "fd-desafio": {
+      "texto": "The challenge is the force you need to level up.",
+      "texto_curto": "The challenge is what makes you level up.",
+      "texto_inline": "Face the challenge.",
+      "reflexao": "If the race scares you, it's because it matters."
+    },
+    "fd-persistencia": {
+      "texto": "Nothing beats persistence. Not luck, not talent.",
+      "texto_curto": "Nothing beats persistence. Not luck, not talent.",
+      "texto_inline": "Persist.",
+      "reflexao": "Change the way you think and you change the way you train."
+    },
+    "fd-derrotas": {
+      "texto": "The wise learn more from defeats than from victories.",
+      "texto_curto": "Learn more from defeats than from victories.",
+      "texto_inline": "Learn and return.",
+      "reflexao": "A bad run is a lesson. Note it and try again."
+    },
+    "fd-manha": {
+      "texto": "Morning is the moment of truth. Get up and do what needs to be done.",
+      "texto_curto": "Don't negotiate. Execute.",
+      "texto_inline": "Get up and go.",
+      "reflexao": "Mornings bring the day's first decisions. Don't negotiate with laziness."
     }
   },
   "perguntas_diario": [

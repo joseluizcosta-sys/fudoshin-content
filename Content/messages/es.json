@@ -6,23 +6,11 @@
     "data": null
   },
   "mensagens": {
-    "ma-5-1": {
-      "texto": "Al amanecer, cuando te cueste levantarte, recuerda: me levanto para hacer el trabajo de un ser humano.",
-      "texto_curto": "Me levanto para hacer el trabajo de un ser humano.",
-      "texto_inline": "Levántate. Hay trabajo.",
-      "reflexao": "El entrenamiento de hoy es trabajo, no estado de ánimo. Haz lo tuyo."
-    },
     "ep-ench-1": {
       "texto": "Algunas cosas dependen de nosotros; otras, no.",
       "texto_curto": "Algunas cosas dependen de nosotros; otras, no.",
       "texto_inline": "Controla lo controlable",
       "reflexao": "El clima, el desnivel y los rivales no dependen de ti. El ritmo, la hidratación y la actitud, sí."
-    },
-    "ep-ench-5": {
-      "texto": "No son las cosas las que perturban a las personas, sino las opiniones que tienen sobre ellas.",
-      "texto_curto": "No nos perturban las cosas, sino lo que opinamos de ellas.",
-      "texto_inline": "El dato no es la historia",
-      "reflexao": "El mal entrenamiento fue un dato. La historia que cuentas sobre él es una elección."
     },
     "ma-4-49": {
       "texto": "Sé como el promontorio contra el que rompen las olas sin cesar; permanece firme y el agua se calma a su alrededor.",
@@ -36,23 +24,11 @@
       "texto_inline": "El miedo imagina de más",
       "reflexao": "La carrera que imaginas a las 3 de la mañana siempre es más dura que la real."
     },
-    "ma-8-47": {
-      "texto": "Si algo externo te aflige, no es la cosa en sí lo que te perturba, sino tu juicio sobre ella. Y está en tu poder borrar ese juicio ahora.",
-      "texto_curto": "No te perturba la cosa, sino tu juicio sobre ella.",
-      "texto_inline": "Borra el juicio",
-      "reflexao": "¿Perdiste la semana? Borra el juicio, no el plan."
-    },
     "mm-gorin-agua-mente": {
       "texto": "En el camino de la estrategia, no dejes que tu mente cambie: que sea la de todos los días, amplia y recta, sin tensión ni flojedad.",
       "texto_curto": "En la lucha la mente no cambia: amplia, recta, sin tensión.",
       "texto_inline": "Mente de todos los días",
       "reflexao": "No guardes una versión especial de ti para la carrera. La calma de hoy es la calma de la salida."
-    },
-    "mm-gorin-agua-olhar": {
-      "texto": "Que la mirada amplia sea fuerte y la mirada estrecha, débil: ver cerca lo lejano y lejos lo cercano.",
-      "texto_curto": "Mira cerca lo lejano y lejos lo cercano.",
-      "texto_inline": "Mirada amplia",
-      "reflexao": "En la tirada larga, mira la carrera entera sin aferrarte al próximo kilómetro. En el tramo duro, haz lo contrario."
     },
     "mm-gorin-agua-postura": {
       "texto": "Haz de la postura de cada día la postura del combate, y de la del combate la de cada día.",
@@ -66,41 +42,11 @@
       "texto_inline": "Mil días para forjar",
       "reflexao": "Una mala semana no deshace mil días. Una buena tampoco los reemplaza."
     },
-    "mm-gorin-chi-inutil": {
-      "texto": "No hagas nada que sea inútil.",
-      "texto_curto": "No hagas nada que sea inútil.",
-      "texto_inline": "Nada inútil",
-      "reflexao": "Cada entrenamiento tiene un porqué. Si no lo tiene, quizá hoy toca descansar."
-    },
-    "mm-dokkodo-arrependimento": {
-      "texto": "No me arrepiento de lo que hice.",
-      "texto_curto": "No me arrepiento de lo que hice.",
-      "texto_inline": "Sin arrepentimiento",
-      "reflexao": "El entrenamiento de ayer ya pasó. Quédate con la lección, suelta la culpa."
-    },
-    "mm-dokkodo-leveza": {
-      "texto": "Piensa en ti con ligereza y en el mundo con profundidad.",
-      "texto_curto": "Piensa en ti con ligereza y en el mundo con profundidad.",
-      "texto_inline": "Ligero contigo",
-      "reflexao": "El tiempo del reloj importa menos de lo que crees. El camino, el cielo, la gente: mira hacia afuera."
-    },
     "ts-fudochi-definicao": {
       "texto": "Inmóvil no significa ser como piedra o madera. La mente se mueve hacia adelante, a los lados, en todas direcciones, sin detenerse en nada: eso es la sabiduría inmóvil.",
       "texto_curto": "Inmóvil no es ser piedra: es una mente que se mueve sin atascarse.",
       "texto_inline": "Moverse sin aferrarse",
       "reflexao": "Fudōshin no es ser rígido. Es seguir adelante sin aferrarse al dolor, al reloj ni al miedo."
-    },
-    "ts-okidokoro-corpo": {
-      "texto": "Si no pones la mente en ningún lugar, se extiende y llena todo el cuerpo.",
-      "texto_curto": "Mente en ningún lugar llena todo el cuerpo.",
-      "texto_inline": "Mente en todo el cuerpo",
-      "reflexao": "No fijes la atención solo en el dolor de la pantorrilla. Respira y siente todo el cuerpo trabajando."
-    },
-    "ts-okidokoro-parcial": {
-      "texto": "Si pones la mente en un solo lugar, caes en la parcialidad.",
-      "texto_curto": "Mente fija en un solo lugar cae en la parcialidad.",
-      "texto_inline": "No fijes la mente",
-      "reflexao": "Darle vueltas a un mal parcial te hace perder el resto de la carrera."
     },
     "dg-regra-40": {
       "texto": "Cuando la mente dice que se acabó, el cuerpo todavía tiene mucho más. El cansancio llega antes del límite.",
@@ -161,6 +107,90 @@
       "texto_curto": "Cae siete veces, levántate ocho.",
       "texto_inline": "Levántate ocho.",
       "reflexao": "Solo pierde quien se rinde."
+    },
+    "fd-conforto": {
+      "texto": "Nadie logra algo grande en la comodidad. Evoluciona un poco cada día.",
+      "texto_curto": "Nada valioso nace de la comodidad.",
+      "texto_inline": "Evoluciona.",
+      "reflexao": "Todos despiertan cansados y sin ganas. Quien quiere evolucionar se levanta y sigue igual."
+    },
+    "fd-forca-vontade": {
+      "texto": "La fuerza de voluntad se construye haciendo cosas difíciles, una y otra vez.",
+      "texto_curto": "Haz cosas difíciles, una y otra vez.",
+      "texto_inline": "Sin excusas.",
+      "reflexao": "Haz lo que hay que hacer, sin excusas. Así se construye la fuerza de voluntad."
+    },
+    "fd-crescimento": {
+      "texto": "El crecimiento llega cuando enfrentamos y superamos nuestros límites.",
+      "texto_curto": "Enfrenta tus propios límites.",
+      "texto_inline": "Enfrenta tus límites",
+      "reflexao": "El entrenamiento que quieres saltarte suele ser el que más te hace crecer."
+    },
+    "fd-mude": {
+      "texto": "Eres la única persona con el poder de cambiarte a ti mismo.",
+      "texto_curto": "Solo tú puedes cambiarte.",
+      "texto_inline": "Cambia.",
+      "reflexao": "Cuando cambias, todo cambia contigo."
+    },
+    "jr-mais-habilidade": {
+      "texto": "En vez de pedir menos problemas, busca más habilidad para resolverlos.",
+      "texto_curto": "Busca más habilidad, no menos problemas.",
+      "texto_inline": "Más habilidad.",
+      "reflexao": "Tienes una elección: seguir como estás o convertirte en alguien mejor."
+    },
+    "fd-disciplina": {
+      "texto": "La motivación pasa. La disciplina construye.",
+      "texto_curto": "La disciplina es una decisión.",
+      "texto_inline": "Hazlo aunque no quieras.",
+      "reflexao": "No es talento ni suerte. Es tu decisión de actuar."
+    },
+    "fd-excecao": {
+      "texto": "Sé la persona que hace a los demás preguntar: ¿cómo puede seguir?",
+      "texto_curto": "Sé la excepción.",
+      "texto_inline": "Sé la excepción.",
+      "reflexao": "Nadie ve los entrenamientos de madrugada. Todos ven quién sigue en pie al final."
+    },
+    "fd-apresentese": {
+      "texto": "No te quejes, no te expliques. Preséntate y da lo mejor de ti.",
+      "texto_curto": "No te quejes. Preséntate y da lo mejor de ti.",
+      "texto_inline": "Preséntate.",
+      "reflexao": "Los campeones no se quejan ni se lamentan. Están demasiado ocupados mejorando."
+    },
+    "fd-sem-volta": {
+      "texto": "Después de ver en qué puedes convertirte, no hay vuelta atrás.",
+      "texto_curto": "Quien vio en qué puede convertirse no vuelve atrás.",
+      "texto_inline": "Sin vuelta atrás.",
+      "reflexao": "Siempre es posible hacer más y mejor."
+    },
+    "fd-desconforto": {
+      "texto": "Aprende a estar cómodo en la incomodidad.",
+      "texto_curto": "Siéntete cómodo en la incomodidad.",
+      "texto_inline": "Abraza la incomodidad.",
+      "reflexao": "La incomodidad de hoy es el ritmo fácil de mañana."
+    },
+    "fd-desafio": {
+      "texto": "El desafío es la fuerza que necesitas para subir de nivel.",
+      "texto_curto": "El desafío es lo que te hace subir de nivel.",
+      "texto_inline": "Enfrenta el desafío.",
+      "reflexao": "Si la carrera asusta, es porque importa."
+    },
+    "fd-persistencia": {
+      "texto": "Nada vence a la persistencia. Ni la suerte, ni el talento.",
+      "texto_curto": "Nada vence a la persistencia. Ni la suerte, ni el talento.",
+      "texto_inline": "Persiste.",
+      "reflexao": "Quien cambia su forma de pensar cambia su forma de entrenar."
+    },
+    "fd-derrotas": {
+      "texto": "El sabio aprende más de las derrotas que de las victorias.",
+      "texto_curto": "Aprende más de las derrotas que de las victorias.",
+      "texto_inline": "Aprende y vuelve.",
+      "reflexao": "Un mal entrenamiento es una lección. Anótala y vuelve a intentarlo."
+    },
+    "fd-manha": {
+      "texto": "La mañana es el momento de la verdad. Levántate y haz lo que hay que hacer.",
+      "texto_curto": "No negocies. Ejecuta.",
+      "texto_inline": "Levántate y hazlo.",
+      "reflexao": "Las mañanas traen las primeras decisiones del día. No negocies con la pereza."
     }
   },
   "perguntas_diario": [
