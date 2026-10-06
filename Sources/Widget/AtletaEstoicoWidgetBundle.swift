@@ -14,7 +14,11 @@ struct FudoshinWidget: Widget {
     let kind = "FudoshinWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: DailyProvider()) { entry in
+        AppIntentConfiguration(
+            kind: kind,
+            intent: LockScreenStyleIntent.self,
+            provider: DailyProvider()
+        ) { entry in
             FudoshinWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("widget.name")

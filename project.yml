@@ -58,6 +58,7 @@ targets:
       - Sources/Widget
       - Sources/Core/Daily
       - Sources/Core/Messages
+      - Sources/Core/Widget
       - Resources/Localizable.xcstrings
       - path: Content
         type: folder

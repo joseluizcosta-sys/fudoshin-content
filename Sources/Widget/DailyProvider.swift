@@ -6,8 +6,8 @@ import Foundation
 struct DailyWidgetEntry: TimelineEntry {
     let date: Date
     let entry: DailyEntry
+    var style: LockScreenStyle = .destaque
     /// true somente quando a ContentLibrary falhou ao carregar no placeholder.
-    /// Causa .redacted(reason: .placeholder) nas views.
     var isPlaceholder: Bool = false
 }
 
@@ -15,12 +15,38 @@ struct DailyWidgetEntry: TimelineEntry {
 
 extension DailyWidgetEntry {
     /// Carrega a primeira mensagem real da biblioteca (por id, idioma do aparelho).
-    /// Usado em previews e como placeholder — nunca texto fixo atribuído a autor (Regra 5).
-    static var preview: DailyWidgetEntry {
-        buildFromLibrary(daysToRace: 27)
+    static var preview: DailyWidgetEntry { buildFromLibrary(daysToRace: 27) }
+
+    /// Entradas com os textos mais longos do catálogo para validar que cabem nas fontes maiores.
+    static var previewLongDestaque: DailyWidgetEntry {
+        DailyWidgetEntry(
+            date: Date(),
+            entry: DailyEntry(
+                day: DayKey(Date()), messageID: "preview-long", imageID: "",
+                trigger: .geral,
+                shortText: "El resultado viene de la constancia, no de un entrenamiento heroico.",
+                inlineText: "El dato no es la historia",
+                author: "", reflection: "", daysToRace: nil
+            ),
+            style: .destaque
+        )
     }
 
-    static func buildFromLibrary(daysToRace: Int? = nil) -> DailyWidgetEntry {
+    static var previewLongPalavraChave: DailyWidgetEntry {
+        DailyWidgetEntry(
+            date: Date(),
+            entry: DailyEntry(
+                day: DayKey(Date()), messageID: "preview-long", imageID: "",
+                trigger: .geral,
+                shortText: "El resultado viene de la constancia, no de un entrenamiento heroico.",
+                inlineText: "El dato no es la historia",
+                author: "", reflection: "", daysToRace: nil
+            ),
+            style: .palavraChave
+        )
+    }
+
+    static func buildFromLibrary(daysToRace: Int? = nil, style: LockScreenStyle = .destaque) -> DailyWidgetEntry {
         if let lib = try? ContentLibrary(),
            let msg = lib.messages.sorted(by: { $0.id < $1.id }).first {
             return DailyWidgetEntry(
@@ -35,34 +61,36 @@ extension DailyWidgetEntry {
                     author: msg.author,
                     reflection: msg.reflection,
                     daysToRace: daysToRace
-                )
+                ),
+                style: style
             )
         }
-        // Biblioteca indisponível → vazio; views aplicarão .redacted.
         return DailyWidgetEntry(
             date: Date(),
             entry: DailyEntry(
                 day: DayKey(Date()), messageID: "", imageID: "", trigger: .geral,
                 shortText: "", inlineText: "", author: "", reflection: "", daysToRace: nil
             ),
+            style: style,
             isPlaceholder: true
         )
     }
 }
 
-// MARK: - TimelineProvider
+// MARK: - AppIntentTimelineProvider
 
-struct DailyProvider: TimelineProvider {
+struct DailyProvider: AppIntentTimelineProvider {
+    typealias Intent = LockScreenStyleIntent
 
     func placeholder(in context: Context) -> DailyWidgetEntry {
         .buildFromLibrary()
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (DailyWidgetEntry) -> Void) {
-        completion(currentEntry())
+    func snapshot(for configuration: LockScreenStyleIntent, in context: Context) async -> DailyWidgetEntry {
+        currentEntry(style: configuration.style)
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<DailyWidgetEntry>) -> Void) {
+    func timeline(for configuration: LockScreenStyleIntent, in context: Context) async -> Timeline<DailyWidgetEntry> {
         let plan  = SharedStore.loadPlan()
         let prefs = SharedStore.loadPreferencesIfExists()
         let lib   = try? ContentLibrary()
@@ -73,13 +101,15 @@ struct DailyProvider: TimelineProvider {
             fallbackMessages: lib?.messages ?? [],
             fallbackImages: lib?.images ?? []
         )
-        let entries = items.map { DailyWidgetEntry(date: $0.date, entry: $0.entry) }
-        completion(Timeline(entries: entries, policy: .atEnd))
+        let entries = items.map {
+            DailyWidgetEntry(date: $0.date, entry: $0.entry, style: configuration.style)
+        }
+        return Timeline(entries: entries, policy: .atEnd)
     }
 
     // MARK: - Private
 
-    private func currentEntry() -> DailyWidgetEntry {
+    private func currentEntry(style: LockScreenStyle) -> DailyWidgetEntry {
         let plan  = SharedStore.loadPlan()
         let prefs = SharedStore.loadPreferencesIfExists()
         let lib   = try? ContentLibrary()
@@ -88,7 +118,7 @@ struct DailyProvider: TimelineProvider {
             fallbackMessages: lib?.messages ?? [],
             fallbackImages: lib?.images ?? []
         )
-        return items.first.map { DailyWidgetEntry(date: $0.date, entry: $0.entry) }
-            ?? .buildFromLibrary()
+        return items.first.map { DailyWidgetEntry(date: $0.date, entry: $0.entry, style: style) }
+            ?? .buildFromLibrary(style: style)
     }
 }
