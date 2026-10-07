@@ -9,3 +9,5 @@ build-log.txt
 
 # Excel/Numbers lock files
 ~$*.xlsx
+
+tools/publicar.conf

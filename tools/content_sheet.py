@@ -5,6 +5,7 @@ Uso (rodar na raiz do projeto):
   python3 tools/content_sheet.py export        # JSONs -> planilha (só na criação; com planilha existente exige --force)
   python3 tools/content_sheet.py check         # valida a planilha, não grava nada
   python3 tools/content_sheet.py build         # valida e gera os JSONs (só grava se não houver erro)
+  python3 tools/content_sheet.py preview       # mostra o que mudou desde a última publicação
   python3 tools/content_sheet.py publish       # build + gera pacote remoto em dist/content/ (versão +1)
   python3 tools/content_sheet.py publish --disable   # manifesto com enabled=false (app volta às frases embutidas)
 
@@ -376,6 +377,36 @@ DIST = ROOT / "dist" / "content"
 LIMIT_BYTES = 2_000_000
 
 
+def preview():
+    """Compara a planilha com o último pacote publicado (sem gravar nada)."""
+    base = load(MSG_DIR / "base.json")
+    meta, texts, langs, errors, warns = collect(base)
+    if errors:
+        print(f"{len(errors)} ERRO(S) na planilha — corrija antes de publicar:")
+        for e in errors: print("  -", e)
+        sys.exit(1)
+    autores, obras, msgs = meta
+    new_ids = {m["id"]: m for m in msgs}
+    mf = DIST / "manifest.json"
+    if not mf.exists():
+        print(f"Primeira publicação: {len(new_ids)} mensagens."); return
+    old = load(DIST / load(mf)["url"])
+    old_ids = {m["id"]: m for m in old["base"]["mensagens"]}
+    pt = langs[0]
+    added = [i for i in new_ids if i not in old_ids]
+    removed = [i for i in old_ids if i not in new_ids]
+    changed = [i for i in new_ids if i in old_ids and (
+        new_ids[i] != old_ids[i] or any(texts[l][i] != old["locales"][l]["mensagens"].get(i) for l in langs))]
+    print(f"Último publicado: v{old['version']} ({len(old_ids)} mensagens) → agora: {len(new_ids)} mensagens")
+    for title, ids in (("NOVAS", added), ("ALTERADAS", changed)):
+        print(f"\n{title} ({len(ids)}):")
+        for i in ids: print(f"  + {i}: {texts[pt][i]['texto_curto']}")
+    print(f"\nREMOVIDAS ({len(removed)}):")
+    for i in removed: print(f"  - {i}")
+    if not (added or removed or changed):
+        print("\nNada mudou desde a última publicação."); sys.exit(3)
+
+
 def publish(disable=False):
     import hashlib, datetime
     run(write=True)
@@ -414,4 +445,5 @@ if __name__ == "__main__":
     elif cmd == "check": run(write=False)
     elif cmd == "build": run(write=True)
     elif cmd == "publish": publish(disable="--disable" in sys.argv)
+    elif cmd == "preview": preview()
     else: sys.exit(__doc__)
