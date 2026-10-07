@@ -10,6 +10,7 @@ struct HealthDebugView: View {
     @State private var loading = false
     @State private var errorMessage: String? = nil
     @Query(sort: \DeliveryLog.dayValue, order: .reverse) private var logs: [DeliveryLog]
+    @Environment(\.dismiss) private var dismiss
 
     private let service = HealthKitService()
 
@@ -29,6 +30,9 @@ struct HealthDebugView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
+                    Button("Fechar") { dismiss() }
+                }
+                ToolbarItem(placement: .topBarLeading) {
                     if loading {
                         ProgressView()
                     } else {
