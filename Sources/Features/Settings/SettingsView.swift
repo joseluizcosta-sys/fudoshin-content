@@ -70,19 +70,17 @@ struct SettingsView: View {
             }
 
             // Aparência (frase no papel de parede só aparece a partir da T12)
-            Section("settings.section.appearance") {
-                Section("settings.categories.section") {
-                    ForEach(ImageCategory.allCases, id: \.self) { cat in
-                        let key = "category.\(cat.rawValue)"
-                        Toggle(LocalizedStringKey(key), isOn: Binding(
-                            get: { vm.prefs.categories.contains(cat) },
-                            set: { on in
-                                if on { vm.prefs.categories.append(cat) }
-                                else  { vm.prefs.categories.removeAll { $0 == cat } }
-                                if vm.prefs.categories.isEmpty { vm.prefs.categories = [cat] }
-                            }
-                        ))
-                    }
+            Section("settings.categories.section") {
+                ForEach(ImageCategory.allCases, id: \.self) { cat in
+                    let key = "category.\(cat.rawValue)"
+                    Toggle(LocalizedStringKey(key), isOn: Binding(
+                        get: { vm.prefs.categories.contains(cat) },
+                        set: { on in
+                            if on { vm.prefs.categories.append(cat) }
+                            else  { vm.prefs.categories.removeAll { $0 == cat } }
+                            if vm.prefs.categories.isEmpty { vm.prefs.categories = [cat] }
+                        }
+                    ))
                 }
             }
 

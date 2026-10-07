@@ -3,7 +3,7 @@
 > Para o Claude Code: execute as instruções abaixo, rode todos os testes e faça o commit pedido.
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
-**Status:** pendente
+**Status:** concluída
 **Tarefa:** (1) sheets de Ajustes que abrem e fecham sozinhas; (2) ordem da tela Hoje
 
 ### 1. Bug: "Meu mantra", "Editar prova" e "Editar semana" abrem e fecham sozinhas
