@@ -24,7 +24,7 @@ enum DailyTimelineGenerator {
         calendar: Calendar = .current
     ) -> [TimelineItem] {
         let cal = calendar
-        let changeHour = prefs?.changeHour ?? 0
+        let changeHour = prefs?.changeHour ?? 4
         let installID = prefs?.installID ?? "pending"
         let todayStart = cal.startOfDay(for: now)
         let todayKey = DayKey(now, calendar: cal)
