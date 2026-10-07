@@ -15,13 +15,13 @@
 ## A brincadeira com os ideogramas
 - 不 (fu) = não · 動 (dō) = mover · 心 (shin) = mente/coração.
 - O 動 é o corpo em movimento; o 不 diante dele é a mente que não se deixa mover.
-- **Ícone do app:** um único ideograma (心 ou 不) em traço de pincel sobre fundo laranja/âmbar. Legível em 60 px.
+- **Ícone do app (decidido em 07/10/2026):** conceito C — samurai de capacete com crista dourada, correndo de tênis dentro de um sol âmbar, fundo escuro. Arquivos em `Design/Icone/` e `Resources/Assets.xcassets/AppIcon.appiconset/`. Ressalva registrada: figura humana perde leitura abaixo de 60 px; refinar com ilustrador antes do lançamento (silhueta mais simples, membros mais grossos). Alternativas avaliadas: 心 sobre âmbar, 心 + selo 不, tênis samurai.
 - Na interface: 動 pode ganhar a cor de destaque (movimento) e 不/心 ficar neutros.
 
 ## Mascote (samurai corredor) — briefing para ilustrador
 - Samurai de armadura estilizada (sem copiar armaduras famosas de filmes/jogos) usando **tênis de corrida modernos**, em postura de corrida ou de calma antes da largada.
 - Tom: respeitoso e bem-humorado, **não caricato**. Sem estereótipos de rosto.
-- Uso: onboarding, estados vazios, marketing e redes. **Não usar no ícone.**
+- Uso: ícone do app (versão simplificada), onboarding, estados vazios, marketing e redes.
 - Entregáveis: 3 poses (largada, correndo, meditando após o treino), versões clara/escura, PNG + vetor.
 - Contrato com cessão de direitos para uso comercial em app e marketing.
 
