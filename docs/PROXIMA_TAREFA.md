@@ -3,7 +3,7 @@
 > Para o Claude Code: execute as instruções abaixo, rode todos os testes e faça o commit pedido.
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
-**Status:** pendente
+**Status:** concluída
 **Tarefa:** imagem do samurai no topo da tela Hoje (o ícone já está instalado)
 
 Referência visual: `Design/Arte/Mockup_Hoje_v3.png`.
