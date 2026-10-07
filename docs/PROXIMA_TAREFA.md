@@ -4,17 +4,12 @@
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
 **Status:** pendente
-**Tarefa:** ícone do app + imagem do samurai no topo da tela Hoje
+**Tarefa:** imagem do samurai no topo da tela Hoje (o ícone já está instalado)
 
 Referência visual: `Design/Arte/Comparacao_hero_v1_v2.png` (versão da direita, v2).
 Atenção: na v2 as linhas de velocidade passam atrás do 不動心 — reforçar a faixa escura à esquerda e a sombra do texto para manter a leitura.
 
-### Parte 1 — ícone (se ainda não feito)
-1. `project.yml`, target do app: incluir `Resources/Assets.xcassets` nas sources e
-   `ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon` nas settings. Não incluir no widget.
-2. `xcodegen`, compilar, conferir o ícone no iPhone (claro, escuro e tingido no iOS 18).
-
-### Parte 2 — topo da tela Hoje
+### Topo da tela Hoje
 A imagem `HeroSamurai` (no Assets.xcassets) é paisagem 1024×572; a tela é retrato.
 1. Em `TodayView`, criar `TodayHeroView` no topo, ocupando ~55% da altura da tela, ignorando a safe area de cima:
    - `Image("HeroSamurai").resizable().scaledToFill()` com recorte horizontal deslocado para a direita
@@ -32,4 +27,4 @@ A imagem `HeroSamurai` (no Assets.xcassets) é paisagem 1024×572; a tela é ret
    A imagem é decorativa (`.accessibilityHidden(true)`).
 5. Rodar todos os testes; conferir no iPhone (claro, escuro, fonte grande).
 6. Commit (`git add -A`, depois `git status` limpo):
-   `feat: ícone do app e imagem do samurai no topo da tela Hoje`
+   `feat: imagem do samurai no topo da tela Hoje`
