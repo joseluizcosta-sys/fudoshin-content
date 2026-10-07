@@ -8,6 +8,16 @@ PROJ="$(pwd)"
 CONF="$PROJ/tools/publicar.conf"
 REPO_DIR="$(dirname "$PROJ")/fudoshin-content"
 
+# Python isolado do projeto (o Homebrew bloqueia pip no Python do sistema)
+VENV="$PROJ/tools/.venv"
+PY="$VENV/bin/python3"
+if [ ! -x "$PY" ] || ! "$PY" -c "import numbers_parser, openpyxl" 2>/dev/null; then
+  echo "Preparando o ambiente Python (só na primeira vez)…"
+  python3 -m venv "$VENV"
+  "$PY" -m pip install --quiet --upgrade pip
+  "$PY" -m pip install --quiet numbers-parser openpyxl
+fi
+
 if [ ! -f "$CONF" ]; then
   read -r -p "Seu usuário do GitHub: " GH_USER
   echo "GH_USER=$GH_USER" > "$CONF"
@@ -29,22 +39,22 @@ git -C "$REPO_DIR" pull --quiet
 
 # 3. Prévia do que muda
 if [ "${1:-}" != "--disable" ]; then
-  set +e; python3 tools/content_sheet.py preview; rc=$?; set -e
+  set +e; "$PY" tools/content_sheet.py preview; rc=$?; set -e
   [ $rc -eq 3 ] && exit 0
   [ $rc -ne 0 ] && exit $rc
   echo
   echo "Você testou essas frases no iPhone (Cmd+R + tela de debug)?"
   read -r -p "Publicar para todos os usuários? (s/N) " ok
   [ "$ok" = "s" ] || [ "$ok" = "S" ] || { echo "Cancelado. Nada foi publicado."; exit 0; }
-  python3 tools/content_sheet.py publish
+  "$PY" tools/content_sheet.py publish
 else
   read -r -p "DESLIGAR o conteúdo remoto para todos? (s/N) " ok
   [ "$ok" = "s" ] || [ "$ok" = "S" ] || { echo "Cancelado."; exit 0; }
-  python3 tools/content_sheet.py publish --disable
+  "$PY" tools/content_sheet.py publish --disable
 fi
 
 # 4. Copiar e enviar
-VER=$(python3 -c "import json;print(json.load(open('dist/content/manifest.json'))['version'])")
+VER=$("$PY" -c "import json;print(json.load(open('dist/content/manifest.json'))['version'])")
 cp dist/content/manifest.json "dist/content/content-v$VER.json" "$REPO_DIR/"
 git -C "$REPO_DIR" add manifest.json "content-v$VER.json"
 git -C "$REPO_DIR" commit --quiet -m "conteúdo v$VER"
@@ -58,7 +68,7 @@ git commit --quiet -m "content: publicado v$VER" || true
 echo "Enviado. Aguardando o GitHub Pages publicar (até 2 min)…"
 for i in $(seq 1 12); do
   sleep 10
-  NOW=$(curl -fsS "$URL?t=$(date +%s)" 2>/dev/null | python3 -c "import sys,json;print(json.load(sys.stdin)['version'])" 2>/dev/null || echo 0)
+  NOW=$(curl -fsS "$URL?t=$(date +%s)" 2>/dev/null | "$PY" -c "import sys,json;print(json.load(sys.stdin)['version'])" 2>/dev/null || echo 0)
   if [ "$NOW" = "$VER" ]; then echo "✅ v$VER no ar: $URL"; exit 0; fi
 done
 echo "⚠️ Enviado, mas ainda não apareceu em $URL. Confira em alguns minutos."

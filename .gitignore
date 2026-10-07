@@ -11,3 +11,4 @@ build-log.txt
 ~$*.xlsx
 
 tools/publicar.conf
+tools/.venv/
