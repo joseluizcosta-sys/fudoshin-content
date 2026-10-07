@@ -69,3 +69,16 @@ Se o asset não existir, o app usa `HeroSamurai` como fallback (comportamento de
 
 **Especificações:** vertical 9:16 · ~1536 × 2752 px · JPEG.
 Adicione os assets gradualmente em `Resources/Assets.xcassets`; o app usa `HeroSamurai` enquanto não existirem.
+
+### Hero por gatilho — instaladas em 07/10/2026
+Geradas no Gemini (plano pago) por JC com os prompts de `docs/Prompts_Hero_Gemini.md`. Originais 1536×2752 em `Design/Arte/Hero_<gatilho>.jpeg`; no app em 1290×2311, JPEG q82 (~370–600 KB cada). Ideogramas e degradês são aplicados pelo código (`TodayHeroView`), não na imagem.
+
+| Asset | Revisão |
+|---|---|
+| Hero_vespera_chave | ok — tênis sem logo, mãos ok |
+| Hero_pos_treino | ok |
+| Hero_descanso | ok |
+| Hero_sono_ruim | ok |
+| Hero_retorno | ok — portal é um torii (o prompt pedia portão de madeira); ideograma 動 perde contraste no fundo claro |
+| Hero_marco_prova | ok |
+| Hero_geral | **pendente** — o arquivo em `Design/Arte/Hero_geral.jpeg` é cópia idêntica da v3 (com listras ASICS); não instalado, o app usa `HeroSamurai` |
