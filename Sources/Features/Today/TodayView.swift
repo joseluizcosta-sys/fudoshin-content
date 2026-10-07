@@ -28,12 +28,17 @@ struct TodayView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    // Imagem hero — ignora safe area de cima
+                    // 1. Imagem hero
                     TodayHeroView(trigger: todayEntry?.trigger)
 
-                    // Frase do dia — logo abaixo, sobreposta ao fim do degradê
                     if let e = todayEntry {
+                        // 2. Frase + 3. Reflexão (mesmo bloco, sem Divider)
                         quoteSection(e)
+
+                        // 4. Botão "Revisão da noite"
+                        journalButton
+                            .padding(.horizontal, Theme.Spacing.large)
+                            .padding(.bottom, Theme.Spacing.large)
                     } else {
                         Text("today.no_plan")
                             .font(.body)
@@ -41,10 +46,12 @@ struct TodayView: View {
                             .padding(Theme.Spacing.large)
                     }
 
+                    // 5. SyncHintBanner
                     SyncHintBanner()
 
-                    if let e = todayEntry {
-                        reflectionBody(e)
+                    // 6. Mantra no fim
+                    if let mantra = profiles.first?.mantra, !mantra.isEmpty {
+                        mantraSection(mantra)
                     }
                 }
             }
@@ -77,7 +84,7 @@ struct TodayView: View {
         }
     }
 
-    // MARK: - Frase do dia (fora da imagem, sobre Theme.background)
+    // MARK: - Frase + Reflexão (bloco único, sem Divider)
 
     @ViewBuilder
     private func quoteSection(_ e: DailyEntry) -> some View {
@@ -86,6 +93,7 @@ struct TodayView: View {
         let ctxLabel = contextLabel(e)
 
         VStack(alignment: .leading, spacing: 8) {
+            // Contexto → frase → autor → obra · ref
             if !ctxLabel.isEmpty {
                 Text(ctxLabel)
                     .font(.caption.weight(.semibold))
@@ -108,15 +116,17 @@ struct TodayView: View {
                     .foregroundStyle(Theme.secondaryText)
             }
 
-            if let mantra = profiles.first?.mantra, !mantra.isEmpty {
-                HStack(alignment: .top, spacing: 6) {
-                    Image(systemName: "quote.opening")
-                        .font(.caption)
+            // Reflexão logo abaixo (~12 pt = spacing(8) + padding(.top, 4))
+            if !e.reflection.isEmpty {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("today.reflection.section")
+                        .font(.caption.weight(.semibold))
                         .foregroundStyle(Theme.secondaryText)
-                    Text(mantra)
+                        .textCase(.uppercase)
+                    Text(e.reflection)
                         .font(.callout)
-                        .foregroundStyle(Theme.secondaryText)
-                        .lineLimit(2)
+                        .foregroundStyle(Theme.primaryText)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 .padding(.top, 4)
             }
@@ -133,27 +143,22 @@ struct TodayView: View {
         return e.inlineText
     }
 
-    // MARK: - Reflexão (card abaixo da frase)
+    // MARK: - Mantra (fim da tela)
 
     @ViewBuilder
-    private func reflectionBody(_ e: DailyEntry) -> some View {
-        VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-            Divider()
-            if !e.reflection.isEmpty {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("today.reflection.section")
-                        .font(.caption.weight(.semibold))
-                        .foregroundStyle(Theme.secondaryText)
-                        .textCase(.uppercase)
-                    Text(e.reflection)
-                        .font(.callout)
-                        .foregroundStyle(Theme.primaryText)
-                        .fixedSize(horizontal: false, vertical: true)
-                }
-            }
-            journalButton
+    private func mantraSection(_ mantra: String) -> some View {
+        HStack(alignment: .top, spacing: 6) {
+            Image(systemName: "quote.opening")
+                .font(.caption)
+                .foregroundStyle(Theme.secondaryText)
+            Text(mantra)
+                .font(.callout)
+                .foregroundStyle(Theme.secondaryText)
+                .lineLimit(2)
         }
-        .padding(Theme.Spacing.large)
+        .padding(.horizontal, Theme.Spacing.large)
+        .padding(.vertical, Theme.Spacing.medium)
+        .padding(.bottom, Theme.Spacing.large)
     }
 
     // MARK: - Botão do diário
