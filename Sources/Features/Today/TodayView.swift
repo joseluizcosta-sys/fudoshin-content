@@ -26,10 +26,16 @@ struct TodayView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
+                    TodayHeroView(
+                        entry: todayEntry,
+                        quoteText: todayEntry.map {
+                            library?.message(withID: $0.messageID)?.text ?? $0.shortText
+                        } ?? "",
+                        contextLabel: todayEntry.map { heroContextLabel($0) } ?? ""
+                    )
                     SyncHintBanner()
-                    imageHeader
                     if let e = todayEntry {
-                        entryBody(e)
+                        reflectionBody(e)
                     } else {
                         Text("today.no_plan")
                             .font(.body)
@@ -39,8 +45,9 @@ struct TodayView: View {
                 }
             }
             .background(Theme.background.ignoresSafeArea())
-            .navigationTitle("today.title")
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(.hidden, for: .navigationBar)
             .toolbar { toolbarItems }
             .sheet(isPresented: $showSettings) { SettingsView() }
             .sheet(isPresented: $showJournal) { JournalEntrySheet(day: DayKey(Date())) }
@@ -56,57 +63,21 @@ struct TodayView: View {
         }
     }
 
-    // MARK: - Cabeçalho (reservado para imagem em T12; por ora gradiente + 不動心)
+    // MARK: - Helpers
 
-    private var imageHeader: some View {
-        ZStack {
-            LinearGradient(
-                colors: [Color(red: 0.07, green: 0.08, blue: 0.09),
-                         Color(red: 0.10, green: 0.09, blue: 0.08)],
-                startPoint: .topLeading, endPoint: .bottomTrailing
-            )
-            Text("不動心")
-                .font(.system(size: 96, weight: .thin))
-                .foregroundStyle(Color.white.opacity(0.08))
-                .allowsHitTesting(false)
+    private func heroContextLabel(_ e: DailyEntry) -> String {
+        guard e.trigger != .geral, !e.inlineText.isEmpty else {
+            return String(localized: "today.context.geral")
         }
-        .frame(height: 220)
+        return e.inlineText
     }
 
-    // MARK: - Corpo
+    // MARK: - Reflection section (below hero)
 
     @ViewBuilder
-    private func entryBody(_ e: DailyEntry) -> some View {
+    private func reflectionBody(_ e: DailyEntry) -> some View {
         let msg = library?.message(withID: e.messageID)
         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
-
-            // Etiqueta de contexto (acima da frase)
-            Text(contextLabel(e))
-                .font(.caption.weight(.semibold))
-                .foregroundStyle(Theme.accent)
-                .textCase(.uppercase)
-
-            // Frase completa uma única vez
-            Text(msg?.text ?? e.shortText)
-                .font(.body)
-                .foregroundStyle(Theme.primaryText)
-                .fixedSize(horizontal: false, vertical: true)
-
-            // Autor + obra + referência
-            VStack(alignment: .leading, spacing: 2) {
-                Text(attributionText(author: e.author, isParaphrase: e.isParaphrase))
-                    .font(.subheadline.weight(.medium))
-                    .foregroundStyle(Theme.primaryText)
-                if let work = msg?.work, let ref = msg?.reference, !work.isEmpty {
-                    Text("\(work) · \(ref)")
-                        .font(.caption)
-                        .foregroundStyle(Theme.secondaryText)
-                }
-            }
-
-            Divider()
-
-            // Reflexão
             if !e.reflection.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("today.reflection.section")
@@ -119,14 +90,17 @@ struct TodayView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
-
-            // Botão de revisão (estado conforme JournalEntry de hoje)
+            if let work = msg?.work, let ref = msg?.reference, !work.isEmpty {
+                Text("\(work) · \(ref)")
+                    .font(.caption)
+                    .foregroundStyle(Theme.secondaryText)
+            }
             journalButton
         }
         .padding(Theme.Spacing.large)
     }
 
-    // MARK: - Botão de revisão
+    // MARK: - Journal button
 
     private var journalButton: some View {
         Button { showJournal = true } label: {
@@ -150,28 +124,148 @@ struct TodayView: View {
         .buttonStyle(.plain)
     }
 
-    // MARK: - Helpers
-
-    private func contextLabel(_ e: DailyEntry) -> String {
-        guard e.trigger != .geral, !e.inlineText.isEmpty else {
-            return String(localized: "today.context.geral")
-        }
-        return e.inlineText
-    }
+    // MARK: - Toolbar
 
     @ToolbarContentBuilder
     private var toolbarItems: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
             Button { showSettings = true } label: {
                 Image(systemName: "gearshape")
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.5), radius: 2)
             }
         }
         #if DEBUG
         ToolbarItem(placement: .topBarLeading) {
             Button { showDebug = true } label: {
                 Image(systemName: "stethoscope")
+                    .foregroundStyle(.white)
+                    .shadow(color: .black.opacity(0.5), radius: 2)
             }
         }
         #endif
+    }
+}
+
+// MARK: - TodayHeroView
+
+private struct TodayHeroView: View {
+    let entry: DailyEntry?
+    let quoteText: String
+    let contextLabel: String
+
+    @Environment(\.dynamicTypeSize) private var typeSize
+    @Environment(\.colorScheme) private var colorScheme
+
+    private var heroHeight: CGFloat {
+        let screen = UIScreen.main.bounds.height
+        if typeSize >= .xLarge { return max(screen * 0.45, 320) }
+        return screen * 0.60
+    }
+
+    private var bottomGradientFraction: CGFloat {
+        colorScheme == .light ? 0.55 : 0.42
+    }
+
+    var body: some View {
+        ZStack {
+            // Hero image: retrato, alinhado pelo topo, cortando embaixo
+            Image("HeroSamurai")
+                .resizable()
+                .scaledToFill()
+                .frame(maxWidth: .infinity)
+                .accessibilityHidden(true)
+
+            // Degradê topo — barra de status e barra de navegação legíveis
+            VStack {
+                LinearGradient(
+                    colors: [Color.black.opacity(0.55), .clear],
+                    startPoint: .top, endPoint: .bottom
+                )
+                .frame(height: heroHeight * 0.28)
+                Spacer()
+            }
+
+            // Faixa escura esquerda — contraste para 不動心
+            HStack {
+                LinearGradient(
+                    colors: [Color.black.opacity(0.45), .clear],
+                    startPoint: .leading, endPoint: .trailing
+                )
+                .frame(width: 88)
+                Spacer()
+            }
+
+            // Degradê inferior — transparente → Theme.background
+            VStack {
+                Spacer()
+                LinearGradient(
+                    colors: [.clear, Theme.background],
+                    startPoint: .top, endPoint: .bottom
+                )
+                .frame(height: heroHeight * bottomGradientFraction)
+            }
+
+            // 不動心 vertical — um ideograma por linha, lateral esquerda
+            HStack(alignment: .top) {
+                VStack(spacing: 2) {
+                    Text("不").foregroundStyle(Color.white.opacity(0.92))
+                    Text("動").foregroundStyle(Theme.accent)
+                    Text("心").foregroundStyle(Color.white.opacity(0.92))
+                }
+                .font(.system(size: 44, weight: .bold, design: .serif))
+                .shadow(color: .black.opacity(0.65), radius: 4, x: 1, y: 2)
+                .accessibilityLabel("Fudōshin")
+                .padding(.leading, 20)
+                .padding(.top, heroHeight * 0.20)
+                Spacer()
+            }
+
+            // Texto do dia — contexto, frase, autor — sobreposto ao degradê inferior
+            VStack {
+                Spacer()
+                if let e = entry {
+                    quoteOverlay(e)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .frame(height: heroHeight)
+        .clipped()
+        .ignoresSafeArea(.container, edges: .top)
+    }
+
+    @ViewBuilder
+    private func quoteOverlay(_ e: DailyEntry) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            if !contextLabel.isEmpty {
+                Text(contextLabel)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Theme.accent)
+                    .textCase(.uppercase)
+            }
+
+            Text(quoteText)
+                .font(.system(.title2, design: .serif).weight(.semibold))
+                .foregroundStyle(.white)
+                .fixedSize(horizontal: false, vertical: true)
+                .shadow(color: .black.opacity(0.55), radius: 3, x: 0, y: 1)
+
+            Text(attributionText(author: e.author, isParaphrase: e.isParaphrase))
+                .font(.subheadline)
+                .foregroundStyle(Color.white.opacity(0.85))
+                .shadow(color: .black.opacity(0.5), radius: 2, x: 0, y: 1)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, Theme.Spacing.large)
+        .padding(.bottom, Theme.Spacing.large)
+        // Fundo translúcido extra no modo claro para garantir contraste
+        .background(
+            colorScheme == .light
+                ? LinearGradient(
+                    colors: [.clear, Color.black.opacity(0.28)],
+                    startPoint: .top, endPoint: .bottom)
+                : LinearGradient(colors: [.clear, .clear], startPoint: .top, endPoint: .bottom)
+        )
     }
 }
