@@ -9,6 +9,7 @@ struct SettingsView: View {
     @State private var showEditRace = false
     @State private var showEditWeek = false
     @State private var showSyncGuide = false
+    @State private var showMantraEditor = false
 
     var body: some View {
         NavigationStack {
@@ -100,13 +101,16 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showSyncGuide) { SyncGuideView() }
 
-            // Editar prova e semana
+            // Perfil: mantra, prova, semana
             Section {
+                Button("settings.mantra.label") { showMantraEditor = true }
+                    .foregroundStyle(Theme.primaryText)
                 Button("settings.edit_race") { showEditRace = true }
                     .foregroundStyle(Theme.primaryText)
                 Button("settings.edit_week") { showEditWeek = true }
                     .foregroundStyle(Theme.primaryText)
             }
+            .sheet(isPresented: $showMantraEditor) { MantraEditorSheet() }
             .sheet(isPresented: $showEditRace) {
                 RaceEditView(race: races.first) {
                     await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)

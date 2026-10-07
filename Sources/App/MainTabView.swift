@@ -13,13 +13,9 @@ struct MainTabView: View {
                 .tabItem { Label("tab.race", systemImage: "flag.checkered") }
                 .tag(1)
 
-            MantraView()
-                .tabItem { Label("tab.mantra", systemImage: "quote.bubble.fill") }
-                .tag(2)
-
             JournalView()
                 .tabItem { Label("tab.journal", systemImage: "book.fill") }
-                .tag(3)
+                .tag(2)
         }
         .tint(Theme.accent)
         .onOpenURL { url in

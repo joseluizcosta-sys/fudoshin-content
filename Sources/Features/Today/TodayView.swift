@@ -8,6 +8,7 @@ struct TodayView: View {
     @State private var showSettings = false
     @State private var showJournal = false
     @Query(sort: \JournalEntry.dayValue) private var journalEntries: [JournalEntry]
+    @Query private var profiles: [AthleteProfile]
     #if DEBUG
     @State private var showDebug = false
     #endif
@@ -95,6 +96,19 @@ struct TodayView: View {
                 Text("\(work) · \(msg?.reference ?? "")")
                     .font(.caption)
                     .foregroundStyle(Theme.secondaryText)
+            }
+
+            if let mantra = profiles.first?.mantra, !mantra.isEmpty {
+                HStack(alignment: .top, spacing: 6) {
+                    Image(systemName: "quote.opening")
+                        .font(.caption)
+                        .foregroundStyle(Theme.secondaryText)
+                    Text(mantra)
+                        .font(.callout)
+                        .foregroundStyle(Theme.secondaryText)
+                        .lineLimit(2)
+                }
+                .padding(.top, 4)
             }
         }
         .padding(.horizontal, Theme.Spacing.large)
@@ -186,14 +200,11 @@ private struct TodayHeroView: View {
 
     private var heroHeight: CGFloat {
         let screen = UIScreen.main.bounds.height
-        // Com Dynamic Type grande o hero encolhe para dar espaço ao texto abaixo
         if typeSize >= .xLarge { return max(screen * 0.44, 300) }
         return screen * 0.58
     }
 
     var body: some View {
-        // alignment: .top ancora o TOPO da imagem ao topo do frame,
-        // cortando apenas a parte inferior (pés). .clipped() aplica o recorte.
         Image("HeroSamurai")
             .resizable()
             .scaledToFill()
@@ -201,7 +212,6 @@ private struct TodayHeroView: View {
             .frame(height: heroHeight, alignment: .top)
             .clipped()
             .accessibilityHidden(true)
-            // Degradê topo (~120 pt): 0 → 35% preto — barra de status e botões legíveis
             .overlay(alignment: .top) {
                 LinearGradient(
                     colors: [Color.black.opacity(0.35), .clear],
@@ -209,7 +219,6 @@ private struct TodayHeroView: View {
                 )
                 .frame(height: 120)
             }
-            // Faixa escura esquerda — contraste para 不動心
             .overlay(alignment: .leading) {
                 LinearGradient(
                     colors: [Color.black.opacity(0.40), .clear],
@@ -217,7 +226,6 @@ private struct TodayHeroView: View {
                 )
                 .frame(width: 88)
             }
-            // Degradê inferior (últimos ~40%) — transparente → Theme.background
             .overlay(alignment: .bottom) {
                 LinearGradient(
                     colors: [.clear, Theme.background],
@@ -225,7 +233,6 @@ private struct TodayHeroView: View {
                 )
                 .frame(height: heroHeight * 0.40)
             }
-            // 不動心 vertical: um ideograma por linha; 不 e 心 claros, 動 em accent
             .overlay(alignment: .topLeading) {
                 VStack(spacing: 2) {
                     Text("不").foregroundStyle(Color.white.opacity(0.92))
@@ -238,7 +245,6 @@ private struct TodayHeroView: View {
                 .padding(.leading, 20)
                 .padding(.top, heroHeight * 0.22)
             }
-            // Estende a imagem por trás da barra de status e da barra de navegação
             .ignoresSafeArea(.all, edges: .top)
     }
 }
