@@ -1,17 +1,18 @@
 import SwiftUI
 import SwiftData
 
+private enum TodaySheet: String, Identifiable {
+    case settings, journal, debug
+    var id: String { rawValue }
+}
+
 struct TodayView: View {
     @Environment(\.modelContext) private var ctx
     @State private var plan: DailyPlan? = SharedStore.loadPlan()
     @State private var library: ContentLibrary? = ContentLibrary.current()
-    @State private var showSettings = false
-    @State private var showJournal = false
+    @State private var activeSheet: TodaySheet?
     @Query(sort: \JournalEntry.dayValue) private var journalEntries: [JournalEntry]
     @Query private var profiles: [AthleteProfile]
-    #if DEBUG
-    @State private var showDebug = false
-    #endif
 
     private var todayEntry: DailyEntry? {
         let key = DayKey(Date()).value
@@ -53,11 +54,20 @@ struct TodayView: View {
             .toolbarBackground(.hidden, for: .navigationBar)
             .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar { toolbarItems }
-            .sheet(isPresented: $showSettings) { SettingsView() }
-            .sheet(isPresented: $showJournal) { JournalEntrySheet(day: DayKey(Date())) }
-            #if DEBUG
-            .sheet(isPresented: $showDebug) { HealthDebugView() }
-            #endif
+            .sheet(item: $activeSheet) { sheet in
+                switch sheet {
+                case .settings:
+                    SettingsView()
+                case .journal:
+                    JournalEntrySheet(day: DayKey(Date()))
+                case .debug:
+                    #if DEBUG
+                    HealthDebugView()
+                    #else
+                    EmptyView()
+                    #endif
+                }
+            }
             .onReceive(
                 NotificationCenter.default.publisher(
                     for: UIApplication.willEnterForegroundNotification)
@@ -149,7 +159,7 @@ struct TodayView: View {
     // MARK: - Botão do diário
 
     private var journalButton: some View {
-        Button { showJournal = true } label: {
+        Button { activeSheet = .journal } label: {
             if hasTodayJournal {
                 Label("today.journal.done", systemImage: "checkmark")
                     .font(.body.weight(.medium))
@@ -175,7 +185,7 @@ struct TodayView: View {
     @ToolbarContentBuilder
     private var toolbarItems: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
-            Button { showSettings = true } label: {
+            Button { activeSheet = .settings } label: {
                 Image(systemName: "gearshape")
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.5), radius: 2)
@@ -183,7 +193,7 @@ struct TodayView: View {
         }
         #if DEBUG
         ToolbarItem(placement: .topBarLeading) {
-            Button { showDebug = true } label: {
+            Button { activeSheet = .debug } label: {
                 Image(systemName: "stethoscope")
                     .foregroundStyle(.white)
                     .shadow(color: .black.opacity(0.5), radius: 2)

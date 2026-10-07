@@ -1,15 +1,17 @@
 import SwiftUI
 import SwiftData
 
+private enum SettingsSheet: String, Identifiable {
+    case syncGuide, mantra, race, week
+    var id: String { rawValue }
+}
+
 struct SettingsView: View {
     @Environment(\.modelContext) private var ctx
     @Environment(\.dismiss) private var dismiss
     @Query private var races: [Race]
     @State private var vm: SettingsViewModel?
-    @State private var showEditRace = false
-    @State private var showEditWeek = false
-    @State private var showSyncGuide = false
-    @State private var showMantraEditor = false
+    @State private var activeSheet: SettingsSheet?
 
     var body: some View {
         NavigationStack {
@@ -28,6 +30,22 @@ struct SettingsView: View {
                         Task { await vm?.save(); dismiss() }
                     }
                     .fontWeight(.semibold)
+                }
+            }
+            .sheet(item: $activeSheet) { sheet in
+                switch sheet {
+                case .syncGuide:
+                    SyncGuideView()
+                case .mantra:
+                    MantraEditorSheet()
+                case .race:
+                    RaceEditView(race: races.first) {
+                        await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
+                    }
+                case .week:
+                    WeekEditView {
+                        await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
+                    }
                 }
             }
         }
@@ -85,33 +103,21 @@ struct SettingsView: View {
 
             // Dispositivo e sincronização
             Section {
-                Button { showSyncGuide = true } label: {
+                Button { activeSheet = .syncGuide } label: {
                     Label("settings.connect_watch",
                           systemImage: "applewatch.radiowaves.left.and.right")
                 }
                 .foregroundStyle(Theme.primaryText)
             }
-            .sheet(isPresented: $showSyncGuide) { SyncGuideView() }
 
             // Perfil: mantra, prova, semana
             Section {
-                Button("settings.mantra.label") { showMantraEditor = true }
+                Button("settings.mantra.label") { activeSheet = .mantra }
                     .foregroundStyle(Theme.primaryText)
-                Button("settings.edit_race") { showEditRace = true }
+                Button("settings.edit_race") { activeSheet = .race }
                     .foregroundStyle(Theme.primaryText)
-                Button("settings.edit_week") { showEditWeek = true }
+                Button("settings.edit_week") { activeSheet = .week }
                     .foregroundStyle(Theme.primaryText)
-            }
-            .sheet(isPresented: $showMantraEditor) { MantraEditorSheet() }
-            .sheet(isPresented: $showEditRace) {
-                RaceEditView(race: races.first) {
-                    await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
-                }
-            }
-            .sheet(isPresented: $showEditWeek) {
-                WeekEditView {
-                    await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
-                }
             }
         }
     }
