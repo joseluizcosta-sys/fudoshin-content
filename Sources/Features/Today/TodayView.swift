@@ -26,21 +26,23 @@ struct TodayView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    TodayHeroView(
-                        entry: todayEntry,
-                        quoteText: todayEntry.map {
-                            library?.message(withID: $0.messageID)?.text ?? $0.shortText
-                        } ?? "",
-                        contextLabel: todayEntry.map { heroContextLabel($0) } ?? ""
-                    )
-                    SyncHintBanner()
+                    // Imagem hero — ignora safe area de cima
+                    TodayHeroView()
+
+                    // Frase do dia — logo abaixo, sobreposta ao fim do degradê
                     if let e = todayEntry {
-                        reflectionBody(e)
+                        quoteSection(e)
                     } else {
                         Text("today.no_plan")
                             .font(.body)
                             .foregroundStyle(Theme.secondaryText)
                             .padding(Theme.Spacing.large)
+                    }
+
+                    SyncHintBanner()
+
+                    if let e = todayEntry {
+                        reflectionBody(e)
                     }
                 }
             }
@@ -63,21 +65,55 @@ struct TodayView: View {
         }
     }
 
-    // MARK: - Helpers
+    // MARK: - Frase do dia (fora da imagem, sobre Theme.background)
 
-    private func heroContextLabel(_ e: DailyEntry) -> String {
+    @ViewBuilder
+    private func quoteSection(_ e: DailyEntry) -> some View {
+        let msg = library?.message(withID: e.messageID)
+        let quoteText = msg?.text ?? e.shortText
+        let ctxLabel = contextLabel(e)
+
+        VStack(alignment: .leading, spacing: 8) {
+            if !ctxLabel.isEmpty {
+                Text(ctxLabel)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(Theme.accent)
+                    .textCase(.uppercase)
+            }
+
+            Text(quoteText)
+                .font(.system(.title2, design: .serif).weight(.semibold))
+                .foregroundStyle(Theme.primaryText)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Text(attributionText(author: e.author, isParaphrase: e.isParaphrase))
+                .font(.subheadline)
+                .foregroundStyle(Theme.secondaryText)
+
+            if let work = msg?.work, !work.isEmpty {
+                Text("\(work) · \(msg?.reference ?? "")")
+                    .font(.caption)
+                    .foregroundStyle(Theme.secondaryText)
+            }
+        }
+        .padding(.horizontal, Theme.Spacing.large)
+        .padding(.top, Theme.Spacing.medium)
+        .padding(.bottom, Theme.Spacing.large)
+    }
+
+    private func contextLabel(_ e: DailyEntry) -> String {
         guard e.trigger != .geral, !e.inlineText.isEmpty else {
             return String(localized: "today.context.geral")
         }
         return e.inlineText
     }
 
-    // MARK: - Reflection section (below hero)
+    // MARK: - Reflexão (card abaixo da frase)
 
     @ViewBuilder
     private func reflectionBody(_ e: DailyEntry) -> some View {
-        let msg = library?.message(withID: e.messageID)
         VStack(alignment: .leading, spacing: Theme.Spacing.medium) {
+            Divider()
             if !e.reflection.isEmpty {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("today.reflection.section")
@@ -90,17 +126,12 @@ struct TodayView: View {
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
-            if let work = msg?.work, let ref = msg?.reference, !work.isEmpty {
-                Text("\(work) · \(ref)")
-                    .font(.caption)
-                    .foregroundStyle(Theme.secondaryText)
-            }
             journalButton
         }
         .padding(Theme.Spacing.large)
     }
 
-    // MARK: - Journal button
+    // MARK: - Botão do diário
 
     private var journalButton: some View {
         Button { showJournal = true } label: {
@@ -150,63 +181,53 @@ struct TodayView: View {
 // MARK: - TodayHeroView
 
 private struct TodayHeroView: View {
-    let entry: DailyEntry?
-    let quoteText: String
-    let contextLabel: String
-
     @Environment(\.dynamicTypeSize) private var typeSize
-    @Environment(\.colorScheme) private var colorScheme
 
     private var heroHeight: CGFloat {
         let screen = UIScreen.main.bounds.height
-        if typeSize >= .xLarge { return max(screen * 0.45, 320) }
-        return screen * 0.60
-    }
-
-    private var bottomGradientFraction: CGFloat {
-        colorScheme == .light ? 0.55 : 0.42
+        // Com Dynamic Type grande o hero encolhe para dar espaço ao texto abaixo
+        if typeSize >= .xLarge { return max(screen * 0.44, 300) }
+        return screen * 0.58
     }
 
     var body: some View {
-        ZStack {
-            // Hero image: retrato, alinhado pelo topo, cortando embaixo
+        ZStack(alignment: .top) {
+            // Imagem retrato: alinhada pelo TOPO — cabeça, sol e tronco visíveis; pés cortados
             Image("HeroSamurai")
                 .resizable()
                 .scaledToFill()
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, alignment: .top)
                 .accessibilityHidden(true)
 
-            // Degradê topo — barra de status e barra de navegação legíveis
-            VStack {
-                LinearGradient(
-                    colors: [Color.black.opacity(0.55), .clear],
-                    startPoint: .top, endPoint: .bottom
-                )
-                .frame(height: heroHeight * 0.28)
-                Spacer()
-            }
+            // Degradê topo (~120 pt) — barra de status e botões da toolbar legíveis
+            LinearGradient(
+                colors: [Color.black.opacity(0.35), .clear],
+                startPoint: .top, endPoint: .bottom
+            )
+            .frame(height: 120)
 
             // Faixa escura esquerda — contraste para 不動心
             HStack {
                 LinearGradient(
-                    colors: [Color.black.opacity(0.45), .clear],
+                    colors: [Color.black.opacity(0.40), .clear],
                     startPoint: .leading, endPoint: .trailing
                 )
                 .frame(width: 88)
                 Spacer()
             }
 
-            // Degradê inferior — transparente → Theme.background
+            // Degradê inferior (últimos ~40%) — transparente → Theme.background
             VStack {
                 Spacer()
                 LinearGradient(
                     colors: [.clear, Theme.background],
                     startPoint: .top, endPoint: .bottom
                 )
-                .frame(height: heroHeight * bottomGradientFraction)
+                .frame(height: heroHeight * 0.40)
             }
 
             // 不動心 vertical — um ideograma por linha, lateral esquerda
+            // 不 e 心 claros; 動 em Theme.accent; sombra para contraste
             HStack(alignment: .top) {
                 VStack(spacing: 2) {
                     Text("不").foregroundStyle(Color.white.opacity(0.92))
@@ -217,55 +238,14 @@ private struct TodayHeroView: View {
                 .shadow(color: .black.opacity(0.65), radius: 4, x: 1, y: 2)
                 .accessibilityLabel("Fudōshin")
                 .padding(.leading, 20)
-                .padding(.top, heroHeight * 0.20)
+                .padding(.top, heroHeight * 0.22)
                 Spacer()
-            }
-
-            // Texto do dia — contexto, frase, autor — sobreposto ao degradê inferior
-            VStack {
-                Spacer()
-                if let e = entry {
-                    quoteOverlay(e)
-                }
             }
         }
         .frame(maxWidth: .infinity)
         .frame(height: heroHeight)
         .clipped()
-        .ignoresSafeArea(.container, edges: .top)
-    }
-
-    @ViewBuilder
-    private func quoteOverlay(_ e: DailyEntry) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
-            if !contextLabel.isEmpty {
-                Text(contextLabel)
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(Theme.accent)
-                    .textCase(.uppercase)
-            }
-
-            Text(quoteText)
-                .font(.system(.title2, design: .serif).weight(.semibold))
-                .foregroundStyle(.white)
-                .fixedSize(horizontal: false, vertical: true)
-                .shadow(color: .black.opacity(0.55), radius: 3, x: 0, y: 1)
-
-            Text(attributionText(author: e.author, isParaphrase: e.isParaphrase))
-                .font(.subheadline)
-                .foregroundStyle(Color.white.opacity(0.85))
-                .shadow(color: .black.opacity(0.5), radius: 2, x: 0, y: 1)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.horizontal, Theme.Spacing.large)
-        .padding(.bottom, Theme.Spacing.large)
-        // Fundo translúcido extra no modo claro para garantir contraste
-        .background(
-            colorScheme == .light
-                ? LinearGradient(
-                    colors: [.clear, Color.black.opacity(0.28)],
-                    startPoint: .top, endPoint: .bottom)
-                : LinearGradient(colors: [.clear, .clear], startPoint: .top, endPoint: .bottom)
-        )
+        // Estende a imagem por trás da barra de status e da barra de navegação
+        .ignoresSafeArea(.all, edges: .top)
     }
 }
