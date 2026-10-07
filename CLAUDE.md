@@ -37,3 +37,4 @@ xcodebuild -scheme AtletaEstoico -destination 'platform=iOS Simulator,name=iPhon
 
 ## Tarefas do revisor
 - Quando o usuário disser "próxima tarefa" (ou "executa a próxima tarefa"), leia `docs/PROXIMA_TAREFA.md` e execute. Ao terminar, marque o status como concluída.
+- Antes de cada commit: `git add -A` e, depois do commit, `git status` precisa estar limpo. Commit só com os arquivos novos (sem os modificados) já aconteceu uma vez.
