@@ -1447,5 +1447,6 @@
       "texto_curto_max": 32,
       "texto_inline_max": 12
     }
-  }
+  },
+  "versao_conteudo": 1
 }

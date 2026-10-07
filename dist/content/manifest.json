@@ -1,0 +1,9 @@
+{
+  "schema": 3,
+  "version": 1,
+  "url": "content-v1.json",
+  "sha256": "39c7bfd3b2423b0feea069c98b30e64c196676cd39b5d0d3ccf62d170f9b4371",
+  "bytes": 113188,
+  "enabled": true,
+  "minAppBuild": 1
+}

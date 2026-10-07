@@ -5,6 +5,8 @@ Uso (rodar na raiz do projeto):
   python3 tools/content_sheet.py export        # JSONs -> planilha (só na criação; com planilha existente exige --force)
   python3 tools/content_sheet.py check         # valida a planilha, não grava nada
   python3 tools/content_sheet.py build         # valida e gera os JSONs (só grava se não houver erro)
+  python3 tools/content_sheet.py publish       # build + gera pacote remoto em dist/content/ (versão +1)
+  python3 tools/content_sheet.py publish --disable   # manifesto com enabled=false (app volta às frases embutidas)
 
 Regra: a planilha é a fonte da verdade. Os JSONs em Content/messages/ são gerados; não edite à mão.
 Campos que não são frases (perguntas do diário, inline_contexto, limites, revisão) continuam
@@ -370,9 +372,46 @@ def run(write):
     print("JSONs gravados em Content/messages/. Rode os testes no Xcode antes do commit.")
 
 
+DIST = ROOT / "dist" / "content"
+LIMIT_BYTES = 2_000_000
+
+
+def publish(disable=False):
+    import hashlib, datetime
+    run(write=True)
+    base = load(MSG_DIR / "base.json")
+    langs = langs_of(base)
+    DIST.mkdir(parents=True, exist_ok=True)
+    last = 0
+    mf = DIST / "manifest.json"
+    if mf.exists():
+        last = load(mf).get("version", 0)
+    version = max(last, base.get("versao_conteudo", 0)) + 1
+    base["versao_conteudo"] = version
+    dump(MSG_DIR / "base.json", base)          # o próximo build do app embute a mesma versão
+    pkg = OrderedDict(schema=base["versao"], version=version,
+                      generatedAt=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec="seconds"),
+                      base=base,
+                      locales=OrderedDict((l, load(MSG_DIR / f"{l}.json")) for l in langs))
+    raw = json.dumps(pkg, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    if len(raw) > LIMIT_BYTES:
+        sys.exit(f"Pacote com {len(raw)} bytes passa do limite de {LIMIT_BYTES}")
+    name = f"content-v{version}.json"
+    (DIST / name).write_bytes(raw)
+    manifest = OrderedDict(schema=base["versao"], version=version, url=name,
+                           sha256=hashlib.sha256(raw).hexdigest(), bytes=len(raw),
+                           enabled=not disable, minAppBuild=1)
+    dump(mf, manifest)
+    n = len(base["mensagens"])
+    print(f"Pacote v{version} gerado em dist/content/ ({n} mensagens, {len(raw)//1024} KB)"
+          + ("  [DESATIVADO]" if disable else ""))
+    print("Próximo passo: copie dist/content/* para o repositório do GitHub Pages e faça push.")
+
+
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     if cmd == "export": export()
     elif cmd == "check": run(write=False)
     elif cmd == "build": run(write=True)
+    elif cmd == "publish": publish(disable="--disable" in sys.argv)
     else: sys.exit(__doc__)
