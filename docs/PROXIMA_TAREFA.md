@@ -3,7 +3,7 @@
 > Para o Claude Code: execute as instruções abaixo, rode todos os testes e faça o commit pedido.
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
-**Status:** pendente
+**Status:** concluída (07/10/2026)
 **Tarefa:** ajustes de produto (Diário, Mantra, debug, horário de troca, imagem por momento)
 
 Decisões do JC em 08/10/2026. Faça em commits separados, um por item, rodando os testes a cada um.
