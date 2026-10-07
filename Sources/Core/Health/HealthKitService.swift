@@ -100,27 +100,78 @@ final class HealthKitService: HealthDataProviding {
 
     // MARK: - External data signal
 
+    /// True para fontes externas ao iPhone nativo:
+    /// - bundle ID que NÃO começa com "com.apple.health" (Garmin, Strava, etc.)
+    /// - OU productType começando com "Watch" (Apple Watch)
+    static func isExternalSource(bundleID: String, productType: String?) -> Bool {
+        !bundleID.hasPrefix("com.apple.health") || productType?.hasPrefix("Watch") == true
+    }
+
     func lastExternalDataDate(within days: Int) async throws -> Date? {
         guard HKHealthStore.isHealthDataAvailable() else { return nil }
         let start = Calendar.current.date(byAdding: .day, value: -days, to: Date()) ?? Date()
-        let timePred = HKQuery.predicateForSamples(withStart: start, end: nil, options: .strictStartDate)
+        let timePred = HKQuery.predicateForSamples(
+            withStart: start, end: nil, options: .strictStartDate
+        )
         let stepType = HKQuantityType(.stepCount)
 
-        let descriptor = HKSampleQueryDescriptor(
+        // Passo 1: descobrir quais fontes gravaram stepCount no janelo de tempo.
+        // HKSourceQuery respeita o predicado de tempo e devolve exatamente as fontes
+        // com dados no período — sem precisar paginar amostras do iPhone para achar o Garmin.
+        let allSources: Set<HKSource> = try await withCheckedThrowingContinuation { cont in
+            let q = HKSourceQuery(sampleType: stepType, samplePredicate: timePred) { _, sources, error in
+                if let error { cont.resume(throwing: error); return }
+                cont.resume(returning: sources ?? [])
+            }
+            store.execute(q)
+        }
+
+        // Passo 2: fontes com bundle ID diferente de "com.apple.health" são externas (Garmin, Strava…).
+        var externalSources = allSources.filter {
+            !$0.bundleIdentifier.hasPrefix("com.apple.health")
+        }
+
+        // Passo 3: detectar Apple Watch entre as fontes "com.apple.health.*".
+        // A distinção iPhone vs Watch é feita pelo productType em HKSourceRevision.
+        let appleSources = allSources.filter { $0.bundleIdentifier.hasPrefix("com.apple.health") }
+        if !appleSources.isEmpty {
+            let srcPred = HKQuery.predicateForObjects(from: appleSources)
+            let combined = NSCompoundPredicate(
+                andPredicateWithSubpredicates: [timePred, srcPred]
+            )
+            let descriptor = HKSampleQueryDescriptor(
+                predicates: [HKSamplePredicate<HKQuantitySample>.quantitySample(
+                    type: stepType, predicate: combined
+                )],
+                sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
+                limit: 10
+            )
+            let appleSamples = (try? await descriptor.result(for: store)) ?? []
+            for sample in appleSamples
+            where HealthKitService.isExternalSource(
+                bundleID: sample.sourceRevision.source.bundleIdentifier,
+                productType: sample.sourceRevision.productType
+            ) {
+                externalSources.insert(sample.sourceRevision.source)
+            }
+        }
+
+        guard !externalSources.isEmpty else { return nil }
+
+        // Passo 4: data da amostra mais recente entre as fontes externas.
+        let extPred = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            timePred,
+            HKQuery.predicateForObjects(from: externalSources),
+        ])
+        let finalDescriptor = HKSampleQueryDescriptor(
             predicates: [HKSamplePredicate<HKQuantitySample>.quantitySample(
-                type: stepType, predicate: timePred
+                type: stepType, predicate: extPred
             )],
             sortDescriptors: [SortDescriptor(\.endDate, order: .reverse)],
-            limit: 50
+            limit: 1
         )
-        let samples = try await descriptor.result(for: store)
-
-        let external = samples.first { sample in
-            let bundleID = sample.sourceRevision.source.bundleIdentifier
-            let product  = sample.sourceRevision.productType ?? ""
-            return !bundleID.hasPrefix("com.apple.health") || product.hasPrefix("Watch")
-        }
-        return external?.endDate
+        let result = try await finalDescriptor.result(for: store)
+        return result.first?.endDate
     }
 
     // MARK: - Observer
