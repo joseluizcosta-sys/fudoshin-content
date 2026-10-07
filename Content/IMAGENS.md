@@ -43,7 +43,7 @@ Fotos enviadas pelos usuários, com moderação manual e licença aceita no envi
 Notas: imagem gerada por IA não tem proteção de direito autoral garantida (terceiros podem copiar). Guardar o prompt usado. Resolução atual 1024×572 — gerar de novo em resolução maior (mín. 2048 px de altura, formato retrato) antes do lançamento. Evitar logos de marcas nos tênis.
 | `HeroSamurai.jpg` v3 (retrato 1536×2752, original em `Design/Arte/HeroSamurai_v3_retrato_1536x2752_original.jpeg`) | Google Gemini, plano pago | 08/10/2026 | JC | Topo da tela Hoje (atual) |
 
-⚠️ **v3 — pendência antes do lançamento:** o tênis do pé direito tem as listras cruzadas da **ASICS** (marca registrada). Gerar de novo com "tênis genéricos, sem logotipo e sem listras laterais" antes de usar em App Store, landing ou anúncios. Na tela Hoje o tênis fica quase todo sob o degradê; aceitável só no beta.
+✅ **Resolvido em 07/10/2026** (HeroSamurai substituída pela Hero_geral sem logo). Histórico: o tênis do pé direito tem as listras cruzadas da **ASICS** (marca registrada). Gerar de novo com "tênis genéricos, sem logotipo e sem listras laterais" antes de usar em App Store, landing ou anúncios. Na tela Hoje o tênis fica quase todo sob o degradê; aceitável só no beta.
 
 ---
 
@@ -81,4 +81,4 @@ Geradas no Gemini (plano pago) por JC com os prompts de `docs/Prompts_Hero_Gemin
 | Hero_sono_ruim | ok |
 | Hero_retorno | ok — portal é um torii (o prompt pedia portão de madeira); ideograma 動 perde contraste no fundo claro |
 | Hero_marco_prova | ok |
-| Hero_geral | **pendente** — o arquivo em `Design/Arte/Hero_geral.jpeg` é cópia idêntica da v3 (com listras ASICS); não instalado, o app usa `HeroSamurai` |
+| Hero_geral | ok — regerada sem ASICS (07/10/2026). Instalada como `HeroSamurai` (fallback que cobre o gatilho geral), sem imageset duplicado |
