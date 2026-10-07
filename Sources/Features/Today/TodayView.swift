@@ -13,6 +13,17 @@ struct TodayView: View {
     @State private var activeSheet: TodaySheet?
     @Query(sort: \JournalEntry.dayValue) private var journalEntries: [JournalEntry]
     @Query private var profiles: [AthleteProfile]
+    #if DEBUG
+    @AppStorage("debug.heroTrigger") private var debugHeroTrigger: String = ""
+    #endif
+
+    /// Gatilho usado na imagem do topo. Em DEBUG, o seletor da tela de Debug pode forçar um gatilho.
+    private var heroTrigger: Trigger? {
+        #if DEBUG
+        if let forced = Trigger(rawValue: debugHeroTrigger) { return forced }
+        #endif
+        return todayEntry?.trigger
+    }
 
     private var todayEntry: DailyEntry? {
         let key = DayKey(Date()).value
@@ -29,7 +40,7 @@ struct TodayView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     // 1. Imagem hero
-                    TodayHeroView(trigger: todayEntry?.trigger)
+                    TodayHeroView(trigger: heroTrigger)
 
                     if let e = todayEntry {
                         // 2. Frase + 3. Reflexão (mesmo bloco, sem Divider)
@@ -239,10 +250,10 @@ private struct TodayHeroView: View {
             }
             .overlay(alignment: .leading) {
                 LinearGradient(
-                    colors: [Color.black.opacity(0.40), .clear],
+                    colors: [Color.black.opacity(0.55), Color.black.opacity(0.25), .clear],
                     startPoint: .leading, endPoint: .trailing
                 )
-                .frame(width: 88)
+                .frame(width: 120)
             }
             .overlay(alignment: .bottom) {
                 LinearGradient(
@@ -258,7 +269,9 @@ private struct TodayHeroView: View {
                     Text("心").foregroundStyle(Color.white.opacity(0.92))
                 }
                 .font(.system(size: 44, weight: .bold, design: .serif))
-                .shadow(color: .black.opacity(0.65), radius: 4, x: 1, y: 2)
+                .shadow(color: .black.opacity(0.95), radius: 0, x: 2, y: 3)     // relevo (sombra dura)
+                .shadow(color: .black.opacity(0.85), radius: 10, x: 0, y: 0)    // halo para fundos claros
+                .shadow(color: .black.opacity(0.50), radius: 18, x: 0, y: 0)    // halo amplo
                 .accessibilityLabel("Fudōshin")
                 .padding(.leading, 20)
                 .padding(.top, heroHeight * 0.22)

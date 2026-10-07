@@ -11,12 +11,14 @@ struct HealthDebugView: View {
     @State private var errorMessage: String? = nil
     @Query(sort: \DeliveryLog.dayValue, order: .reverse) private var logs: [DeliveryLog]
     @Environment(\.dismiss) private var dismiss
+    @AppStorage("debug.heroTrigger") private var debugHeroTrigger: String = ""
 
     private let service = HealthKitService()
 
     var body: some View {
         NavigationStack {
             List {
+                heroTriggerSection
                 planSection
                 todayLogSection
                 healthSection
@@ -51,6 +53,23 @@ struct HealthDebugView: View {
     }
 
     // MARK: - Seções
+
+    /// Força o gatilho da imagem do topo da tela Hoje (só a imagem; a frase do dia não muda).
+    @ViewBuilder
+    private var heroTriggerSection: some View {
+        Section("Imagem do topo (teste)") {
+            Picker("Gatilho", selection: $debugHeroTrigger) {
+                Text("Automático (plano do dia)").tag("")
+                ForEach(Trigger.allCases, id: \.rawValue) { t in
+                    Text(t.rawValue).tag(t.rawValue)
+                }
+            }
+            if !debugHeroTrigger.isEmpty {
+                Button("Voltar ao automático") { debugHeroTrigger = "" }
+                    .foregroundStyle(.orange)
+            }
+        }
+    }
 
     @ViewBuilder
     private var planSection: some View {
