@@ -41,14 +41,6 @@ struct SettingsView: View {
         Form {
             // Horários
             Section("settings.section.schedule") {
-                Picker("settings.change_hour", selection: Binding(
-                    get: { vm.prefs.changeHour },
-                    set: { vm.prefs.changeHour = $0 }
-                )) {
-                    ForEach(0..<24, id: \.self) { h in
-                        Text(hourLabel(h)).tag(h)
-                    }
-                }
                 Picker("settings.notification_hour", selection: Binding(
                     get: { vm.prefs.notificationHour },
                     set: { vm.prefs.notificationHour = $0 }

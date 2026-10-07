@@ -79,7 +79,7 @@ final class SharedStoreTests: XCTestCase {
         var prefs = SharedStore.loadPreferences()
         let generatedID = prefs.installID
 
-        prefs.changeHour = 5
+        // changeHour é fixo em 4; não é configurável pelo usuário
         prefs.notificationHour = 8
         prefs.categories = [.rua, .trilha]
         prefs.quoteOnWallpaper = true
@@ -88,7 +88,7 @@ final class SharedStoreTests: XCTestCase {
 
         let loaded = SharedStore.loadPreferences()
         XCTAssertEqual(loaded.installID, generatedID)   // install_id.txt é a fonte de verdade
-        XCTAssertEqual(loaded.changeHour, 5)
+        XCTAssertEqual(loaded.changeHour, 4)            // sempre 4
         XCTAssertEqual(loaded.notificationHour, 8)
         XCTAssertEqual(loaded.categories, [.rua, .trilha])
         XCTAssertTrue(loaded.quoteOnWallpaper)
@@ -129,7 +129,7 @@ final class SharedStoreTests: XCTestCase {
 
     func testDefaultPreferencesValues() {
         let prefs = SharedStore.loadPreferences()
-        XCTAssertEqual(prefs.changeHour, 0)
+        XCTAssertEqual(prefs.changeHour, 4)
         XCTAssertEqual(prefs.notificationHour, 7)
         XCTAssertEqual(prefs.categories, [.trail])
         XCTAssertFalse(prefs.quoteOnWallpaper)
@@ -174,7 +174,7 @@ final class SharedStoreTests: XCTestCase {
         let loaded = SharedStore.loadPreferences()
         XCTAssertEqual(loaded.installID, "legacy-uuid")   // install_id.txt sobrepõe o JSON
         XCTAssertTrue(loaded.isPremium)                   // preservado
-        XCTAssertEqual(loaded.changeHour, 3)              // preservado
+        XCTAssertEqual(loaded.changeHour, 4)              // fixo em 4, ignora valor salvo
         XCTAssertEqual(loaded.categories, [.trail])       // default (campo ausente)
         XCTAssertFalse(loaded.quoteOnWallpaper)           // default (campo ausente)
     }

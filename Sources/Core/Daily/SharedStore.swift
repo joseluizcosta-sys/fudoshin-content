@@ -2,7 +2,7 @@ import Foundation
 
 struct SharedPreferences: Codable {
     var installID: String
-    var changeHour: Int         // 0...23, padrão 0
+    var changeHour: Int         // fixo em 4; valor salvo é ignorado na leitura
     var notificationHour: Int   // padrão 7
     var categories: [ImageCategory]
     var quoteOnWallpaper: Bool
@@ -16,7 +16,7 @@ struct SharedPreferences: Codable {
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         installID = (try? c.decodeIfPresent(String.self, forKey: .installID)) ?? UUID().uuidString
-        changeHour = (try? c.decodeIfPresent(Int.self, forKey: .changeHour)) ?? 0
+        changeHour = 4   // fixo; ignora valor salvo para migração
         notificationHour = (try? c.decodeIfPresent(Int.self, forKey: .notificationHour)) ?? 7
         categories = (try? c.decodeIfPresent([ImageCategory].self, forKey: .categories)) ?? [.trail]
         quoteOnWallpaper = (try? c.decodeIfPresent(Bool.self, forKey: .quoteOnWallpaper)) ?? false
@@ -25,7 +25,7 @@ struct SharedPreferences: Codable {
 
     init(
         installID: String,
-        changeHour: Int = 0,
+        changeHour: Int = 4,
         notificationHour: Int = 7,
         categories: [ImageCategory] = [.trail],
         quoteOnWallpaper: Bool = false,
