@@ -50,6 +50,7 @@ struct TodayView: View {
             .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.hidden, for: .navigationBar)
+            .toolbarColorScheme(.dark, for: .navigationBar)
             .toolbar { toolbarItems }
             .sheet(isPresented: $showSettings) { SettingsView() }
             .sheet(isPresented: $showJournal) { JournalEntrySheet(day: DayKey(Date())) }
