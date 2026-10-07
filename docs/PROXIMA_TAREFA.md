@@ -4,15 +4,31 @@
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
 **Status:** pendente
-**Tarefa:** instalar o ícone do app (conceito C — samurai correndo)
+**Tarefa:** ícone do app + imagem do samurai no topo da tela Hoje
 
-Os arquivos já estão prontos em `Resources/Assets.xcassets/AppIcon.appiconset/`
-(AppIcon.png 1024 sem transparência, AppIcon-dark.png e AppIcon-tinted.png para iOS 18, e Contents.json).
+Referência visual: `Design/Arte/Mockup_Hoje_samurai_correndo.png`.
 
-1. `project.yml`, target do app (AtletaEstoico): incluir `Resources/Assets.xcassets` nas sources e
-   definir `ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon` nas settings. Não incluir no target do widget.
-2. Rodar `xcodegen` e compilar. Corrigir qualquer aviso do asset catalog sobre o AppIcon.
-3. Instalar no iPhone e conferir: ícone na tela inicial, nos Ajustes e na busca;
-   no iOS 18, conferir também os modos Escuro e Tingido (pressionar a tela inicial → Editar → Personalizar).
-4. Rodar todos os testes e fazer commit (`git add -A`, depois `git status` limpo):
-   `feat: ícone do app (samurai correndo) com variantes escuro e tingido`
+### Parte 1 — ícone (se ainda não feito)
+1. `project.yml`, target do app: incluir `Resources/Assets.xcassets` nas sources e
+   `ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon` nas settings. Não incluir no widget.
+2. `xcodegen`, compilar, conferir o ícone no iPhone (claro, escuro e tingido no iOS 18).
+
+### Parte 2 — topo da tela Hoje
+A imagem `HeroSamurai` (no Assets.xcassets) é paisagem 1024×572; a tela é retrato.
+1. Em `TodayView`, criar `TodayHeroView` no topo, ocupando ~55% da altura da tela, ignorando a safe area de cima:
+   - `Image("HeroSamurai").resizable().scaledToFill()` com recorte horizontal deslocado para a direita
+     (o samurai e o sol devem aparecer; usar `.frame(..., alignment:)` + `GeometryReader` se precisar).
+   - Degradê na parte de baixo, do transparente para `Theme.background` (últimos ~40% da imagem),
+     e um degradê suave escuro no topo para a barra de status ficar legível.
+   - Faixa escura sutil na lateral esquerda e, por cima, **不動心 na vertical** (um ideograma por linha),
+     fonte serif bold ~44 pt; 不 e 心 em cor clara, **動 em `Theme.accent`**. Sombra leve para contraste.
+     O texto 不動心 é decorativo: `.accessibilityLabel("Fudōshin")`.
+2. Logo abaixo, sobreposto ao fim do degradê: contexto do dia (accent), frase do dia (serif, grande), autor ("— autor" ou "Inspirado em…").
+   Cards de reflexão e prova continuam como estão.
+3. Modo claro: o degradê vai para o `Theme.background` claro, mas a frase sobre a imagem
+   precisa de contraste — usar um degradê mais longo ou um fundo translúcido sob o texto. Conferir nos dois modos.
+4. Acessibilidade: com Dynamic Type grande, a frase não pode ficar cortada (o topo diminui antes).
+   A imagem é decorativa (`.accessibilityHidden(true)`).
+5. Rodar todos os testes; conferir no iPhone (claro, escuro, fonte grande).
+6. Commit (`git add -A`, depois `git status` limpo):
+   `feat: ícone do app e imagem do samurai no topo da tela Hoje`
