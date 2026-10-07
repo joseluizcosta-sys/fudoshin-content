@@ -37,8 +37,22 @@ if [ ! -d "$REPO_DIR/.git" ]; then
 fi
 git -C "$REPO_DIR" pull --quiet
 
-# 3. Prévia do que muda
-if [ "${1:-}" != "--disable" ]; then
+# 3. Pacote gerado antes e ainda não enviado? Envia sem gerar de novo.
+verof() { [ -f "$1" ] && "$PY" -c "import json,sys;print(json.load(open(sys.argv[1]))['version'])" "$1" || echo 0; }
+LOCAL_VER=$(verof dist/content/manifest.json)
+REMOTE_VER=$(verof "$REPO_DIR/manifest.json")
+PENDING=0
+if [ "${1:-}" != "--disable" ] && [ "$LOCAL_VER" -gt "$REMOTE_VER" ]; then
+  echo "Pacote v$LOCAL_VER já gerado e ainda não publicado (no ar: v$REMOTE_VER)."
+  read -r -p "Publicar a v$LOCAL_VER agora? (s/N) " ok
+  [ "$ok" = "s" ] || [ "$ok" = "S" ] || { echo "Cancelado."; exit 0; }
+  PENDING=1
+fi
+
+# 4. Prévia do que muda
+if [ "$PENDING" = "1" ]; then
+  :
+elif [ "${1:-}" != "--disable" ]; then
   set +e; "$PY" tools/content_sheet.py preview; rc=$?; set -e
   [ $rc -eq 3 ] && exit 0
   [ $rc -ne 0 ] && exit $rc
@@ -53,18 +67,18 @@ else
   "$PY" tools/content_sheet.py publish --disable
 fi
 
-# 4. Copiar e enviar
+# 5. Copiar e enviar
 VER=$("$PY" -c "import json;print(json.load(open('dist/content/manifest.json'))['version'])")
 cp dist/content/manifest.json "dist/content/content-v$VER.json" "$REPO_DIR/"
 git -C "$REPO_DIR" add manifest.json "content-v$VER.json"
 git -C "$REPO_DIR" commit --quiet -m "conteúdo v$VER"
 git -C "$REPO_DIR" push --quiet
 
-# 5. Registrar no projeto
+# 6. Registrar no projeto
 git add Content/messages Content/Frases_Fudoshin.numbers dist tools 2>/dev/null || true
 git commit --quiet -m "content: publicado v$VER" || true
 
-# 6. Conferir se entrou no ar
+# 7. Conferir se entrou no ar
 echo "Enviado. Aguardando o GitHub Pages publicar (até 2 min)…"
 for i in $(seq 1 12); do
   sleep 10
