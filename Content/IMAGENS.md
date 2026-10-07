@@ -41,3 +41,6 @@ Fotos enviadas pelos usuários, com moderação manual e licença aceita no envi
 | `Resources/Assets.xcassets/HeroSamurai.imageset/HeroSamurai.png` (original em `Design/Arte/`) | Google Gemini, plano pago | 07/10/2026 | JC | Topo da tela Hoje (v2, com linhas de velocidade; v1 guardada em `Design/Arte/HeroSamurai_original.png`) |
 
 Notas: imagem gerada por IA não tem proteção de direito autoral garantida (terceiros podem copiar). Guardar o prompt usado. Resolução atual 1024×572 — gerar de novo em resolução maior (mín. 2048 px de altura, formato retrato) antes do lançamento. Evitar logos de marcas nos tênis.
+| `HeroSamurai.png` v3 (retrato 572×1024, original em `Design/Arte/HeroSamurai_v3_retrato_original.png`) | Google Gemini, plano pago | 08/10/2026 | JC | Topo da tela Hoje (atual) |
+
+⚠️ **v3 — pendência antes do lançamento:** o tênis do pé direito tem as listras cruzadas da **ASICS** (marca registrada). Gerar de novo com "tênis genéricos, sem logotipo e sem listras laterais" antes de usar em App Store, landing ou anúncios. Na tela Hoje o tênis fica quase todo sob o degradê; aceitável só no beta.

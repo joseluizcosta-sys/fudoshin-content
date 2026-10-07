@@ -6,14 +6,13 @@
 **Status:** pendente
 **Tarefa:** imagem do samurai no topo da tela Hoje (o ícone já está instalado)
 
-Referência visual: `Design/Arte/Comparacao_hero_v1_v2.png` (versão da direita, v2).
-Atenção: na v2 as linhas de velocidade passam atrás do 不動心 — reforçar a faixa escura à esquerda e a sombra do texto para manter a leitura.
+Referência visual: `Design/Arte/Mockup_Hoje_v3.png`.
+Atenção: as linhas de velocidade passam atrás do 不動心 — reforçar a faixa escura à esquerda e a sombra do texto para manter a leitura.
 
 ### Topo da tela Hoje
-A imagem `HeroSamurai` (no Assets.xcassets) é paisagem 1024×572; a tela é retrato.
-1. Em `TodayView`, criar `TodayHeroView` no topo, ocupando ~55% da altura da tela, ignorando a safe area de cima:
-   - `Image("HeroSamurai").resizable().scaledToFill()` com recorte horizontal deslocado para a direita
-     (o samurai e o sol devem aparecer; usar `.frame(..., alignment:)` + `GeometryReader` se precisar).
+A imagem `HeroSamurai` (no Assets.xcassets) agora é **retrato** (572×1024).
+1. Em `TodayView`, criar `TodayHeroView` no topo, ocupando ~60% da altura da tela, ignorando a safe area de cima:
+   - `Image("HeroSamurai").resizable().scaledToFill()` alinhada pelo **topo** (`alignment: .top`), largura total, cortando só embaixo.
    - Degradê na parte de baixo, do transparente para `Theme.background` (últimos ~40% da imagem),
      e um degradê suave escuro no topo para a barra de status ficar legível.
    - Faixa escura sutil na lateral esquerda e, por cima, **不動心 na vertical** (um ideograma por linha),
