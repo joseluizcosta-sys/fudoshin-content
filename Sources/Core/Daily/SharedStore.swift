@@ -60,6 +60,9 @@ enum SharedStore {
         return url
     }
 
+    /// URL do container do App Group (ou `_baseURL` se injetado para testes).
+    static var containerURL: URL { baseURL }
+
     private static var installIDURL: URL { baseURL.appendingPathComponent("install_id.txt") }
     private static var planURL: URL    { baseURL.appendingPathComponent("daily_plan.json") }
     private static var prefsURL: URL   { baseURL.appendingPathComponent("shared_preferences.json") }

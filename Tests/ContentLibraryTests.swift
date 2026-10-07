@@ -83,8 +83,8 @@ final class ContentLibraryTests: XCTestCase {
             }
         }
         // Nome do autor muda conforme o idioma (dado real de base.json).
-        XCTAssertEqual(try library("pt-BR").message(withID: "ma-5-1")?.author, "Marco Aurélio")
-        XCTAssertEqual(try library("en").message(withID: "ma-5-1")?.author, "Marcus Aurelius")
+        XCTAssertEqual(try library("pt-BR").message(withID: "ma-5-16")?.author, "Marco Aurélio")
+        XCTAssertEqual(try library("en").message(withID: "ma-5-16")?.author, "Marcus Aurelius")
     }
 
     func testContextTextsAndDiaryQuestionsExist() throws {

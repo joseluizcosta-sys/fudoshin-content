@@ -38,7 +38,8 @@ struct MessageMetadata: Codable, Equatable {
 
 /// `Content/messages/base.json`
 struct BaseContentFile: Codable {
-    let version: Int?
+    let version: Int?           // schema version (campo "versao")
+    let contentVersion: Int?    // versão do conteúdo publicado (campo "versao_conteudo")
     let launchLanguages: [String]
     let futureLanguages: [String]
     let fallbackLanguage: String
@@ -50,6 +51,7 @@ struct BaseContentFile: Codable {
 
     enum CodingKeys: String, CodingKey {
         case version = "versao"
+        case contentVersion = "versao_conteudo"
         case launchLanguages = "idiomas_lancamento"
         case futureLanguages = "idiomas_futuros"
         case fallbackLanguage = "idioma_fallback"

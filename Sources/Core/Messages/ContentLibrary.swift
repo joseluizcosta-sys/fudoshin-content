@@ -17,6 +17,9 @@ struct ContentLibrary {
     private let base: BaseContentFile
     private let catalog: ImageCatalog
 
+    /// Versão do conteúdo publicado (0 se não houver `versao_conteudo` no base.json).
+    var contentVersion: Int { base.contentVersion ?? 0 }
+
     /// Chaves obrigatórias em `inline_contexto` de cada idioma.
     static let requiredContextKeys = ["vespera_longo", "vespera_forte", "descanso", "t30", "t7", "t1", "d0"]
 
@@ -32,6 +35,27 @@ struct ContentLibrary {
     init(contentDirectory: URL, preferredLanguage: String? = nil) throws {
         try self.init(source: .directory(contentDirectory),
                       preferredLanguage: preferredLanguage ?? ContentLocale.systemPreferred())
+    }
+
+    /// Conteúdo remoto: mensagens de `remoteRoot/messages/`, imagens sempre do bundle.
+    init(remoteContentDirectory remoteRoot: URL, imageBundle: Bundle = .main, preferredLanguage: String? = nil) throws {
+        try self.init(source: .hybrid(remoteRoot: remoteRoot, imageBundle: imageBundle),
+                      preferredLanguage: preferredLanguage ?? ContentLocale.systemPreferred(bundle: imageBundle))
+    }
+
+    // MARK: - Resolução única
+
+    /// Versão do bundle calculada uma vez. Comparada com o conteúdo remoto em current().
+    private static let bundleContentVersion: Int = (try? ContentLibrary())?.contentVersion ?? 0
+
+    /// Usa conteúdo remoto instalado se tiver versão maior que o embutido; senão usa o bundle.
+    static func current() -> ContentLibrary {
+        if let dir = RemoteContentStore.currentContentDirectory,
+           let remote = try? ContentLibrary(remoteContentDirectory: dir),
+           remote.contentVersion > bundleContentVersion {
+            return remote
+        }
+        return try! ContentLibrary()
     }
 
     init(source: ContentSource, preferredLanguage: String?) throws {

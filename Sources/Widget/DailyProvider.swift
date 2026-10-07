@@ -47,8 +47,8 @@ extension DailyWidgetEntry {
     }
 
     static func buildFromLibrary(daysToRace: Int? = nil, style: LockScreenStyle = .destaque) -> DailyWidgetEntry {
-        if let lib = try? ContentLibrary(),
-           let msg = lib.messages.sorted(by: { $0.id < $1.id }).first {
+        let lib = ContentLibrary.current()
+        if let msg = lib.messages.sorted(by: { $0.id < $1.id }).first {
             return DailyWidgetEntry(
                 date: Date(),
                 entry: DailyEntry(
@@ -93,13 +93,13 @@ struct DailyProvider: AppIntentTimelineProvider {
     func timeline(for configuration: LockScreenStyleIntent, in context: Context) async -> Timeline<DailyWidgetEntry> {
         let plan  = SharedStore.loadPlan()
         let prefs = SharedStore.loadPreferencesIfExists()
-        let lib   = try? ContentLibrary()
+        let lib   = ContentLibrary.current()
 
         let items = DailyTimelineGenerator.items(
             plan: plan,
             prefs: prefs,
-            fallbackMessages: lib?.messages ?? [],
-            fallbackImages: lib?.images ?? []
+            fallbackMessages: lib.messages,
+            fallbackImages: lib.images
         )
         let entries = items.map {
             DailyWidgetEntry(date: $0.date, entry: $0.entry, style: configuration.style)
@@ -112,11 +112,11 @@ struct DailyProvider: AppIntentTimelineProvider {
     private func currentEntry(style: LockScreenStyle) -> DailyWidgetEntry {
         let plan  = SharedStore.loadPlan()
         let prefs = SharedStore.loadPreferencesIfExists()
-        let lib   = try? ContentLibrary()
+        let lib   = ContentLibrary.current()
         let items = DailyTimelineGenerator.items(
             plan: plan, prefs: prefs,
-            fallbackMessages: lib?.messages ?? [],
-            fallbackImages: lib?.images ?? []
+            fallbackMessages: lib.messages,
+            fallbackImages: lib.images
         )
         return items.first.map { DailyWidgetEntry(date: $0.date, entry: $0.entry, style: style) }
             ?? .buildFromLibrary(style: style)

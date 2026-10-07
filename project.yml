@@ -38,6 +38,7 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLSchemes: [atletaestoico]
         LSApplicationQueriesSchemes: [x-apple-health]
+        ContentManifestURL: "https://joseluizcosta-sys.github.io/fudoshin-content/manifest.json"
     entitlements:
       path: Resources/AtletaEstoico.entitlements
       properties:

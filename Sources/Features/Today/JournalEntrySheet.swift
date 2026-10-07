@@ -11,7 +11,7 @@ struct JournalEntrySheet: View {
 
     // Carrega perguntas do idioma atual; fallback para chaves fixas se a biblioteca falhar.
     private var questions: [String] {
-        (try? ContentLibrary())?.diaryQuestions ?? []
+        ContentLibrary.current().diaryQuestions
     }
 
     private var q1: String { questions.first ?? String(localized: "journal.sheet.controlled") }

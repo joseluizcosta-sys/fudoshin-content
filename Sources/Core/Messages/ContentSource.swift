@@ -32,4 +32,15 @@ struct ContentSource {
             return FileManager.default.fileExists(atPath: url.path) ? url : nil
         }
     }
+
+    /// Conteúdo remoto: mensagens de `remoteRoot/messages/`, imagens sempre do bundle.
+    static func hybrid(remoteRoot: URL, imageBundle: Bundle) -> ContentSource {
+        let dirSource = Self.directory(remoteRoot)
+        let bundleSource = Self.bundle(imageBundle)
+        return ContentSource { name, ext, subdirectory in
+            subdirectory.isEmpty
+                ? bundleSource.url(name: name, ext: ext, subdirectory: subdirectory)
+                : dirSource.url(name: name, ext: ext, subdirectory: subdirectory)
+        }
+    }
 }

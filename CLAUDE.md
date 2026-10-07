@@ -34,3 +34,6 @@ xcodebuild -scheme AtletaEstoico -destination 'platform=iOS Simulator,name=iPhon
 ## Conteúdo (frases)
 - A fonte da verdade é `Content/Frases_Fudoshin.numbers` (se não existir, `Content/Frases_Fudoshin.xlsx`). Os JSONs em `Content/messages/` são **gerados** por `python3 tools/content_sheet.py build`. Não edite os JSONs à mão; se precisar mudar uma frase, edite a planilha e rode o build.
 - Campos que não são frases (perguntas do diário, `inline_contexto`, limites, revisão) continuam nos JSONs e são preservados pelo build.
+
+## Tarefas do revisor
+- Quando o usuário disser "próxima tarefa" (ou "executa a próxima tarefa"), leia `docs/PROXIMA_TAREFA.md` e execute. Ao terminar, marque o status como concluída.

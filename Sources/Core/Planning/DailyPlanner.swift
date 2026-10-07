@@ -7,9 +7,9 @@ import SwiftData
 final class DailyPlanner {
 
     private let contextBuilder: ContextBuilder
-    private let messages: [Message]
-    private let images: [ImageAsset]
-    private let contextTexts: [String: String]
+    private var messages: [Message]
+    private var images: [ImageAsset]
+    private var contextTexts: [String: String]
     private let personalizer: ReflectionPersonalizer
     private let notifications: NotificationScheduling
     private let wallpaper: WallpaperComposing
@@ -53,6 +53,15 @@ final class DailyPlanner {
         self.wallpaper = wallpaper
         self.widgetReloader = widgetReloader
         self.modelContext = modelContext
+    }
+
+    // MARK: - Atualização de conteúdo
+
+    /// Troca as mensagens e imagens pelo conteúdo instalado (remoto ou bundle).
+    func updateLibrary(_ lib: ContentLibrary) {
+        messages = lib.messages
+        images = lib.images
+        contextTexts = lib.contextTexts
     }
 
     // MARK: - Observer

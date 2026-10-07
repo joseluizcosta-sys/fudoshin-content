@@ -4,7 +4,7 @@ import SwiftData
 struct TodayView: View {
     @Environment(\.modelContext) private var ctx
     @State private var plan: DailyPlan? = SharedStore.loadPlan()
-    @State private var library: ContentLibrary? = try? ContentLibrary()
+    @State private var library: ContentLibrary? = ContentLibrary.current()
     @State private var showSettings = false
     @State private var showJournal = false
     @Query(sort: \JournalEntry.dayValue) private var journalEntries: [JournalEntry]

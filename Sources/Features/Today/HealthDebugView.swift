@@ -33,6 +33,12 @@ struct HealthDebugView: View {
                         ProgressView()
                     } else {
                         Button("Refresh") { Task { await load() } }
+                        Button("Buscar conteúdo agora") {
+                            Task { @MainActor in
+                                await AppEnvironment.shared?.checkAndUpdateContent(force: true)
+                            }
+                        }
+                        .foregroundStyle(.orange)
                     }
                 }
             }

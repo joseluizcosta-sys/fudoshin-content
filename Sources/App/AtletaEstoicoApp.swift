@@ -32,6 +32,7 @@ struct AtletaEstoicoApp: App {
             // (expiração vs. conclusão normal são mutuamente exclusivos).
             var completed = false
             let workTask = Task { @MainActor in
+                await AppEnvironment.shared?.checkAndUpdateContent()
                 await AppEnvironment.shared?.planner.refresh()
                 AppEnvironment.shared?.scheduleBackgroundRefresh()
                 if !completed { completed = true; bgTask.setTaskCompleted(success: true) }

@@ -5,16 +5,13 @@ import BackgroundTasks
 /// Container de serviços reais do app. Criado uma vez no launch e acessível via `shared`.
 @MainActor
 final class AppEnvironment {
-    // Acessado pelo handler do BGTask (closure não-isolada) via Task { @MainActor in }.
     nonisolated(unsafe) static var shared: AppEnvironment?
 
     let planner: DailyPlanner
     let healthProvider: any HealthDataProviding
 
     init(modelContext: ModelContext) {
-        guard let lib = try? ContentLibrary() else {
-            fatalError("ContentLibrary: arquivos de conteúdo ausentes no bundle")
-        }
+        let lib = ContentLibrary.current()
 
         let healthProv = HealthKitService()
         self.healthProvider = healthProv
@@ -44,24 +41,33 @@ final class AppEnvironment {
         AppEnvironment.shared = self
     }
 
-    /// Chamado no launch quando o onboarding já está concluído.
+    // MARK: - Conteúdo remoto
+
+    /// Verifica atualização de conteúdo e atualiza o planner se houver versão nova.
+    func checkAndUpdateContent(force: Bool = false) async {
+        let updated = await RemoteContentStore.shared.checkForUpdate(force: force)
+        if updated {
+            planner.updateLibrary(ContentLibrary.current())
+        }
+    }
+
+    // MARK: - Lifecycle
+
     func startIfOnboardingDone() {
         planner.startObserving()
     }
 
-    /// Chamado ao concluir o onboarding.
     func onOnboardingCompleted() async {
         planner.startObserving()
         scheduleBackgroundRefresh()
         await planner.refresh()
     }
 
-    /// Chamado sempre que `scenePhase` vira `.active`.
     func onBecomeActive() async {
+        await checkAndUpdateContent()
         await planner.refresh()
     }
 
-    /// Agenda a próxima execução do BGTask para a `changeHour` do dia seguinte.
     func scheduleBackgroundRefresh() {
         let prefs = SharedStore.loadPreferences()
         let request = BGAppRefreshTaskRequest(identifier: "com.atletaestoico.refresh")
