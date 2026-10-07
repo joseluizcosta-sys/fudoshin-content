@@ -191,44 +191,41 @@ private struct TodayHeroView: View {
     }
 
     var body: some View {
-        ZStack(alignment: .top) {
-            // Imagem retrato: alinhada pelo TOPO — cabeça, sol e tronco visíveis; pés cortados
-            Image("HeroSamurai")
-                .resizable()
-                .scaledToFill()
-                .frame(maxWidth: .infinity, alignment: .top)
-                .accessibilityHidden(true)
-
-            // Degradê topo (~120 pt) — barra de status e botões da toolbar legíveis
-            LinearGradient(
-                colors: [Color.black.opacity(0.35), .clear],
-                startPoint: .top, endPoint: .bottom
-            )
-            .frame(height: 120)
-
+        // alignment: .top ancora o TOPO da imagem ao topo do frame,
+        // cortando apenas a parte inferior (pés). .clipped() aplica o recorte.
+        Image("HeroSamurai")
+            .resizable()
+            .scaledToFill()
+            .frame(maxWidth: .infinity)
+            .frame(height: heroHeight, alignment: .top)
+            .clipped()
+            .accessibilityHidden(true)
+            // Degradê topo (~120 pt): 0 → 35% preto — barra de status e botões legíveis
+            .overlay(alignment: .top) {
+                LinearGradient(
+                    colors: [Color.black.opacity(0.35), .clear],
+                    startPoint: .top, endPoint: .bottom
+                )
+                .frame(height: 120)
+            }
             // Faixa escura esquerda — contraste para 不動心
-            HStack {
+            .overlay(alignment: .leading) {
                 LinearGradient(
                     colors: [Color.black.opacity(0.40), .clear],
                     startPoint: .leading, endPoint: .trailing
                 )
                 .frame(width: 88)
-                Spacer()
             }
-
             // Degradê inferior (últimos ~40%) — transparente → Theme.background
-            VStack {
-                Spacer()
+            .overlay(alignment: .bottom) {
                 LinearGradient(
                     colors: [.clear, Theme.background],
                     startPoint: .top, endPoint: .bottom
                 )
                 .frame(height: heroHeight * 0.40)
             }
-
-            // 不動心 vertical — um ideograma por linha, lateral esquerda
-            // 不 e 心 claros; 動 em Theme.accent; sombra para contraste
-            HStack(alignment: .top) {
+            // 不動心 vertical: um ideograma por linha; 不 e 心 claros, 動 em accent
+            .overlay(alignment: .topLeading) {
                 VStack(spacing: 2) {
                     Text("不").foregroundStyle(Color.white.opacity(0.92))
                     Text("動").foregroundStyle(Theme.accent)
@@ -239,13 +236,8 @@ private struct TodayHeroView: View {
                 .accessibilityLabel("Fudōshin")
                 .padding(.leading, 20)
                 .padding(.top, heroHeight * 0.22)
-                Spacer()
             }
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: heroHeight)
-        .clipped()
-        // Estende a imagem por trás da barra de status e da barra de navegação
-        .ignoresSafeArea(.all, edges: .top)
+            // Estende a imagem por trás da barra de status e da barra de navegação
+            .ignoresSafeArea(.all, edges: .top)
     }
 }
