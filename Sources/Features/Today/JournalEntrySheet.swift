@@ -8,8 +8,8 @@ struct JournalEntrySheet: View {
 
     @State private var controlled = ""
     @State private var notControlled = ""
+    @State private var note = ""
 
-    // Carrega perguntas do idioma atual; fallback para chaves fixas se a biblioteca falhar.
     private var questions: [String] {
         ContentLibrary.current().diaryQuestions
     }
@@ -27,6 +27,10 @@ struct JournalEntrySheet: View {
                 Section(q2) {
                     TextEditor(text: $notControlled)
                         .frame(minHeight: 80)
+                }
+                Section("journal.sheet.note") {
+                    TextField("journal.sheet.placeholder", text: $note, axis: .vertical)
+                        .lineLimit(3...8)
                 }
             }
             .navigationTitle("journal.sheet.title")
@@ -51,6 +55,7 @@ struct JournalEntrySheet: View {
         ))?.first else { return }
         controlled = existing.controlled
         notControlled = existing.notControlled
+        note = existing.note
     }
 
     private func save() {
@@ -60,8 +65,9 @@ struct JournalEntrySheet: View {
         ))?.first {
             existing.controlled = controlled
             existing.notControlled = notControlled
+            existing.note = note
         } else {
-            ctx.insert(JournalEntry(day: day, controlled: controlled, notControlled: notControlled))
+            ctx.insert(JournalEntry(day: day, controlled: controlled, notControlled: notControlled, note: note))
         }
         try? ctx.save()
         dismiss()
