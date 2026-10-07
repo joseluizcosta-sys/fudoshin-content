@@ -28,7 +28,7 @@ struct TodayView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     // Imagem hero — ignora safe area de cima
-                    TodayHeroView()
+                    TodayHeroView(trigger: todayEntry?.trigger)
 
                     // Frase do dia — logo abaixo, sobreposta ao fim do degradê
                     if let e = todayEntry {
@@ -196,6 +196,7 @@ struct TodayView: View {
 // MARK: - TodayHeroView
 
 private struct TodayHeroView: View {
+    let trigger: Trigger?
     @Environment(\.dynamicTypeSize) private var typeSize
 
     private var heroHeight: CGFloat {
@@ -205,7 +206,9 @@ private struct TodayHeroView: View {
     }
 
     var body: some View {
-        Image("HeroSamurai")
+        let imageName = trigger.map { HeroImage.name(for: $0) { UIImage(named: $0) != nil } }
+                        ?? HeroImage.fallback
+        Image(imageName)
             .resizable()
             .scaledToFill()
             .frame(maxWidth: .infinity)

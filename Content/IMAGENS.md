@@ -44,3 +44,28 @@ Notas: imagem gerada por IA não tem proteção de direito autoral garantida (te
 | `HeroSamurai.jpg` v3 (retrato 1536×2752, original em `Design/Arte/HeroSamurai_v3_retrato_1536x2752_original.jpeg`) | Google Gemini, plano pago | 08/10/2026 | JC | Topo da tela Hoje (atual) |
 
 ⚠️ **v3 — pendência antes do lançamento:** o tênis do pé direito tem as listras cruzadas da **ASICS** (marca registrada). Gerar de novo com "tênis genéricos, sem logotipo e sem listras laterais" antes de usar em App Store, landing ou anúncios. Na tela Hoje o tênis fica quase todo sob o degradê; aceitável só no beta.
+
+---
+
+## Imagens hero por momento do treino (gatilho)
+
+A tela Hoje troca a imagem de topo conforme o gatilho do dia. O nome do asset segue:
+
+```
+Hero_<trigger.rawValue>
+```
+
+Se o asset não existir, o app usa `HeroSamurai` como fallback (comportamento definido em `Core/Messages/HeroImage.swift`).
+
+| Asset                | Gatilho (`Trigger`)   | Momento                          |
+|---------------------|-----------------------|----------------------------------|
+| `Hero_pos_treino`   | `.posTreino`          | Após treino intenso              |
+| `Hero_vespera_chave`| `.vesperaChave`       | Véspera de sessão chave          |
+| `Hero_descanso`     | `.descanso`           | Dia de descanso                  |
+| `Hero_sono_ruim`    | `.sonoRuim`           | Noite ruim de sono               |
+| `Hero_retorno`      | `.retorno`            | Retorno após pausa               |
+| `Hero_marco_prova`  | `.marcoProva`         | Marco perto da prova             |
+| `Hero_geral`        | `.geral`              | Contexto geral (padrão)          |
+
+**Especificações:** vertical 9:16 · ~1536 × 2752 px · JPEG.
+Adicione os assets gradualmente em `Resources/Assets.xcassets`; o app usa `HeroSamurai` enquanto não existirem.
