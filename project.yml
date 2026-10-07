@@ -21,6 +21,7 @@ targets:
         excludes:
           - "Widget/**"       # o widget tem @main próprio; não pode compilar dentro do app
       - Resources/Localizable.xcstrings
+      - Resources/Assets.xcassets
       - path: Content
         type: folder
     info:
@@ -52,6 +53,7 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.atletaestoico.app
         INFOPLIST_FILE: Resources/Info.plist
         TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
   AtletaEstoicoWidget:
     type: app-extension
     platform: iOS
