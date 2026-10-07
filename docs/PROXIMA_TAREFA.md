@@ -10,7 +10,7 @@ Referência visual: `Design/Arte/Mockup_Hoje_v3.png`.
 Atenção: as linhas de velocidade passam atrás do 不動心 — reforçar a faixa escura à esquerda e a sombra do texto para manter a leitura.
 
 ### Topo da tela Hoje
-A imagem `HeroSamurai` (no Assets.xcassets) agora é **retrato** (572×1024).
+A imagem `HeroSamurai` (no Assets.xcassets) agora é **retrato** (1536×2752, JPEG).
 1. Em `TodayView`, criar `TodayHeroView` no topo, ocupando ~60% da altura da tela, ignorando a safe area de cima:
    - `Image("HeroSamurai").resizable().scaledToFill()` alinhada pelo **topo** (`alignment: .top`), largura total, cortando só embaixo.
    - Degradê na parte de baixo, do transparente para `Theme.background` (últimos ~40% da imagem),

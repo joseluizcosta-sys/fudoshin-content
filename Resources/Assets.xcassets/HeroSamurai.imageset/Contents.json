@@ -1,4 +1,4 @@
 {
-  "images" : [ { "filename" : "HeroSamurai.png", "idiom" : "universal" } ],
+  "images" : [ { "filename" : "HeroSamurai.jpg", "idiom" : "universal" } ],
   "info" : { "author" : "xcode", "version" : 1 }
 }
