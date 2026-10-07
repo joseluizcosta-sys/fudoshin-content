@@ -363,6 +363,10 @@ Cada tarefa: **Objetivo · Arquivos · Passos · Aceite**. 🔍 = revisão com O
 - **Grátis vs pago:** ver `PROJECT_CONTEXT.md` (grátis: mensagem geral, widget de bloqueio, 1 categoria de imagem; pago: contexto do treino, todas as categorias, frase no papel de parede, automação, trilhas de prova).
 - **Aceite:** compra e restauração funcionam com o arquivo `.storekit` no simulador; `isPremium` reflete `Transaction.currentEntitlements` e é gravado em `SharedPreferences` (o widget lê de lá).
 
+### T16 — Conteúdo remoto (D17) 🔍
+- **Objetivo:** baixar pacotes de frases de um arquivo estático (HTTPS), validar e usar no app e no widget, sem nova versão na App Store. Frases embutidas = base offline.
+- **Pronto quando:** publicar um pacote novo faz as frases aparecerem no app e no widget em até uma atualização em segundo plano; pacote inválido, corrompido ou desativado nunca quebra o app.
+
 ### T15 — Acabamento e TestFlight 🔍
 - Ícone, tela de abertura, textos de permissão revisados, política de privacidade (link), App Privacy "Dados não coletados", screenshots.
 - Testar no iPhone físico: 3 dias seguidos com Garmin sincronizando; widget trocando à meia-noite; automação do papel de parede.
