@@ -38,6 +38,6 @@ Fotos enviadas pelos usuários, com moderação manual e licença aceita no envi
 ## Arte gerada por IA (registro de procedência)
 | Arquivo | Ferramenta / plano | Data | Autor do prompt | Uso |
 |---|---|---|---|---|
-| `Resources/Assets.xcassets/HeroSamurai.imageset/HeroSamurai.png` (original em `Design/Arte/`) | Google Gemini, plano pago | 07/10/2026 | JC | Topo da tela Hoje |
+| `Resources/Assets.xcassets/HeroSamurai.imageset/HeroSamurai.png` (original em `Design/Arte/`) | Google Gemini, plano pago | 07/10/2026 | JC | Topo da tela Hoje (v2, com linhas de velocidade; v1 guardada em `Design/Arte/HeroSamurai_original.png`) |
 
 Notas: imagem gerada por IA não tem proteção de direito autoral garantida (terceiros podem copiar). Guardar o prompt usado. Resolução atual 1024×572 — gerar de novo em resolução maior (mín. 2048 px de altura, formato retrato) antes do lançamento. Evitar logos de marcas nos tênis.

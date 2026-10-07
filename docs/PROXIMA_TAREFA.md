@@ -6,7 +6,8 @@
 **Status:** pendente
 **Tarefa:** ícone do app + imagem do samurai no topo da tela Hoje
 
-Referência visual: `Design/Arte/Mockup_Hoje_samurai_correndo.png`.
+Referência visual: `Design/Arte/Comparacao_hero_v1_v2.png` (versão da direita, v2).
+Atenção: na v2 as linhas de velocidade passam atrás do 不動心 — reforçar a faixa escura à esquerda e a sombra do texto para manter a leitura.
 
 ### Parte 1 — ícone (se ainda não feito)
 1. `project.yml`, target do app: incluir `Resources/Assets.xcassets` nas sources e
