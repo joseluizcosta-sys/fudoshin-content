@@ -71,8 +71,11 @@ final class TriggerEngineTests: XCTestCase {
     func testPosTreino_WorkoutWithin3h_NoDelivery() {
         XCTAssertEqual(TriggerEngine.trigger(for: ctx(lastWorkoutEnd: ref.addingTimeInterval(-2 * 3600)), now: ref), .posTreino)
     }
-    func testPosTreino_DoesNotFire_WorkoutOver3hAgo() {
-        XCTAssertNotEqual(TriggerEngine.trigger(for: ctx(lastWorkoutEnd: ref.addingTimeInterval(-4 * 3600)), now: ref), .posTreino)
+    func testPosTreino_DoesNotFire_WorkoutOver6hAgo() {
+        XCTAssertNotEqual(TriggerEngine.trigger(for: ctx(lastWorkoutEnd: ref.addingTimeInterval(-7 * 3600)), now: ref), .posTreino)
+    }
+    func testPosTreino_Within6h_NoDelivery() {
+        XCTAssertEqual(TriggerEngine.trigger(for: ctx(lastWorkoutEnd: ref.addingTimeInterval(-5 * 3600)), now: ref), .posTreino)
     }
     func testPosTreino_DoesNotFire_AlreadyDelivered() {
         let end = ref.addingTimeInterval(-2 * 3600)

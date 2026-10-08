@@ -101,21 +101,34 @@ struct LiveNotificationScheduler: NotificationScheduling {
     func scheduleImmediate(entry: DailyEntry, now: Date, calendar: Calendar) async -> Bool {
         guard isAuthorized(await center.authorizationStatus()) else { return false }
 
-        // Horário de silêncio: 21h–7h — não enviar notificação imediata.
         let hour = calendar.component(.hour, from: now)
-        guard hour >= Self.quietEnd && hour < Self.quietStart else { return false }
 
-        // Cancela a notificação diária de hoje, se ainda estiver pendente.
+        // Noite (21h–24h): não enviar.
+        if hour >= Self.quietStart { return false }
+
         let todayDailyID = Self.dailyPrefix + DayKey(now, calendar: calendar).value
-        center.removeRequests(withIdentifiers: [todayDailyID])
-
+        let nowID = Self.nowPrefix + DayKey(now, calendar: calendar).value
         let content = makeContent(for: entry)
+
+        // Madrugada (0h–6h): agendar para quando o silêncio terminar.
+        if hour < Self.quietEnd {
+            center.removeRequests(withIdentifiers: [todayDailyID])
+            guard let dayStart = DayKey(now, calendar: calendar).startOfDay(calendar: calendar),
+                  let fireDate = calendar.date(bySettingHour: Self.quietEnd,
+                                               minute: 0, second: 0, of: dayStart)
+            else { return false }
+            let comps = calendar.dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                                from: fireDate)
+            let trigger = UNCalendarNotificationTrigger(dateMatching: comps, repeats: false)
+            let request = UNNotificationRequest(identifier: nowID, content: content, trigger: trigger)
+            try? await center.add(request)
+            return true
+        }
+
+        // Entre 7h e 21h: enviar imediata.
+        center.removeRequests(withIdentifiers: [todayDailyID])
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        let request = UNNotificationRequest(
-            identifier: Self.nowPrefix + DayKey(now, calendar: calendar).value,
-            content: content,
-            trigger: trigger
-        )
+        let request = UNNotificationRequest(identifier: nowID, content: content, trigger: trigger)
         try? await center.add(request)
         return true
     }

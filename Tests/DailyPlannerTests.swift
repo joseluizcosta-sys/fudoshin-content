@@ -440,6 +440,108 @@ final class DailyPlannerTests: XCTestCase {
         }
     }
 
+    // MARK: - Testes de promoção de pós-treino (revisão T10)
+
+    /// (a) sono_ruim às 6h → pos_treino às 8h quando treino terminou às 7:09.
+    ///     messageID muda; scheduleImmediate chamado 1 vez; 2º refresh às 9h não notifica de novo.
+    func testPosTreinoPromotesSonoRuim() async throws {
+        // Refresh às 6h com sono ruim (5h < meta 7-1=6h)
+        let now6 = date(hour: 6)
+        health.sleepHoursToReturn = 5.0
+        await planner.refresh(now: now6, calendar: spCal)
+
+        let plan1 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan1.entries[0].trigger, .sonoRuim, "6h + sono ruim → sono_ruim")
+        XCTAssertEqual(notifications.immediateCalls.count, 0,
+                       "sono_ruim não dispara scheduleImmediate")
+
+        // Treino terminou às 7:09 (dentro da janela de 6h)
+        let workoutEnd = date(hour: 7).addingTimeInterval(9 * 60)
+        health.workoutsToReturn = [
+            WorkoutSummary(start: workoutEnd.addingTimeInterval(-3600),
+                           end: workoutEnd, distanceKm: 10, activityType: .running)
+        ]
+
+        let now8 = date(hour: 8)
+        await planner.refresh(now: now8, calendar: spCal)
+
+        let plan2 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan2.entries[0].trigger, .posTreino,
+                       "Treino detectado → promove sono_ruim → pos_treino")
+        XCTAssertEqual(notifications.immediateCalls.count, 1,
+                       "Promoção deve chamar scheduleImmediate uma vez")
+
+        // Refresh às 9h: pos_treino sticky, sem nova notificação
+        let now9 = date(hour: 9)
+        await planner.refresh(now: now9, calendar: spCal)
+
+        let plan3 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan3.entries[0].trigger, .posTreino, "Sticky: continua pos_treino")
+        XCTAssertEqual(notifications.immediateCalls.count, 1,
+                       "2º refresh após pos_treino não deve notificar novamente")
+    }
+
+    /// (b) dia começou com retorno (notified=true); treino detectado → promove e notifica.
+    func testPosTreinoPromotesRetornoEvenIfAlreadyNotified() async throws {
+        // Inserir DeliveryLog de hoje com retorno já notificado
+        let todayKey = DayKey(now, calendar: spCal)
+        let log = DeliveryLog(day: todayKey, messageID: "msg8", imageID: "img1",
+                              trigger: .retorno, notified: true)
+        context.insert(log)
+        try context.save()
+
+        // Salvar um plano com retorno como entrada de hoje
+        let todayEntry = DailyEntry(
+            day: todayKey, messageID: "msg8", imageID: "img1",
+            trigger: .retorno, shortText: "Curto msg8", inlineText: "Inline msg8",
+            author: "Sêneca", reflection: "Reflexão msg8", daysToRace: nil
+        )
+        let futureEntries: [DailyEntry] = (1...6).compactMap { offset in
+            guard let d = spCal.date(byAdding: .day, value: offset, to: spCal.startOfDay(for: now)) else { return nil }
+            return DailyEntry(day: DayKey(d, calendar: spCal), messageID: "msg1", imageID: "img1",
+                              trigger: .geral, shortText: "s", inlineText: "—",
+                              author: "a", reflection: "r", daysToRace: nil)
+        }
+        try SharedStore.save(DailyPlan(generatedAt: now, entries: [todayEntry] + futureEntries))
+
+        // Treino recente: 1h antes
+        let workoutEnd = now.addingTimeInterval(-3600)
+        health.workoutsToReturn = [
+            WorkoutSummary(start: workoutEnd.addingTimeInterval(-3600),
+                           end: workoutEnd, distanceKm: 10, activityType: .running)
+        ]
+
+        await planner.refresh(now: now, calendar: spCal)
+
+        let plan = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan.entries[0].trigger, .posTreino,
+                       "Treino supera retorno → pos_treino")
+        XCTAssertEqual(notifications.immediateCalls.count, 1,
+                       "Promoção de retorno notificado → scheduleImmediate deve ser chamado")
+    }
+
+    /// (c) sono_ruim sem treino novo continua sticky (regressão).
+    func testSonoRuimStickyWithoutWorkout() async throws {
+        // Refresh inicial: sono ruim
+        health.sleepHoursToReturn = 5.0
+        await planner.refresh(now: now, calendar: spCal)
+
+        let plan1 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan1.entries[0].trigger, .sonoRuim)
+        let firstMessageID = plan1.entries[0].messageID
+
+        // Segundo refresh: sem treino, sono continua ruim
+        await planner.refresh(now: now, calendar: spCal)
+
+        let plan2 = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan2.entries[0].trigger, .sonoRuim,
+                       "sono_ruim sem treino deve continuar sticky")
+        XCTAssertEqual(plan2.entries[0].messageID, firstMessageID,
+                       "messageID não deve mudar (rehydrate)")
+        XCTAssertEqual(notifications.immediateCalls.count, 0,
+                       "sono_ruim não dispara scheduleImmediate")
+    }
+
     func testStalePlanReplacedWhenAppWasClosed3Days() async throws {
         // Plano de 3 dias atrás
         let threeDaysAgo = spCal.date(byAdding: .day, value: -3, to: now)!

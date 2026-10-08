@@ -130,12 +130,53 @@ final class NotificationSchedulerTests: XCTestCase {
         XCTAssertEqual(center.pending.count, 0, "Nenhuma notificação imediata deve ser agendada")
     }
 
-    /// Evento às 6h também é silêncio (6 < 7).
-    func testEventAtSixAMIsQuiet() async {
-        // baseNow = 06:00, que é < quietEnd (7)
+    /// Evento às 6h (madrugada): agendado para 7h — retorna true com trigger de calendário.
+    func testEventAtSixAMSchedulesForQuietEnd() async {
         let result = await scheduler.scheduleImmediate(entry: entry(.posTreino, now: baseNow),
                                                        now: baseNow, calendar: spCal)
-        XCTAssertFalse(result, "6h ainda é horário de silêncio (< 7h)")
+        XCTAssertTrue(result, "Madrugada: deve agendar para 7h e retornar true")
+        XCTAssertEqual(center.pending.count, 1)
+        XCTAssertTrue(center.pending[0].trigger is UNCalendarNotificationTrigger,
+                      "Trigger deve ser calendário (agendado para 7h)")
+    }
+
+    /// Madrugada às 5:30 → true, request com gatilho de calendário às 7h.
+    func testScheduleImmediateInMadrugadaSchedulesForQuietEnd() async {
+        let now530 = spCal.date(from: DateComponents(
+            timeZone: TimeZone(identifier: "America/Sao_Paulo"),
+            year: 2026, month: 10, day: 3, hour: 5, minute: 30, second: 0
+        ))!
+        let result = await scheduler.scheduleImmediate(entry: entry(.posTreino, now: now530),
+                                                       now: now530, calendar: spCal)
+        XCTAssertTrue(result, "5:30 é madrugada: retorna true e agenda para 7h")
+        XCTAssertEqual(center.pending.count, 1)
+        let req = center.pending[0]
+        XCTAssertTrue(req.trigger is UNCalendarNotificationTrigger,
+                      "Deve usar UNCalendarNotificationTrigger")
+        if let calTrigger = req.trigger as? UNCalendarNotificationTrigger {
+            XCTAssertEqual(calTrigger.dateComponents.hour, 7,
+                           "Deve agendar para às 7h")
+        }
+    }
+
+    /// Noite às 22:00 → false e nenhum request agendado.
+    func testScheduleImmediateInNighttimeReturnsFalse() async {
+        let now22 = date(hour: 22)
+        let result = await scheduler.scheduleImmediate(entry: entry(.posTreino, now: now22),
+                                                       now: now22, calendar: spCal)
+        XCTAssertFalse(result, "22h é noite: deve retornar false")
+        XCTAssertEqual(center.pending.count, 0, "Nenhuma notificação deve ser agendada")
+    }
+
+    /// Dia às 10:00 → true com UNTimeIntervalNotificationTrigger.
+    func testScheduleImmediateInDaytimeUsesIntervalTrigger() async {
+        let now10 = date(hour: 10)
+        let result = await scheduler.scheduleImmediate(entry: entry(.posTreino, now: now10),
+                                                       now: now10, calendar: spCal)
+        XCTAssertTrue(result, "10h: deve retornar true")
+        XCTAssertEqual(center.pending.count, 1)
+        XCTAssertTrue(center.pending[0].trigger is UNTimeIntervalNotificationTrigger,
+                      "Deve usar UNTimeIntervalNotificationTrigger")
     }
 
     /// sono_ruim: conteúdo vai no aviso agendado da manhã; nenhuma notificação imediata.

@@ -121,7 +121,7 @@ final class DailyPlanner {
             deliveryLogs: logs, now: now, calendar: cal
         )
 
-        let todayEntry = await resolveToday(
+        let (todayEntry, promoted) = await resolveToday(
             key: todayKey, existing: existingToday, todayLog: todayLog,
             context: todayCtx, logs: logs, prefs: prefs,
             why: profile?.why ?? "", now: now, calendar: cal
@@ -162,10 +162,10 @@ final class DailyPlanner {
             entries.append(entry)
         }
 
-        // pos_treino/retorno: notificação imediata se ainda não notificado hoje.
+        // pos_treino/retorno: notificação imediata se ainda não notificado hoje ou se houve promoção.
         // sono_ruim: sem imediata — o conteúdo vai no aviso agendado da manhã (via schedule).
         let alreadyNotified = todayLog?.notified == true
-        let shouldTryImmediate = Self.immediateNotifyTriggers.contains(todayEntry.trigger) && !alreadyNotified
+        let shouldTryImmediate = Self.immediateNotifyTriggers.contains(todayEntry.trigger) && (!alreadyNotified || promoted)
 
         let plan = DailyPlan(generatedAt: now, entries: entries)
         try? SharedStore.save(plan)
@@ -200,25 +200,34 @@ final class DailyPlanner {
         why: String,
         now: Date,
         calendar: Calendar
-    ) async -> DailyEntry {
+    ) async -> (entry: DailyEntry, promoted: Bool) {
         // Sem log ou sem entrada → computar do zero.
         guard let log = todayLog, let existingEntry = existing else {
             let trigger = TriggerEngine.trigger(for: context, now: now, calendar: calendar)
-            return await makeEntry(day: key, trigger: trigger, context: context,
-                                   logs: logs, prefs: prefs, why: why, calendar: calendar)
+            let entry = await makeEntry(day: key, trigger: trigger, context: context,
+                                        logs: logs, prefs: prefs, why: why, calendar: calendar)
+            return (entry, false)
         }
 
-        // Gatilho de evento registrado → manter IDs, recarregar textos do idioma atual.
+        // Gatilho de evento registrado → pos_treino supera qualquer outro evento.
         if Self.eventTriggers.contains(log.trigger) {
-            return await rehydrateEntry(existing: existingEntry, context: context,
-                                        why: why, calendar: calendar)
+            let fresh = TriggerEngine.trigger(for: context, now: now, calendar: calendar)
+            if fresh == .posTreino && existingEntry.trigger != .posTreino {
+                let entry = await makeEntry(day: key, trigger: .posTreino, context: context,
+                                            logs: logs, prefs: prefs, why: why, calendar: calendar)
+                return (entry, true)
+            }
+            let entry = await rehydrateEntry(existing: existingEntry, context: context,
+                                             why: why, calendar: calendar)
+            return (entry, false)
         }
 
         // Gatilhos planejáveis: sempre recalcular (sorteio determinístico → idempotente,
         // mas reflete mudanças de WeekPlan, isPremium, etc. no mesmo dia).
         let newTrigger = TriggerEngine.trigger(for: context, now: now, calendar: calendar)
-        return await makeEntry(day: key, trigger: newTrigger, context: context,
-                               logs: logs, prefs: prefs, why: why, calendar: calendar)
+        let entry = await makeEntry(day: key, trigger: newTrigger, context: context,
+                                    logs: logs, prefs: prefs, why: why, calendar: calendar)
+        return (entry, false)
     }
 
     // MARK: - Rehydration (evento sticky)

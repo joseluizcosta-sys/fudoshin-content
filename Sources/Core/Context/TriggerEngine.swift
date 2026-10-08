@@ -5,6 +5,8 @@ enum TriggerEngine {
 
     /// Dias sem treino a partir dos quais o gatilho "retorno" é elegível.
     static let returnThresholdDays = 7
+    /// Horas após o fim do treino dentro das quais pos_treino é elegível.
+    static let postWorkoutWindowHours: Double = 6
 
     static func trigger(
         for c: TrainingContext,
@@ -21,9 +23,9 @@ enum TriggerEngine {
             if [0, 1, 7, 30].contains(days) { return .marcoProva }
         }
 
-        // 2. pos_treino — treino nas últimas 3h e ainda não entregue para este treino
+        // 2. pos_treino — treino nas últimas postWorkoutWindowHours e ainda não entregue para este treino
         if let workoutEnd = c.lastWorkoutEnd {
-            let withinWindow = workoutEnd > now.addingTimeInterval(-3 * 3600)
+            let withinWindow = workoutEnd > now.addingTimeInterval(-postWorkoutWindowHours * 3600)
             let notDelivered = c.lastPostWorkoutDelivered.map { $0 < workoutEnd } ?? true
             if withinWindow && notDelivered { return .posTreino }
         }
