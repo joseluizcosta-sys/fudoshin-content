@@ -3,7 +3,7 @@
 > Para o Claude Code: execute as instruções abaixo, rode todos os testes e faça o commit pedido.
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
-**Status:** pendente
+**Status:** concluída
 **Tarefa:** pós-treino não dispara em dia de sono ruim (bug real em 08/10/2026)
 
 ## O que aconteceu
