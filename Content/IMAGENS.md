@@ -82,3 +82,4 @@ Geradas no Gemini (plano pago) por JC com os prompts de `docs/Prompts_Hero_Gemin
 | Hero_retorno | ok — portal é um torii (o prompt pedia portão de madeira); ideograma 動 perde contraste no fundo claro |
 | Hero_marco_prova | ok |
 | Hero_geral | ok — regerada sem ASICS (07/10/2026). Instalada como `HeroSamurai` (fallback que cobre o gatilho geral), sem imageset duplicado |
+| `AppIcon` v2 (original `Design/Icone/v2_A3_busto_faixa.jpeg`, 2048×2048) | Google Gemini, plano pago | 09/10/2026 | JC (prompt em `docs/Prompts_Icone_Gemini.md` + variações) | Ícone do app |
