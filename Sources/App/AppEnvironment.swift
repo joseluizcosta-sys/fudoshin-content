@@ -49,9 +49,14 @@ final class AppEnvironment {
 
     // MARK: - Conteúdo remoto
 
-    /// Verifica atualização de conteúdo e atualiza o planner se houver versão nova.
+    /// Verifica atualização de conteúdo (frases e papéis de parede) e atualiza o planner se necessário.
     func checkAndUpdateContent(force: Bool = false) async {
-        let updated = await RemoteContentStore.shared.checkForUpdate(force: force)
+        let preferredWallpaper = SharedStore.loadPreferencesIfExists()?.wallpaperImage
+        async let contentTask: Bool = RemoteContentStore.shared.checkForUpdate(force: force)
+        async let wallpaperTask: Void = RemoteWallpaperStore.shared.checkForUpdate(
+            force: force, preferredID: preferredWallpaper)
+        let updated = await contentTask
+        _ = await wallpaperTask
         if updated {
             planner.updateLibrary(ContentLibrary.current())
         }
