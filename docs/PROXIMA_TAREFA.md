@@ -5,7 +5,7 @@
 > Antes de tudo: compile e confira os commits 851e4a2, 62a6a10 e a46410d do Opus (feitos sem compilar):
 > RootView com estado `.unknown`, `Fudoshin.storekit` reescrito, PaywallView com `.background`, textos do paywall.
 
-**Status:** pendente
+**Status:** concluída
 **Tarefa:** papéis de parede publicados pelo mesmo caminho das frases (sem crescer o tamanho do app)
 
 ## Objetivo
