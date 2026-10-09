@@ -4258,19 +4258,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Epic wallpapers, with new ones every month"
+            "value" : "A growing gallery of epic wallpapers"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fondos épicos, con nuevos cada mes"
+            "value" : "Galería de fondos épicos, siempre creciendo"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Papéis de parede épicos, com novos todo mês"
+            "value" : "Galeria de papéis de parede épicos, sempre crescendo"
           }
         }
       }

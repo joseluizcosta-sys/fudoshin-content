@@ -1,65 +1,64 @@
 # Próxima tarefa (escrita pelo revisor Opus)
 
 > Para o Claude Code: execute as instruções abaixo, rode todos os testes e faça um commit por bloco.
-> Ao terminar, troque o status para "concluída", atualize T14 na tabela do `docs/BUILD_PLAN.md`
-> e resuma em 3 linhas o que mudou. Se algo do StoreKit não se comportar como descrito, pare e explique.
+> Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
+> Antes de tudo: compile e confira os commits 851e4a2, 62a6a10 e a46410d do Opus (feitos sem compilar):
+> RootView com estado `.unknown`, `Fudoshin.storekit` reescrito, PaywallView com `.background`, textos do paywall.
 
-**Status:** concluída
-**Tarefa:** T14 — assinatura anual com 7 dias grátis e app bloqueado sem assinatura (decisão D18)
+**Status:** pendente
+**Tarefa:** papéis de parede publicados pelo mesmo caminho das frases (sem crescer o tamanho do app)
 
-## Contexto
-- Antes, compile e confira o commit b64f6bd do Opus (assinatura 不動心 FUDŌSHIN no papel de parede, sem compilar).
-- D18: **um único produto**, assinatura anual auto-renovável, **R$ 89,90/ano**, oferta de entrada **gratuita de 1 semana**.
-  Sem mensal, sem vitalício, sem oferta de fundador. Sem assinatura ativa (ou em teste), o app fica bloqueado.
-- O BUILD_PLAN cita `com.atletaestoico.vitalicio` e grátis/pago por recurso: **ignorar**, vale a D18.
+## Objetivo
+JC gera imagens novas no Gemini, roda `tools/publicar.sh` e, em até 7 dias (ou na hora, pelo Debug), os assinantes
+veem as imagens novas na galeria da aba Fundo — **sem versão nova na App Store**. As 5 imagens `Wallpaper_epico_1…5`
+continuam embutidas como base offline; **imagens novas são só remotas**.
 
-## Bloco 1 — StoreKit
-- `Resources/Fudoshin.storekit` (configuração local): grupo "Fudōshin Premium", produto
-  `com.atletaestoico.app.anual`, 1 ano, preço R$ 89,90 (região BR), introductory offer free trial 1 semana.
-  Ligar no esquema de Run do Xcode (StoreKit Configuration). Ajustar `project.yml` se precisar.
-- `Sources/Core/Store/EntitlementStore.swift` (`@MainActor`, `ObservableObject`, StoreKit 2):
-  - `loadProducts()`, `purchase()`, `restore()` (`AppStore.sync()`), listener de `Transaction.updates` desde o launch.
-  - Estado: `.unknown`, `.notSubscribed`, `.trial(expires: Date)`, `.active(expires: Date, willRenew: Bool)`, `.expired`.
-  - Fonte da verdade: `Transaction.currentEntitlements` + `Product.SubscriptionInfo.status` (renovação e se está em oferta de entrada).
-  - Gravar `isPremium` (teste ou ativa = true) em `SharedPreferences` a cada mudança, porque o widget e a ação do Atalhos leem.
-  - Lógica de estado numa função pura testável: `AccessPolicy.state(from:)`.
-- Commit: `feat(T14): StoreKit 2 — produto anual com teste de 7 dias e EntitlementStore`
+## Bloco 1 — Publicação (`tools/`)
+- Pasta de origem: `Content/Wallpapers/` (JC solta lá os JPEG do Gemini, qualquer nome).
+- Novo comando `python3 tools/content_sheet.py wallpapers` (ou script próprio `tools/wallpapers.py`, chamado pelo `publicar.sh`):
+  1. Para cada imagem nova: redimensiona para **1290×2311 máx. (proporção mantida), JPEG qualidade 82**, nome
+     `wp_<sha256[:12]>.jpg` (estável, sem duplicar); rejeita imagem menor que 1000 px de largura.
+  2. Gera `dist/content/wallpapers.json`:
+     `{"schema":1,"version":N,"items":[{"id":"wp_ab12…","file":"wallpapers/wp_ab12….jpg","sha256":"…","bytes":123,"added":"2026-10-09"}]}`
+     — itens em ordem de inclusão; `version` sobe só quando a lista muda.
+  3. `publicar.sh` copia `wallpapers.json` e os arquivos novos para `fudoshin-content/wallpapers/` e faz o commit/push junto
+     com as frases. O preview mostra "N imagens novas". Imagem removida da pasta = removida do índice (o arquivo no site pode ficar).
+- Não versionar os originais pesados no repositório do app: `Content/Wallpapers/` no `.gitignore`
+  (guardar só `wallpapers.json` gerado em `dist/`).
 
-## Bloco 2 — Paywall e bloqueio
-- `RootView`: onboarding → **PaywallView** (se `!isPremium`) → `MainTabView`.
-  O paywall aparece **no fim do onboarding**, depois que a pessoa viu a frase do dia (mostrar valor antes de pedir cartão).
-  Ao expirar a assinatura, o app volta para o paywall.
-- `Sources/Features/Paywall/PaywallView.swift`, tela cheia sem botão fechar:
-  - Fundo: `Wallpaper_epico_4` escurecido; título "Mente samurai, todos os dias"; 4 benefícios curtos
-    (frase certa para o seu treino · papel de parede épico diário · widget na tela de bloqueio · diário da revisão da noite).
-  - Botão principal: **"Começar 7 dias grátis"**.
-  - Abaixo, em texto legível (não minúsculo): **"7 dias grátis, depois \(product.displayPrice)/ano. Renova automaticamente.
-    Cancele quando quiser em Ajustes › Apple ID › Assinaturas, até 24 h antes do fim do teste."**
-    Usar sempre `displayPrice` do StoreKit, nunca o preço escrito no código.
-  - Links "Restaurar compras", "Termos de Uso" (EULA padrão da Apple:
-    https://www.apple.com/legal/internet-services/itunes/dev/stdeula/) e "Privacidade" (URL em constante `Links.privacy`;
-    por ora `https://joseluizcosta-sys.github.io/fudoshin-content/privacidade.html` — o Opus cria a página).
-  - Estados: carregando produto, compra pendente (Ask to Buy), erro com "Tentar de novo", usuário cancelou (sem erro).
-- Sem assinatura: o widget mostra "Abra o Fudōshin para continuar"; a ação do Atalhos devolve erro claro;
-  o planner **não agenda notificações** (e cancela as pendentes).
-- `MessageEngine`: remover o rebaixamento `isPremium ? trigger : .geral`. Quem usa o app é assinante ou está em teste,
-  então sempre usar o gatilho real. Ajustar os testes que dependem disso.
-- Ajustes: seção "Assinatura" com o estado ("Teste até 16/10" / "Ativa, renova em 09/10/2027") e o botão
-  "Gerenciar assinatura" (`manageSubscriptionsSheet`).
-- Commit: `feat(T14): paywall pós-onboarding, bloqueio sem assinatura e seção Assinatura em Ajustes`
+## Bloco 2 — App: baixar e guardar
+- `RemoteWallpaperStore` (actor), chamado junto com `RemoteContentStore.checkForUpdate` (mesma janela de 7 dias e mesmo
+  botão "Buscar conteúdo agora" do Debug):
+  1. Baixa `wallpapers.json` (mesma base de URL do manifesto); se `version` não mudou, para.
+  2. Para cada item ainda não baixado: baixa, confere `bytes` e `sha256`, grava em
+     `App Group/RemoteContent/wallpapers/<id>.jpg` (gravação atômica). Falha num item não derruba os outros.
+  3. Limites: no máximo 40 imagens e 30 MB no total; itens além disso são ignorados.
+  4. Remove do disco os ids que saíram do índice, **exceto** a imagem escolhida pelo usuário (ela fica até ele trocar).
+  5. Grava o índice local só depois de baixar.
+- Sem servidor novo: tudo estático no GitHub Pages, como as frases.
 
-## Bloco 3 — Lembrete do fim do teste
-- Ao entrar em teste: notificação local **2 dias antes** do fim
-  ("Seu teste do Fudōshin termina em 2 dias. Depois, \(price)/ano. Para não renovar, cancele em Ajustes › Apple ID › Assinaturas.").
-  Cancelar se a pessoa cancelar ou o teste virar assinatura. Função pura para a data: `TrialReminder.fireDate(trialEnd:)`.
-- DEBUG: em Debug, um seletor "Forçar acesso: automático / premium / bloqueado" para testar sem comprar.
-- Commit: `feat(T14): lembrete 2 dias antes do fim do teste + seletor de acesso no Debug`
+## Bloco 3 — App: catálogo único
+- Substituir os nomes de asset por um catálogo: `WallpaperCatalog.entries() -> [WallpaperEntry]`, com
+  `WallpaperEntry { id: String; source: .bundled(assetName) | .file(URL); isNew: Bool }`.
+  Ordem: remotas mais novas primeiro, depois as embutidas. `isNew` = adicionada nos últimos 14 dias.
+- `WallpaperImage.resolve/name(for:)` passam a trabalhar com ids do catálogo (sorteio diário continua estável:
+  ordenar por id antes de sortear para não mudar quando chega imagem nova no meio do dia).
+- Carregar imagem: `.bundled` → `UIImage(named:)`; `.file` → `UIImage(contentsOfFile:)`.
+- Composer, aba Fundo (galeria) e preferência `wallpaperImage` usam o id. Preferências antigas com nome de asset
+  (`Wallpaper_epico_3`) continuam válidas (o id das embutidas é o próprio nome).
+- Galeria: selo pequeno "Nova" nas imagens com `isNew`.
 
-## Testes (obrigatórios)
-- `AccessPolicy`: teste → premium; ativa → premium; expirada/sem compra → bloqueado.
-- `TrialReminder.fireDate`: fim − 48 h; se já passou, nada.
-- Planner sem assinatura não agenda notificações.
-- `MessageEngine` usa o gatilho real independentemente de `isPremium`.
+## Testes
+- Script: mesma imagem duas vezes → um item só; `version` só sobe se a lista mudar; redimensionamento correto.
+- Store (com `MockURLProtocol`): baixa só o que falta; sha errado → descarta o item; remove ids que saíram, exceto o escolhido;
+  respeita limites.
+- Catálogo: junta embutidas + remotas; ordem; `isNew`; sorteio estável quando chega imagem nova.
 
-## Teste manual (no simulador com o .storekit)
-Comprar (entra em teste), "Restaurar", expirar pelo Xcode (Debug › StoreKit › Manage Transactions) e ver o app voltar ao paywall.
+## Commits
+1. `feat(content): publicação de papéis de parede (wallpapers.json + imagens no GitHub Pages)`
+2. `feat: RemoteWallpaperStore — baixa e guarda papéis de parede remotos`
+3. `feat: catálogo único de papéis de parede (embutidos + remotos) na galeria, composer e Atalhos`
+
+## Teste manual (JC)
+1. Coloque 1 imagem nova em `Content/Wallpapers/`, rode `tools/publicar.sh`.
+2. No iPhone: Debug → "Buscar conteúdo agora" → aba Fundo mostra a imagem com selo "Nova".
