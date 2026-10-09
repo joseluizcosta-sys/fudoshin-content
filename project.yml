@@ -43,6 +43,7 @@ targets:
         CFBundleURLTypes:
           - CFBundleURLSchemes: [atletaestoico]
         LSApplicationQueriesSchemes: [x-apple-health]
+        ITSAppUsesNonExemptEncryption: false   # só HTTPS padrão → isento; evita a pergunta de exportação a cada build
         ContentManifestURL: "https://joseluizcosta-sys.github.io/fudoshin-content/manifest.json"
     entitlements:
       path: Resources/AtletaEstoico.entitlements
