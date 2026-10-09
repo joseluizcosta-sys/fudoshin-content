@@ -1,50 +1,99 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "NSHealthShareUsageDescription" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin reads your workouts and sleep from the Health app to choose the right message for your moment. Your data never leaves your iPhone."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin lee tus entrenamientos y sueño de Salud para elegir el mensaje adecuado para tu momento. Tus datos nunca salen de tu iPhone."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fudōshin lê seus treinos e sono do app Saúde para escolher a mensagem certa para o seu momento. Seus dados ficam só no seu iPhone."
+  "sourceLanguage": "en",
+  "strings": {
+    "CFBundleDisplayName": {
+      "comment": "Bundle display name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Fudōshin"
           }
         }
       }
     },
-    "NSPhotoLibraryAddUsageDescription" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "To save today's wallpaper to your photo library."
+    "CFBundleName": {
+      "comment": "Bundle name",
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "AtletaEstoico"
+          }
+        }
+      }
+    },
+    "NSHealthShareUsageDescription": {
+      "comment": "Privacy - Health Share Usage Description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin reads your workouts and sleep from the Health app to choose the right message for your moment. Your data never leaves your iPhone."
           }
         },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para guardar el fondo de pantalla de hoy en tu galería."
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin lee tus entrenamientos y sueño de Salud para elegir el mensaje adecuado para tu momento. Tus datos nunca salen de tu iPhone."
           }
         },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para salvar o papel de parede do dia na sua galeria."
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin lê seus treinos e sono do app Saúde para escolher a mensagem certa para o seu momento. Seus dados ficam só no seu iPhone."
+          }
+        }
+      }
+    },
+    "NSPhotoLibraryAddUsageDescription": {
+      "comment": "Privacy - Photo Library Additions Usage Description",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "To save today's wallpaper to your photo library."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para guardar el fondo de pantalla de hoy en tu galería."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para salvar o papel de parede do dia na sua galeria."
+          }
+        }
+      }
+    },
+    "NSHealthUpdateUsageDescription": {
+      "comment": "Privacy - Health Update Usage Description (app só lê; texto exigido pela Apple)",
+      "localizations": {
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "O Fudōshin não grava dados no app Saúde. Ele só lê seus treinos e seu sono para escolher a mensagem do dia."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin does not write any data to the Health app. It only reads your workouts and sleep to choose the message of the day."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fudōshin no guarda datos en Salud. Solo lee tus entrenamientos y tu sueño para elegir el mensaje del día."
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

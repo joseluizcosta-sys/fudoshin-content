@@ -8,7 +8,7 @@ options:
 settings:
   base:
     MARKETING_VERSION: "1.0"
-    CURRENT_PROJECT_VERSION: "1"
+    CURRENT_PROJECT_VERSION: "2"
     SWIFT_VERSION: "5.0"
     DEVELOPMENT_TEAM: "8C5SCXTJYP"
     GENERATE_INFOPLIST_FILE: NO
@@ -33,6 +33,8 @@ targets:
         CFBundleDevelopmentRegion: en
         CFBundleLocalizations: [pt-BR, en, es]
         NSHealthShareUsageDescription: Lemos seus treinos e seu sono do app Saúde para escolher a mensagem certa para o seu momento. Os dados ficam só no seu iPhone.
+        # Exigido pela Apple quando há o entitlement HealthKit, mesmo que o app só leia.
+        NSHealthUpdateUsageDescription: O Fudōshin não grava dados no app Saúde. Ele só lê seus treinos e seu sono para escolher a mensagem do dia.
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UIBackgroundModes: [fetch]
