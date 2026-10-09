@@ -8,6 +8,7 @@ final class EntitlementStore {
 
     private(set) var state: SubscriptionState = .unknown
     private(set) var product: Product? = nil
+    private(set) var productLoadFailed = false
     private(set) var isPurchasing = false
     private(set) var purchaseError: String? = nil
 
@@ -39,8 +40,25 @@ final class EntitlementStore {
     // MARK: - Produto
 
     private func loadProduct() async {
-        product = try? await Product.products(for: [Self.productID]).first
+        do {
+            product = try await Product.products(for: [Self.productID]).first
+            productLoadFailed = false
+        } catch {
+            if product == nil { productLoadFailed = true }
+        }
     }
+
+    func retryLoadProduct() async {
+        productLoadFailed = false
+        await loadProduct()
+    }
+
+    #if DEBUG
+    func _simulateProductLoadFailure() {
+        product = nil
+        productLoadFailed = true
+    }
+    #endif
 
     // MARK: - Compra
 

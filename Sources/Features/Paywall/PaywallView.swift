@@ -1,15 +1,28 @@
 import SwiftUI
 import StoreKit
+import Network
 
 struct PaywallView: View {
     @Environment(EntitlementStore.self) private var store
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var pathMonitor = NetworkPathMonitor()
 
     var body: some View {
-        // O fundo vai em .background para não alargar o layout (imagem scaledToFill
-        // dentro de ZStack empurrava o conteúdo para fora da tela).
         content
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background { background }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active && store.product == nil {
+                    Task { await store.retryLoadProduct() }
+                }
+            }
+            .onChange(of: pathMonitor.isConnected) { _, connected in
+                if connected && store.product == nil {
+                    Task { await store.retryLoadProduct() }
+                }
+            }
+            .onAppear { pathMonitor.start() }
+            .onDisappear { pathMonitor.stop() }
     }
 
     // MARK: - Fundo
@@ -60,7 +73,6 @@ struct PaywallView: View {
         VStack(alignment: .leading, spacing: 14) {
             ForEach(1...4, id: \.self) { n in
                 Label {
-                    // Montar a chave como String antes: LocalizedStringKey("...\(n)") vira "paywall.benefit.%lld".
                     Text(LocalizedStringKey(String("paywall.benefit.") + String(n)))
                         .font(.body)
                         .foregroundStyle(.white)
@@ -110,17 +122,7 @@ struct PaywallView: View {
             .clipShape(RoundedRectangle(cornerRadius: 14))
             .disabled(store.isPurchasing || store.product == nil)
 
-            if let product = store.product {
-                Text(String(format: String(localized: "paywall.legal"), product.displayPrice))
-                    .font(.footnote)
-                    .foregroundStyle(.white.opacity(0.7))
-                    .multilineTextAlignment(.center)
-                    .fixedSize(horizontal: false, vertical: true)
-            } else {
-                ProgressView()
-                    .tint(.white.opacity(0.5))
-                    .scaleEffect(0.7)
-            }
+            priceOrOfflineState
 
             HStack(spacing: 20) {
                 Button("paywall.restore") {
@@ -132,5 +134,54 @@ struct PaywallView: View {
             .font(.footnote)
             .foregroundStyle(.white.opacity(0.8))
         }
+    }
+
+    @ViewBuilder
+    private var priceOrOfflineState: some View {
+        if let product = store.product {
+            Text(String(format: String(localized: "paywall.legal"), product.displayPrice))
+                .font(.footnote)
+                .foregroundStyle(.white.opacity(0.7))
+                .multilineTextAlignment(.center)
+                .fixedSize(horizontal: false, vertical: true)
+        } else if store.productLoadFailed {
+            VStack(spacing: 8) {
+                Text("paywall.offline.message")
+                    .font(.footnote)
+                    .foregroundStyle(.white.opacity(0.7))
+                    .multilineTextAlignment(.center)
+                Button("paywall.offline.retry") {
+                    Task { await store.retryLoadProduct() }
+                }
+                .font(.footnote.bold())
+                .foregroundStyle(.white)
+            }
+        } else {
+            ProgressView()
+                .tint(.white.opacity(0.5))
+                .scaleEffect(0.7)
+        }
+    }
+}
+
+// MARK: - NetworkPathMonitor
+
+@Observable
+final class NetworkPathMonitor {
+    private(set) var isConnected = true
+    private let monitor = NWPathMonitor()
+    private let queue = DispatchQueue(label: "com.atletaestoico.netmonitor")
+
+    func start() {
+        monitor.pathUpdateHandler = { [weak self] path in
+            Task { @MainActor [weak self] in
+                self?.isConnected = path.status == .satisfied
+            }
+        }
+        monitor.start(queue: queue)
+    }
+
+    func stop() {
+        monitor.cancel()
     }
 }
