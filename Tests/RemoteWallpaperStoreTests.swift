@@ -213,6 +213,37 @@ final class RemoteWallpaperStoreTests: XCTestCase {
         XCTAssertEqual(local[0].id, "wp_idx")
     }
 
+    func testPartialDownloadFailureAllowsRetry() async throws {
+        // Download falha por SHA errado → versão não salva → segunda chamada sem force tenta de novo
+        let badData = makeJpegData(seed: 20)
+        let wrongSha = String(repeating: "0", count: 63) + "f"
+        let badItem = WallpaperIndexEntry(id: "wp_retry", file: "wallpapers/wp_retry.jpg",
+                                          sha256: wrongSha, bytes: badData.count, added: "2026-10-09")
+
+        MockURLProtocol.handlers[indexURL] = .init(data: makeIndex(version: 1, items: [badItem]), statusCode: 200)
+        registerImage(id: "wp_retry", data: badData)
+
+        await store.checkForUpdate(force: true)
+
+        XCTAssertEqual(defaults.integer(forKey: "remoteWallpapers.version"), 0,
+                       "versão não deve ser salva quando download falha")
+        XCTAssertNil(defaults.object(forKey: "remoteWallpapers.lastCheckDate"),
+                     "lastCheckDate deve ser limpo para permitir retry sem force")
+
+        // Segunda chamada sem force: lastCheckDate está limpo, então tenta de novo
+        let goodData = makeJpegData(seed: 21)
+        let goodItem = WallpaperIndexEntry(id: "wp_retry", file: "wallpapers/wp_retry.jpg",
+                                           sha256: sha256hex(goodData), bytes: goodData.count, added: "2026-10-09")
+        MockURLProtocol.handlers[indexURL] = .init(data: makeIndex(version: 1, items: [goodItem]), statusCode: 200)
+        MockURLProtocol.handlers[URL(string: "https://example.com/wallpapers/wp_retry.jpg")!] =
+            .init(data: goodData, statusCode: 200)
+
+        await store.checkForUpdate(force: false)
+        XCTAssertTrue(fileExists("wp_retry"), "segunda tentativa deve baixar o item com SHA correto")
+        XCTAssertEqual(defaults.integer(forKey: "remoteWallpapers.version"), 1,
+                       "versão deve ser salva após download bem-sucedido")
+    }
+
     func testSkipsCheckWithin7Days() async throws {
         defaults.set(Date(), forKey: "remoteWallpapers.lastCheckDate")
         // Sem handlers para o indexURL — se tentar buscar, vai falhar

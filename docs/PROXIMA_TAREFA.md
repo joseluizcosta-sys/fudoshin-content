@@ -3,7 +3,7 @@
 > Para o Claude Code: execute as instruções abaixo, rode todos os testes e faça um commit por bloco.
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
-**Status:** pendente
+**Status:** concluída
 
 ## Revisão Opus dos papéis de parede remotos — compilar e validar
 
