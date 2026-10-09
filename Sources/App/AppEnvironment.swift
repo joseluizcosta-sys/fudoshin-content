@@ -1,6 +1,7 @@
 import Foundation
 import SwiftData
 import BackgroundTasks
+import UIKit
 
 /// Container de serviços reais do app. Criado uma vez no launch e acessível via `shared`.
 @MainActor
@@ -28,6 +29,8 @@ final class AppEnvironment {
         personalizer = TemplatePersonalizer()
         #endif
 
+        let composer = WallpaperComposer(screenSize: UIScreen.main.nativeBounds.size)
+
         self.planner = DailyPlanner(
             contextBuilder: builder,
             messages: lib.messages,
@@ -35,6 +38,7 @@ final class AppEnvironment {
             contextTexts: lib.contextTexts,
             personalizer: personalizer,
             notifications: LiveNotificationScheduler(),
+            wallpaper: composer,
             modelContext: modelContext
         )
 

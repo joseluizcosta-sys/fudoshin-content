@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 private enum SettingsSheet: String, Identifiable {
-    case syncGuide, mantra, race, week
+    case syncGuide, mantra, race, week, wallpaperGuide
     var id: String { rawValue }
 }
 
@@ -46,6 +46,8 @@ struct SettingsView: View {
                     WeekEditView {
                         await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
                     }
+                case .wallpaperGuide:
+                    WallpaperSetupGuide()
                 }
             }
         }
@@ -106,6 +108,26 @@ struct SettingsView: View {
                           systemImage: "applewatch.radiowaves.left.and.right")
                 }
                 .foregroundStyle(Theme.primaryText)
+            }
+
+            // Papel de parede
+            WallpaperSettingsSection(
+                showGuide: Binding(
+                    get: { activeSheet == .wallpaperGuide },
+                    set: { if $0 { activeSheet = .wallpaperGuide } }
+                )
+            )
+
+            // Widget — instruções
+            Section("settings.widget.section") {
+                Text("settings.widget.lock_hint")
+                    .font(.callout)
+                    .foregroundStyle(Theme.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text("settings.widget.standby_hint")
+                    .font(.callout)
+                    .foregroundStyle(Theme.secondaryText)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
             // Perfil: mantra, prova, semana

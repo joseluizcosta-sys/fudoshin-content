@@ -137,4 +137,8 @@ enum SharedStore {
     static func wallpaperURL(for day: DayKey) -> URL {
         baseURL.appendingPathComponent("wallpaper_\(day.value).png")
     }
+
+    static func wallpaperMetaURL(for day: DayKey) -> URL {
+        baseURL.appendingPathComponent("wallpaper_\(day.value)_meta.json")
+    }
 }

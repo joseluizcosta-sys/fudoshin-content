@@ -64,6 +64,29 @@ struct HomeView: View {
     }
 }
 
+// MARK: - systemSmall / StandBy
+
+struct SmallView: View {
+    let entry: DailyWidgetEntry
+
+    var body: some View {
+        VStack(alignment: .center, spacing: 6) {
+            Text(entry.entry.inlineText)
+                .font(.system(size: 18, weight: .bold))
+                .multilineTextAlignment(.center)
+                .minimumScaleFactor(0.8)
+                .lineLimit(3)
+                .foregroundStyle(Color.wText)
+
+            Text("不動心")
+                .font(.system(size: 11, weight: .regular))
+                .foregroundStyle(Color.wSub)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .containerBackground(for: .widget) { widgetGradient }
+    }
+}
+
 // MARK: - Unified entry view
 
 struct FudoshinWidgetEntryView: View {
@@ -73,6 +96,7 @@ struct FudoshinWidgetEntryView: View {
     var body: some View {
         Group {
             switch family {
+            case .systemSmall:          SmallView(entry: entry)
             case .accessoryRectangular: RectangularView(entry: entry)
             case .accessoryInline:      InlineView(entry: entry)
             case .accessoryCircular:    CircularView(entry: entry)
@@ -85,6 +109,12 @@ struct FudoshinWidgetEntryView: View {
 }
 
 // MARK: - Previews
+
+#Preview("Small", as: .systemSmall) {
+    FudoshinWidget()
+} timeline: {
+    DailyWidgetEntry.preview
+}
 
 #Preview("Medium", as: .systemMedium) {
     FudoshinWidget()

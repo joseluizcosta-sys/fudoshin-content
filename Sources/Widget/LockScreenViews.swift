@@ -19,13 +19,13 @@ struct RectangularView: View {
             Text(LockScreenContent.text(for: .destaque, entry: entry.entry))
                 .font(.system(size: 16, weight: .semibold))
                 .lineLimit(3)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.8)
                 .widgetAccentable()
         case .palavraChave:
             Text(LockScreenContent.text(for: .palavraChave, entry: entry.entry))
-                .font(.system(size: 20, weight: .bold))
+                .font(.system(size: 22, weight: .bold))
                 .lineLimit(2)
-                .minimumScaleFactor(0.6)
+                .minimumScaleFactor(0.85)
                 .widgetAccentable()
         }
     }

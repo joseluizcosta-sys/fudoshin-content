@@ -24,11 +24,12 @@ struct FudoshinWidget: Widget {
         .configurationDisplayName("widget.name")
         .description("widget.description")
         .supportedFamilies([
+            .systemSmall,
+            .systemMedium,
+            .systemLarge,
             .accessoryRectangular,
             .accessoryInline,
             .accessoryCircular,
-            .systemMedium,
-            .systemLarge,
         ])
     }
 }
