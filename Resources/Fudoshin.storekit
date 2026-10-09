@@ -1,60 +1,72 @@
 {
-  "identifier": "Fudoshin",
-  "nonConsumableProducts": [],
-  "nonRenewingSubscriptionProducts": [],
-  "products": [],
-  "subscriptionGroups": [
+  "identifier" : "F0D05A11",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+
+  ],
+  "settings" : {
+    "_failTransactionsEnabled" : false,
+    "_locale" : "pt_BR",
+    "_storefront" : "BRA",
+    "_storeKitErrors" : [
+
+    ]
+  },
+  "subscriptionGroups" : [
     {
-      "id": "21384689",
-      "localizations": [],
-      "name": "Fudōshin Premium",
-      "subscriptions": [
+      "id" : "22459602",
+      "localizations" : [
+
+      ],
+      "name" : "Fudōshin Premium",
+      "subscriptions" : [
         {
-          "adHocOfferCodesEnabled": true,
-          "displayPrice": "89.90",
-          "familySharable": false,
-          "groupNumber": 1,
-          "internalID": "47258370",
-          "introductoryOffer": {
-            "duration": 1,
-            "durationUnit": "WEEK",
-            "mode": "FREE_TRIAL",
-            "numberOfPeriods": 1,
-            "offerIdentifier": "com.atletaestoico.app.anual.trial",
-            "offerType": 2
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "89.90",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6821110604",
+          "introductoryOffer" : {
+            "internalID" : "7D1A0F01",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
           },
-          "localizations": [
+          "localizations" : [
             {
-              "description": "Acesso completo ao Fudōshin",
-              "displayName": "Fudōshin Premium Anual",
-              "locale": "pt_BR"
+              "description" : "Frase certa para o seu treino, todo dia",
+              "displayName" : "Fudōshin Premium",
+              "locale" : "pt_BR"
             },
             {
-              "description": "Full access to Fudōshin",
-              "displayName": "Fudōshin Premium Annual",
-              "locale": "en_US"
+              "description" : "The right words for your training, daily",
+              "displayName" : "Fudōshin Premium",
+              "locale" : "en_US"
             },
             {
-              "description": "Acceso completo a Fudōshin",
-              "displayName": "Fudōshin Premium Anual",
-              "locale": "es_ES"
+              "description" : "La frase justa para tu entrenamiento",
+              "displayName" : "Fudōshin Premium",
+              "locale" : "es_MX"
             }
           ],
-          "productID": "com.atletaestoico.app.anual",
-          "recurringSubscriptionPeriod": "P1Y",
-          "referenceName": "Anual",
-          "subscriptionGroupID": "21384689",
-          "type": "RecurringSubscription"
+          "productID" : "com.atletaestoico.app.anual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Premium Anual",
+          "subscriptionGroupID" : "22459602",
+          "type" : "RecurringSubscription"
         }
       ]
     }
   ],
-  "version": {
-    "major": 2,
-    "minor": 0
-  },
-  "settings": {
-    "_locale": "pt_BR",
-    "_storefront": "BRA"
+  "version" : {
+    "major" : 3,
+    "minor" : 0
   }
 }

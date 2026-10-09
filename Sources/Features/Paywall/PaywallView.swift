@@ -5,11 +5,11 @@ struct PaywallView: View {
     @Environment(EntitlementStore.self) private var store
 
     var body: some View {
-        ZStack {
-            background
-            content
-        }
-        .ignoresSafeArea()
+        // O fundo vai em .background para não alargar o layout (imagem scaledToFill
+        // dentro de ZStack empurrava o conteúdo para fora da tela).
+        content
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background { background }
     }
 
     // MARK: - Fundo
@@ -60,7 +60,8 @@ struct PaywallView: View {
         VStack(alignment: .leading, spacing: 14) {
             ForEach(1...4, id: \.self) { n in
                 Label {
-                    Text(LocalizedStringKey("paywall.benefit.\(n)"))
+                    // Montar a chave como String antes: LocalizedStringKey("...\(n)") vira "paywall.benefit.%lld".
+                    Text(LocalizedStringKey(String("paywall.benefit.") + String(n)))
                         .font(.body)
                         .foregroundStyle(.white)
                 } icon: {
