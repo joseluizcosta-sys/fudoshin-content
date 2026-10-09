@@ -1,5 +1,5 @@
 #!/bin/bash
-# Publica frases novas no GitHub Pages com um comando.
+# Publica frases e papéis de parede novos no GitHub Pages com um comando.
 # Uso:  ./tools/publicar.sh            (publica)
 #       ./tools/publicar.sh --disable  (desliga o conteúdo remoto; app volta às frases embutidas)
 set -euo pipefail
@@ -49,54 +49,84 @@ if [ "${1:-}" != "--disable" ] && [ "$LOCAL_VER" -gt "$REMOTE_VER" ]; then
   PENDING=1
 fi
 
-# 4. Prévia do que muda
+# 4. Prévia do que muda nas frases
+PHRASES=1
 if [ "$PENDING" = "1" ]; then
   :
 elif [ "${1:-}" != "--disable" ]; then
   set +e; "$PY" tools/content_sheet.py preview; rc=$?; set -e
-  [ $rc -eq 3 ] && exit 0
-  [ $rc -ne 0 ] && exit $rc
-  echo
-  echo "Você testou essas frases no iPhone (Cmd+R + tela de debug)?"
-  read -r -p "Publicar para todos os usuários? (s/N) " ok
-  [ "$ok" = "s" ] || [ "$ok" = "S" ] || { echo "Cancelado. Nada foi publicado."; exit 0; }
-  "$PY" tools/content_sheet.py publish
+  if [ $rc -eq 3 ]; then
+    PHRASES=0   # frases sem mudança — segue para os papéis de parede
+  elif [ $rc -ne 0 ]; then
+    exit $rc
+  else
+    echo
+    echo "Você testou essas frases no iPhone (Cmd+R + tela de debug)?"
+    read -r -p "Publicar para todos os usuários? (s/N) " ok
+    if [ "$ok" = "s" ] || [ "$ok" = "S" ]; then
+      "$PY" tools/content_sheet.py publish
+    else
+      echo "Frases não publicadas."; PHRASES=0
+    fi
+  fi
 else
   read -r -p "DESLIGAR o conteúdo remoto para todos? (s/N) " ok
   [ "$ok" = "s" ] || [ "$ok" = "S" ] || { echo "Cancelado."; exit 0; }
   "$PY" tools/content_sheet.py publish --disable
 fi
 
-# 5. Processar e copiar papéis de parede
-echo "Processando papéis de parede…"
-"$PY" tools/wallpapers.py
-if [ -f dist/content/wallpapers.json ]; then
-  WP_VER=$("$PY" -c "import json;print(json.load(open('dist/content/wallpapers.json'))['version'])" 2>/dev/null || echo 0)
-  echo "Papéis de parede: v$WP_VER"
-  mkdir -p "$REPO_DIR/wallpapers"
-  if [ -d dist/content/wallpapers ] && [ "$(ls -A dist/content/wallpapers 2>/dev/null)" ]; then
-    cp dist/content/wallpapers/*.jpg "$REPO_DIR/wallpapers/" 2>/dev/null || true
+# 5. Papéis de parede (Content/Wallpapers/ → wallpapers.json + wallpapers/*.jpg)
+WALLS=0
+if [ "${1:-}" != "--disable" ]; then
+  echo
+  echo "Processando papéis de parede…"
+  "$PY" tools/wallpapers.py
+  WP_LOCAL=$(verof dist/content/wallpapers.json)
+  WP_REMOTE=$(verof "$REPO_DIR/wallpapers.json")
+  if [ "$WP_LOCAL" -gt "$WP_REMOTE" ]; then
+    mkdir -p "$REPO_DIR/wallpapers"
+    if [ -d dist/content/wallpapers ] && [ -n "$(ls -A dist/content/wallpapers 2>/dev/null)" ]; then
+      cp dist/content/wallpapers/*.jpg "$REPO_DIR/wallpapers/"
+    fi
+    cp dist/content/wallpapers.json "$REPO_DIR/"
+    git -C "$REPO_DIR" add wallpapers.json wallpapers/
+    WALLS=1
+    echo "Papéis de parede: v$WP_REMOTE → v$WP_LOCAL"
   fi
-  cp dist/content/wallpapers.json "$REPO_DIR/"
-  git -C "$REPO_DIR" add wallpapers.json wallpapers/ 2>/dev/null || true
 fi
 
-# 5b. Copiar e enviar frases
-VER=$("$PY" -c "import json;print(json.load(open('dist/content/manifest.json'))['version'])")
-cp dist/content/manifest.json "dist/content/content-v$VER.json" "$REPO_DIR/"
-git -C "$REPO_DIR" add manifest.json "content-v$VER.json"
-git -C "$REPO_DIR" commit --quiet -m "conteúdo v$VER"
+if [ "$PHRASES" = "0" ] && [ "$WALLS" = "0" ]; then
+  echo "Nada mudou (frases e papéis de parede iguais ao que está no ar)."; exit 0
+fi
+
+# 6. Copiar frases e enviar tudo
+MSG=""
+if [ "$PHRASES" = "1" ]; then
+  VER=$("$PY" -c "import json;print(json.load(open('dist/content/manifest.json'))['version'])")
+  cp dist/content/manifest.json "dist/content/content-v$VER.json" "$REPO_DIR/"
+  git -C "$REPO_DIR" add manifest.json "content-v$VER.json"
+  MSG="conteúdo v$VER"
+fi
+if [ "$WALLS" = "1" ]; then
+  MSG="${MSG:+$MSG + }papéis de parede v$WP_LOCAL"
+fi
+git -C "$REPO_DIR" commit --quiet -m "$MSG"
 git -C "$REPO_DIR" push --quiet
 
-# 6. Registrar no projeto
+# 7. Registrar no projeto
 git add Content/messages Content/Frases_Fudoshin.numbers dist tools 2>/dev/null || true
-git commit --quiet -m "content: publicado v$VER" || true
+git commit --quiet -m "content: publicado ($MSG)" || true
 
-# 7. Conferir se entrou no ar
-echo "Enviado. Aguardando o GitHub Pages publicar (até 2 min)…"
+# 8. Conferir se entrou no ar
+if [ "$PHRASES" = "1" ]; then
+  CHECK_URL="$URL"; WANT="$VER"
+else
+  CHECK_URL="https://$GH_USER.github.io/fudoshin-content/wallpapers.json"; WANT="$WP_LOCAL"
+fi
+echo "Enviado ($MSG). Aguardando o GitHub Pages publicar (até 2 min)…"
 for i in $(seq 1 12); do
   sleep 10
-  NOW=$(curl -fsS "$URL?t=$(date +%s)" 2>/dev/null | "$PY" -c "import sys,json;print(json.load(sys.stdin)['version'])" 2>/dev/null || echo 0)
-  if [ "$NOW" = "$VER" ]; then echo "✅ v$VER no ar: $URL"; exit 0; fi
+  NOW=$(curl -fsS "$CHECK_URL?t=$(date +%s)" 2>/dev/null | "$PY" -c "import sys,json;print(json.load(sys.stdin)['version'])" 2>/dev/null || echo 0)
+  if [ "$NOW" = "$WANT" ]; then echo "✅ No ar: $CHECK_URL (v$WANT)"; exit 0; fi
 done
-echo "⚠️ Enviado, mas ainda não apareceu em $URL. Confira em alguns minutos."
+echo "⚠️ Enviado, mas ainda não apareceu em $CHECK_URL. Confira em alguns minutos."
