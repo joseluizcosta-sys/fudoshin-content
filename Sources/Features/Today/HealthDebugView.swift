@@ -12,12 +12,15 @@ struct HealthDebugView: View {
     @Query(sort: \DeliveryLog.dayValue, order: .reverse) private var logs: [DeliveryLog]
     @Environment(\.dismiss) private var dismiss
     @AppStorage("debug.heroTrigger") private var debugHeroTrigger: String = ""
+    @State private var contentStatus: String = ""
+    @State private var fetchingContent = false
 
     private let service = HealthKitService()
 
     var body: some View {
         NavigationStack {
             List {
+                remoteContentSection
                 heroTriggerSection
                 planSection
                 todayLogSection
@@ -39,12 +42,6 @@ struct HealthDebugView: View {
                         ProgressView()
                     } else {
                         Button("Refresh") { Task { await load() } }
-                        Button("Buscar conteúdo agora") {
-                            Task { @MainActor in
-                                await AppEnvironment.shared?.checkAndUpdateContent(force: true)
-                            }
-                        }
-                        .foregroundStyle(.orange)
                     }
                 }
             }
@@ -53,6 +50,31 @@ struct HealthDebugView: View {
     }
 
     // MARK: - Seções
+
+    /// Força a busca de frases e papéis de parede no GitHub Pages (ignora o intervalo de 7 dias).
+    @ViewBuilder
+    private var remoteContentSection: some View {
+        Section("Conteúdo remoto") {
+            Button {
+                Task { @MainActor in
+                    fetchingContent = true
+                    await AppEnvironment.shared?.checkAndUpdateContent(force: true)
+                    let wp = RemoteWallpaperStore.localItems().count
+                    contentStatus = "Papéis de parede remotos: \(wp) · \(Date().formatted(date: .omitted, time: .standard))"
+                    fetchingContent = false
+                }
+            } label: {
+                HStack {
+                    Text("Buscar conteúdo agora").foregroundStyle(.orange)
+                    if fetchingContent { Spacer(); ProgressView() }
+                }
+            }
+            .disabled(fetchingContent)
+            if !contentStatus.isEmpty {
+                Text(contentStatus).font(.caption).foregroundStyle(.secondary)
+            }
+        }
+    }
 
     /// Força o gatilho da imagem do topo da tela Hoje (só a imagem; a frase do dia não muda).
     @ViewBuilder
