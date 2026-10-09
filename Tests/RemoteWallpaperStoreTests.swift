@@ -160,9 +160,10 @@ final class RemoteWallpaperStoreTests: XCTestCase {
         MockURLProtocol.handlers[indexURL] = .init(data: makeIndex(version: 1, items: items), statusCode: 200)
         await store.checkForUpdate(force: true)
 
-        let downloaded = (try? FileManager.default.contentsOfDirectory(at: wallpapersDir,
-                                                                        includingPropertiesForKeys: nil))?.count ?? 0
-        XCTAssertLessEqual(downloaded, maxItems, "não deve exceder o limite de \(maxItems) imagens")
+        let files = try? FileManager.default.contentsOfDirectory(at: wallpapersDir,
+                                                                   includingPropertiesForKeys: nil)
+        let downloaded = files?.count ?? 0
+        XCTAssert(downloaded <= maxItems, "não deve exceder o limite de \(maxItems) imagens")
     }
 
     func testRespectsTotalBytesLimit() async throws {

@@ -5,8 +5,8 @@ struct WallpaperView: View {
     @State private var thumbnail: UIImage?
     @State private var saveStatus: WallpaperSaveStatus = .idle
     @State private var showGuide: Bool = false
-    @State private var selectedImage: String? = nil   // nil = "Muda todo dia"
-    @State private var availableImages: [String] = []
+    @State private var selectedImage: String? = nil   // nil = "Muda todo dia"; id da entrada = imagem fixa
+    @State private var availableEntries: [WallpaperEntry] = []
 
     var body: some View {
         NavigationStack {
@@ -28,13 +28,16 @@ struct WallpaperView: View {
             WallpaperSetupGuide()
         }
         .onAppear {
-            availableImages = WallpaperImage.available { UIImage(named: $0) != nil }
+            availableEntries = WallpaperCatalog.entries()
             selectedImage = SharedStore.loadPreferencesIfExists()?.wallpaperImage
             loadThumbnail()
         }
         .onReceive(
             NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)
-        ) { _ in loadThumbnail() }
+        ) { _ in
+            availableEntries = WallpaperCatalog.entries()
+            loadThumbnail()
+        }
     }
 
     // MARK: - Prévia
@@ -81,6 +84,7 @@ struct WallpaperView: View {
                 HStack(spacing: 10) {
                     GalleryItemView(
                         isSelected: selectedImage == nil,
+                        isNew: false,
                         label: Text("wallpaper.gallery.daily")
                     ) {
                         ZStack {
@@ -93,12 +97,13 @@ struct WallpaperView: View {
                         selectImage(nil)
                     }
 
-                    ForEach(availableImages, id: \.self) { name in
+                    ForEach(availableEntries, id: \.id) { entry in
                         GalleryItemView(
-                            isSelected: selectedImage == name,
+                            isSelected: selectedImage == entry.id,
+                            isNew: entry.isNew,
                             label: nil
                         ) {
-                            if let img = UIImage(named: name) {
+                            if let img = image(for: entry) {
                                 Image(uiImage: img)
                                     .resizable()
                                     .scaledToFill()
@@ -106,7 +111,7 @@ struct WallpaperView: View {
                                 Color(white: 0.15)
                             }
                         } onTap: {
-                            selectImage(name)
+                            selectImage(entry.id)
                         }
                     }
                 }
@@ -167,14 +172,21 @@ struct WallpaperView: View {
 
     // MARK: - Helpers
 
-    private func selectImage(_ name: String?) {
-        selectedImage = name
-        savePreferenceAndRegenerate(name)
+    private func image(for entry: WallpaperEntry) -> UIImage? {
+        switch entry.source {
+        case .bundled(let name): return UIImage(named: name)
+        case .file(let url):     return UIImage(contentsOfFile: url.path)
+        }
     }
 
-    private func savePreferenceAndRegenerate(_ name: String?) {
+    private func selectImage(_ id: String?) {
+        selectedImage = id
+        savePreferenceAndRegenerate(id)
+    }
+
+    private func savePreferenceAndRegenerate(_ id: String?) {
         var prefs = SharedStore.loadPreferences()
-        prefs.wallpaperImage = name
+        prefs.wallpaperImage = id
         try? SharedStore.save(prefs)
 
         let today = DayKey(Date())
@@ -221,6 +233,7 @@ struct WallpaperView: View {
 
 private struct GalleryItemView<Content: View>: View {
     let isSelected: Bool
+    let isNew: Bool
     let label: Text?
     @ViewBuilder let content: () -> Content
     let onTap: () -> Void
@@ -240,6 +253,18 @@ private struct GalleryItemView<Content: View>: View {
                         RoundedRectangle(cornerRadius: 10)
                             .strokeBorder(isSelected ? Theme.accent : Color.clear, lineWidth: 3)
                     )
+
+                if isNew {
+                    Text("wallpaper.badge.new")
+                        .font(.system(size: 9, weight: .bold))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 4)
+                        .padding(.vertical, 2)
+                        .background(.blue.opacity(0.88))
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                        .padding(4)
+                }
 
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")

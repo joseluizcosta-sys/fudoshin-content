@@ -1,36 +1,21 @@
 import Foundation
 
 enum WallpaperImage {
-    static let prefix = "Wallpaper_epico_"
-    static let maxProbe = 99
 
-    /// Nomes disponíveis em ordem (1, 2, 3…), parando no primeiro que faltar.
-    static func available(_ exists: (String) -> Bool) -> [String] {
-        var names: [String] = []
-        for i in 1...maxProbe {
-            let name = "\(prefix)\(i)"
-            if exists(name) {
-                names.append(name)
-            } else {
-                break
-            }
-        }
-        return names
-    }
-
-    /// Preferência válida (asset existe) → ela; inválida ou nil → sorteio diário.
+    /// Preferência válida (id existe no catálogo) → ela; inválida ou nil → sorteio diário.
     static func resolve(preference: String?, day: DayKey, installID: String,
-                        exists: (String) -> Bool) -> String? {
-        if let pref = preference, exists(pref) { return pref }
-        return name(for: day, installID: installID, exists: exists)
+                        entries: [WallpaperEntry]) -> String? {
+        if let pref = preference, entries.contains(where: { $0.id == pref }) { return pref }
+        return name(for: day, installID: installID, entries: entries)
     }
 
     /// Escolha determinística por dia: mesma imagem o dia inteiro; dias seguidos não repetem
-    /// quando houver ≥ 2 imagens. Sem imagens → nil (o composer usa HeroImage como fallback).
-    static func name(for day: DayKey, installID: String, exists: (String) -> Bool) -> String? {
-        let names = available(exists)
-        guard !names.isEmpty else { return nil }
-        return names[resolveIndex(day: day, installID: installID, count: names.count)]
+    /// quando houver ≥ 2 imagens. Ordena por id antes de sortear para estabilidade quando
+    /// chegam imagens novas. Sem entradas → nil.
+    static func name(for day: DayKey, installID: String, entries: [WallpaperEntry]) -> String? {
+        guard !entries.isEmpty else { return nil }
+        let sorted = entries.sorted { $0.id < $1.id }
+        return sorted[resolveIndex(day: day, installID: installID, count: sorted.count)].id
     }
 
     // Calcula o índice efetivo para `day`, garantindo que não repita o índice efetivo de ontem.
