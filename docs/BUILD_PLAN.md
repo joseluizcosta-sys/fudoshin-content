@@ -20,6 +20,7 @@
 | T10 | ✅ Concluída (03/10/2026) — 184/184 testes passando no simulador (revisão 2 + crédito paráfrase) |
 | T16 | ✅ Concluída (06/10/2026) — 227/227 testes passando no simulador |
 | Hero samurai | ✅ Concluída (07/10/2026) — testes passando; imagem HeroSamurai no topo da tela Hoje |
+| T12 | ✅ Concluída (09/10/2026) — 256/256 testes passando; WallpaperComposer (UIKit), DailyWallpaperIntent, WallpaperSetupGuide, widget .systemSmall/StandBy, estilos "Frase completa"/"Frase grande" |
 
 Atualize esta tabela ao final de cada tarefa.
 

@@ -4,7 +4,7 @@
 > Ao terminar, troque o status para "concluída", atualize a tabela de status do `docs/BUILD_PLAN.md` (T12)
 > e resuma em 3 linhas o que mudou. Se algo da API do iOS não se comportar como descrito, pare e explique.
 
-**Status:** pendente
+**Status:** concluída
 **Tarefa:** T12 (papel de parede do dia + Atalhos) e widget mais legível na tela de bloqueio
 
 ## Bloco 1 — Papel de parede do dia (T12, ver BUILD_PLAN)
