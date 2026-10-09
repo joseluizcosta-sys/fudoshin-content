@@ -23,7 +23,9 @@ struct WallpaperShortcutsProvider: AppShortcutsProvider {
         AppShortcut(
             intent: DailyWallpaperIntent(),
             phrases: [
-                "Wallpaper from \(.applicationName)"
+                "Wallpaper from \(.applicationName)",
+                "\(.applicationName) wallpaper",
+                "Get wallpaper from \(.applicationName)",
             ],
             shortTitle: LocalizedStringResource("intent.wallpaper.short_title"),
             systemImageName: "photo"
@@ -34,7 +36,8 @@ struct WallpaperShortcutsProvider: AppShortcutsProvider {
 // MARK: - Helper extraível para testes
 
 /// Devolve a URL do PNG do dia. Gera o arquivo se não existir.
-/// Pode ser chamada diretamente em testes, sem o runtime do AppIntents.
+/// Se o plano salvo não tiver a entrada de hoje (app fechado há 7+ dias), gera
+/// localmente a partir da biblioteca embutida, sem precisar do HealthKit.
 @discardableResult
 func wallpaperURL() async throws -> URL {
     guard SharedStore.loadPreferencesIfExists()?.isPremium == true else {
@@ -48,10 +51,8 @@ func wallpaperURL() async throws -> URL {
         return url
     }
 
-    guard let plan = SharedStore.loadPlan(),
-          let entry = plan.entries.first(where: { $0.day == dayKey })
-                   ?? plan.entries.first
-    else {
+    let entry = resolveEntry(for: dayKey)
+    guard let entry else {
         throw WallpaperIntentError.noContent
     }
 
@@ -64,6 +65,23 @@ func wallpaperURL() async throws -> URL {
         throw WallpaperIntentError.generationFailed
     }
     return url
+}
+
+/// Busca a entrada de hoje no plano salvo; se não existir (plano vencido), gera localmente.
+func resolveEntry(for dayKey: DayKey) -> DailyEntry? {
+    let prefs = SharedStore.loadPreferencesIfExists()
+    let lib   = ContentLibrary.current()
+
+    let storedPlan = SharedStore.loadPlan()
+    let items = DailyTimelineGenerator.items(
+        plan: storedPlan,
+        prefs: prefs,
+        fallbackMessages: lib.messages,
+        fallbackImages: lib.images
+    )
+
+    return items.first(where: { $0.entry.day == dayKey })?.entry
+        ?? items.first?.entry
 }
 
 enum WallpaperIntentError: Error, LocalizedError {

@@ -1,0 +1,54 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Get wallpaper from %(appName)@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obtener fondo de %(appName)@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pegar papel de parede do %(appName)@"
+          }
+        }
+      }
+    },
+    "%(appName)@ wallpaper" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fondo de %(appName)@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Papel de parede do %(appName)@"
+          }
+        }
+      }
+    },
+    "Wallpaper from %(appName)@" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fondo de pantalla de %(appName)@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Papel de parede do %(appName)@"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

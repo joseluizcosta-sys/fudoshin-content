@@ -280,15 +280,11 @@ final class WallpaperIntentHelperTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: returned.path))
     }
 
-    // Intent lança erro quando não há plano nem arquivo
-    func testIntentThrowsWhenNoContent() async {
-        do {
-            _ = try await wallpaperURL()
-            XCTFail("Deveria lançar erro")
-        } catch WallpaperIntentError.noContent {
-            // esperado
-        } catch {
-            XCTFail("Erro inesperado: \(error)")
-        }
+    // Sem plano salvo: intent gera do fallback da biblioteca (não lança noContent)
+    func testIntentGeneratesFromLibraryWhenNoPlan() async throws {
+        // Sem plano gravado — DailyTimelineGenerator usa fallback da biblioteca
+        let url = try await wallpaperURL()
+        XCTAssertTrue(FileManager.default.fileExists(atPath: url.path),
+                      "Intent deve gerar papel de parede do fallback mesmo sem plano")
     }
 }
