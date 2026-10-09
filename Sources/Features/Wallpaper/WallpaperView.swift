@@ -114,10 +114,13 @@ struct WallpaperView: View {
 
     // MARK: - Helpers
 
+    /// Lê o papel de parede de hoje; se ainda não existir, gera na hora (mesma função do Atalhos).
     private func loadThumbnail() {
-        let url = SharedStore.wallpaperURL(for: DayKey(Date()))
-        guard let data = try? Data(contentsOf: url) else { return }
-        thumbnail = UIImage(data: data)
+        Task {
+            guard let url = try? await wallpaperURL(),
+                  let data = try? Data(contentsOf: url) else { return }
+            thumbnail = UIImage(data: data)
+        }
     }
 
     private func saveToPhotos() async {
