@@ -22,6 +22,7 @@ targets:
           - "Widget/**"       # o widget tem @main próprio; não pode compilar dentro do app
       - Resources/Localizable.xcstrings
       - Resources/AppShortcuts.xcstrings
+      - Resources/InfoPlist.xcstrings
       - Resources/Assets.xcassets
       - path: Content
         type: folder

@@ -149,6 +149,22 @@ struct SettingsView: View {
                 .manageSubscriptionsSheet(isPresented: $showManageSubscriptions)
             }
 
+            // Sobre
+            Section("settings.section.about") {
+                LabeledContent("settings.about.version") {
+                    Text(appVersionString())
+                        .foregroundStyle(Theme.secondaryText)
+                }
+                Link(destination: Links.privacyURL) {
+                    Label("settings.about.privacy", systemImage: "hand.raised")
+                }
+                .foregroundStyle(Theme.primaryText)
+                Link(destination: Links.termsURL) {
+                    Label("settings.about.terms", systemImage: "doc.text")
+                }
+                .foregroundStyle(Theme.primaryText)
+            }
+
             #if DEBUG
             Section("Debug") {
                 Picker("settings.debug.access_override", selection: Binding(
@@ -162,6 +178,12 @@ struct SettingsView: View {
             }
             #endif
         }
+    }
+
+    private func appVersionString() -> String {
+        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "—"
+        let build   = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
+        return build.isEmpty ? version : "\(version) (\(build))"
     }
 
     private func subscriptionStatusLabel(_ state: SubscriptionState) -> String {

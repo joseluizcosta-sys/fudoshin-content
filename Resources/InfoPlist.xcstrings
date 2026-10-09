@@ -1,0 +1,50 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "NSHealthShareUsageDescription" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fudōshin reads your workouts and sleep from the Health app to choose the right message for your moment. Your data never leaves your iPhone."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fudōshin lee tus entrenamientos y sueño de Salud para elegir el mensaje adecuado para tu momento. Tus datos nunca salen de tu iPhone."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fudōshin lê seus treinos e sono do app Saúde para escolher a mensagem certa para o seu momento. Seus dados ficam só no seu iPhone."
+          }
+        }
+      }
+    },
+    "NSPhotoLibraryAddUsageDescription" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To save today's wallpaper to your photo library."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para guardar el fondo de pantalla de hoy en tu galería."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para salvar o papel de parede do dia na sua galeria."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -4604,6 +4604,34 @@
         }
       }
     },
+    "settings.about.privacy" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Privacy Policy" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Política de privacidad" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Política de privacidade" } }
+      }
+    },
+    "settings.about.terms" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Terms of Use (EULA)" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Términos de uso (EULA)" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Termos de uso (EULA)" } }
+      }
+    },
+    "settings.about.version" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "Version" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Versión" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Versão" } }
+      }
+    },
+    "settings.section.about" : {
+      "localizations" : {
+        "en" : { "stringUnit" : { "state" : "translated", "value" : "About" } },
+        "es" : { "stringUnit" : { "state" : "translated", "value" : "Acerca de" } },
+        "pt-BR" : { "stringUnit" : { "state" : "translated", "value" : "Sobre" } }
+      }
+    },
     "settings.section.subscription" : {
       "extractionState" : "manual",
       "localizations" : {
