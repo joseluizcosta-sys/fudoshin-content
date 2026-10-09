@@ -4,7 +4,7 @@
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 > Antes de tudo: compile e confira os commits f7ef06c (publicar.sh) e 3ee8407 (Debug) do Opus (feitos sem compilar).
 
-**Status:** pendente
+**Status:** concluída
 
 ## T15 — Acabamento (parte 1: código). TestFlight vem na parte 2.
 
