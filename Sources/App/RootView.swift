@@ -12,10 +12,17 @@ struct RootView: View {
     var body: some View {
         if !onboardingDone {
             OnboardingFlow()
-        } else if !store.isPremium {
-            PaywallView()
-        } else {
+        } else if store.isPremium {
             MainTabView()
+        } else if store.state == .unknown {
+            // Ainda verificando a assinatura (fração de segundo no launch):
+            // não mostrar o paywall para quem já assina.
+            ZStack {
+                Theme.background.ignoresSafeArea()
+                ProgressView()
+            }
+        } else {
+            PaywallView()
         }
     }
 }
