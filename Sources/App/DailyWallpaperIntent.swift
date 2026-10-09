@@ -51,8 +51,9 @@ func wallpaperURL() async throws -> URL {
         throw WallpaperIntentError.noContent
     }
 
-    let screenSize = await MainActor.run { UIScreen.main.nativeBounds.size }
-    let composer   = WallpaperComposer(screenSize: screenSize)
+    let screenSize  = await MainActor.run { UIScreen.main.nativeBounds.size }
+    let installID   = SharedStore.loadPreferencesIfExists()?.installID ?? "pending"
+    let composer    = WallpaperComposer(screenSize: screenSize, installID: installID)
     await composer.prepareWallpaper(for: entry)
 
     guard FileManager.default.fileExists(atPath: url.path) else {

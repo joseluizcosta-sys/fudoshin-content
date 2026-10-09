@@ -5,42 +5,47 @@ import CoreGraphics
 struct WallpaperComposer: WallpaperComposing {
 
     /// Mude quando o layout mudar: força regerar os papéis de parede já salvos.
-    static let layoutVersion = 2
+    static let layoutVersion = 3
 
     let screenSize: CGSize
+    let installID: String
 
-    init(screenSize: CGSize) {
+    init(screenSize: CGSize, installID: String = "") {
         self.screenSize = screenSize
+        self.installID = installID
     }
 
     func prepareWallpaper(for entry: DailyEntry) async {
         let url     = SharedStore.wallpaperURL(for: entry.day)
         let metaURL = SharedStore.wallpaperMetaURL(for: entry.day)
 
-        if fileUpToDate(url: url, metaURL: metaURL, entry: entry) { return }
+        let imageName = WallpaperImage.name(for: entry.day, installID: installID,
+                                             exists: { UIImage(named: $0) != nil })
 
-        let image = renderWallpaper(entry: entry, size: screenSize)
+        if fileUpToDate(url: url, metaURL: metaURL, entry: entry, imageName: imageName) { return }
+
+        let image = renderWallpaper(entry: entry, size: screenSize, imageName: imageName)
         guard let png = image.pngData() else { return }
 
         try? png.write(to: url, options: .atomic)
         saveMeta(WallpaperMeta(messageID: entry.messageID, triggerRaw: entry.trigger.rawValue,
-                               layoutVersion: Self.layoutVersion), to: metaURL)
+                               imageName: imageName, layoutVersion: Self.layoutVersion), to: metaURL)
         cleanupOldFiles()
     }
 
     // MARK: - Verificação de cache
 
-    private func fileUpToDate(url: URL, metaURL: URL, entry: DailyEntry) -> Bool {
+    private func fileUpToDate(url: URL, metaURL: URL, entry: DailyEntry, imageName: String?) -> Bool {
         guard FileManager.default.fileExists(atPath: url.path),
               let data = try? Data(contentsOf: metaURL),
               let meta = try? JSONDecoder().decode(WallpaperMeta.self, from: data) else { return false }
         return meta.messageID == entry.messageID && meta.triggerRaw == entry.trigger.rawValue
-            && meta.layoutVersion == Self.layoutVersion
+            && meta.layoutVersion == Self.layoutVersion && meta.imageName == imageName
     }
 
     // MARK: - Renderização
 
-    private func renderWallpaper(entry: DailyEntry, size: CGSize) -> UIImage {
+    private func renderWallpaper(entry: DailyEntry, size: CGSize, imageName: String?) -> UIImage {
         let format = UIGraphicsImageRendererFormat()
         format.scale = 1
         let renderer = UIGraphicsImageRenderer(size: size, format: format)
@@ -49,14 +54,21 @@ struct WallpaperComposer: WallpaperComposing {
             let cgCtx   = ctx.cgContext
             let bounds  = CGRect(origin: .zero, size: size)
 
-            // Camada 1 — imagem do gatilho (scaledToFill, alinhada ao topo)
-            let imageName = HeroImage.name(for: entry.trigger, available: { UIImage(named: $0) != nil })
-            if let hero = UIImage(named: imageName) {
-                let scale = max(size.width / hero.size.width, size.height / hero.size.height)
-                let sw = hero.size.width * scale
-                let sh = hero.size.height * scale
-                let drawRect = CGRect(x: (size.width - sw) / 2, y: 0, width: sw, height: sh)
-                hero.draw(in: drawRect)
+            // Camada 1 — foto épica (se disponível) ou ilustração do gatilho, scaledToFill centralizado
+            let assetName: String
+            if let wName = imageName {
+                assetName = wName
+            } else {
+                assetName = HeroImage.name(for: entry.trigger, available: { UIImage(named: $0) != nil })
+            }
+
+            if let img = UIImage(named: assetName) {
+                let scale = max(size.width / img.size.width, size.height / img.size.height)
+                let sw = img.size.width * scale
+                let sh = img.size.height * scale
+                let drawRect = CGRect(x: (size.width - sw) / 2, y: (size.height - sh) / 2,
+                                      width: sw, height: sh)
+                img.draw(in: drawRect)
             } else {
                 UIColor(red: 0.07, green: 0.08, blue: 0.09, alpha: 1).setFill()
                 UIRectFill(bounds)
@@ -175,5 +187,6 @@ struct WallpaperComposer: WallpaperComposing {
 struct WallpaperMeta: Codable {
     let messageID: String
     let triggerRaw: String
+    var imageName: String? = nil
     var layoutVersion: Int? = nil   // nil = arquivo antigo (layout 1)
 }

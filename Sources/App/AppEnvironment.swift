@@ -29,7 +29,9 @@ final class AppEnvironment {
         personalizer = TemplatePersonalizer()
         #endif
 
-        let composer = WallpaperComposer(screenSize: UIScreen.main.nativeBounds.size)
+        let prefs    = SharedStore.loadPreferences()
+        let composer = WallpaperComposer(screenSize: UIScreen.main.nativeBounds.size,
+                                         installID: prefs.installID)
 
         self.planner = DailyPlanner(
             contextBuilder: builder,
