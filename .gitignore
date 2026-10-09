@@ -13,3 +13,4 @@ build-log.txt
 tools/publicar.conf
 tools/.venv/
 Content/Wallpapers/
+dist/content/wallpapers/

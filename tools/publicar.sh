@@ -11,11 +11,11 @@ REPO_DIR="$(dirname "$PROJ")/fudoshin-content"
 # Python isolado do projeto (o Homebrew bloqueia pip no Python do sistema)
 VENV="$PROJ/tools/.venv"
 PY="$VENV/bin/python3"
-if [ ! -x "$PY" ] || ! "$PY" -c "import numbers_parser, openpyxl" 2>/dev/null; then
+if [ ! -x "$PY" ] || ! "$PY" -c "import numbers_parser, openpyxl, PIL" 2>/dev/null; then
   echo "Preparando o ambiente Python (só na primeira vez)…"
   python3 -m venv "$VENV"
   "$PY" -m pip install --quiet --upgrade pip
-  "$PY" -m pip install --quiet numbers-parser openpyxl
+  "$PY" -m pip install --quiet numbers-parser openpyxl pillow
 fi
 
 if [ ! -f "$CONF" ]; then
@@ -67,7 +67,21 @@ else
   "$PY" tools/content_sheet.py publish --disable
 fi
 
-# 5. Copiar e enviar
+# 5. Processar e copiar papéis de parede
+echo "Processando papéis de parede…"
+"$PY" tools/wallpapers.py
+if [ -f dist/content/wallpapers.json ]; then
+  WP_VER=$("$PY" -c "import json;print(json.load(open('dist/content/wallpapers.json'))['version'])" 2>/dev/null || echo 0)
+  echo "Papéis de parede: v$WP_VER"
+  mkdir -p "$REPO_DIR/wallpapers"
+  if [ -d dist/content/wallpapers ] && [ "$(ls -A dist/content/wallpapers 2>/dev/null)" ]; then
+    cp dist/content/wallpapers/*.jpg "$REPO_DIR/wallpapers/" 2>/dev/null || true
+  fi
+  cp dist/content/wallpapers.json "$REPO_DIR/"
+  git -C "$REPO_DIR" add wallpapers.json wallpapers/ 2>/dev/null || true
+fi
+
+# 5b. Copiar e enviar frases
 VER=$("$PY" -c "import json;print(json.load(open('dist/content/manifest.json'))['version'])")
 cp dist/content/manifest.json "dist/content/content-v$VER.json" "$REPO_DIR/"
 git -C "$REPO_DIR" add manifest.json "content-v$VER.json"
