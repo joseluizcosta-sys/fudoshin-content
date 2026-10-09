@@ -4247,7 +4247,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "frase certa para o seu treino"
+            "value" : "Frase certa para o seu treino"
           }
         }
       }
@@ -4258,19 +4258,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Epic daily wallpaper"
+            "value" : "Epic wallpapers, with new ones every month"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fondo de pantalla épico diario"
+            "value" : "Fondos épicos, con nuevos cada mes"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "papel de parede épico diário"
+            "value" : "Papéis de parede épicos, com novos todo mês"
           }
         }
       }
@@ -4293,7 +4293,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "widget na tela de bloqueio"
+            "value" : "Widget na tela de bloqueio"
           }
         }
       }
@@ -4316,7 +4316,7 @@
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "diário da revisão da noite"
+            "value" : "Diário da revisão da noite"
           }
         }
       }
