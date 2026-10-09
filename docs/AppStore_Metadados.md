@@ -14,3 +14,12 @@ Regras:
 - Conferir contagem de caracteres no App Store Connect antes de enviar; en/es precisam de revisão nativa.
 
 Pendente: teste com 10 corredores (lembrança do nome e associação "fudo" em PT-BR) antes de registrar marca e domínio.
+
+## App Store Connect — cadastro (09/10/2026)
+- App: "Fudōshin: Mente Samurai" · Apple ID 6821109865 · bundle `com.atletaestoico.app` · SKU `fudoshin-ios-001` · idioma principal pt-BR.
+- Grupo de assinaturas "Fudōshin Premium" (ID 22459602) — localizado pt-BR, en-US, es-MX (usa o nome do app).
+- Assinatura "Premium Anual" (Apple ID 6821110604) · produto `com.atletaestoico.app.anual` · 1 ano · 175 países · base R$ 89,90
+  (EUA US$ 12,99; Europa € 14,99, cálculo automático da Apple) · Compartilhamento familiar desligado.
+- Oferta introdutória: grátis por 1 semana, 175 países, de 10/10/2026 sem data de término.
+- Localização da assinatura: pt-BR "Frase certa para o seu treino, todo dia"; en-US "The right words for your training, daily"; es-MX "La frase justa para tu entrenamiento".
+- Pendente: print da tela de assinatura (Review Information) e envio junto com a 1ª versão do app; conta Sandbox para teste no iPhone.
