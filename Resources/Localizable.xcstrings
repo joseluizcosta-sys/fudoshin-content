@@ -3109,50 +3109,6 @@
         }
       }
     },
-    "tab.wallpaper" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wallpaper"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fondo"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fundo"
-          }
-        }
-      }
-    },
-    "wallpaper.hint" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "When setting, disable perspective zoom. The quote changes together with the day's trigger."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Al configurar, desactiva el zoom de perspectiva. La frase cambia junto con el disparador del día."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ao definir, desative o zoom de perspectiva. A frase muda junto com o gatilho do dia."
-          }
-        }
-      }
-    },
     "tab.journal" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -3218,6 +3174,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hoje"
+          }
+        }
+      }
+    },
+    "tab.wallpaper" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wallpaper"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fondo"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fundo"
           }
         }
       }
@@ -3767,6 +3746,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Automacao de papel de parede"
+          }
+        }
+      }
+    },
+    "wallpaper.hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "When setting, disable perspective zoom. The quote changes together with the day's trigger."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Al configurar, desactiva el zoom de perspectiva. La frase cambia junto con el disparador del día."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ao definir, desative o zoom de perspectiva. A frase muda junto com o gatilho do dia."
           }
         }
       }
