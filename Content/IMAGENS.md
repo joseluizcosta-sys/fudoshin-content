@@ -83,3 +83,4 @@ Geradas no Gemini (plano pago) por JC com os prompts de `docs/Prompts_Hero_Gemin
 | Hero_marco_prova | ok |
 | Hero_geral | ok — regerada sem ASICS (07/10/2026). Instalada como `HeroSamurai` (fallback que cobre o gatilho geral), sem imageset duplicado |
 | `AppIcon` v2 (original `Design/Icone/v2_A3_busto_faixa.jpeg`, 2048×2048) | Google Gemini, plano pago | 09/10/2026 | JC (prompt em `docs/Prompts_Icone_Gemini.md` + variações) | Ícone do app |
+| `Wallpaper_epico_1…5` (originais em `Design/Arte/`, 1536×2752) | Google Gemini, plano pago | 09/10/2026 | JC/Claude (prompts em `docs/Prompts_Wallpaper_Gemini.md`) | Só papel de parede (tela de bloqueio) |
