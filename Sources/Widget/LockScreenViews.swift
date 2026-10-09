@@ -14,19 +14,27 @@ struct RectangularView: View {
 
     @ViewBuilder
     private var textContent: some View {
-        switch entry.style {
-        case .destaque:
-            Text(LockScreenContent.text(for: .destaque, entry: entry.entry))
-                .font(.system(size: 16, weight: .semibold))
+        if entry.isSubscriptionRequired {
+            Text("widget.no_subscription")
+                .font(.system(size: 14, weight: .medium))
                 .lineLimit(3)
                 .minimumScaleFactor(0.8)
                 .widgetAccentable()
-        case .palavraChave:
-            Text(LockScreenContent.text(for: .palavraChave, entry: entry.entry))
-                .font(.system(size: 22, weight: .bold))
-                .lineLimit(2)
-                .minimumScaleFactor(0.85)
-                .widgetAccentable()
+        } else {
+            switch entry.style {
+            case .destaque:
+                Text(LockScreenContent.text(for: .destaque, entry: entry.entry))
+                    .font(.system(size: 16, weight: .semibold))
+                    .lineLimit(3)
+                    .minimumScaleFactor(0.8)
+                    .widgetAccentable()
+            case .palavraChave:
+                Text(LockScreenContent.text(for: .palavraChave, entry: entry.entry))
+                    .font(.system(size: 22, weight: .bold))
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.85)
+                    .widgetAccentable()
+            }
         }
     }
 }
@@ -37,7 +45,9 @@ struct InlineView: View {
     let entry: DailyWidgetEntry
 
     var body: some View {
-        Text(entry.entry.inlineText)
+        Text(entry.isSubscriptionRequired
+             ? String(localized: "widget.no_subscription")
+             : entry.entry.inlineText)
             .containerBackground(for: .widget) { Color.clear }
     }
 }

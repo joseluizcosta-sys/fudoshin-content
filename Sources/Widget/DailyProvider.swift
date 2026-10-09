@@ -9,6 +9,8 @@ struct DailyWidgetEntry: TimelineEntry {
     var style: LockScreenStyle = .destaque
     /// true somente quando a ContentLibrary falhou ao carregar no placeholder.
     var isPlaceholder: Bool = false
+    /// true quando o usuário não tem assinatura ativa.
+    var isSubscriptionRequired: Bool = false
 }
 
 // MARK: - Entrada para Previews e Placeholder
@@ -95,6 +97,12 @@ struct DailyProvider: AppIntentTimelineProvider {
         let prefs = SharedStore.loadPreferencesIfExists()
         let lib   = ContentLibrary.current()
 
+        // Sem assinatura: timeline com entrada especial para cada dia
+        guard prefs?.isPremium == true else {
+            let blocked = blockedEntry(style: configuration.style)
+            return Timeline(entries: [blocked], policy: .atEnd)
+        }
+
         let items = DailyTimelineGenerator.items(
             plan: plan,
             prefs: prefs,
@@ -105,6 +113,19 @@ struct DailyProvider: AppIntentTimelineProvider {
             DailyWidgetEntry(date: $0.date, entry: $0.entry, style: configuration.style)
         }
         return Timeline(entries: entries, policy: .atEnd)
+    }
+
+    private func blockedEntry(style: LockScreenStyle) -> DailyWidgetEntry {
+        DailyWidgetEntry(
+            date: Date(),
+            entry: DailyEntry(
+                day: DayKey(Date()), messageID: "", imageID: "", trigger: .geral,
+                shortText: "", inlineText: String(localized: "widget.no_subscription"),
+                author: "", reflection: "", daysToRace: nil
+            ),
+            style: style,
+            isSubscriptionRequired: true
+        )
     }
 
     // MARK: - Private

@@ -5,6 +5,7 @@ import BackgroundTasks
 @main
 struct AtletaEstoicoApp: App {
     let container: ModelContainer
+    @State private var entitlementStore = EntitlementStore()
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
@@ -63,10 +64,13 @@ struct AtletaEstoicoApp: App {
     var body: some Scene {
         WindowGroup {
             RootView()
+                .environment(entitlementStore)
+                .task { await entitlementStore.refreshState() }
                 .onChange(of: scenePhase) { _, phase in
                     guard phase == .active else { return }
                     Task { @MainActor in
                         await AppEnvironment.shared?.onBecomeActive()
+                        await entitlementStore.refreshState()
                     }
                 }
         }

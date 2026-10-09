@@ -242,6 +242,10 @@ final class WallpaperIntentHelperTests: XCTestCase {
             .appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
         SharedStore._baseURL = tmpDir
+        // wallpaperURL() requer isPremium = true; loadPreferences() cria install_id.txt
+        var prefs = SharedStore.loadPreferences()
+        prefs.isPremium = true
+        try SharedStore.save(prefs)
     }
 
     override func tearDown() async throws {

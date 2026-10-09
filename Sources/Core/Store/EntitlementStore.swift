@@ -44,6 +44,8 @@ final class EntitlementStore {
 
     // MARK: - Compra
 
+    func clearPurchaseError() { purchaseError = nil }
+
     func purchase() async {
         guard let product else { return }
         isPurchasing = true

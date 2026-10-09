@@ -2,6 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct RootView: View {
+    @Environment(EntitlementStore.self) private var store
     @Query private var profiles: [AthleteProfile]
 
     private var onboardingDone: Bool {
@@ -9,10 +10,12 @@ struct RootView: View {
     }
 
     var body: some View {
-        if onboardingDone {
-            MainTabView()
-        } else {
+        if !onboardingDone {
             OnboardingFlow()
+        } else if !store.isPremium {
+            PaywallView()
+        } else {
+            MainTabView()
         }
     }
 }
@@ -20,4 +23,5 @@ struct RootView: View {
 #Preview {
     RootView()
         .modelContainer(for: [AthleteProfile.self], inMemory: true)
+        .environment(EntitlementStore())
 }

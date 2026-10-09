@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import StoreKit
 
 private enum SettingsSheet: String, Identifiable {
     case syncGuide, mantra, race, week
@@ -9,9 +10,11 @@ private enum SettingsSheet: String, Identifiable {
 struct SettingsView: View {
     @Environment(\.modelContext) private var ctx
     @Environment(\.dismiss) private var dismiss
+    @Environment(EntitlementStore.self) private var store
     @Query private var races: [Race]
     @State private var vm: SettingsViewModel?
     @State private var activeSheet: SettingsSheet?
+    @State private var showManageSubscriptions = false
 
     var body: some View {
         NavigationStack {
@@ -129,6 +132,50 @@ struct SettingsView: View {
                 Button("settings.edit_week") { activeSheet = .week }
                     .foregroundStyle(Theme.primaryText)
             }
+
+            // Assinatura
+            Section("settings.section.subscription") {
+                HStack {
+                    Text("settings.subscription.status")
+                    Spacer()
+                    Text(subscriptionStatusLabel(store.state))
+                        .foregroundStyle(Theme.secondaryText)
+                        .font(.callout)
+                }
+                Button("settings.subscription.manage") {
+                    showManageSubscriptions = true
+                }
+                .foregroundStyle(Theme.primaryText)
+                .manageSubscriptionsSheet(isPresented: $showManageSubscriptions)
+            }
+
+            #if DEBUG
+            Section("Debug") {
+                Picker("settings.debug.access_override", selection: Binding(
+                    get: { store.debugOverride },
+                    set: { store.debugOverride = $0 }
+                )) {
+                    Text("settings.debug.access.auto").tag(Bool?.none)
+                    Text("settings.debug.access.premium").tag(Bool?.some(true))
+                    Text("settings.debug.access.blocked").tag(Bool?.some(false))
+                }
+            }
+            #endif
+        }
+    }
+
+    private func subscriptionStatusLabel(_ state: SubscriptionState) -> String {
+        switch state {
+        case .trial(let exp):
+            let d = exp.formatted(.dateTime.day().month())
+            return String(format: String(localized: "settings.subscription.status.trial"), d)
+        case .active(let exp, _):
+            let d = exp.formatted(.dateTime.day().month().year())
+            return String(format: String(localized: "settings.subscription.status.active"), d)
+        case .expired:
+            return String(localized: "settings.subscription.status.expired")
+        default:
+            return String(localized: "settings.subscription.status.none")
         }
     }
 

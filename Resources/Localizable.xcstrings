@@ -4160,6 +4160,541 @@
         }
       }
     },
+    "intent.wallpaper.error.subscription_required" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An active subscription is required to use this shortcut."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se requiere una suscripción activa para usar este acceso directo."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "É necessária uma assinatura ativa para usar este atalho."
+          }
+        }
+      }
+    },
+    "notification.trial_ending.body" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Fudōshin trial ends in 2 days. After that, %@/year. To cancel, go to Settings › Apple ID › Subscriptions."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tu prueba de Fudōshin termina en 2 días. Después, %@/año. Para cancelar, ve a Ajustes › ID de Apple › Suscripciones."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seu teste do Fudōshin termina em 2 dias. Depois, %@/ano. Para não renovar, cancele em Ajustes › Apple ID › Assinaturas."
+          }
+        }
+      }
+    },
+    "notification.trial_ending.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trial ending soon"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prueba por terminar"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teste terminando em breve"
+          }
+        }
+      }
+    },
+    "paywall.benefit.1" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The right message for your training"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El mensaje adecuado para tu entrenamiento"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "frase certa para o seu treino"
+          }
+        }
+      }
+    },
+    "paywall.benefit.2" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Epic daily wallpaper"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fondo de pantalla épico diario"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "papel de parede épico diário"
+          }
+        }
+      }
+    },
+    "paywall.benefit.3" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lock screen widget"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Widget en la pantalla de bloqueo"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "widget na tela de bloqueio"
+          }
+        }
+      }
+    },
+    "paywall.benefit.4" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Evening review journal"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diario de revisión nocturna"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "diário da revisão da noite"
+          }
+        }
+      }
+    },
+    "paywall.cta" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start 7-day free trial"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Comenzar 7 días gratis"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Começar 7 dias grátis"
+          }
+        }
+      }
+    },
+    "paywall.error.retry" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Intentar de nuevo"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tentar de novo"
+          }
+        }
+      }
+    },
+    "paywall.legal" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 days free, then %@/year. Auto-renews. Cancel anytime in Settings › Apple ID › Subscriptions, up to 24 h before trial ends."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 días gratis, luego %@/año. Se renueva automáticamente. Cancela cuando quieras en Ajustes › ID de Apple › Suscripciones, hasta 24 h antes del fin del período de prueba."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7 dias grátis, depois %@/ano. Renova automaticamente. Cancele quando quiser em Ajustes › Apple ID › Assinaturas, até 24 h antes do fim do teste."
+          }
+        }
+      }
+    },
+    "paywall.privacy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacidad"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacidade"
+          }
+        }
+      }
+    },
+    "paywall.restore" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restore purchases"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar compras"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restaurar compras"
+          }
+        }
+      }
+    },
+    "paywall.terms" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms of Use"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Términos de uso"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termos de Uso"
+          }
+        }
+      }
+    },
+    "paywall.title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samurai mind, every day"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mente samurái, todos los días"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mente samurai, todos os dias"
+          }
+        }
+      }
+    },
+    "settings.debug.access.auto" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Auto" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "Auto" }
+        },
+        "pt-BR" : {
+          "stringUnit" : { "state" : "translated", "value" : "Automático" }
+        }
+      }
+    },
+    "settings.debug.access.blocked" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Blocked" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "Bloqueado" }
+        },
+        "pt-BR" : {
+          "stringUnit" : { "state" : "translated", "value" : "Bloqueado" }
+        }
+      }
+    },
+    "settings.debug.access.premium" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Premium" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "Premium" }
+        },
+        "pt-BR" : {
+          "stringUnit" : { "state" : "translated", "value" : "Premium" }
+        }
+      }
+    },
+    "settings.debug.access_override" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Force access" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "Forzar acceso" }
+        },
+        "pt-BR" : {
+          "stringUnit" : { "state" : "translated", "value" : "Forçar acesso" }
+        }
+      }
+    },
+    "settings.section.subscription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subscription"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suscripción"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Assinatura"
+          }
+        }
+      }
+    },
+    "settings.subscription.manage" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage subscription"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionar suscripción"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerenciar assinatura"
+          }
+        }
+      }
+    },
+    "settings.subscription.status" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Status" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "Estado" }
+        },
+        "pt-BR" : {
+          "stringUnit" : { "state" : "translated", "value" : "Status" }
+        }
+      }
+    },
+    "settings.subscription.status.active" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Active, renews on %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Activa, se renueva el %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ativa, renova em %@"
+          }
+        }
+      }
+    },
+    "settings.subscription.status.expired" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Expired" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "Expirada" }
+        },
+        "pt-BR" : {
+          "stringUnit" : { "state" : "translated", "value" : "Expirada" }
+        }
+      }
+    },
+    "settings.subscription.status.none" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Not subscribed" }
+        },
+        "es" : {
+          "stringUnit" : { "state" : "translated", "value" : "Sin suscripción" }
+        },
+        "pt-BR" : {
+          "stringUnit" : { "state" : "translated", "value" : "Sem assinatura" }
+        }
+      }
+    },
+    "settings.subscription.status.trial" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trial until %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prueba hasta el %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teste até %@"
+          }
+        }
+      }
+    },
+    "widget.no_subscription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open Fudōshin to continue"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abre Fudōshin para continuar"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abra o Fudōshin para continuar"
+          }
+        }
+      }
+    },
     "不" : {
       "comment" : "A character in the Japanese word for \"not.\"",
       "isCommentAutoGenerated" : true

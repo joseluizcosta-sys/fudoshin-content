@@ -37,6 +37,10 @@ struct WallpaperShortcutsProvider: AppShortcutsProvider {
 /// Pode ser chamada diretamente em testes, sem o runtime do AppIntents.
 @discardableResult
 func wallpaperURL() async throws -> URL {
+    guard SharedStore.loadPreferencesIfExists()?.isPremium == true else {
+        throw WallpaperIntentError.subscriptionRequired
+    }
+
     let dayKey = DayKey(Date())
     let url    = SharedStore.wallpaperURL(for: dayKey)
 
@@ -62,7 +66,16 @@ func wallpaperURL() async throws -> URL {
     return url
 }
 
-enum WallpaperIntentError: Error {
+enum WallpaperIntentError: Error, LocalizedError {
     case noContent
     case generationFailed
+    case subscriptionRequired
+
+    var errorDescription: String? {
+        switch self {
+        case .subscriptionRequired:
+            return String(localized: "intent.wallpaper.error.subscription_required")
+        default: return nil
+        }
+    }
 }
