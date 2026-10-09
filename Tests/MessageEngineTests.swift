@@ -37,7 +37,6 @@ final class MessageEngineTests: XCTestCase {
         trigger: Trigger = .geral,
         day: DayKey = DayKey(value: "2026-10-05"),
         installID: String = "test-id",
-        isPremium: Bool = false,
         deliveredIDs: Set<String> = [],
         raceCategory: ImageCategory? = nil,
         preferredCategories: [ImageCategory] = [.trail],
@@ -46,7 +45,7 @@ final class MessageEngineTests: XCTestCase {
     ) -> MessageEngine.Input {
         MessageEngine.Input(
             trigger: trigger, day: day, installID: installID,
-            isPremium: isPremium, recentlyDeliveredMessageIDs: deliveredIDs,
+            recentlyDeliveredMessageIDs: deliveredIDs,
             raceCategory: raceCategory, preferredCategories: preferredCategories,
             daysToRace: daysToRace, tomorrowSession: tomorrowSession
         )
@@ -104,78 +103,78 @@ final class MessageEngineTests: XCTestCase {
     func testExhaustedPoolFallsBackToFullPool() {
         let m1 = msg("pos-1", triggers: [.posTreino])
         let m2 = msg("pos-2", triggers: [.posTreino])
-        let i  = makeInput(trigger: .posTreino, isPremium: true, deliveredIDs: ["pos-1", "pos-2"])
+        let i  = makeInput(trigger: .posTreino, deliveredIDs: ["pos-1", "pos-2"])
 
         let r = MessageEngine.pick(input: i, messages: [m1, m2], images: [], contextTexts: [:])
         XCTAssertTrue(r.messageID == "pos-1" || r.messageID == "pos-2",
                       "Deve escolher uma mensagem mesmo com pool esgotado")
     }
 
-    // MARK: - 5. Usuário grátis → sempre escolhe de TODAS as mensagens (ajuste 1)
+    // MARK: - 5. Gatilho específico → sorteia só do pool do gatilho
 
-    func testFreeUserPullsFromAllMessages() {
-        let mGeral   = msg("g-1", triggers: [.geral])
-        let mVespera = msg("v-1", triggers: [.vesperaChave])
-        let i = makeInput(trigger: .vesperaChave, isPremium: false)
-
-        // Com 2 mensagens e DailyPicker, o resultado deve ser um dos dois IDs
-        let r = MessageEngine.pick(input: i, messages: [mGeral, mVespera], images: [], contextTexts: [:])
-        XCTAssertTrue(r.messageID == "g-1" || r.messageID == "v-1",
-                      "Usuário grátis deve sortear de todas as mensagens")
-    }
-
-    // MARK: - 6. Usuário pago → sorteia só do pool do gatilho
-
-    func testPaidUserPicksFromTriggerPool() {
+    func testSpecificTriggerPicksFromTriggerPool() {
         let mGeral = msg("g-1", triggers: [.geral])
         let mPos1  = msg("p-1", triggers: [.posTreino])
         let mPos2  = msg("p-2", triggers: [.posTreino])
-        let i = makeInput(trigger: .posTreino, isPremium: true)
+        let i = makeInput(trigger: .posTreino)
 
         let r = MessageEngine.pick(input: i, messages: [mGeral, mPos1, mPos2], images: [], contextTexts: [:])
-        XCTAssertTrue(r.messageID == "p-1" || r.messageID == "p-2")
+        XCTAssertTrue(r.messageID == "p-1" || r.messageID == "p-2",
+                      "Gatilho específico deve usar apenas o pool do gatilho")
         XCTAssertNotEqual(r.messageID, "g-1")
+    }
+
+    // MARK: - 6. Gatilho .geral → sorteia de todas as mensagens
+
+    func testGeralTriggerPicksFromAllMessages() {
+        let mGeral   = msg("g-1", triggers: [.geral])
+        let mVespera = msg("v-1", triggers: [.vesperaChave])
+        let i = makeInput(trigger: .geral)
+
+        let r = MessageEngine.pick(input: i, messages: [mGeral, mVespera], images: [], contextTexts: [:])
+        XCTAssertTrue(r.messageID == "g-1" || r.messageID == "v-1",
+                      "Gatilho .geral deve sortear de todas as mensagens")
     }
 
     // MARK: - 7. inlineText de contexto vem de inline_contexto do arquivo (ajuste 5)
 
     func testInlineText_VesperaLongo() {
         let ctx = ["vespera_longo": "Longão amanhã", "vespera_forte": "Treino forte amanhã"]
-        let i   = makeInput(trigger: .vesperaChave, isPremium: true, tomorrowSession: .longo)
+        let i   = makeInput(trigger: .vesperaChave, tomorrowSession: .longo)
         let r   = MessageEngine.pick(input: i, messages: [msg("v-1", triggers: [.vesperaChave])], images: [], contextTexts: ctx)
         XCTAssertEqual(r.inlineText, "Longão amanhã")
     }
 
     func testInlineText_VesperaForte() {
         let ctx = ["vespera_longo": "Longão amanhã", "vespera_forte": "Treino forte amanhã"]
-        let i   = makeInput(trigger: .vesperaChave, isPremium: true, tomorrowSession: .forte)
+        let i   = makeInput(trigger: .vesperaChave, tomorrowSession: .forte)
         let r   = MessageEngine.pick(input: i, messages: [msg("v-1", triggers: [.vesperaChave])], images: [], contextTexts: ctx)
         XCTAssertEqual(r.inlineText, "Treino forte amanhã")
     }
 
     func testInlineText_Descanso() {
         let ctx = ["descanso": "Dia de descanso"]
-        let i   = makeInput(trigger: .descanso, isPremium: true)
+        let i   = makeInput(trigger: .descanso)
         let r   = MessageEngine.pick(input: i, messages: [msg("d-1", triggers: [.descanso])], images: [], contextTexts: ctx)
         XCTAssertEqual(r.inlineText, "Dia de descanso")
     }
 
     func testInlineText_MarcoProva_T30() {
         let ctx = ["t30": "Faltam 30 dias", "t7": "Faltam 7 dias", "t1": "Prova amanhã", "d0": "Dia de prova"]
-        let i   = makeInput(trigger: .marcoProva, isPremium: true, daysToRace: 30)
+        let i   = makeInput(trigger: .marcoProva, daysToRace: 30)
         let r   = MessageEngine.pick(input: i, messages: [msg("m-1", triggers: [.marcoProva])], images: [], contextTexts: ctx)
         XCTAssertEqual(r.inlineText, "Faltam 30 dias")
     }
 
     func testInlineText_MarcoProva_D0() {
         let ctx = ["t30": "Faltam 30 dias", "t7": "Faltam 7 dias", "t1": "Prova amanhã", "d0": "Dia de prova"]
-        let i   = makeInput(trigger: .marcoProva, isPremium: true, daysToRace: 0)
+        let i   = makeInput(trigger: .marcoProva, daysToRace: 0)
         let r   = MessageEngine.pick(input: i, messages: [msg("m-1", triggers: [.marcoProva])], images: [], contextTexts: ctx)
         XCTAssertEqual(r.inlineText, "Dia de prova")
     }
 
     func testInlineText_NonContextual_UsesMessageInline() {
-        let i = makeInput(trigger: .posTreino, isPremium: true)
+        let i = makeInput(trigger: .posTreino)
         let r = MessageEngine.pick(input: i, messages: [msg("p-1", triggers: [.posTreino], inlineText: "Bom treino!")], images: [], contextTexts: [:])
         XCTAssertEqual(r.inlineText, "Bom treino!")
     }
@@ -229,7 +228,7 @@ final class MessageEngineTests: XCTestCase {
     func testEmptyTriggerPoolFallsBackToGeral() {
         // Nenhuma mensagem tem trigger .sonoRuim → deve sortear de todas (geral)
         let allMsgs = [msg("a-1", triggers: [.geral]), msg("b-2", triggers: [.descanso]), msg("c-3", triggers: [.marcoProva])]
-        let i = makeInput(trigger: .sonoRuim, isPremium: true)
+        let i = makeInput(trigger: .sonoRuim)
         let r = MessageEngine.pick(input: i, messages: allMsgs, images: [], contextTexts: [:])
         XCTAssertTrue(["a-1", "b-2", "c-3"].contains(r.messageID),
                       "Pool vazio para gatilho deve usar DailyPicker geral sobre todas as mensagens")
@@ -238,7 +237,7 @@ final class MessageEngineTests: XCTestCase {
     func testEmptyTriggerPoolIsDeterministic() {
         // O fallback para geral deve ser determinístico (mesma entrada → mesmo ID)
         let allMsgs = [msg("a-1"), msg("b-2"), msg("c-3")]
-        let i = makeInput(trigger: .sonoRuim, day: DayKey(value: "2026-10-05"), installID: "det-id", isPremium: true)
+        let i = makeInput(trigger: .sonoRuim, day: DayKey(value: "2026-10-05"), installID: "det-id")
         let r1 = MessageEngine.pick(input: i, messages: allMsgs, images: [], contextTexts: [:])
         let r2 = MessageEngine.pick(input: i, messages: allMsgs, images: [], contextTexts: [:])
         XCTAssertEqual(r1.messageID, r2.messageID)

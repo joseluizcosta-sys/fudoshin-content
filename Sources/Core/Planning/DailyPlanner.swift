@@ -173,6 +173,13 @@ final class DailyPlanner {
         await wallpaper.prepareWallpaper(for: todayEntry)
         widgetReloader.reloadAllTimelines()
 
+        // Sem assinatura: cancela notificações pendentes e não agenda novas.
+        guard prefs.isPremium else {
+            await notifications.cancelPendingNotifications()
+            upsertDeliveryLog(entry: todayEntry, logs: logs, markNotified: false)
+            return
+        }
+
         // scheduleImmediate retorna false em horário de silêncio (21h–7h) ou sem permissão.
         var didNotify = false
         if shouldTryImmediate {
@@ -289,7 +296,6 @@ final class DailyPlanner {
             trigger: trigger,
             day: day,
             installID: prefs.installID,
-            isPremium: prefs.isPremium,
             recentlyDeliveredMessageIDs: recentIDs,
             raceCategory: context.raceCategory,
             preferredCategories: prefs.categories,

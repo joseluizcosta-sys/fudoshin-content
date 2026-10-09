@@ -1,0 +1,56 @@
+{
+  "identifier" : "Fudoshin",
+  "nonConsumableProducts" : [],
+  "nonRenewingSubscriptionProducts" : [],
+  "products" : [],
+  "subscriptionGroups" : [
+    {
+      "id" : "21384689",
+      "localizations" : [],
+      "name" : "Fudōshin Premium",
+      "subscriptions" : [
+        {
+          "adHocOfferCodesEnabled" : true,
+          "displayPrice" : "89.90",
+          "familySharable" : false,
+          "groupNumber" : 1,
+          "internalID" : "47258370",
+          "introductoryOffer" : {
+            "duration" : 1,
+            "durationUnit" : "WEEK",
+            "mode" : "FREE_TRIAL",
+            "numberOfPeriods" : 1,
+            "offerIdentifier" : "com.atletaestoico.app.anual.trial",
+            "offerType" : 2
+          },
+          "localizations" : [
+            {
+              "description" : "Acesso completo ao Fudōshin",
+              "displayName" : "Fudōshin Premium Anual",
+              "locale" : "pt_BR"
+            },
+            {
+              "description" : "Full access to Fudōshin",
+              "displayName" : "Fudōshin Premium Annual",
+              "locale" : "en_US"
+            },
+            {
+              "description" : "Acceso completo a Fudōshin",
+              "displayName" : "Fudōshin Premium Anual",
+              "locale" : "es_ES"
+            }
+          ],
+          "productID" : "com.atletaestoico.app.anual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Anual",
+          "subscriptionGroupID" : "21384689",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

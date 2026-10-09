@@ -8,7 +8,6 @@ enum MessageEngine {
         let trigger: Trigger
         let day: DayKey
         let installID: String
-        let isPremium: Bool
         /// IDs de mensagens entregues nos últimos 30 dias (pré-filtrados pelo chamador).
         let recentlyDeliveredMessageIDs: Set<String>
         let raceCategory: ImageCategory?
@@ -50,9 +49,8 @@ enum MessageEngine {
         // Ordenar por id para estabilidade entre idiomas e versões (ajuste 2).
         let sorted = messages.sorted { $0.id < $1.id }
 
-        // Usuário grátis ou gatilho geral: DailyPicker sobre TODAS as mensagens (ajuste 1).
-        let effective = input.isPremium ? input.trigger : .geral
-        guard effective != .geral else {
+        // Gatilho geral: DailyPicker sobre TODAS as mensagens (ajuste 1).
+        guard input.trigger != .geral else {
             let idx = DailyPicker.index(
                 count: sorted.count, installID: input.installID, salt: "msg", day: input.day
             )
@@ -60,7 +58,7 @@ enum MessageEngine {
         }
 
         // Pool para o gatilho específico, ordenado por id.
-        var pool = sorted.filter { $0.triggers.contains(effective) }
+        var pool = sorted.filter { $0.triggers.contains(input.trigger) }
 
         // Gatilho sem mensagens: cair no DailyPicker geral (ajuste 2).
         if pool.isEmpty {
@@ -76,7 +74,7 @@ enum MessageEngine {
 
         // SeededGenerator com separadores para evitar colisões de semente (ajuste 1).
         var rng = SeededGenerator(
-            seed: StableHash.fnv1a64("\(input.installID)|\(input.day.value)|\(effective.rawValue)")
+            seed: StableHash.fnv1a64("\(input.installID)|\(input.day.value)|\(input.trigger.rawValue)")
         )
         // Int(rng.next() % count) — mesmo algoritmo do DailyPicker, estável entre versões Swift.
         let idx = Int(rng.next() % UInt64(pool.count))

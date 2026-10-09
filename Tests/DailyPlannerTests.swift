@@ -7,6 +7,7 @@ import SwiftData
 final class MockNotificationScheduler: NotificationScheduling {
     private(set) var scheduleAlreadyNotified: [Bool] = []
     private(set) var immediateCalls: [DailyEntry] = []
+    private(set) var cancelCount = 0
     var immediateReturns = true   // controla o que scheduleImmediate retorna
 
     func schedule(plan: DailyPlan, notificationHour: Int, alreadyNotifiedToday: Bool) async {
@@ -15,6 +16,9 @@ final class MockNotificationScheduler: NotificationScheduling {
     func scheduleImmediate(entry: DailyEntry) async -> Bool {
         immediateCalls.append(entry)
         return immediateReturns
+    }
+    func cancelPendingNotifications() async {
+        cancelCount += 1
     }
 }
 
@@ -71,8 +75,8 @@ final class DailyPlannerTests: XCTestCase {
             .appendingPathComponent("planner-tests-\(UUID().uuidString)")
         try FileManager.default.createDirectory(at: SharedStore._baseURL!, withIntermediateDirectories: true)
 
-        // Gravar preferências mínimas para loadPreferences() funcionar
-        let prefs = SharedPreferences(installID: "test-install")
+        // Gravar preferências mínimas; isPremium: true para que notificações sejam agendadas nos testes.
+        let prefs = SharedPreferences(installID: "test-install", isPremium: true)
         try SharedStore.save(prefs)
 
         planner = makePlanner()
@@ -416,6 +420,33 @@ final class DailyPlannerTests: XCTestCase {
         XCTAssertEqual(plan.entries.count, 7)
         let uniqueDays = Set(plan.entries.map { $0.day.value })
         XCTAssertEqual(uniqueDays.count, 7, "Plano deve ter 7 dias únicos")
+    }
+
+    // MARK: - Planner sem assinatura não agenda notificações (T14)
+
+    func testPlannerWithoutSubscriptionCancelsAndSkipsNotifications() async throws {
+        // Desativar premium
+        var prefs = SharedStore.loadPreferences()
+        prefs.isPremium = false
+        try SharedStore.save(prefs)
+
+        let workoutEnd = now.addingTimeInterval(-3600)
+        health.workoutsToReturn = [
+            WorkoutSummary(start: workoutEnd.addingTimeInterval(-3600),
+                          end: workoutEnd, distanceKm: 10, activityType: .running)
+        ]
+        await planner.refresh(now: now, calendar: spCal)
+
+        XCTAssertEqual(notifications.immediateCalls.count, 0,
+                       "Sem assinatura: scheduleImmediate não deve ser chamado")
+        XCTAssertEqual(notifications.scheduleAlreadyNotified.count, 0,
+                       "Sem assinatura: schedule não deve ser chamado")
+        XCTAssertEqual(notifications.cancelCount, 1,
+                       "Sem assinatura: cancelPendingNotifications deve ser chamado")
+
+        // Plano ainda deve ser gerado (para uso após assinar)
+        let plan = try XCTUnwrap(SharedStore.loadPlan())
+        XCTAssertEqual(plan.entries.count, 7, "Plano deve ser gerado mesmo sem assinatura")
     }
 
     // MARK: - Content alternativo (simula outro idioma)

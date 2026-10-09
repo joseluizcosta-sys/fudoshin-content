@@ -57,6 +57,14 @@ struct LiveNotificationScheduler: NotificationScheduling {
         await scheduleImmediate(entry: entry, now: Date(), calendar: .current)
     }
 
+    func cancelPendingNotifications() async {
+        let pending = await center.pendingRequests()
+        let ids = pending
+            .filter { $0.identifier.hasPrefix(Self.dailyPrefix) || $0.identifier.hasPrefix(Self.nowPrefix) }
+            .map { $0.identifier }
+        if !ids.isEmpty { center.removeRequests(withIdentifiers: ids) }
+    }
+
     // MARK: - Implementação com `now` e `calendar` injetáveis (testes)
 
     func schedule(

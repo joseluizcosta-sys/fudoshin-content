@@ -8,10 +8,13 @@ protocol NotificationScheduling {
     /// Retorna false se estiver no horário de silêncio (21h–7h) ou sem permissão.
     @discardableResult
     func scheduleImmediate(entry: DailyEntry) async -> Bool
+    /// Cancela todas as notificações diárias e de evento pendentes.
+    func cancelPendingNotifications() async
 }
 
 /// No-op — substituído pelo LiveNotificationScheduler via AppEnvironment.
 struct NoOpNotificationScheduler: NotificationScheduling {
     func schedule(plan: DailyPlan, notificationHour: Int, alreadyNotifiedToday: Bool) async {}
     func scheduleImmediate(entry: DailyEntry) async -> Bool { false }
+    func cancelPendingNotifications() async {}
 }

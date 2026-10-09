@@ -100,6 +100,7 @@ schemes:
         AtletaEstoicoTests: [test]
     run:
       config: Debug
+      storeKitConfiguration: Resources/Fudoshin.storekit
     test:
       config: Debug
       targets:
