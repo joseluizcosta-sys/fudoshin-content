@@ -5,7 +5,7 @@ import CoreGraphics
 struct WallpaperComposer: WallpaperComposing {
 
     /// Mude quando o layout mudar: força regerar os papéis de parede já salvos.
-    static let layoutVersion = 3
+    static let layoutVersion = 4
 
     let screenSize: CGSize
     let installID: String
@@ -119,7 +119,19 @@ struct WallpaperComposer: WallpaperComposing {
             let mainH     = min(ceil(mainNS.boundingRect(with: CGSize(width: textWidth, height: .greatestFiniteMagnitude),
                                                          options: .usesLineFragmentOrigin, context: nil).height),
                                 maxBlockH - attribH - gap)
-            let blockH    = mainH + gap + attribH
+            // Assinatura da marca (discreta, sob o autor): "不動心  FUDŌSHIN"
+            let signSize  = fontSize * 0.38
+            let signFont  = UIFont(name: "HiraMinProN-W6", size: signSize) ??
+                            UIFont.systemFont(ofSize: signSize, weight: .semibold)
+            let signNS    = NSAttributedString(string: "不動心   FUDŌSHIN", attributes: [
+                .font: signFont, .kern: signSize * 0.35,
+                .foregroundColor: UIColor.white.withAlphaComponent(0.55),
+                .paragraphStyle: center, .shadow: shadow,
+            ])
+            let signGap   = fontSize * 0.9
+            let signH     = ceil(signNS.boundingRect(with: CGSize(width: textWidth, height: .greatestFiniteMagnitude),
+                                                     options: .usesLineFragmentOrigin, context: nil).height)
+            let blockH    = mainH + gap + attribH + signGap + signH
             let blockTop  = size.height * 0.53 - blockH / 2
 
             // Faixa escura suave atrás do texto (transparente → 60% → transparente)
@@ -140,6 +152,9 @@ struct WallpaperComposer: WallpaperComposing {
                         options: [.usesLineFragmentOrigin, .truncatesLastVisibleLine], context: nil)
             attribNS.draw(with: CGRect(x: textX, y: blockTop + mainH + gap, width: textWidth, height: attribH + 4),
                           options: .usesLineFragmentOrigin, context: nil)
+            signNS.draw(with: CGRect(x: textX, y: blockTop + mainH + gap + attribH + signGap,
+                                     width: textWidth, height: signH + 4),
+                        options: .usesLineFragmentOrigin, context: nil)
         }
     }
 
