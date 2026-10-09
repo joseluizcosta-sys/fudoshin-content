@@ -32,7 +32,8 @@ xcodebuild -scheme AtletaEstoico -destination 'platform=iOS Simulator,name=iPhon
 - Idioma do conteúdo: `Bundle.main.preferredLocalizations.first`, com fallback `en` → `pt-BR`. Idioma de desenvolvimento = `en`: aparelho em idioma não suportado (ex.: alemão) recebe interface e conteúdo em inglês.
 
 ## Conteúdo (frases)
-- A fonte da verdade é `Content/Frases_Fudoshin.numbers` (se não existir, `Content/Frases_Fudoshin.xlsx`). Os JSONs em `Content/messages/` são **gerados** por `python3 tools/content_sheet.py build`. Não edite os JSONs à mão; se precisar mudar uma frase, edite a planilha e rode o build.
+- A fonte da verdade é `ContentSource/Frases_Fudoshin.numbers` (se não existir, `ContentSource/Frases_Fudoshin.xlsx`). Os JSONs em `Content/messages/` são **gerados** por `python3 tools/content_sheet.py build`. Não edite os JSONs à mão; se precisar mudar uma frase, edite a planilha e rode o build.
+- Imagens-fonte dos papéis de parede ficam em `ContentSource/Wallpapers/` (gitignored); só `dist/content/wallpapers.json` é versionado.
 - Campos que não são frases (perguntas do diário, `inline_contexto`, limites, revisão) continuam nos JSONs e são preservados pelo build.
 
 ## Tarefas do revisor

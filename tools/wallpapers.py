@@ -12,7 +12,7 @@ except ImportError:
     sys.exit("Falta o Pillow: pip3 install Pillow  (ou rode tools/publicar.sh que instala tudo)")
 
 ROOT = Path(__file__).resolve().parent.parent
-SRC_DIR = ROOT / "Content" / "Wallpapers"
+SRC_DIR = ROOT / "ContentSource" / "Wallpapers"
 DIST_DIR = ROOT / "dist" / "content"
 
 MAX_W, MAX_H = 1290, 2311

@@ -75,7 +75,7 @@ else
   "$PY" tools/content_sheet.py publish --disable
 fi
 
-# 5. Papéis de parede (Content/Wallpapers/ → wallpapers.json + wallpapers/*.jpg)
+# 5. Papéis de parede (ContentSource/Wallpapers/ → wallpapers.json + wallpapers/*.jpg)
 WALLS=0
 if [ "${1:-}" != "--disable" ]; then
   echo
@@ -114,7 +114,7 @@ git -C "$REPO_DIR" commit --quiet -m "$MSG"
 git -C "$REPO_DIR" push --quiet
 
 # 7. Registrar no projeto
-git add Content/messages Content/Frases_Fudoshin.numbers dist tools 2>/dev/null || true
+git add Content/messages ContentSource/Frases_Fudoshin.numbers dist tools 2>/dev/null || true
 git commit --quiet -m "content: publicado ($MSG)" || true
 
 # 8. Conferir se entrou no ar

@@ -12,7 +12,11 @@ build-log.txt
 
 tools/publicar.conf
 tools/.venv/
-Content/Wallpapers/
+ContentSource/Wallpapers/*
+!ContentSource/Wallpapers/.gitkeep
 dist/content/wallpapers/
 
 __pycache__/
+# Imagens-fonte soltas na raiz (devem ir para ContentSource/Wallpapers/)
+/*.jpeg
+/*.jpg

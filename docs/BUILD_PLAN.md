@@ -390,12 +390,12 @@ Cada tarefa: **Objetivo · Arquivos · Passos · Aceite**. 🔍 = revisão com O
 9. FoundationModels só compila com Xcode 26 → manter atrás de `#if canImport(FoundationModels)`.
 10. Citações: o modelo de código **não** deve completar, "corrigir" ou traduzir frases do JSON.
 11. Idiomas: nunca montar frase concatenando pedaços traduzidos ("Faltam " + n + " dias") — usar String Catalog com variáveis e plural.
-12. Arquivos dentro de `Content/` vão para o bundle do app e do widget: não colocar rascunhos lá (`_arquivo/` fica na raiz).
+12. Arquivos dentro de `Content/` vão para o bundle do app e do widget: só `messages/`, `images_seed.json` e `Images/`. Fontes pesadas (planilha, docs, imagens-fonte dos papéis de parede) ficam em `ContentSource/` (fora do bundle). `_arquivo/` fica na raiz.
 
 ---
 
 ## 6. Conteúdo (trabalho paralelo, não é código)
-- 120 mensagens verificadas na fonte em domínio público, em **3 idiomas** (fluxo em `Content/IDIOMAS.md`: rascunho com IA a partir do original + revisão nativa) (Project Gutenberg: Long, Gummere, Higginson). **Cada citação conferida por humano** contra o texto original antes de entrar no JSON.
+- 120 mensagens verificadas na fonte em domínio público, em **3 idiomas** (fluxo em `ContentSource/IDIOMAS.md`: rascunho com IA a partir do original + revisão nativa) (Project Gutenberg: Long, Gummere, Higginson). **Cada citação conferida por humano** contra o texto original antes de entrar no JSON.
 - Haiku pode gerar *rascunhos* de `texto_curto`/`texto_inline` a partir de frases já verificadas; revisar todos.
 - 30 imagens embarcadas, catalogadas em `images_seed.json`.
 

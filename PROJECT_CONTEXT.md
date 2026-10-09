@@ -33,19 +33,19 @@ O mercado de frases motivacionais está saturado e o conteúdo é commodity (Mot
 | D2 | Contexto vem do **HealthKit + dados informados pelo usuário** (prova, dias-chave da semana) | Custo zero, sem aprovação de terceiros |
 | D3 | **Zero backend** | Margem (custo marginal ~0), LGPD mais leve (dado de saúde não sai do aparelho) e argumento de marketing |
 | D4 | Geração de texto com **Foundation Models on-device** (iOS 26+), com fallback para biblioteca curada | Personalização sem custo de API por usuário |
-| D5 | Conteúdo só de **domínio público** ou texto próprio | Evita risco de direitos autorais (ver `Content/DIREITOS.md`) |
+| D5 | Conteúdo só de **domínio público** ou texto próprio | Evita risco de direitos autorais (ver `ContentSource/DIREITOS.md`) |
 | D6 | **Validar antes de codar a fundo** (landing + lista de espera) | Categoria com retenção historicamente baixa |
 | D7 | **Papel de parede diário** com paisagens de trail, rua e trilha + frase do dia (03/10/2026) | Presença diária na tela de bloqueio. Sozinho não diferencia (o Motivation já tem fundos), então a escolha da imagem também segue o contexto do treino |
 | D8 | A troca automática do papel de parede é feita por **automação do app Atalhos**, não pelo app | O iOS não tem API pública para um app trocar o papel de parede. O app gera a imagem do dia e oferece uma ação de Atalhos |
-| D9 | Imagens **próprias ou licenciadas por escrito**, sem pessoas identificáveis | Unsplash/Pexels são zona cinzenta para app que distribui fotos como produto. Ver `Content/IMAGENS.md` |
+| D9 | Imagens **próprias ou licenciadas por escrito**, sem pessoas identificáveis | Unsplash/Pexels são zona cinzenta para app que distribui fotos como produto. Ver `ContentSource/IMAGENS.md` |
 | D11 | **Widget da tela de bloqueio** com a mensagem do dia, trocando diariamente (03/10/2026) | Canal nativo, sem configuração de Atalhos, visto dezenas de vezes por dia. Vira o canal principal da mensagem; o papel de parede passa a ser complemento |
 | D18 | **Monetização: só assinatura anual R$ 89,90 com 7 dias grátis (oferta de entrada da Apple); sem plano mensal, sem vitalício, sem oferta de fundador; app bloqueado sem assinatura** (09/10/2026) | Referências BR: Motivation R$ 79,90/ano, I am R$ 82,90, Stoic R$ 119,90–199,90, Strava R$ 149,90. Anual única leva o teste direto à cobrança maior. Riscos aceitos: desinstalação no paywall e reclamação de cobrança → mitigar com paywall só no fim do onboarding (depois de mostrar valor), preço por extenso e lembrete 2 dias antes do fim do teste. Substitui o modelo grátis/pago anterior |
 | D17 | **Conteúdo remoto antes do lançamento**: frases novas publicadas num arquivo estático (GitHub Pages), baixadas pelo app semanalmente, sem nova versão na App Store. As frases embutidas continuam como base offline (07/10/2026) | Sustenta a anuidade com conteúdo novo contínuo (diretriz 3.1.2 da Apple) e permite corrigir frases na hora. Sem servidor nem backend: arquivo estático + validação no app. Meta: ~300 frases no 1º ano, 20–30/mês em séries temáticas. Descartado: 365 frases embutidas de uma vez (renovação fraca, exige versão nova, risco de enchimento) |
 | D16 | **Nome na App Store: "Fudōshin: Mente Samurai"** (en "Fudōshin: Samurai Mindset", es "Fudōshin: Mente Samurái"); subtítulo "Motivação no momento certo". Nome no iPhone continua "Fudōshin" (06/10/2026) | Fudōshin segue como marca registrável e distintiva; "Mente Samurai" dá busca e entendimento imediato. Avaliadas e descartadas: TheRunnerMind (descritivo, espaço lotado), NinjaMindset (contradiz o conteúdo samurai, tom infantil, marca NINJA congestionada), Samurai como nome principal (conflito com o livro/newsletter *Samurai Running* e jogos "Samurai Runner"). Ver `docs/AppStore_Metadados.md` |
-| D15 | **Autores contemporâneos do esporte (Goggins, Kipchoge) só como paráfrase**, exibidas como "Inspirado em <autor>" (03/10/2026) | Aproxima o conteúdo do atleta moderno sem risco de direito autoral; nomes e imagens fora do marketing. Ver `Content/DIREITOS.md`, regra 2b |
+| D15 | **Autores contemporâneos do esporte (Goggins, Kipchoge) só como paráfrase**, exibidas como "Inspirado em <autor>" (03/10/2026) | Aproxima o conteúdo do atleta moderno sem risco de direito autoral; nomes e imagens fora do marketing. Ver `ContentSource/DIREITOS.md`, regra 2b |
 | D14 | **Conteúdo japonês:** Musashi (*Livro dos Cinco Anéis*, *Dokkōdō*) e Takuan Sōhō (*Fudōchi Shinmyōroku*), traduzidos do original japonês (03/10/2026) | Reforça a marca Fudōshin e o posicionamento "mente inabalável" (estoicos + samurais). Traduções modernas são protegidas; revisão por leitor de japonês clássico obrigatória |
 | D13 | **Nome: Fudōshin (不動心), slogan "O corpo se move. A mente, não."** (03/10/2026) | Distinto na categoria, com história e ícone simples (ideograma). Posicionamento "mente inabalável" une estoicos e samurais. Pendências: teste do som em PT-BR, marca nas classes 9/41, revisão nativa dos ideogramas. Ver `docs/Marca_Fudoshin.md` |
-| D12 | **3 idiomas no lançamento (pt-BR, en, es)**, estrutura pronta para de, fr, it, zh-Hans (03/10/2026) | Frases **armazenadas por idioma**, traduzidas na produção do conteúdo (IA + revisão nativa). Tradução em tempo real não roda no widget, não respeita limites de texto e pode distorcer a citação. Ver `Content/IDIOMAS.md` |
+| D12 | **3 idiomas no lançamento (pt-BR, en, es)**, estrutura pronta para de, fr, it, zh-Hans (03/10/2026) | Frases **armazenadas por idioma**, traduzidas na produção do conteúdo (IA + revisão nativa). Tradução em tempo real não roda no widget, não respeita limites de texto e pode distorcer a citação. Ver `ContentSource/IDIOMAS.md` |
 | D10 | **iOS 17 mínimo no MVP** (03/10/2026). 30 imagens embarcadas; Foundation Models só em iOS 26+ via `#available`; Background Assets depois do beta | Tira a decisão do caminho crítico e não perde usuários. Reversível |
 
 ---
@@ -141,7 +141,7 @@ Regra: **no máximo 1 notificação por dia**, sempre no horário configurado ou
 - **Em tempo real**, a IA do aparelho só escreve a reflexão personalizada no idioma do usuário. Citação nunca é traduzida no aparelho.
 - **Interface** no String Catalog do Xcode desde o início; idioma segue o do iPhone (o iOS já permite trocar por app).
 - **Ganho de mercado:** página da App Store localizada por país amplia o alcance de busca (ASO) em EUA, Espanha e América Latina.
-- Detalhes, limites de texto por idioma e fluxo de tradução: `Content/IDIOMAS.md`.
+- Detalhes, limites de texto por idioma e fluxo de tradução: `ContentSource/IDIOMAS.md`.
 
 ---
 

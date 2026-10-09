@@ -28,8 +28,8 @@ except ImportError:
 
 ROOT = Path(__file__).resolve().parent.parent
 MSG_DIR = ROOT / "Content" / "messages"
-XLSX = ROOT / "Content" / "Frases_Fudoshin.xlsx"
-NUMBERS = ROOT / "Content" / "Frases_Fudoshin.numbers"   # se existir, é a fonte da verdade
+XLSX = ROOT / "ContentSource" / "Frases_Fudoshin.xlsx"
+NUMBERS = ROOT / "ContentSource" / "Frases_Fudoshin.numbers"   # se existir, é a fonte da verdade
 
 STATUS = ["ativa", "rascunho", "removida"]
 META_COLS = ["id", "autor", "obra", "ref", "tipo", "gatilhos",
