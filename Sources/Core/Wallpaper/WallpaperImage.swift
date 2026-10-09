@@ -18,6 +18,13 @@ enum WallpaperImage {
         return names
     }
 
+    /// Preferência válida (asset existe) → ela; inválida ou nil → sorteio diário.
+    static func resolve(preference: String?, day: DayKey, installID: String,
+                        exists: (String) -> Bool) -> String? {
+        if let pref = preference, exists(pref) { return pref }
+        return name(for: day, installID: installID, exists: exists)
+    }
+
     /// Escolha determinística por dia: mesma imagem o dia inteiro; dias seguidos não repetem
     /// quando houver ≥ 2 imagens. Sem imagens → nil (o composer usa HeroImage como fallback).
     static func name(for day: DayKey, installID: String, exists: (String) -> Bool) -> String? {

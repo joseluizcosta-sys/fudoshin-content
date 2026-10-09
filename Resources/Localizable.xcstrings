@@ -3750,24 +3750,68 @@
         }
       }
     },
-    "wallpaper.hint" : {
+    "wallpaper.gallery.daily" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "When setting, disable perspective zoom. The quote changes together with the day's trigger."
+            "value" : "Changes daily"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Al configurar, desactiva el zoom de perspectiva. La frase cambia junto con el disparador del día."
+            "value" : "Cambia cada día"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ao definir, desative o zoom de perspectiva. A frase muda junto com o gatilho do dia."
+            "value" : "Muda todo dia"
+          }
+        }
+      }
+    },
+    "wallpaper.gallery.title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose image"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elige la imagen"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escolha a imagem"
+          }
+        }
+      }
+    },
+    "wallpaper.hint" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "With a fixed image, the automation only changes the quote. With 'Changes daily', it changes both."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Con una imagen fija, la automatización solo cambia la frase. Con 'Cambia cada día', cambia las dos."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Com uma imagem escolhida, a automação troca só a frase; com 'Muda todo dia', troca as duas."
           }
         }
       }

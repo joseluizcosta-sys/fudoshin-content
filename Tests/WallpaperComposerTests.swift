@@ -169,6 +169,66 @@ final class WallpaperComposerTests: XCTestCase {
     }
 }
 
+// MARK: - WallpaperPreferenceRegenTests
+
+@MainActor
+final class WallpaperPreferenceRegenTests: XCTestCase {
+
+    private var tmpDir: URL!
+
+    override func setUp() async throws {
+        try await super.setUp()
+        tmpDir = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: tmpDir, withIntermediateDirectories: true)
+        SharedStore._baseURL = tmpDir
+    }
+
+    override func tearDown() async throws {
+        SharedStore._baseURL = nil
+        try? FileManager.default.removeItem(at: tmpDir)
+        try await super.tearDown()
+    }
+
+    func testRegenWhenWallpaperPreferenceChanges() async throws {
+        let entry = DailyEntry(
+            day: DayKey(Date()), messageID: "m1", imageID: "i1", trigger: .geral,
+            shortText: "Age.", inlineText: "Age", author: "Autor",
+            reflection: "", daysToRace: nil
+        )
+
+        // Primeira geração sem preferência (imageName = nil nos assets de teste)
+        var prefs = SharedStore.loadPreferences()
+        prefs.wallpaperImage = nil
+        try SharedStore.save(prefs)
+
+        let composer = WallpaperComposer(screenSize: CGSize(width: 200, height: 400),
+                                         installID: prefs.installID)
+        await composer.prepareWallpaper(for: entry)
+
+        let pngURL = SharedStore.wallpaperURL(for: entry.day)
+        let attr1 = try FileManager.default.attributesOfItem(atPath: pngURL.path)
+        let mod1 = attr1[.modificationDate] as? Date
+
+        // Salvar preferência de imagem diferente e forçar regeneração apagando o cache
+        try await Task.sleep(nanoseconds: 100_000_000)
+        prefs.wallpaperImage = "Wallpaper_epico_1"
+        try SharedStore.save(prefs)
+        try? FileManager.default.removeItem(at: pngURL)
+        try? FileManager.default.removeItem(at: SharedStore.wallpaperMetaURL(for: entry.day))
+
+        // Novo composer lê a preferência atualizada do SharedStore
+        let composer2 = WallpaperComposer(screenSize: CGSize(width: 200, height: 400),
+                                          installID: prefs.installID)
+        await composer2.prepareWallpaper(for: entry)
+
+        let attr2 = try FileManager.default.attributesOfItem(atPath: pngURL.path)
+        let mod2 = attr2[.modificationDate] as? Date
+
+        XCTAssertNotEqual(mod1, mod2, "Compositor deve regerar após mudança de preferência")
+    }
+}
+
 // MARK: - WallpaperIntentHelperTests
 
 @MainActor

@@ -3,7 +3,7 @@
 > Para o Claude Code: execute as instruções abaixo, rode todos os testes e faça o commit pedido.
 > Ao terminar, troque o status para "concluída" e resuma em 3 linhas o que mudou.
 
-**Status:** pendente
+**Status:** concluída
 **Tarefa:** usuário escolhe a imagem do papel de parede (ou "Muda todo dia")
 
 ## 1. Preferência (`SharedPreferences`)

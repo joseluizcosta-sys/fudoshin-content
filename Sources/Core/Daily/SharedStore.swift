@@ -7,9 +7,11 @@ struct SharedPreferences: Codable {
     var categories: [ImageCategory]
     var quoteOnWallpaper: Bool
     var isPremium: Bool
+    var wallpaperImage: String? // nil = sorteio diário; nome do asset = imagem fixa
 
     enum CodingKeys: String, CodingKey {
         case installID, changeHour, notificationHour, categories, quoteOnWallpaper, isPremium
+        case wallpaperImage
     }
 
     // Campos ausentes (JSON de versão anterior) recebem valores padrão sem invalidar o arquivo.
@@ -21,6 +23,7 @@ struct SharedPreferences: Codable {
         categories = (try? c.decodeIfPresent([ImageCategory].self, forKey: .categories)) ?? [.trail]
         quoteOnWallpaper = (try? c.decodeIfPresent(Bool.self, forKey: .quoteOnWallpaper)) ?? false
         isPremium = (try? c.decodeIfPresent(Bool.self, forKey: .isPremium)) ?? false
+        wallpaperImage = try? c.decodeIfPresent(String.self, forKey: .wallpaperImage)
     }
 
     init(
@@ -29,7 +32,8 @@ struct SharedPreferences: Codable {
         notificationHour: Int = 7,
         categories: [ImageCategory] = [.trail],
         quoteOnWallpaper: Bool = false,
-        isPremium: Bool = false
+        isPremium: Bool = false,
+        wallpaperImage: String? = nil
     ) {
         self.installID = installID
         self.changeHour = changeHour
@@ -37,6 +41,7 @@ struct SharedPreferences: Codable {
         self.categories = categories
         self.quoteOnWallpaper = quoteOnWallpaper
         self.isPremium = isPremium
+        self.wallpaperImage = wallpaperImage
     }
 
     static var `default`: SharedPreferences {

@@ -19,8 +19,10 @@ struct WallpaperComposer: WallpaperComposing {
         let url     = SharedStore.wallpaperURL(for: entry.day)
         let metaURL = SharedStore.wallpaperMetaURL(for: entry.day)
 
-        let imageName = WallpaperImage.name(for: entry.day, installID: installID,
-                                             exists: { UIImage(named: $0) != nil })
+        let preference = SharedStore.loadPreferencesIfExists()?.wallpaperImage
+        let imageName = WallpaperImage.resolve(preference: preference, day: entry.day,
+                                               installID: installID,
+                                               exists: { UIImage(named: $0) != nil })
 
         if fileUpToDate(url: url, metaURL: metaURL, entry: entry, imageName: imageName) { return }
 

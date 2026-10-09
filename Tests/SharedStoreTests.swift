@@ -179,6 +179,48 @@ final class SharedStoreTests: XCTestCase {
         XCTAssertFalse(loaded.quoteOnWallpaper)           // default (campo ausente)
     }
 
+    // MARK: - wallpaperImage preference
+
+    func testDefaultWallpaperImageIsNil() {
+        let prefs = SharedStore.loadPreferences()
+        XCTAssertNil(prefs.wallpaperImage)
+    }
+
+    func testWallpaperImageSavedAndLoaded() throws {
+        var prefs = SharedStore.loadPreferences()
+        prefs.wallpaperImage = "Wallpaper_epico_3"
+        try SharedStore.save(prefs)
+
+        let loaded = SharedStore.loadPreferences()
+        XCTAssertEqual(loaded.wallpaperImage, "Wallpaper_epico_3")
+    }
+
+    func testWallpaperImageNilSavedAndLoaded() throws {
+        var prefs = SharedStore.loadPreferences()
+        prefs.wallpaperImage = "Wallpaper_epico_1"
+        try SharedStore.save(prefs)
+        prefs.wallpaperImage = nil
+        try SharedStore.save(prefs)
+
+        let loaded = SharedStore.loadPreferences()
+        XCTAssertNil(loaded.wallpaperImage)
+    }
+
+    func testLegacyJSONWithoutWallpaperImageDecodesNil() throws {
+        try "legacy-uuid2".write(
+            to: tempDir.appendingPathComponent("install_id.txt"),
+            atomically: true, encoding: .utf8
+        )
+        let json = #"{"installID":"ignored","changeHour":4,"notificationHour":7,"categories":["trail"],"quoteOnWallpaper":false,"isPremium":false}"#
+        try json.data(using: .utf8)!.write(
+            to: tempDir.appendingPathComponent("shared_preferences.json"),
+            options: .atomic
+        )
+
+        let loaded = SharedStore.loadPreferences()
+        XCTAssertNil(loaded.wallpaperImage)
+    }
+
     // MARK: - wallpaperURL
 
     func testWallpaperURLContainsDayValue() {

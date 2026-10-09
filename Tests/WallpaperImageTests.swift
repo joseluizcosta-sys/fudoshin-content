@@ -104,6 +104,36 @@ final class WallpaperImageTests: XCTestCase {
     }
 }
 
+// MARK: - resolve
+
+final class WallpaperImageResolveTests: XCTestCase {
+
+    private let set: Set<String> = ["Wallpaper_epico_1", "Wallpaper_epico_2", "Wallpaper_epico_3"]
+    private var exists: (String) -> Bool { { self.set.contains($0) } }
+    private let day = DayKey(value: "2026-10-09")
+    private let installID = "install-abc"
+
+    func testResolveValidPreferenceReturnsIt() {
+        let result = WallpaperImage.resolve(preference: "Wallpaper_epico_2",
+                                            day: day, installID: installID, exists: exists)
+        XCTAssertEqual(result, "Wallpaper_epico_2")
+    }
+
+    func testResolveInvalidPreferenceFallsBackToDaily() {
+        let result = WallpaperImage.resolve(preference: "Wallpaper_epico_99",
+                                            day: day, installID: installID, exists: exists)
+        let daily = WallpaperImage.name(for: day, installID: installID, exists: exists)
+        XCTAssertEqual(result, daily)
+    }
+
+    func testResolveNilPreferenceFallsBackToDaily() {
+        let result = WallpaperImage.resolve(preference: nil,
+                                            day: day, installID: installID, exists: exists)
+        let daily = WallpaperImage.name(for: day, installID: installID, exists: exists)
+        XCTAssertEqual(result, daily)
+    }
+}
+
 // MARK: - Cache regeneration test
 
 @MainActor
