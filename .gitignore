@@ -14,3 +14,5 @@ tools/publicar.conf
 tools/.venv/
 Content/Wallpapers/
 dist/content/wallpapers/
+
+__pycache__/

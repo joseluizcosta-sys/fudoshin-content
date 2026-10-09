@@ -7,7 +7,7 @@ final class RemoteWallpaperStoreTests: XCTestCase {
     private var mockSession: URLSession!
     private var defaults: UserDefaults!
     private var store: RemoteWallpaperStore!
-    private let indexURL = URL(string: "https://example.com/wallpapers/wallpapers.json")!
+    private let indexURL = URL(string: "https://example.com/wallpapers.json")!
 
     override func setUp() async throws {
         try await super.setUp()
@@ -21,6 +21,7 @@ final class RemoteWallpaperStoreTests: XCTestCase {
         mockSession = URLSession(configuration: config)
         MockURLProtocol.handlers = [:]
         MockURLProtocol.networkError = nil
+        MockURLProtocol.requestedURLs = []
 
         defaults = UserDefaults(suiteName: UUID().uuidString)!
         store = RemoteWallpaperStore(
@@ -145,6 +146,8 @@ final class RemoteWallpaperStoreTests: XCTestCase {
         MockURLProtocol.handlers[indexURL] = .init(data: makeIndex(version: 2, items: [i1]), statusCode: 200)
         await store.checkForUpdate(force: true, preferredID: "wp_fff")
         XCTAssertTrue(fileExists("wp_fff"), "imagem escolhida não deve ser removida mesmo saindo do índice")
+        XCTAssertTrue(RemoteWallpaperStore.localItems().contains { $0.id == "wp_fff" },
+                      "imagem escolhida deve continuar no índice local para o catálogo enxergá-la")
     }
 
     func testRespectsItemLimit() async throws {
@@ -189,10 +192,12 @@ final class RemoteWallpaperStoreTests: XCTestCase {
             statusCode: 200)
         await store.checkForUpdate(force: true)
 
-        // wp_huge3 ultrapassa o limite de 30 MB quando somado aos dois anteriores
-        let local = RemoteWallpaperStore.localItems()
-        XCTAssertFalse(local.contains { $0.id == "wp_huge3" },
-                       "item que ultrapassa 30 MB total deve ser ignorado")
+        // Prioriza os mais novos: huge3 (11 MB) + huge2 (10 MB) = 21 MB; huge1 estouraria 30 MB.
+        // (sha falso → nada é gravado; verificamos a seleção pelas requisições, não pelo disco)
+        XCTAssertFalse(MockURLProtocol.requestedURLs.contains("https://example.com/wallpapers/wp_huge1.jpg".asURL!),
+                       "o item mais antigo que estoura 30 MB não deve ser baixado")
+        XCTAssertTrue(MockURLProtocol.requestedURLs.contains("https://example.com/wallpapers/wp_huge3.jpg".asURL!),
+                      "o item mais novo deve ser priorizado")
     }
 
     func testLocalIndexWrittenAfterDownload() async throws {

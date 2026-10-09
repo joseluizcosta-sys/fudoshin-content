@@ -90,13 +90,25 @@ actor RemoteWallpaperStore {
         let wallpapersDir = Self.wallpapersDirectory
         try? fm.createDirectory(at: wallpapersDir, withIntermediateDirectories: true)
 
-        // Selecionar itens dentro dos limites (40 imagens, 30 MB)
+        // Selecionar itens dentro dos limites (40 imagens, 30 MB), priorizando os MAIS NOVOS:
+        // o índice vem em ordem de inclusão (mais antigo primeiro), então percorremos ao contrário
+        // e depois restauramos a ordem original.
         var totalBytes = 0
-        var itemsToKeep: [WallpaperIndexEntry] = []
-        for item in remoteIndex.items.prefix(Self.maxItems) {
+        var newestFirst: [WallpaperIndexEntry] = []
+        for item in remoteIndex.items.reversed() {
+            if newestFirst.count >= Self.maxItems { break }
             if totalBytes + item.bytes > Self.maxTotalBytes { break }
             totalBytes += item.bytes
-            itemsToKeep.append(item)
+            newestFirst.append(item)
+        }
+        let itemsToKeep = Array(newestFirst.reversed())
+
+        // Imagem escolhida pelo usuário que saiu do índice: continua no disco E no índice local,
+        // senão o catálogo não a enxerga e a preferência cai para o sorteio.
+        let previousItems = Self.localItems()
+        let retainedPreferred: WallpaperIndexEntry? = preferredID.flatMap { pid in
+            itemsToKeep.contains(where: { $0.id == pid }) ? nil
+                : previousItems.first(where: { $0.id == pid })
         }
 
         let keepIDs = Set(itemsToKeep.map { $0.id })
@@ -119,8 +131,13 @@ actor RemoteWallpaperStore {
         }
 
         // Gravar índice local refletindo o que está em disco
-        let finalItems = itemsToKeep.filter {
+        var finalItems = itemsToKeep.filter {
             fm.fileExists(atPath: wallpapersDir.appendingPathComponent("\($0.id).jpg").path)
+        }
+        let allDownloaded = finalItems.count == itemsToKeep.count
+        if let kept = retainedPreferred,
+           fm.fileExists(atPath: wallpapersDir.appendingPathComponent("\(kept.id).jpg").path) {
+            finalItems.insert(kept, at: 0)
         }
         let localIndex = WallpaperIndex(schema: Self.supportedSchema,
                                         version: remoteIndex.version,
@@ -128,13 +145,22 @@ actor RemoteWallpaperStore {
         if let data = try? JSONEncoder().encode(localIndex) {
             try? data.write(to: Self.localIndexURL, options: .atomic)
         }
-        defaults.set(remoteIndex.version, forKey: versionKey)
+        // Só marca a versão como aplicada se todas as imagens chegaram; senão a próxima
+        // verificação tenta de novo (sem esperar 7 dias).
+        if allDownloaded {
+            defaults.set(remoteIndex.version, forKey: versionKey)
+        } else {
+            defaults.removeObject(forKey: lastCheckKey)
+        }
     }
 
     // MARK: - Privado
 
     private func downloadItem(_ item: WallpaperIndexEntry, from baseURL: URL, to destURL: URL) async {
-        let imageURL = baseURL.appendingPathComponent("\(item.id).jpg")
+        // `file` é relativo à pasta do índice (ex.: "wallpapers/wp_xxx.jpg").
+        // Aceita só caminhos simples, sem "..", para não sair do repositório.
+        guard !item.file.contains(".."), !item.file.hasPrefix("/") else { return }
+        let imageURL = baseURL.appendingPathComponent(item.file)
         guard let data = await fetch(url: imageURL, timeout: 30) else { return }
 
         guard data.count == item.bytes else { return }
@@ -156,7 +182,7 @@ actor RemoteWallpaperStore {
         guard let s = Bundle.main.infoDictionary?["ContentManifestURL"] as? String, !s.isEmpty,
               let manifestURL = URL(string: s), manifestURL.scheme == "https" else { return nil }
         return manifestURL.deletingLastPathComponent()
-            .appendingPathComponent("wallpapers/wallpapers.json")
+            .appendingPathComponent("wallpapers.json")
     }
 
     private func fetch(url: URL, timeout: TimeInterval) async -> Data? {

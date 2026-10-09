@@ -9,12 +9,15 @@ final class MockURLProtocol: URLProtocol {
 
     static var handlers: [URL: Response] = [:]
     static var networkError: Error? = nil
+    /// URLs pedidas, em ordem (zerar no setUp).
+    static var requestedURLs: [URL] = []
 
     override class func canInit(with request: URLRequest) -> Bool { true }
     override class func canonicalRequest(for request: URLRequest) -> URLRequest { request }
 
     override func startLoading() {
         defer { client?.urlProtocolDidFinishLoading(self) }
+        if let u = request.url { MockURLProtocol.requestedURLs.append(u) }
 
         if let error = MockURLProtocol.networkError {
             client?.urlProtocol(self, didFailWithError: error)
