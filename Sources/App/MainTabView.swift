@@ -16,6 +16,10 @@ struct MainTabView: View {
             JournalView()
                 .tabItem { Label("tab.journal", systemImage: "book.fill") }
                 .tag(2)
+
+            WallpaperView()
+                .tabItem { Label("tab.wallpaper", systemImage: "iphone.gen3") }
+                .tag(3)
         }
         .tint(Theme.accent)
         .onOpenURL { url in

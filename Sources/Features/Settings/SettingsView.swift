@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 private enum SettingsSheet: String, Identifiable {
-    case syncGuide, mantra, race, week, wallpaperGuide
+    case syncGuide, mantra, race, week
     var id: String { rawValue }
 }
 
@@ -46,8 +46,6 @@ struct SettingsView: View {
                     WeekEditView {
                         await AppEnvironment.shared?.planner.refresh(now: Date(), invalidateToday: true)
                     }
-                case .wallpaperGuide:
-                    WallpaperSetupGuide()
                 }
             }
         }
@@ -109,14 +107,6 @@ struct SettingsView: View {
                 }
                 .foregroundStyle(Theme.primaryText)
             }
-
-            // Papel de parede
-            WallpaperSettingsSection(
-                showGuide: Binding(
-                    get: { activeSheet == .wallpaperGuide },
-                    set: { if $0 { activeSheet = .wallpaperGuide } }
-                )
-            )
 
             // Widget — instruções
             Section("settings.widget.section") {
