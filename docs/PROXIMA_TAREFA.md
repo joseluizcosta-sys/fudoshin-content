@@ -4,7 +4,7 @@
 > Ao terminar, troque o status para "concluída", atualize T14 na tabela do `docs/BUILD_PLAN.md`
 > e resuma em 3 linhas o que mudou. Se algo do StoreKit não se comportar como descrito, pare e explique.
 
-**Status:** pendente
+**Status:** concluída
 **Tarefa:** T14 — assinatura anual com 7 dias grátis e app bloqueado sem assinatura (decisão D18)
 
 ## Contexto
