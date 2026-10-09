@@ -40,9 +40,15 @@ final class EntitlementStore {
     // MARK: - Produto
 
     private func loadProduct() async {
+        // Offline o StoreKit costuma devolver lista VAZIA em vez de lançar erro:
+        // tratar os dois casos como falha, senão o paywall fica num spinner eterno.
         do {
-            product = try await Product.products(for: [Self.productID]).first
-            productLoadFailed = false
+            if let loaded = try await Product.products(for: [Self.productID]).first {
+                product = loaded
+                productLoadFailed = false
+            } else if product == nil {
+                productLoadFailed = true
+            }
         } catch {
             if product == nil { productLoadFailed = true }
         }

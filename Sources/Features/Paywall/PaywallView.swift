@@ -169,10 +169,14 @@ struct PaywallView: View {
 @Observable
 final class NetworkPathMonitor {
     private(set) var isConnected = true
-    private let monitor = NWPathMonitor()
+    // NWPathMonitor não pode ser reiniciado depois de cancel(): cria um novo a cada start().
+    private var monitor: NWPathMonitor?
     private let queue = DispatchQueue(label: "com.atletaestoico.netmonitor")
 
     func start() {
+        monitor?.cancel()
+        let monitor = NWPathMonitor()
+        self.monitor = monitor
         monitor.pathUpdateHandler = { [weak self] path in
             Task { @MainActor [weak self] in
                 self?.isConnected = path.status == .satisfied
@@ -182,6 +186,7 @@ final class NetworkPathMonitor {
     }
 
     func stop() {
-        monitor.cancel()
+        monitor?.cancel()
+        monitor = nil
     }
 }
