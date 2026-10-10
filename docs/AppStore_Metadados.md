@@ -84,3 +84,14 @@ Fudōshin: la mente inquebrantable. Para quien corre y entrena. Cada día, la fr
 - [ ] Categoria: Saúde e fitness (secundária: Estilo de vida). Classificação etária: 4+.
 - [ ] URL de suporte (obrigatória): pode ser a página de privacidade ou uma `suporte.html` no fudoshin-content com o e-mail de contato.
 - [ ] Em "Assinaturas" da versão: marcar "Premium Anual" para enviar junto + print do paywall no Review Information.
+
+## Preenchido no App Store Connect (10/10/2026, Opus via Chrome)
+- Nomes finais: pt-BR "Fudōshin: Mente Samurai" · en-US **"Fudōshin: Samurai Mind"** · es-MX **"Fudōshin: Mente de Samurái"**.
+  ("Fudōshin: Samurai Mindset" e "Fudōshin: Mente Samurái" foram recusados: nome já em uso por outro app. Vigiar possível concorrente/registro.)
+- Subtítulos, descrições, texto promocional, palavras-chave e URL de suporte nos 3 idiomas. Direitos autorais "2026 JC Costa".
+- Categoria Saúde e fitness / Estilo de vida. Direitos de conteúdo: sim (domínio público). Não é dispositivo médico.
+- Classificação etária calculada: **9+** (por "temas de saúde e bem-estar"; 12+ Vietnã, A10 Brasil).
+- Privacidade: "Data Not Collected" publicada; URL de privacidade preenchida.
+- Revisão: sem login; contato JC Costa / jcdev.aistudio@gmail.com / telefone (JC); notas em inglês.
+- Build 1 (1.0) ligado à versão. Lançamento: **manual** após aprovação.
+- Falta: screenshots 6,9"; print do paywall na assinatura e incluí-la na versão; Add for Review.
