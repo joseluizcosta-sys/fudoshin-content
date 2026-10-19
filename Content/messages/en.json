@@ -192,18 +192,6 @@
       "texto_inline": "Get up and go.",
       "reflexao": "Mornings bring the day's first decisions. Don't negotiate with laziness."
     },
-    "ma-4-3": {
-      "texto": "The universe is change; life is opinion.",
-      "texto_curto": "The universe is change; life is opinion.",
-      "texto_inline": "Life is opinion",
-      "reflexao": "The bad run is already gone. What remains is what you think of it."
-    },
-    "ma-5-16": {
-      "texto": "The soul takes on the color of its thoughts.",
-      "texto_curto": "The soul takes on the color of its thoughts.",
-      "texto_inline": "Mind your thoughts",
-      "reflexao": "On a rest day, choose carefully what feeds your mind. The mind recovers too."
-    },
     "ma-7-69": {
       "texto": "Perfection of character is to live each day as if it were the last, without frenzy, without sloth, without pretense.",
       "texto_curto": "Live each day without frenzy, without sloth, without pretense.",
@@ -216,35 +204,17 @@
       "texto_inline": "Only this moment",
       "reflexao": "Don't think about the 100 km ahead. Think about this kilometer. You can handle it."
     },
-    "ma-10-16": {
-      "texto": "Waste no more time arguing what a good person should be. Be one.",
-      "texto_curto": "Waste no more time arguing what a good person should be. Be one.",
-      "texto_inline": "Be one",
-      "reflexao": "Stop planning the perfect workout. Go and do the possible one."
-    },
     "ma-7-8": {
       "texto": "Never let the future disturb you. You will meet it, if you must, with the same reason you use today.",
       "texto_curto": "Don't let the future disturb you. You'll meet it when it comes.",
       "texto_inline": "The future can wait",
       "reflexao": "Pre-race nerves are imagination. Tomorrow you'll have the same tools as today."
     },
-    "ma-4-24": {
-      "texto": "If you want tranquility, do less. Do only what is essential.",
-      "texto_curto": "If you want tranquility, do less. Do only what is essential.",
-      "texto_inline": "Only the essential",
-      "reflexao": "Resting is training too. Today, the essential thing is letting your body rebuild."
-    },
     "ma-8-32": {
       "texto": "Build your life action by action.",
       "texto_curto": "Build your life action by action.",
       "texto_inline": "Action by action",
       "reflexao": "One run doesn't make an athlete. A hundred finished runs do. Today was one more."
-    },
-    "ma-3-10": {
-      "texto": "Each of us lives only the present; the rest is either past or uncertain.",
-      "texto_curto": "Each of us lives only now; the rest is past or uncertain.",
-      "texto_inline": "Only now",
-      "reflexao": "Kilometer 80 doesn't exist yet. This one does. Run this one."
     },
     "ma-6-2": {
       "texto": "Let it make no difference whether you are cold or warm, as long as you are doing your duty.",
@@ -318,12 +288,6 @@
       "texto_inline": "Accept and go",
       "reflexao": "Rain on race day? Accept the rain. Fighting it only wastes energy."
     },
-    "ep-ench-29": {
-      "texto": "Do you want to win at the Olympics? Consider what comes before and after: discipline, diet, training at set hours, in heat and cold.",
-      "texto_curto": "Want to win? Accept what comes first: discipline and training.",
-      "texto_inline": "Accept the process",
-      "reflexao": "Everyone wants the medal. Few want the early mornings that come before it."
-    },
     "ep-ench-51": {
       "texto": "How long will you put off demanding the best of yourself? Now is the contest; the games have begun.",
       "texto_curto": "How long will you wait? The games have already begun.",
@@ -360,35 +324,11 @@
       "texto_inline": "See the unseen",
       "reflexao": "No one sees recovery happening. But rest is when the body gets stronger."
     },
-    "mm-dokkodo-deuses": {
-      "texto": "Respect the gods and Buddhas, but do not rely on their help.",
-      "texto_curto": "Respect the gods and Buddhas, but do not rely on their help.",
-      "texto_inline": "Don't count on luck",
-      "reflexao": "At the start line, luck won't run for you. Your training will."
-    },
     "pj-keizoku": {
       "texto": "Continuity is strength.",
       "texto_curto": "Continuity is strength.",
       "texto_inline": "Continuity is strength",
       "reflexao": "No one will remember today's run a year from now. Everyone will see the result of a year of runs."
-    },
-    "pj-ishi-sannen": {
-      "texto": "Even on a rock, three years.",
-      "texto_curto": "Sit on a cold rock for three years and it grows warm.",
-      "texto_inline": "Patience",
-      "reflexao": "Running results take time. Sit on the rock until it warms."
-    },
-    "pj-chiri-yama": {
-      "texto": "Even dust, piled up, becomes a mountain.",
-      "texto_curto": "Even dust, piled up, becomes a mountain.",
-      "texto_inline": "Dust becomes mountains",
-      "reflexao": "Five kilometers today feels small. Added up over a year, it becomes a mountain."
-    },
-    "pj-isogaba": {
-      "texto": "If you're in a hurry, go the long way around.",
-      "texto_curto": "In a hurry? Take the safer road.",
-      "texto_inline": "No rush",
-      "reflexao": "Coming back from injury, ramping up too fast is the longest road. Go slow."
     },
     "pj-ame-futte": {
       "texto": "After the rain, the ground hardens.",

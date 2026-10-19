@@ -546,32 +546,6 @@
       "base_dominio_publico": "Não se aplica: frase própria"
     },
     {
-      "id": "ma-4-3",
-      "autor": "marco_aurelio",
-      "obra": "meditacoes",
-      "ref": "4.3",
-      "tipo": "citacao",
-      "gatilhos": [
-        "pos_treino",
-        "sono_ruim"
-      ],
-      "base_dominio_publico": "George Long, 1862",
-      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
-    },
-    {
-      "id": "ma-5-16",
-      "autor": "marco_aurelio",
-      "obra": "meditacoes",
-      "ref": "5.16",
-      "tipo": "citacao",
-      "gatilhos": [
-        "geral",
-        "descanso"
-      ],
-      "base_dominio_publico": "George Long, 1862",
-      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
-    },
-    {
       "id": "ma-7-69",
       "autor": "marco_aurelio",
       "obra": "meditacoes",
@@ -598,19 +572,6 @@
       "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
     },
     {
-      "id": "ma-10-16",
-      "autor": "marco_aurelio",
-      "obra": "meditacoes",
-      "ref": "10.16",
-      "tipo": "citacao",
-      "gatilhos": [
-        "geral",
-        "retorno"
-      ],
-      "base_dominio_publico": "George Long, 1862",
-      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
-    },
-    {
       "id": "ma-7-8",
       "autor": "marco_aurelio",
       "obra": "meditacoes",
@@ -624,19 +585,6 @@
       "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
     },
     {
-      "id": "ma-4-24",
-      "autor": "marco_aurelio",
-      "obra": "meditacoes",
-      "ref": "4.24",
-      "tipo": "citacao",
-      "gatilhos": [
-        "descanso",
-        "geral"
-      ],
-      "base_dominio_publico": "George Long, 1862",
-      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
-    },
-    {
       "id": "ma-8-32",
       "autor": "marco_aurelio",
       "obra": "meditacoes",
@@ -644,19 +592,6 @@
       "tipo": "citacao",
       "gatilhos": [
         "pos_treino",
-        "geral"
-      ],
-      "base_dominio_publico": "George Long, 1862",
-      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
-    },
-    {
-      "id": "ma-3-10",
-      "autor": "marco_aurelio",
-      "obra": "meditacoes",
-      "ref": "3.10",
-      "tipo": "citacao",
-      "gatilhos": [
-        "marco_prova",
         "geral"
       ],
       "base_dominio_publico": "George Long, 1862",
@@ -819,19 +754,6 @@
       "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
     },
     {
-      "id": "ep-ench-29",
-      "autor": "epicteto",
-      "obra": "enchiridion",
-      "ref": "29",
-      "tipo": "citacao",
-      "gatilhos": [
-        "vespera_chave",
-        "geral"
-      ],
-      "base_dominio_publico": "George Long, 1877",
-      "verificacao": "pendente — conferir referência (livro.seção) e fidelidade da tradução"
-    },
-    {
       "id": "ep-ench-51",
       "autor": "epicteto",
       "obra": "enchiridion",
@@ -913,20 +835,6 @@
       "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
     },
     {
-      "id": "mm-dokkodo-deuses",
-      "autor": "miyamoto_musashi",
-      "obra": "dokkodo",
-      "ref": "1645",
-      "tipo": "citacao",
-      "gatilhos": [
-        "vespera_chave",
-        "marco_prova"
-      ],
-      "base_dominio_publico": "Texto original japonês (domínio público) — tradução própria a partir do original",
-      "texto_original": "仏神は貴し、仏神をたのまず",
-      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
-    },
-    {
       "id": "pj-keizoku",
       "autor": "proverbio_japones",
       "obra": "proverbios_japoneses",
@@ -938,48 +846,6 @@
       ],
       "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
       "texto_original": "継続は力なり (keizoku wa chikara nari)",
-      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
-    },
-    {
-      "id": "pj-ishi-sannen",
-      "autor": "proverbio_japones",
-      "obra": "proverbios_japoneses",
-      "ref": "石の上にも三年",
-      "tipo": "citacao",
-      "gatilhos": [
-        "retorno",
-        "descanso"
-      ],
-      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
-      "texto_original": "石の上にも三年 (ishi no ue ni mo sannen)",
-      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
-    },
-    {
-      "id": "pj-chiri-yama",
-      "autor": "proverbio_japones",
-      "obra": "proverbios_japoneses",
-      "ref": "塵も積もれば山となる",
-      "tipo": "citacao",
-      "gatilhos": [
-        "pos_treino",
-        "descanso"
-      ],
-      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
-      "texto_original": "塵も積もれば山となる (chiri mo tsumoreba yama to naru)",
-      "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
-    },
-    {
-      "id": "pj-isogaba",
-      "autor": "proverbio_japones",
-      "obra": "proverbios_japoneses",
-      "ref": "急がば回れ",
-      "tipo": "citacao",
-      "gatilhos": [
-        "retorno",
-        "vespera_chave"
-      ],
-      "base_dominio_publico": "Provérbio popular japonês (tradição oral), domínio público",
-      "texto_original": "急がば回れ (isogaba maware)",
       "verificacao": "pendente — conferir original japonês, leitura e tradução (DIREITOS.md, regra 1b)"
     },
     {

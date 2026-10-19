@@ -192,18 +192,6 @@
       "texto_inline": "Levante e faça.",
       "reflexao": "As manhãs trazem as primeiras decisões do dia. Não negocie com a preguiça."
     },
-    "ma-4-3": {
-      "texto": "O universo é mudança; a vida é opinião.",
-      "texto_curto": "O universo é mudança; a vida é opinião.",
-      "texto_inline": "A vida é opinião",
-      "reflexao": "O treino ruim já mudou. O que fica é o que você pensa dele."
-    },
-    "ma-5-16": {
-      "texto": "A alma ganha a cor dos seus pensamentos.",
-      "texto_curto": "A alma ganha a cor dos seus pensamentos.",
-      "texto_inline": "Cuide dos pensamentos",
-      "reflexao": "No dia de descanso, escolha bem o que alimenta sua cabeça. A mente também se recupera."
-    },
     "ma-7-69": {
       "texto": "A perfeição do caráter é viver cada dia como se fosse o último, sem agitação, sem preguiça, sem fingimento.",
       "texto_curto": "Viva cada dia sem agitação, sem preguiça, sem fingimento.",
@@ -216,35 +204,17 @@
       "texto_inline": "Só este momento",
       "reflexao": "Não pense nos 100 km que faltam. Pense neste quilômetro. Ele você aguenta."
     },
-    "ma-10-16": {
-      "texto": "Chega de discutir como deve ser uma pessoa boa. Seja uma.",
-      "texto_curto": "Chega de discutir como deve ser uma pessoa boa. Seja uma.",
-      "texto_inline": "Seja, não discuta",
-      "reflexao": "Pare de planejar o treino perfeito. Vá e faça o treino possível."
-    },
     "ma-7-8": {
       "texto": "Não deixe o futuro te perturbar. Você o enfrentará, se precisar, com a mesma razão que usa hoje.",
       "texto_curto": "Não deixe o futuro te perturbar. Você o enfrentará quando chegar.",
       "texto_inline": "O futuro espera",
       "reflexao": "A ansiedade da véspera é imaginação. Amanhã você terá as mesmas armas de hoje."
     },
-    "ma-4-24": {
-      "texto": "Se quer tranquilidade, faça pouco. Faça apenas o essencial.",
-      "texto_curto": "Se quer tranquilidade, faça pouco. Faça apenas o essencial.",
-      "texto_inline": "Só o essencial",
-      "reflexao": "Descansar também é treino. Hoje, o essencial é deixar o corpo se reconstruir."
-    },
     "ma-8-32": {
       "texto": "Construa sua vida ação por ação.",
       "texto_curto": "Construa sua vida ação por ação.",
       "texto_inline": "Ação por ação",
       "reflexao": "Um treino não faz um atleta. Cem treinos feitos, sim. Hoje foi mais um."
-    },
-    "ma-3-10": {
-      "texto": "Cada um vive apenas o presente; o resto já foi vivido ou é incerto.",
-      "texto_curto": "Cada um vive apenas o presente; o resto já foi vivido ou é incerto.",
-      "texto_inline": "Só o presente",
-      "reflexao": "O km 80 ainda não existe. O km de agora, sim. Corra este."
     },
     "ma-6-2": {
       "texto": "Que não faça diferença se você sente frio ou calor, desde que esteja fazendo o seu dever.",
@@ -318,12 +288,6 @@
       "texto_inline": "Aceite e siga",
       "reflexao": "Choveu na prova? Aceite a chuva. Brigar com ela só gasta energia."
     },
-    "ep-ench-29": {
-      "texto": "Quer vencer nas Olimpíadas? Considere o que vem antes e o que vem depois: disciplina, dieta, treino na hora certa, no calor e no frio.",
-      "texto_curto": "Quer vencer? Aceite o que vem antes: disciplina e treino.",
-      "texto_inline": "Aceite o processo",
-      "reflexao": "Todo mundo quer a medalha. Poucos querem as madrugadas que vêm antes dela."
-    },
     "ep-ench-51": {
       "texto": "Até quando vai adiar exigir de si o melhor? Agora é a disputa; os jogos já começaram.",
       "texto_curto": "Até quando vai adiar? Os jogos já começaram.",
@@ -360,35 +324,11 @@
       "texto_inline": "Veja o invisível",
       "reflexao": "Ninguém vê a recuperação acontecendo. Mas é no descanso que o corpo fica mais forte."
     },
-    "mm-dokkodo-deuses": {
-      "texto": "Respeite os deuses e os budas, mas não conte com a ajuda deles.",
-      "texto_curto": "Respeite os deuses e os budas, mas não conte com a ajuda deles.",
-      "texto_inline": "Não conte com sorte",
-      "reflexao": "Na largada, a sorte não corre por você. O treino que você fez, sim."
-    },
     "pj-keizoku": {
       "texto": "Continuar é força.",
       "texto_curto": "Continuar é força.",
       "texto_inline": "Continuar é força",
       "reflexao": "Ninguém lembra do treino de hoje daqui a um ano. Mas todos verão o resultado de um ano de treinos."
-    },
-    "pj-ishi-sannen": {
-      "texto": "Até sobre uma pedra, três anos.",
-      "texto_curto": "Até uma pedra fria esquenta em três anos.",
-      "texto_inline": "Paciência",
-      "reflexao": "Resultado na corrida leva tempo. Sente na pedra até ela esquentar."
-    },
-    "pj-chiri-yama": {
-      "texto": "Até a poeira, acumulada, vira montanha.",
-      "texto_curto": "Até a poeira, acumulada, vira montanha.",
-      "texto_inline": "Poeira vira montanha",
-      "reflexao": "Cinco quilômetros hoje parecem pouco. Somados por um ano, viram uma montanha."
-    },
-    "pj-isogaba": {
-      "texto": "Se está com pressa, dê a volta.",
-      "texto_curto": "Com pressa? Vá pelo caminho mais seguro.",
-      "texto_inline": "Sem pressa",
-      "reflexao": "Voltando de lesão, aumentar rápido demais é o caminho mais longo. Vá devagar."
     },
     "pj-ame-futte": {
       "texto": "Depois da chuva, a terra firma.",
